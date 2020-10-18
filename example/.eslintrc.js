@@ -10,6 +10,7 @@ module.exports = {
     },
   },
   rules: {
+    'import/no-unresolved': ['error', {ignore: ['react95-native']}],
     'import/no-extraneous-dependencies': ['error', {devDependencies: true}],
     'react/jsx-filename-extension': [1, {extensions: ['.ts', '.tsx']}],
     'jsx-a11y/label-has-associated-control': ['error', {assert: 'either'}],
