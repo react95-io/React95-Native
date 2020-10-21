@@ -7,10 +7,15 @@ const styles = StyleSheet.create({
   }
 });
 
-const Button = () => {
+type Props = {
+  children: React.ReactNode;
+  onPress: () => void;
+};
+
+const Button = ({ children, onPress }: Props) => {
   return (
-    <TouchableOpacity style={styles.button}>
-      <Text>Button</Text>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text>{children}</Text>
     </TouchableOpacity>
   );
 };

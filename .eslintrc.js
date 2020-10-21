@@ -27,6 +27,7 @@ module.exports = {
         ts: 'never',
         tsx: 'never'
       }
-    ]
+    ],
+    'no-use-before-define': 'off'
   }
 };

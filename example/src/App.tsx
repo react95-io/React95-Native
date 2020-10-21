@@ -1,18 +1,20 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, Text, StatusBar} from 'react-native';
+import 'react-native-gesture-handler';
 
-import {Button} from 'react95-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+import RootNavigator from './RootNavigator';
+
+const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <Button />
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name='RootNavigator' component={RootNavigator} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 };
 
