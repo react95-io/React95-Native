@@ -1,19 +1,36 @@
-import 'react-native-gesture-handler';
-
 import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import RootNavigator from './RootNavigator';
+import ExamplesScreen from './ExamplesScreen';
+import examples from './examples';
 
-const Drawer = createDrawerNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  ButtonExample: undefined;
+  TextInputExample: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name='RootNavigator' component={RootNavigator} />
-      </Drawer.Navigator>
+      <Stack.Navigator headerMode='screen'>
+        <Stack.Screen
+          name='Home'
+          component={ExamplesScreen}
+          options={{ title: 'Examples' }}
+        />
+        {examples.map(({ name, title, component }) => (
+          <Stack.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={{ title }}
+          />
+        ))}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
