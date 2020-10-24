@@ -7,7 +7,10 @@ import { TextInput } from '../../../src';
 const TextInputExample = () => {
   return (
     <Container>
-      <TextInput value='' placeholder='Insert your text...' />
+      <TextInput
+        value=''
+        placeholder='toDo: Implement text input component...'
+      />
     </Container>
   );
 };

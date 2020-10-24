@@ -7,5 +7,7 @@ export default {
   borderLightest: '#fefefe',
 
   material: '#c6c6c6',
-  materialText: '#0a0a0a'
+  materialText: '#0a0a0a',
+
+  canvas: '#ffffff'
 };

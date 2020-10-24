@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
+
+import themes from '../../../src/common/themes';
+import { Text } from '../../../src';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,6 +11,13 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 16
+  },
+  label: {
+    color: themes.borderLightest,
+    marginBottom: 4
+  },
+  section: {
+    marginBottom: 12
   }
 });
 
@@ -15,9 +25,20 @@ type ContainerProps = {
   children: React.ReactNode;
 };
 
-/* eslint-disable import/prefer-default-export */
 export const Container = ({ children }: ContainerProps) => (
   <ScrollView style={styles.container} contentContainerStyle={styles.content}>
     {children}
   </ScrollView>
+);
+
+type SectionProps = {
+  title: string;
+  children: React.ReactNode;
+};
+
+export const Section = ({ title, children }: SectionProps) => (
+  <View style={styles.section}>
+    <Text style={styles.label}>{title}</Text>
+    {children}
+  </View>
 );

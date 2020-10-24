@@ -9,16 +9,11 @@ import examples from './examples';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: 'teal'
   },
   listItem: {
     height: 40,
-    justifyContent: 'center',
     paddingHorizontal: 18
-  },
-  divider: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#cccccc'
   }
 });
 
@@ -29,15 +24,13 @@ const ExamplesScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {examples.map(({ title, name }) => (
-          <View key={name}>
-            <Button
-              style={styles.listItem}
-              onPress={() => navigation.navigate(name)}
-            >
-              {title}
-            </Button>
-            <View style={styles.divider} />
-          </View>
+          <Button
+            key={name}
+            style={styles.listItem}
+            onPress={() => navigation.navigate(name)}
+          >
+            {title}
+          </Button>
         ))}
       </ScrollView>
     </SafeAreaView>
