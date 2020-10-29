@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, TouchableHighlight, Text } from 'react-native';
 
-import theme from '../common/themes';
+import { original as theme } from '../common/themes';
 import { border, box } from '../common/styles';
 
 type Props = {

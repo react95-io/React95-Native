@@ -1,31 +1,30 @@
 import React from 'react';
+import { Button, Panel } from 'react95-native';
 
-import { Container, Section } from './common';
-
-import { Button, Panel } from '../../../src';
+import Container from '../util/Container';
 
 const ButtonExample = () => {
   return (
     <Container>
-      <Section title='Default'>
+      <Container.Section title='Default'>
         <Button variant='default' onPress={() => console.warn('Pressed')}>
           Default
         </Button>
-      </Section>
+      </Container.Section>
 
-      <Section title='Menu'>
+      <Container.Section title='Menu'>
         <Panel style={{ padding: 12 }}>
           <Button variant='menu' onPress={() => console.warn('Pressed')}>
             Potato
           </Button>
         </Panel>
-      </Section>
+      </Container.Section>
 
-      <Section title='Flat'>
+      <Container.Section title='Flat'>
         <Button variant='flat' onPress={() => console.warn('Pressed')}>
           This flat variant needs to be improved
         </Button>
-      </Section>
+      </Container.Section>
     </Container>
   );
 };

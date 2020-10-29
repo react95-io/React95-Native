@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, View } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react95-native';
 
-import { Button } from '../../src';
-
-import examples from './examples';
+import examples from './util/examples';
 
 const styles = StyleSheet.create({
   container: {

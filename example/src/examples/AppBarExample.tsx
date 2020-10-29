@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-
-import { AppBar, Text, Button } from '../../../src';
+import { AppBar, Text, Button } from 'react95-native';
 
 const AppBarExample = () => {
   return (

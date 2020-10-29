@@ -1,15 +1,13 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { Panel, Text, original } from 'react95-native';
 
-import { Container, Section } from './common';
-
-import { Panel, Text } from '../../../src';
-import themes from '../../../src/common/themes';
+import Container from '../util/Container';
 
 const PanelExample = () => {
   return (
     <Container>
-      <Section title='Usage:'>
+      <Container.Section title='Usage:'>
         <Panel variant='outside' style={[styles.panel, { padding }]}>
           <Text>
             Notice the subtle difference in borders. The lightest border is not
@@ -28,9 +26,9 @@ const PanelExample = () => {
             <Text>Also often used as a footer.</Text>
           </Panel>
         </Panel>
-      </Section>
+      </Container.Section>
 
-      <Section title='Variants:'>
+      <Container.Section title='Variants:'>
         <>
           <Panel variant='default' style={styles.panel}>
             <Text>default</Text>
@@ -44,7 +42,7 @@ const PanelExample = () => {
             <Text>outside</Text>
           </Panel>
         </>
-      </Section>
+      </Container.Section>
     </Container>
   );
 };
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     padding
   },
   label: {
-    color: themes.borderLightest,
+    color: original.borderLightest,
     marginBottom: 4
   }
 });

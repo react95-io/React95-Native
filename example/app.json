@@ -1,4 +1,22 @@
 {
-  "name": "Example",
-  "displayName": "Example"
+  "name": "react95-native-example",
+  "displayName": "React95Native Example",
+  "expo": {
+    "name": "react95-native-example",
+    "slug": "react95-native-example",
+    "description": "Example app for react95-native",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
 }

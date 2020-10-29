@@ -1,0 +1,46 @@
+import React from 'react';
+import { StyleSheet, ScrollView, View } from 'react-native';
+import { original, Text } from 'react95-native';
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'teal'
+  },
+  content: {
+    flex: 1,
+    padding: 16
+  },
+  label: {
+    color: original.borderDarkest,
+    marginBottom: 4
+  },
+  section: {
+    marginBottom: 12
+  }
+});
+
+type ContainerProps = {
+  children: React.ReactNode;
+};
+
+const Container = ({ children }: ContainerProps) => (
+  <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    {children}
+  </ScrollView>
+);
+
+type SectionProps = {
+  title: string;
+  children: React.ReactNode;
+};
+
+const Section = ({ title, children }: SectionProps) => (
+  <View style={styles.section}>
+    <Text style={styles.label}>{title}</Text>
+    {children}
+  </View>
+);
+
+Container.Section = Section;
+
+export default Container;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text as RNText } from 'react-native';
 
-import theme from '../common/themes';
+import { original as theme } from '../common/themes';
 
 type Props = {
   children: React.ReactNode;

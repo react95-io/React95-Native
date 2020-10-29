@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import ExamplesScreen from './ExamplesScreen';
-import examples from './examples';
+import examples from './util/examples';
 
 type RootStackParamList = {
   Home: undefined;
@@ -25,6 +25,7 @@ const App = () => {
         {examples.map(({ name, title, component }) => (
           <Stack.Screen
             key={name}
+            /* @ts-ignore */
             name={name}
             component={component}
             options={{ title }}

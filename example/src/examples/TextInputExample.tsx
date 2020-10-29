@@ -1,8 +1,7 @@
 import React from 'react';
+import { TextInput } from 'react95-native';
 
-import { Container } from './common';
-
-import { TextInput } from '../../../src';
+import Container from '../util/Container';
 
 const TextInputExample = () => {
   return (

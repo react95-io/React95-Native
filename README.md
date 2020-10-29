@@ -1,16 +1,23 @@
-# React95 Native
+# react95-native
 
-## Todo list
+Refreshed Windows 95 style UI components for your React native app
 
-### Panel
+## Installation
 
-- [ ] Implement shadow
+```sh
+npm install react95-native
+```
 
-### Button
+## Usage
 
-- [ ] Handle disabled styles
-- [ ] Improve flat variant styles
+```js
+import React95Native from 'react95-native';
+```
 
-### TextInput
+## Contributing
 
-- [ ] Implement the TextInput component
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## License
+
+MIT

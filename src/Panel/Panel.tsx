@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import theme from '../common/themes';
+import { original as theme } from '../common/themes';
 import { border } from '../common/styles';
 
 type Props = {
