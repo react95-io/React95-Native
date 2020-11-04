@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+    'prettier/react'
+    'plugin:jest/recommended'
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'prettier'],
   settings: {
