@@ -4,11 +4,15 @@ import { StyleSheet, TouchableHighlight, Text } from 'react-native';
 import { original as theme } from '../common/themes';
 import { border, box } from '../common/styles';
 
+export const testId = 'button';
+
+export type ButtonSizes = 'sm' | 'md' | 'lg';
+
 type Props = {
   children: React.ReactNode;
   onPress: () => void;
   variant?: 'menu' | 'flat' | 'default';
-  size?: 'sm' | 'md' | 'lg';
+  size?: ButtonSizes;
   style?: Object;
   disabled?: boolean;
   fullWidth?: boolean;
@@ -62,6 +66,7 @@ const Button = ({
       onHideUnderlay={() => setIsPressed(false)}
       onShowUnderlay={() => setIsPressed(true)}
       underlayColor={theme.material}
+      testID={testId}
     >
       <Text>{children}</Text>
     </TouchableHighlight>
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
   flat: box.flat
 });
 
-const blockSizes = {
+export const blockSizes = {
   sm: 27,
   md: 35,
   lg: 43

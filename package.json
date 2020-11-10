@@ -21,6 +21,7 @@
   ],
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watch",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",

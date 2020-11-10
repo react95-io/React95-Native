@@ -1,7 +1,7 @@
 const path = require('path');
 const pak = require('../package.json');
 
-module.exports = function (api) {
+module.exports = function babelConfig(api) {
   api.cache(true);
 
   return {

@@ -4,6 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import { original as theme } from '../common/themes';
 import { border } from '../common/styles';
 
+export const testId = 'app-bar';
+
 type Props = {
   children: React.ReactNode;
   style?: Object;
@@ -11,7 +13,9 @@ type Props = {
 
 const AppBar = ({ children, style = {} }: Props) => {
   return (
-    <View style={[styles.container, border.default, style]}>{children}</View>
+    <View style={[styles.container, border.default, style]} testID={testId}>
+      {children}
+    </View>
   );
 };
 

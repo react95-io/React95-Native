@@ -4,7 +4,7 @@ import { StyleSheet, Text as RNText } from 'react-native';
 import { original as theme } from '../common/themes';
 
 type Props = {
-  children: React.ReactNode;
+  children: string;
   style?: Object;
 };
 
