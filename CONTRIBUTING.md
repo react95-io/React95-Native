@@ -197,3 +197,7 @@ https://www.contributor-covenant.org/faq. Translations are available at https://
 #### TextInput
 
 - [ ] Implement the TextInput component
+
+#### Cutout
+
+- [ ] Implement shadow

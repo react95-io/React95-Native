@@ -48,6 +48,13 @@ export const border = StyleSheet.create({
 });
 
 export const box = StyleSheet.create({
+  /* createBoxStyles() */
+  default: {
+    flexDirection: 'row',
+    backgroundColor: theme.material,
+    color: theme.materialText
+  },
+  /* createFlatBoxStyles() */
   flat: {
     position: 'relative',
     flexDirection: 'row',
