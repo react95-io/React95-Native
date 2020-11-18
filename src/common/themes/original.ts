@@ -1,6 +1,8 @@
 export default {
   name: 'original',
 
+  anchor: '#1034a6',
+
   borderDark: '#848584',
   borderDarkest: '#0a0a0a',
   borderLight: '#dfdfdf',
@@ -8,6 +10,7 @@ export default {
 
   material: '#c6c6c6',
   materialText: '#0a0a0a',
+  materialTextDisabled: '#848584',
 
   canvas: '#ffffff'
 };

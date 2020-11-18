@@ -3,7 +3,7 @@ import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react95-native';
 
-import examples from './util/examples';
+import examples from './examples';
 
 const styles = StyleSheet.create({
   container: {

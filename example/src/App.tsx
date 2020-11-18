@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import ExamplesScreen from './ExamplesScreen';
-import examples from './util/examples';
+import examples from './examples';
 
 type RootStackParamList = {
   Home: undefined;
