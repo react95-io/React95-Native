@@ -33,8 +33,8 @@ const CheckboxExample = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: original.material
-  }
+    backgroundColor: original.material,
+  },
 });
 
 export default CheckboxExample;
