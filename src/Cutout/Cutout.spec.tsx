@@ -9,7 +9,7 @@ describe('<Cutout />', () => {
     const { getByTestId } = render(
       <Cutout>
         <Text>This is a Cutout</Text>
-      </Cutout>
+      </Cutout>,
     );
 
     expect(getByTestId(testId)).toHaveTextContent('This is a Cutout');
@@ -21,7 +21,7 @@ describe('<Cutout />', () => {
     const { getByTestId } = render(
       <Cutout style={style}>
         <Text>Potatoe</Text>
-      </Cutout>
+      </Cutout>,
     );
 
     expect(getByTestId(testId)).toHaveStyle(style);

@@ -15,7 +15,7 @@ const Text = ({
   children,
   style = {},
   linkUrl = null,
-  disabled = false
+  disabled = false,
 }: Props) => {
   const onLinkPress = () => {
     if (disabled || !linkUrl) return;
@@ -29,7 +29,7 @@ const Text = ({
         disabled ? text.disabled : text.default,
         linkUrl && styles.link,
         disabled && styles.disabled,
-        style
+        style,
       ]}
       onPress={onLinkPress}
     >
@@ -41,8 +41,8 @@ const Text = ({
 const styles = StyleSheet.create({
   link: {
     color: theme.anchor,
-    textDecorationLine: 'underline'
-  }
+    textDecorationLine: 'underline',
+  },
 });
 
 export default Text;

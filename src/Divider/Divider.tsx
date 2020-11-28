@@ -15,14 +15,14 @@ const AppBar = ({
   variant = 'default',
   orientation = 'horizontal',
   size = '100%',
-  style = {}
+  style = {},
 }: Props) => {
   const isHorizontal = orientation === 'horizontal';
   const isRaised = variant === 'raised';
   const thickness = isRaised ? 5 : 4;
   const sizing = {
     width: isHorizontal ? size : thickness,
-    height: isHorizontal ? thickness : size
+    height: isHorizontal ? thickness : size,
   };
   return (
     <View style={[styles.divider, sizing, style]}>
@@ -33,8 +33,8 @@ const AppBar = ({
 
 const styles = StyleSheet.create({
   divider: {
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 });
 
 export default AppBar;

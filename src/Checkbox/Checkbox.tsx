@@ -19,7 +19,7 @@ const Checkbox = ({
   label = '',
   onPress = () => {},
   disabled = false,
-  style = {}
+  style = {},
 }: Props) => {
   const renderBox = () => {
     if (status === 'checked') {
@@ -35,7 +35,7 @@ const Checkbox = ({
         style={[
           styles.base,
           { backgroundColor: disabled ? theme.material : theme.canvas },
-          style
+          style,
         ]}
         onPress={onPress}
         activeOpacity={1}
@@ -58,15 +58,15 @@ const Checkbox = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   base: {
     width: 36,
     height: 36,
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginRight: 12
-  }
+    marginRight: 12,
+  },
 });
 
 export default Checkbox;

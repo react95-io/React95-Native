@@ -9,7 +9,7 @@ describe('<Panel />', () => {
     const { getByTestId } = render(
       <Panel>
         <Text>Banana dance</Text>
-      </Panel>
+      </Panel>,
     );
 
     expect(getByTestId(testId)).toHaveTextContent('Banana dance');
@@ -21,7 +21,7 @@ describe('<Panel />', () => {
     const { getByTestId } = render(
       <Panel style={style}>
         <Text>Panel</Text>
-      </Panel>
+      </Panel>,
     );
 
     expect(getByTestId(testId)).toHaveStyle(style);

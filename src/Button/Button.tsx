@@ -4,7 +4,7 @@ import {
   TouchableHighlight,
   Text,
   View,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 import { original as theme } from '../common/themes';
@@ -37,7 +37,7 @@ const Button = ({
   fullWidth = false,
   square = false,
   primary = false,
-  active = false
+  active = false,
 }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -51,7 +51,7 @@ const Button = ({
       style={[
         styles.wrapper,
         { height: blockSizes[size], width: getWidth() },
-        style
+        style,
       ]}
       testID={testId}
     >
@@ -66,7 +66,7 @@ const Button = ({
         style={[
           styles.content,
           { paddingHorizontal: square ? 0 : 10 },
-          { marginTop: active || isPressed ? 2 : 0 }
+          { marginTop: active || isPressed ? 2 : 0 },
         ]}
         onPress={onPress}
         disabled={disabled}
@@ -89,21 +89,21 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     // padding added to compensate for borders
     padding: 4,
-    width: 20
+    width: 20,
   },
   content: {
     height: '100%',
     width: '100%',
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export const blockSizes = {
   sm: 27,
   md: 35,
-  lg: 43
+  lg: 43,
 };
 
 export default Button;
@@ -122,7 +122,7 @@ const Borders = ({
   isPressed = false,
   variant = 'default',
   primary = false,
-  active = false
+  active = false,
 }: BorderProps) => {
   let wrapper = [];
   let outer;
@@ -143,7 +143,7 @@ const Borders = ({
         borderStyles.position,
         { backgroundColor: theme.material },
         active || isPressed ? borderStyles.invert : {},
-        ...wrapper
+        ...wrapper,
       ]}
     >
       {outer && (
@@ -159,12 +159,12 @@ const Borders = ({
                 <ImageBackground
                   style={[borderStyles.position]}
                   imageStyle={{
-                    resizeMode: 'repeat'
+                    resizeMode: 'repeat',
                   }}
                   source={{
                     // TODO: create util function for generating checkered background
                     uri:
-                      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC'
+                      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC',
                   }}
                 />
               )}
@@ -182,10 +182,10 @@ const borderStyles = StyleSheet.create({
     top: 0,
     bottom: 0,
     left: 0,
-    right: 0
+    right: 0,
   },
 
   invert: {
-    transform: [{ rotate: '180deg' }]
-  }
+    transform: [{ rotate: '180deg' }],
+  },
 });

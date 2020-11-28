@@ -9,7 +9,7 @@ describe('<AppBar />', () => {
     const { getByTestId } = render(
       <AppBar>
         <Text>This is an AppBar</Text>
-      </AppBar>
+      </AppBar>,
     );
 
     expect(getByTestId(testId)).toHaveTextContent('This is an AppBar');
@@ -21,7 +21,7 @@ describe('<AppBar />', () => {
     const { getByTestId } = render(
       <AppBar style={style}>
         <Text>This is an AppBar</Text>
-      </AppBar>
+      </AppBar>,
     );
 
     expect(getByTestId(testId)).toHaveStyle(style);

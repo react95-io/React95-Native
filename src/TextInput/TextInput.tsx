@@ -20,8 +20,8 @@ const TextInput = ({ value, placeholder = '', style = {} }: Props) => {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    backgroundColor: '#fafafa'
-  }
+    backgroundColor: '#fafafa',
+  },
 });
 
 export default TextInput;

@@ -4,21 +4,21 @@ import { original, Text } from 'react95-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'teal'
+    backgroundColor: 'teal',
   },
   content: {
     flex: 1,
-    padding: 16
+    padding: 16,
   },
   label: {
     color: original.borderDarkest,
-    marginBottom: 4
+    marginBottom: 4,
   },
   section: {
     marginBottom: 12,
     display: 'flex',
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 });
 
 type ContainerProps = {

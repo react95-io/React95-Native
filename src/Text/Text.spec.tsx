@@ -12,7 +12,7 @@ describe('<Text />', () => {
     mockOpenUrl.mockClear();
 
     jest.doMock('react-native/Libraries/Linking/Linking', () => ({
-      openURL: mockOpenUrl
+      openURL: mockOpenUrl,
     }));
   });
 
@@ -42,7 +42,7 @@ describe('<Text />', () => {
     const { getByText } = render(
       <Text linkUrl={linkUrl} disabled>
         Disabled
-      </Text>
+      </Text>,
     );
 
     fireEvent.press(getByText('Disabled'));

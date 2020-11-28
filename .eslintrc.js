@@ -3,16 +3,16 @@ module.exports = {
     'airbnb',
     'plugin:prettier/recommended',
     'prettier/react',
-    'plugin:jest/recommended'
+    'plugin:jest/recommended',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'prettier'],
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
-      }
-    }
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
     'import/no-unresolved': ['error', { ignore: ['react95'] }],
@@ -30,10 +30,10 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never'
-      }
+        tsx: 'never',
+      },
     ],
     'no-use-before-define': 'off',
-    'react/require-default-props': 'off'
-  }
+    'react/require-default-props': 'off',
+  },
 };
