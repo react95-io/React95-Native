@@ -9,11 +9,13 @@ import { border } from './styles';
 type BorderProps = {
   invert?: boolean;
   variant?: 'default' | 'well' | 'outside' | 'cutout';
+  style?: object;
 };
 
 export const Border = ({
   invert = false,
   variant = 'default',
+  style = {},
 }: BorderProps) => {
   const wrapper = [];
   let outer;
@@ -34,7 +36,14 @@ export const Border = ({
 
   const sharedStyles = [borderStyles.position];
   return (
-    <View style={[sharedStyles, invert ? borderStyles.invert : {}, ...wrapper]}>
+    <View
+      style={[
+        sharedStyles,
+        invert ? borderStyles.invert : {},
+        ...wrapper,
+        style,
+      ]}
+    >
       {outer && (
         <View style={[sharedStyles, ...outer]}>
           {inner && <View style={[sharedStyles, ...inner]} />}

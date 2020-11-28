@@ -7,5 +7,6 @@ export { default as Cutout } from './Cutout';
 export { default as Window } from './Window';
 export { default as Divider } from './Divider';
 export { default as Checkbox } from './Checkbox';
+export { default as Fieldset } from './Fieldset';
 
 export * from './common/themes';
