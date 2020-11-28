@@ -183,6 +183,35 @@ Community Impact Guidelines were inspired by [Mozilla's code of conduct enforcem
 For answers to common questions about this code of conduct, see the FAQ at
 https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations.
 
+### Components
+
+- [x] Anchor (`<Text />` with `linkUrl`)
+- [x] AppBar
+- [x] Avatar
+- [ ] Bar (not sure if it makes sense on mobile applications)
+- [x] Button
+- [ ] Checkbox
+- [x] Cutout
+- [ ] DatePicker
+- [ ] Divider
+- [ ] Fieldset
+- [ ] Hourglass
+- [ ] List
+- [ ] ListItem
+- [ ] NumberField
+- [x] Panel
+- [ ] Progress
+- [ ] ListItem
+- [ ] Radio
+- [ ] Select
+- [ ] Table
+- [ ] Tabs
+- [ ] TextArea
+- [x] Text
+- [x] TextInput
+- [ ] Tooltip
+- [x] Window
+
 ### Todo list
 
 #### Panel

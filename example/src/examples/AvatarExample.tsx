@@ -16,6 +16,7 @@ const AvatarExample = () => {
             <Text>BR</Text>
           </Avatar>
           <Avatar style={styles.avatar} square>
+            {/* eslint-disable-next-line */}
             <Text>🚀</Text>
           </Avatar>
           <Avatar style={styles.avatar} src={imageSrc} />
