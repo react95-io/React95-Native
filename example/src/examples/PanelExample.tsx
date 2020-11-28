@@ -54,12 +54,12 @@ const padding = defaultSpacing;
 const styles = StyleSheet.create({
   panel: {
     marginBottom: margin,
-    padding
+    padding,
   },
   label: {
     color: original.borderLightest,
-    marginBottom: 4
-  }
+    marginBottom: 4,
+  },
 });
 
 export default PanelExample;

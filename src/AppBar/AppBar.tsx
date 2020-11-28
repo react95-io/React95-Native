@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     flexDirection: 'row',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export default AppBar;

@@ -25,8 +25,8 @@ const Panel = ({ children, variant = 'default', style = {} }: Props) => {
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    backgroundColor: theme.material
-  }
+    backgroundColor: theme.material,
+  },
 });
 
 export default Panel;

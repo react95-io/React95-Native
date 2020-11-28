@@ -23,14 +23,14 @@ const Cutout = ({ children, style = {} }: Props) => {
 
 const styles = StyleSheet.create({
   content: {
-    padding: 4
+    padding: 4,
   },
   wrapper: {
     width: '100%',
     height: '100%',
     // to compensate for borders
-    padding: 4
-  }
+    padding: 4,
+  },
 });
 
 export default Cutout;

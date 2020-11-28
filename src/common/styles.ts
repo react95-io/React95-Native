@@ -9,39 +9,39 @@ export const border = StyleSheet.create({
   focusOutline: {
     ...commonBorderStyle,
     borderStyle: 'dotted',
-    borderColor: theme.borderDarkest
+    borderColor: theme.borderDarkest,
   },
   outline: {
     ...commonBorderStyle,
-    borderColor: theme.borderDarkest
+    borderColor: theme.borderDarkest,
   },
   defaultOuter: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderLightest,
     borderTopColor: theme.borderLightest,
     borderRightColor: theme.borderDarkest,
-    borderBottomColor: theme.borderDarkest
+    borderBottomColor: theme.borderDarkest,
   },
   defaultInner: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderLight,
     borderTopColor: theme.borderLight,
     borderRightColor: theme.borderDark,
-    borderBottomColor: theme.borderDark
+    borderBottomColor: theme.borderDark,
   },
   outsideOuter: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderLight,
     borderTopColor: theme.borderLight,
     borderRightColor: theme.borderDarkest,
-    borderBottomColor: theme.borderDarkest
+    borderBottomColor: theme.borderDarkest,
   },
   outsideInner: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderLightest,
     borderTopColor: theme.borderLightest,
     borderRightColor: theme.borderDark,
-    borderBottomColor: theme.borderDark
+    borderBottomColor: theme.borderDark,
   },
 
   cutoutOuter: {
@@ -49,14 +49,14 @@ export const border = StyleSheet.create({
     borderLeftColor: theme.borderDark,
     borderTopColor: theme.borderDark,
     borderRightColor: theme.borderLightest,
-    borderBottomColor: theme.borderLightest
+    borderBottomColor: theme.borderLightest,
   },
   cutoutInner: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderDarkest,
     borderTopColor: theme.borderDarkest,
     borderRightColor: theme.borderLight,
-    borderBottomColor: theme.borderLight
+    borderBottomColor: theme.borderLight,
   },
 
   /* createWellBorderStyles(false) */
@@ -65,8 +65,8 @@ export const border = StyleSheet.create({
     borderLeftColor: theme.borderLightest,
     borderTopColor: theme.borderLightest,
     borderRightColor: theme.borderDark,
-    borderBottomColor: theme.borderDark
-  }
+    borderBottomColor: theme.borderDark,
+  },
 });
 
 export const box = StyleSheet.create({
@@ -74,7 +74,7 @@ export const box = StyleSheet.create({
   default: {
     flexDirection: 'row',
     backgroundColor: theme.material,
-    color: theme.materialText
+    color: theme.materialText,
   },
   /* createFlatBoxStyles() */
   flat: {
@@ -83,20 +83,20 @@ export const box = StyleSheet.create({
     borderWidth: 2,
     borderStyle: 'solid',
     borderColor: theme.canvas,
-    backgroundColor: theme.canvas
+    backgroundColor: theme.canvas,
     // outline: 2px solid ${({ theme }) => theme.flatDark};
     // outline-offset: -4px;
-  }
+  },
 });
 
 export const text = StyleSheet.create({
   default: {
-    color: theme.materialText
+    color: theme.materialText,
   },
   disabled: {
     color: theme.materialTextDisabled,
     textShadowColor: theme.materialTextDisabledShadow,
     textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 0
-  }
+    textShadowRadius: 0,
+  },
 });

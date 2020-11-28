@@ -11,7 +11,7 @@ describe('<Button />', () => {
     const { getByText } = render(
       <Button onPress={noop}>
         <Text>Potato</Text>
-      </Button>
+      </Button>,
     );
 
     expect(getByText('Potato')).toBeTruthy();
@@ -23,7 +23,7 @@ describe('<Button />', () => {
     const { getByRole } = render(
       <Button onPress={onButtonPress}>
         <Text>Ok</Text>
-      </Button>
+      </Button>,
     );
 
     fireEvent(getByRole('button'), 'press');
@@ -37,7 +37,7 @@ describe('<Button />', () => {
       const { getByTestId } = render(
         <Button onPress={noop} size={size} square>
           <Text>Ok</Text>
-        </Button>
+        </Button>,
       );
 
       expect(getByTestId(testId)).toHaveStyle({ width: blockSizes[size] });
@@ -50,7 +50,7 @@ describe('<Button />', () => {
     const { getByTestId } = render(
       <Button onPress={noop} style={style}>
         <Text>Ok</Text>
-      </Button>
+      </Button>,
     );
 
     expect(getByTestId(testId)).toHaveStyle(style);
@@ -60,7 +60,7 @@ describe('<Button />', () => {
     const { getByTestId } = render(
       <Button onPress={noop} fullWidth>
         <Text>Ok</Text>
-      </Button>
+      </Button>,
     );
 
     expect(getByTestId(testId)).toHaveStyle({ width: '100%' });
