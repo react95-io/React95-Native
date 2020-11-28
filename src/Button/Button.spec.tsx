@@ -20,13 +20,13 @@ describe('<Button />', () => {
   it('should fire press', () => {
     const onButtonPress = jest.fn();
 
-    const { getByTestId } = render(
+    const { getByRole } = render(
       <Button onPress={onButtonPress}>
         <Text>Ok</Text>
       </Button>
     );
 
-    fireEvent(getByTestId(testId), 'press');
+    fireEvent(getByRole('button'), 'press');
     expect(onButtonPress).toHaveBeenCalled();
   });
 

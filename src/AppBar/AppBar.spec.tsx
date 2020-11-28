@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import { testId } from './AppBar';
+import { testId } from '../Panel/Panel';
 import { AppBar, Text } from '..';
 
 describe('<AppBar />', () => {

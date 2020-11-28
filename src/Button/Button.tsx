@@ -53,6 +53,7 @@ const Button = ({
         { height: blockSizes[size], width: getWidth() },
         style
       ]}
+      testID={testId}
     >
       <Borders
         isPressed={isPressed}
@@ -72,7 +73,7 @@ const Button = ({
         onHideUnderlay={() => setIsPressed(false)}
         onShowUnderlay={() => setIsPressed(true)}
         underlayColor='none'
-        testID={testId}
+        accessibilityRole='button'
       >
         <Text style={[disabled ? text.disabled : text.default]}>
           {children}

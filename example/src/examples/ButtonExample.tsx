@@ -80,6 +80,12 @@ const ButtonExample = () => {
           This flat variant needs to be improved
         </Button>
       </Container.Section>
+
+      <Container.Section title='Square'>
+        <Button onPress={() => console.warn('Pressed')} square>
+          Ok
+        </Button>
+      </Container.Section>
     </Container>
   );
 };
