@@ -214,6 +214,10 @@ https://www.contributor-covenant.org/faq. Translations are available at https://
 
 ### Todo list
 
+#### Generic
+
+- [ ] Replace custom style props with `StyleProp<ViewStyle>`
+
 #### Panel
 
 - [ ] Implement shadow
@@ -230,3 +234,7 @@ https://www.contributor-covenant.org/faq. Translations are available at https://
 #### Cutout
 
 - [ ] Implement shadow
+
+#### CheckBox
+
+- [ ] Handle the _indeterminate_ status

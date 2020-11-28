@@ -29,7 +29,6 @@ export const border = StyleSheet.create({
     borderRightColor: theme.borderDark,
     borderBottomColor: theme.borderDark
   },
-
   outsideOuter: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderLight,
