@@ -5,6 +5,6 @@ export { default as Text } from './Text';
 export { default as AppBar } from './AppBar';
 export { default as Cutout } from './Cutout';
 export { default as Window } from './Window';
-export { default as Avatar } from './Avatar';
+export { default as Divider } from './Divider';
 
 export * from './common/themes';

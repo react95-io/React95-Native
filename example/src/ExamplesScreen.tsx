@@ -24,6 +24,7 @@ const ExamplesScreen = () => {
       <ScrollView>
         {examples.map(({ title, name }) => (
           <Button
+            fullWidth
             key={name}
             style={styles.listItem}
             onPress={() => navigation.navigate(name)}

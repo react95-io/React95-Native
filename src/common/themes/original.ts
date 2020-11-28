@@ -11,6 +11,6 @@ export default {
   material: '#c6c6c6',
   materialText: '#0a0a0a',
   materialTextDisabled: '#848584',
-
+  materialTextDisabledShadow: '#fefefe',
   canvas: '#ffffff'
 };

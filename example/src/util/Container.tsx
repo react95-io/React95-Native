@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
     marginBottom: 4
   },
   section: {
-    marginBottom: 12
+    marginBottom: 12,
+    display: 'flex',
+    flexDirection: 'row'
   }
 });
 
@@ -35,9 +37,9 @@ type SectionProps = {
 };
 
 const Section = ({ title, children }: SectionProps) => (
-  <View style={styles.section}>
+  <View>
     <Text style={styles.label}>{title}</Text>
-    {children}
+    <View style={styles.section}>{children}</View>
   </View>
 );
 
