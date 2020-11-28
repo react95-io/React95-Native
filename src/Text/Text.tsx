@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text as RNText, Linking } from 'react-native';
 
 import { original as theme } from '../common/themes';
+import { text } from '../common/styles';
 
 type Props = {
   children: string;
@@ -25,7 +26,7 @@ const Text = ({
   return (
     <RNText
       style={[
-        styles.text,
+        disabled ? text.disabled : text.default,
         linkUrl && styles.link,
         disabled && styles.disabled,
         style
@@ -38,15 +39,9 @@ const Text = ({
 };
 
 const styles = StyleSheet.create({
-  text: {
-    color: theme.materialText
-  },
   link: {
     color: theme.anchor,
     textDecorationLine: 'underline'
-  },
-  disabled: {
-    color: theme.materialTextDisabled
   }
 });
 

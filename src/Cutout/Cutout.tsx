@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-
-import { border } from '../common/styles';
-import { original as theme } from '../common/themes';
+import { Border } from '../common/styleElements';
 
 export const testId = 'cutout';
 
@@ -14,34 +12,23 @@ type Props = {
 
 const Cutout = ({ children, style = {} }: Props) => {
   return (
-    <ScrollView style={[styles.container, style]} testID={testId}>
-      <View style={styles.beforeContainer}>
-        <View style={styles.content}>{children}</View>
-      </View>
-    </ScrollView>
+    <View style={[styles.wrapper, style]} testID={testId}>
+      <Border variant='cutout' />
+      <ScrollView>
+        <View style={[styles.content]}>{children}</View>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    ...border.wellInverted,
-    backgroundColor: theme.material,
-    padding: 2,
-    borderStyle: 'solid',
-    lineHeight: 1.5
-  },
-  beforeContainer: {
-    borderStyle: 'solid',
-    borderWidth: 2,
-    margin: -2,
-    borderLeftColor: theme.borderDarkest,
-    borderTopColor: theme.borderDarkest,
-    borderRightColor: theme.borderLight,
-    borderBottomColor: theme.borderLight
-    // ${props => props.shadow && `box-shadow:${insetShadow};`}
-  },
   content: {
+    padding: 4
+  },
+  wrapper: {
     width: '100%',
+    height: '100%',
+    // to compensate for borders
     padding: 4
   }
 });

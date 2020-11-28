@@ -1,10 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { original as theme } from '../common/themes';
-import { border } from '../common/styles';
-
-export const testId = 'app-bar';
+import Panel from '../Panel';
 
 type Props = {
   children: React.ReactNode;
@@ -13,15 +10,16 @@ type Props = {
 
 const AppBar = ({ children, style = {} }: Props) => {
   return (
-    <View style={[styles.container, border.default, style]} testID={testId}>
+    <Panel style={[styles.container, style]} variant='default'>
       {children}
-    </View>
+    </Panel>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.material,
+    paddingVertical: 8,
+    paddingHorizontal: 8,
     width: '100%',
     position: 'absolute',
     top: 0,

@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import {
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  View,
+  ImageBackground
+} from 'react-native';
 
 import { original as theme } from '../common/themes';
-import { border, box } from '../common/styles';
+import { border, text } from '../common/styles';
 
 export const testId = 'button';
 
 export type ButtonSizes = 'sm' | 'md' | 'lg';
 
-type Props = {
+type ButtonProps = {
   children: React.ReactNode;
   onPress: () => void;
   variant?: 'menu' | 'flat' | 'default';
@@ -17,6 +23,8 @@ type Props = {
   disabled?: boolean;
   fullWidth?: boolean;
   square?: boolean;
+  primary?: boolean;
+  active?: boolean;
 };
 
 const Button = ({
@@ -27,68 +35,68 @@ const Button = ({
   disabled = false,
   style = {},
   fullWidth = false,
-  square = false
-}: Props) => {
+  square = false,
+  primary = false,
+  active = false
+}: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const getWidth = () => {
     if (fullWidth) return '100%';
-
     return square ? blockSizes[size] : 'auto';
   };
 
-  const getActiveStyle = () => {
-    if (variant === 'menu') {
-      return isPressed ? border.wellInverted : {};
-    }
-
-    if (variant === 'default') {
-      return isPressed ? border.inverted : border.default;
-    }
-
-    return {};
-  };
-
   return (
-    <TouchableHighlight
+    <View
       style={[
-        styles.base,
-        styles[variant],
-        style,
-        getActiveStyle(),
-        { height: blockSizes[size] },
-        { width: getWidth() },
-        { paddingHorizontal: square ? 0 : 10 },
-        { paddingTop: disabled ? 0 : 2 }
+        styles.wrapper,
+        { height: blockSizes[size], width: getWidth() },
+        style
       ]}
-      onPress={onPress}
-      disabled={disabled}
-      onHideUnderlay={() => setIsPressed(false)}
-      onShowUnderlay={() => setIsPressed(true)}
-      underlayColor={theme.material}
-      testID={testId}
     >
-      <Text>{children}</Text>
-    </TouchableHighlight>
+      <Borders
+        isPressed={isPressed}
+        variant={variant}
+        primary={primary}
+        active={active}
+      />
+
+      <TouchableHighlight
+        style={[
+          styles.content,
+          { paddingHorizontal: square ? 0 : 10 },
+          { marginTop: active || isPressed ? 2 : 0 }
+        ]}
+        onPress={onPress}
+        disabled={disabled}
+        onHideUnderlay={() => setIsPressed(false)}
+        onShowUnderlay={() => setIsPressed(true)}
+        underlayColor='none'
+        testID={testId}
+      >
+        <Text style={[disabled ? text.disabled : text.default]}>
+          {children}
+        </Text>
+      </TouchableHighlight>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  base: {
-    height: 48,
-    alignItems: 'center',
-    flexDirection: 'row'
+  wrapper: {
+    position: 'relative',
+    alignSelf: 'flex-start',
+    // padding added to compensate for borders
+    padding: 4,
+    width: 20
   },
-  default: {
-    backgroundColor: theme.material
-  },
-  menu: {
-    backgroundColor: theme.material,
-    borderWidth: 2,
-    borderStyle: 'solid',
-    borderColor: 'transparent'
-  },
-  flat: box.flat
+  content: {
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 });
 
 export const blockSizes = {
@@ -98,3 +106,85 @@ export const blockSizes = {
 };
 
 export default Button;
+
+// Borders acts like a pseudo element that
+// will be positioned absolutely in it's parent element
+
+type BorderProps = {
+  isPressed?: boolean;
+  variant?: 'menu' | 'flat' | 'default';
+  primary?: boolean;
+  active?: boolean;
+};
+
+const Borders = ({
+  isPressed = false,
+  variant = 'default',
+  primary = false,
+  active = false
+}: BorderProps) => {
+  let wrapper = [];
+  let outer;
+  let inner;
+  let focus;
+
+  if (variant === 'default') {
+    wrapper = primary ? [border.outline] : [];
+    outer = [border.defaultOuter];
+    inner = [border.defaultInner];
+    focus = isPressed ? [border.focusOutline] : [];
+  } else if (variant === 'menu' && (active || isPressed)) {
+    wrapper = [border.well];
+  }
+  return (
+    <View
+      style={[
+        borderStyles.position,
+        { backgroundColor: theme.material },
+        active || isPressed ? borderStyles.invert : {},
+        ...wrapper
+      ]}
+    >
+      {outer && (
+        <View style={[borderStyles.position, ...outer]}>
+          {inner && (
+            <View style={[borderStyles.position, ...inner]}>
+              {focus && !active && (
+                <View
+                  style={[borderStyles.position, { margin: 2 }, ...focus]}
+                />
+              )}
+              {active && (
+                <ImageBackground
+                  style={[borderStyles.position]}
+                  imageStyle={{
+                    resizeMode: 'repeat'
+                  }}
+                  source={{
+                    // TODO: create util function for generating checkered background
+                    uri:
+                      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC'
+                  }}
+                />
+              )}
+            </View>
+          )}
+        </View>
+      )}
+    </View>
+  );
+};
+
+const borderStyles = StyleSheet.create({
+  position: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+
+  invert: {
+    transform: [{ rotate: '180deg' }]
+  }
+});
