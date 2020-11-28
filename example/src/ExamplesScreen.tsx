@@ -8,12 +8,12 @@ import examples from './examples';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'teal'
+    backgroundColor: 'teal',
   },
   listItem: {
     height: 40,
-    paddingHorizontal: 18
-  }
+    paddingHorizontal: 18,
+  },
 });
 
 const ExamplesScreen = () => {
