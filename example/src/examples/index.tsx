@@ -6,6 +6,7 @@ import CutoutExample from './CutoutExample';
 import TextExample from './TextExample';
 import DividerExample from './DividerExample';
 import CheckboxExample from './CheckboxExample';
+import RadioExample from './RadioExample';
 import WindowExample from './WindowExample';
 import FieldsetExample from './FieldsetExample';
 import MenuExample from './MenuExample';
@@ -20,6 +21,7 @@ export default [
   { name: 'TextExample', component: TextExample, title: 'Text' },
   { name: 'DividerExample', component: DividerExample, title: 'Divider' },
   { name: 'CheckboxExample', component: CheckboxExample, title: 'Checkbox' },
+  { name: 'RadioExample', component: RadioExample, title: 'Radio' },
   { name: 'WindowExample', component: WindowExample, title: 'Window' },
   { name: 'FieldsetExample', component: FieldsetExample, title: 'Fieldset' },
   { name: 'MenuExample', component: MenuExample, title: 'Menu' },

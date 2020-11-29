@@ -10,12 +10,16 @@ type BorderProps = {
   invert?: boolean;
   variant?: 'default' | 'well' | 'outside' | 'cutout';
   style?: object;
+  size?: number;
+  round?: boolean;
 };
 
 export const Border = ({
   invert = false,
   variant = 'default',
   style = {},
+  size,
+  round,
 }: BorderProps) => {
   const wrapper: StyleProp<ViewStyle> = [];
   let outer;
@@ -34,7 +38,13 @@ export const Border = ({
     inner = [border.cutoutInner];
   }
 
-  const sharedStyles = [borderStyles.position];
+  const sharedStyles = [
+    borderStyles.position,
+    {
+      borderRadius: round && size ? size / 2 : 0,
+    },
+  ];
+
   return (
     <View
       style={[

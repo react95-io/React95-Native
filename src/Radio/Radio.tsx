@@ -6,11 +6,11 @@ type Props = {
   disabled?: boolean;
   label?: string;
   onPress?: () => void;
-  status: 'checked' | 'unchecked' | 'indeterminate';
+  status: 'checked' | 'unchecked';
   style?: StyleProp<ViewStyle>;
 };
 
-const Checkbox = ({
+const Radio = ({
   disabled = false,
   label = '',
   onPress = () => {},
@@ -19,7 +19,7 @@ const Checkbox = ({
 }: Props) => {
   return (
     <SwitchBase
-      component='checkbox'
+      component='radio'
       disabled={disabled}
       label={label}
       onPress={onPress}
@@ -29,4 +29,4 @@ const Checkbox = ({
   );
 };
 
-export default Checkbox;
+export default Radio;

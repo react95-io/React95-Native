@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Checkbox, Panel, Fieldset } from 'react95-native';
 
 const CheckboxExample = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const [isIndeterminate, setIsIndeterminate] = useState(true);
 
   return (
