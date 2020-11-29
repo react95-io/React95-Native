@@ -92,8 +92,10 @@ export const box = StyleSheet.create({
 export const text = StyleSheet.create({
   default: {
     color: theme.materialText,
+    fontSize: 16,
   },
   disabled: {
+    fontSize: 16,
     color: theme.materialTextDisabled,
     textShadowColor: theme.materialTextDisabledShadow,
     textShadowOffset: { width: 1, height: 1 },
