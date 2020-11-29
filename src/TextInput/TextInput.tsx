@@ -12,7 +12,8 @@ import { blockSizes, text } from '../common/styles';
 import { Border } from '../common/styleElements';
 
 type Props = {
-  value: string;
+  value?: string;
+  defaultValue?: string;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   // TODO: add interface for react-natives TextInput
@@ -21,7 +22,13 @@ type Props = {
   [x: string]: any;
 };
 
-const TextInput = ({ disabled, value, style = {}, ...otherProps }: Props) => {
+const TextInput = ({
+  disabled,
+  value,
+  defaultValue,
+  style = {},
+  ...otherProps
+}: Props) => {
   return (
     <View style={[styles.wrapper, style]}>
       <Border variant='cutout' />
@@ -34,6 +41,7 @@ const TextInput = ({ disabled, value, style = {}, ...otherProps }: Props) => {
           disabled && value ? text.disabled : text.default,
         ]}
         placeholderTextColor={theme.materialTextDisabled}
+        defaultValue={defaultValue}
         value={value}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}

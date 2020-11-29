@@ -8,25 +8,33 @@ const TextInputExample = () => {
   return (
     <Panel style={styles.container}>
       <Fieldset label='Default' style={[styles.fieldset]}>
-        <TextInput value={loremIpsum} />
-        <TextInput disabled value={loremIpsum} style={[{ marginTop: 20 }]} />
-      </Fieldset>
-      <Fieldset label='Empty' style={[styles.fieldset]}>
-        <TextInput value='' placeholder='Placeholder text here...' />
+        <TextInput defaultValue={loremIpsum} />
         <TextInput
           disabled
-          value=''
+          defaultValue={loremIpsum}
+          style={[{ marginTop: 20 }]}
+        />
+      </Fieldset>
+      <Fieldset label='Empty' style={[styles.fieldset]}>
+        <TextInput defaultValue='' placeholder='Placeholder text here...' />
+        <TextInput
+          disabled
+          defaultValue=''
           placeholder='Placeholder text here...'
           style={[{ marginTop: 20 }]}
         />
       </Fieldset>
       <Fieldset label='Multiline' style={[styles.fieldset]}>
-        <TextInput multiline style={[{ height: 120 }]} value={loremIpsum} />
+        <TextInput
+          multiline
+          style={[{ height: 120 }]}
+          defaultValue={loremIpsum}
+        />
         <TextInput
           disabled
           multiline
           style={[{ height: 120, marginTop: 20 }]}
-          value={loremIpsum}
+          defaultValue={loremIpsum}
         />
       </Fieldset>
     </Panel>
