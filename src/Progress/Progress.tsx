@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -23,11 +23,16 @@ const tileWidth = 17;
 // TODO: accessibility
 const Progress = ({ variant = 'default', percent = 0, style = {} }: Props) => {
   const [tilesNumber, setTilesNumber] = useState(0);
+  const [progressWidth, setProgressWidth] = useState(0);
 
-  function updateTilesNumber(e: LayoutChangeEvent) {
-    const { width } = e.nativeEvent.layout;
-    setTilesNumber(Math.round((percent / 100) * (width / tileWidth)));
+  function updateTilesNumber() {
+    setTilesNumber(Math.round((percent / 100) * (progressWidth / tileWidth)));
   }
+  function onProgressWidthChange(e: LayoutChangeEvent) {
+    const { width } = e.nativeEvent.layout;
+    setProgressWidth(width);
+  }
+  useEffect(updateTilesNumber, [percent]);
 
   return (
     <View
@@ -41,7 +46,7 @@ const Progress = ({ variant = 'default', percent = 0, style = {} }: Props) => {
     >
       <View style={[styles.progressWrapper]}>
         {variant === 'tile' ? (
-          <View style={[styles.tilesWrapper]} onLayout={updateTilesNumber}>
+          <View style={[styles.tilesWrapper]} onLayout={onProgressWidthChange}>
             {Array(tilesNumber)
               .fill(null)
               .map((_, index) => (
