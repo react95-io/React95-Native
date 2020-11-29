@@ -6,7 +6,7 @@ import { Border } from '../common/styleElements';
 export const testId = 'fieldset';
 
 type Props = {
-  label: React.ReactNode;
+  label?: React.ReactNode;
   children: React.ReactNode;
   style?: Object;
 };
@@ -32,7 +32,7 @@ const Fieldset = ({ children, label, style = {} }: Props) => {
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
-    marginTop: 8,
+    marginVertical: 12,
     padding: 12,
   },
   label: {

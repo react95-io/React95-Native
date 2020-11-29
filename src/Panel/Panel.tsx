@@ -15,7 +15,10 @@ type Props = {
 
 const Panel = ({ children, variant = 'default', style = {} }: Props) => {
   return (
-    <View style={[styles.container, style]} testID={testId}>
+    <View
+      style={[styles.container, { padding: variant === 'well' ? 2 : 4 }, style]}
+      testID={testId}
+    >
       <Border variant={variant} />
       {children}
     </View>

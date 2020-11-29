@@ -1,39 +1,47 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Checkbox, Cutout, original } from 'react95-native';
-import Container from '../util/Container';
+import { Checkbox, Panel, Fieldset } from 'react95-native';
 
 const CheckboxExample = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isIndeterminate, setIsIndeterminate] = useState(true);
 
   return (
-    <Container>
-      <Container.Section title='Basic usage'>
-        <Cutout style={styles.container}>
-          <Checkbox
-            status={isChecked ? 'checked' : 'unchecked'}
-            onPress={() => setIsChecked(oldIsChecked => !oldIsChecked)}
-            label='Potato'
-          />
-        </Cutout>
-      </Container.Section>
-      <Container.Section title='Disabled'>
-        <Cutout style={styles.container}>
-          <Checkbox
-            status='checked'
-            onPress={() => console.warn('pressed')}
-            label='Disabled'
-            disabled
-          />
-        </Cutout>
-      </Container.Section>
-    </Container>
+    <Panel style={styles.container}>
+      <Fieldset label='Default'>
+        <Checkbox
+          status={isChecked ? 'checked' : 'unchecked'}
+          onPress={() => setIsChecked(prevState => !prevState)}
+          label='Potato'
+        />
+        <Checkbox
+          status='checked'
+          onPress={() => console.warn('pressed')}
+          label='Disabled'
+          disabled
+        />
+      </Fieldset>
+      <Fieldset label='Indeterminate'>
+        <Checkbox
+          status={isIndeterminate ? 'indeterminate' : 'unchecked'}
+          onPress={() => setIsIndeterminate(prevState => !prevState)}
+          label='Potato'
+        />
+        <Checkbox
+          status='indeterminate'
+          onPress={() => console.warn('pressed')}
+          label='Disabled'
+          disabled
+        />
+      </Fieldset>
+    </Panel>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: original.material,
+    flex: 1,
+    padding: 16,
   },
 });
 

@@ -9,7 +9,7 @@ const DividerExample = () => {
       <Fieldset label='Name:'>
         <Text style={[{ fontSize: 16 }]}>Some text here</Text>
       </Fieldset>
-      <Fieldset label=''>
+      <Fieldset>
         <Text style={[{ fontSize: 16 }]}>No label here</Text>
       </Fieldset>
     </Panel>
