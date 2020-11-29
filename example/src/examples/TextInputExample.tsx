@@ -1,17 +1,46 @@
 import React from 'react';
-import { TextInput } from 'react95-native';
+import { StyleSheet } from 'react-native';
+import { TextInput, Panel, Fieldset } from 'react95-native';
 
-import Container from '../util/Container';
-
+const loremIpsum =
+  'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself';
 const TextInputExample = () => {
   return (
-    <Container>
-      <TextInput
-        value=''
-        placeholder='toDo: Implement text input component...'
-      />
-    </Container>
+    <Panel style={styles.container}>
+      <Fieldset label='Default' style={[styles.fieldset]}>
+        <TextInput value={loremIpsum} />
+        <TextInput disabled value={loremIpsum} style={[{ marginTop: 20 }]} />
+      </Fieldset>
+      <Fieldset label='Empty' style={[styles.fieldset]}>
+        <TextInput value='' placeholder='Placeholder text here...' />
+        <TextInput
+          disabled
+          value=''
+          placeholder='Placeholder text here...'
+          style={[{ marginTop: 20 }]}
+        />
+      </Fieldset>
+      <Fieldset label='Multiline' style={[styles.fieldset]}>
+        <TextInput multiline style={[{ height: 120 }]} value={loremIpsum} />
+        <TextInput
+          disabled
+          multiline
+          style={[{ height: 120, marginTop: 20 }]}
+          value={loremIpsum}
+        />
+      </Fieldset>
+    </Panel>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  fieldset: {
+    padding: 20,
+  },
+});
 
 export default TextInputExample;
