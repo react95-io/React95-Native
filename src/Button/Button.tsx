@@ -88,14 +88,9 @@ const Button = ({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
-    alignSelf: 'flex-start',
-    // padding added to compensate for borders
-    padding: 4,
-    width: 20,
   },
+
   content: {
-    height: '100%',
-    width: '100%',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
