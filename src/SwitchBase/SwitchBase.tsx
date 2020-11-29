@@ -128,7 +128,7 @@ const SwitchBase = ({
           ]}
         >
           {renderBox()}
-          <Border variant='cutout' size={switchSize} round={isRadio} />
+          <Border variant='cutout' radius={borderRadius} />
         </View>
         {Boolean(label) && (
           <View
