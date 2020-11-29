@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { original as theme } from '../common/themes';
 import { Border } from '../common/styleElements';
@@ -10,7 +10,7 @@ export const testId = 'panel';
 type Props = {
   children: React.ReactNode;
   variant?: 'default' | 'well' | 'outside';
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Panel = ({ children, variant = 'default', style = {} }: Props) => {

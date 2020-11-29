@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, StyleProp, ViewStyle } from 'react-native';
 
 import { original as theme } from '../common/themes';
 
@@ -13,7 +13,7 @@ type WindowProps = {
   onMinimize?: () => void;
   onMaximize?: () => void;
   active?: boolean;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Window = ({

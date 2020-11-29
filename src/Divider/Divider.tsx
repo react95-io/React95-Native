@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Border } from '../common/styleElements';
 
 type Props = {
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
   size?: string | number;
   // TODO: create orientation type since it's gonna be used in many places
   orientation?: 'horizontal' | 'vertical';

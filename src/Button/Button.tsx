@@ -5,6 +5,8 @@ import {
   Text,
   View,
   ImageBackground,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 
 import { original as theme } from '../common/themes';
@@ -19,7 +21,7 @@ type ButtonProps = {
   onPress: () => void;
   variant?: 'menu' | 'flat' | 'default';
   size?: ButtonSizes;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   fullWidth?: boolean;
   square?: boolean;
@@ -124,7 +126,7 @@ const Borders = ({
   primary = false,
   active = false,
 }: BorderProps) => {
-  let wrapper = [];
+  let wrapper: StyleProp<ViewStyle> = [];
   let outer;
   let inner;
   let focus;

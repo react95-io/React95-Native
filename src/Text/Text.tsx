@@ -1,12 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text as RNText, Linking } from 'react-native';
+import {
+  StyleSheet,
+  Text as RNText,
+  Linking,
+  StyleProp,
+  TextStyle,
+} from 'react-native';
 
 import { original as theme } from '../common/themes';
 import { text } from '../common/styles';
 
 type Props = {
   children: string;
-  style?: Object;
+  style?: StyleProp<TextStyle>;
   linkUrl?: string | null;
   disabled?: boolean;
 };
@@ -27,8 +33,7 @@ const Text = ({
     <RNText
       style={[
         disabled ? text.disabled : text.default,
-        linkUrl && styles.link,
-        disabled && styles.disabled,
+        linkUrl ? styles.link : {},
         style,
       ]}
       onPress={onLinkPress}

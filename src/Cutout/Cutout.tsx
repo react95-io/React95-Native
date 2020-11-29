@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import { Border } from '../common/styleElements';
 
 export const testId = 'cutout';
@@ -7,7 +13,7 @@ export const testId = 'cutout';
 type Props = {
   children: React.ReactNode;
   // shadow?: boolean;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Cutout = ({ children, style = {} }: Props) => {

@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 
 import Panel from '../Panel';
 
 type Props = {
   children: React.ReactNode;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const AppBar = ({ children, style = {} }: Props) => {

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 import { border } from './styles';
 
 // Borders acts like a pseudo element that
@@ -17,7 +17,7 @@ export const Border = ({
   variant = 'default',
   style = {},
 }: BorderProps) => {
-  const wrapper = [];
+  const wrapper: StyleProp<ViewStyle> = [];
   let outer;
   let inner;
 

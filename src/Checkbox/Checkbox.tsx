@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import { Border } from '../common/styleElements';
 import { original as theme } from '../common/themes';
@@ -10,7 +16,7 @@ type Props = {
   status: 'checked' | 'unchecked' | 'indeterminate';
   label?: string;
   onPress?: () => void;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
   disabled?: boolean;
 };
 

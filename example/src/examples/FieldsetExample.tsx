@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { Panel, Fieldset } from 'react95-native';
 
 const DividerExample = () => {
@@ -9,7 +9,7 @@ const DividerExample = () => {
       <Fieldset label='Name:'>
         <Text style={[{ fontSize: 16 }]}>Some text here</Text>
       </Fieldset>
-      <Fieldset>
+      <Fieldset label=''>
         <Text style={[{ fontSize: 16 }]}>No label here</Text>
       </Fieldset>
     </Panel>

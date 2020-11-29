@@ -1,10 +1,15 @@
 import React from 'react';
-import { StyleSheet, TextInput as RNTextInput } from 'react-native';
+import {
+  StyleProp,
+  StyleSheet,
+  TextInput as RNTextInput,
+  ViewStyle,
+} from 'react-native';
 
 type Props = {
   value: string;
   placeholder?: string;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const TextInput = ({ value, placeholder = '', style = {} }: Props) => {
