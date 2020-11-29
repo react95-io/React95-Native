@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { original as theme } from '../common/themes';
-import { border, text } from '../common/styles';
+import { border, text, blockSizes } from '../common/styles';
 
 export const testId = 'button';
 
@@ -101,12 +101,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export const blockSizes = {
-  sm: 27,
-  md: 35,
-  lg: 43,
-};
 
 export default Button;
 

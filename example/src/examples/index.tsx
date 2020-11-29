@@ -8,6 +8,7 @@ import DividerExample from './DividerExample';
 import CheckboxExample from './CheckboxExample';
 import WindowExample from './WindowExample';
 import FieldsetExample from './FieldsetExample';
+import MenuExample from './MenuExample';
 
 export default [
   { name: 'ButtonExample', component: ButtonExample, title: 'Button' },
@@ -20,6 +21,7 @@ export default [
   { name: 'CheckboxExample', component: CheckboxExample, title: 'Checkbox' },
   { name: 'WindowExample', component: WindowExample, title: 'Window' },
   { name: 'FieldsetExample', component: FieldsetExample, title: 'Fieldset' },
+  { name: 'MenuExample', component: MenuExample, title: 'Menu' },
 ].sort((a, b) => {
   /* Sort screens alphabetically */
   if (a.title < b.title) return -1;
