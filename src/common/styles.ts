@@ -100,3 +100,9 @@ export const text = StyleSheet.create({
     textShadowRadius: 0,
   },
 });
+
+export const blockSizes = {
+  sm: 27,
+  md: 35,
+  lg: 43,
+};

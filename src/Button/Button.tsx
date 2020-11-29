@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { original as theme } from '../common/themes';
-import { border, text } from '../common/styles';
+import { border, text, blockSizes } from '../common/styles';
 
 export const testId = 'button';
 
@@ -88,25 +88,14 @@ const Button = ({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
-    alignSelf: 'flex-start',
-    // padding added to compensate for borders
-    padding: 4,
-    width: 20,
   },
+
   content: {
-    height: '100%',
-    width: '100%',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
 });
-
-export const blockSizes = {
-  sm: 27,
-  md: 35,
-  lg: 43,
-};
 
 export default Button;
 
