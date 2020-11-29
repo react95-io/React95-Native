@@ -9,6 +9,7 @@ import CheckboxExample from './CheckboxExample';
 import WindowExample from './WindowExample';
 import FieldsetExample from './FieldsetExample';
 import MenuExample from './MenuExample';
+import ProgressExample from './ProgressExample';
 
 export default [
   { name: 'ButtonExample', component: ButtonExample, title: 'Button' },
@@ -22,6 +23,7 @@ export default [
   { name: 'WindowExample', component: WindowExample, title: 'Window' },
   { name: 'FieldsetExample', component: FieldsetExample, title: 'Fieldset' },
   { name: 'MenuExample', component: MenuExample, title: 'Menu' },
+  { name: 'ProgressExample', component: ProgressExample, title: 'Progress' },
 ].sort((a, b) => {
   /* Sort screens alphabetically */
   if (a.title < b.title) return -1;
