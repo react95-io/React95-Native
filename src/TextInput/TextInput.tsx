@@ -29,6 +29,7 @@ const TextInput = ({
   style = {},
   ...otherProps
 }: Props) => {
+  const hasValue = !!(value || defaultValue);
   return (
     <View style={[styles.wrapper, style]}>
       <Border variant='cutout' />
@@ -38,7 +39,7 @@ const TextInput = ({
           {
             backgroundColor: disabled ? theme.material : theme.canvas,
           },
-          disabled && value ? text.disabled : text.default,
+          disabled && hasValue ? text.disabled : text.default,
         ]}
         placeholderTextColor={theme.materialTextDisabled}
         defaultValue={defaultValue}
