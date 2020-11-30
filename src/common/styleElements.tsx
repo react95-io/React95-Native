@@ -10,6 +10,7 @@ type BorderProps = {
   variant?: 'default' | 'well' | 'outside' | 'cutout';
   style?: object;
   radius?: number;
+  children?: React.ReactNode;
 };
 
 export const Border = ({
@@ -17,6 +18,7 @@ export const Border = ({
   variant = 'default',
   style = {},
   radius,
+  children,
 }: BorderProps) => {
   const wrapper: StyleProp<ViewStyle> = [];
   let outer;
@@ -51,10 +53,16 @@ export const Border = ({
         style,
       ]}
     >
-      {outer && (
+      {outer ? (
         <View style={[sharedStyles, ...outer]}>
-          {inner && <View style={[sharedStyles, ...inner]} />}
+          {inner ? (
+            <View style={[sharedStyles, ...inner]}>{children}</View>
+          ) : (
+            children
+          )}
         </View>
+      ) : (
+        children
       )}
     </View>
   );
