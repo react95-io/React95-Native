@@ -5,13 +5,11 @@ import { border } from './styles';
 
 // Borders acts like a pseudo element that
 // will be positioned absolutely in it's parent element
-
 type BorderProps = {
   invert?: boolean;
   variant?: 'default' | 'well' | 'outside' | 'cutout';
   style?: object;
   radius?: number;
-  round?: boolean;
 };
 
 export const Border = ({
@@ -19,7 +17,6 @@ export const Border = ({
   variant = 'default',
   style = {},
   radius,
-  round,
 }: BorderProps) => {
   const wrapper: StyleProp<ViewStyle> = [];
   let outer;

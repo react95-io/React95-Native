@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
-import { blockSizes, ButtonSizes, testId } from './Button';
+import { blockSizes } from '../common/styles';
+import { ButtonSizes, testId } from './Button';
 import { Button, Text } from '..';
 
 const noop = () => {};
