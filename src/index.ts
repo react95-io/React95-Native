@@ -10,6 +10,7 @@ export { default as Checkbox } from './Checkbox';
 export { default as Radio } from './Radio';
 export { default as Fieldset } from './Fieldset';
 export { default as Progress } from './Progress';
+export { default as Select } from './Select';
 export { MenuItem, default as Menu } from './Menu';
 
 export * from './common/themes';

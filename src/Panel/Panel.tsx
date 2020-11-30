@@ -8,7 +8,7 @@ export const testId = 'panel';
 
 // TODO: common interface with styleElements/Border ?
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   variant?: 'default' | 'well' | 'outside';
   style?: StyleProp<ViewStyle>;
 };

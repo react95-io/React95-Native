@@ -6,6 +6,11 @@ const commonBorderStyle = { borderWidth: 2 };
 
 export const border = StyleSheet.create({
   /* createBorderStyles({ invert: false, windowBorders: false }) */
+  focusSecondaryOutline: {
+    ...commonBorderStyle,
+    borderStyle: 'dotted',
+    borderColor: theme.focusSecondary,
+  },
   focusOutline: {
     ...commonBorderStyle,
     borderStyle: 'dotted',
