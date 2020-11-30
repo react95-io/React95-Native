@@ -11,7 +11,7 @@ type Props = {
   variant?: 'default' | 'raised';
 };
 
-const AppBar = ({
+const Divider = ({
   variant = 'default',
   orientation = 'horizontal',
   size = '100%',
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppBar;
+export default Divider;
