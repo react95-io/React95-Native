@@ -12,6 +12,6 @@ export { default as Fieldset } from './Fieldset';
 export { default as Progress } from './Progress';
 export { default as Select } from './Select';
 export { default as Desktop } from './Desktop';
-export { MenuItem, default as Menu } from './Menu';
+export { default as Menu } from './Menu';
 
 export * from './common/themes';
