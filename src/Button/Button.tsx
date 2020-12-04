@@ -18,12 +18,13 @@ export type ButtonSizes = 'sm' | 'md' | 'lg';
 
 type ButtonProps = {
   children: React.ReactNode;
-  onPress: () => void;
+  onPress?: () => void;
   variant?: 'menu' | 'flat' | 'default';
   size?: ButtonSizes;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
   fullWidth?: boolean;
+  accessibilityLabel?: string;
   square?: boolean;
   primary?: boolean;
   active?: boolean;
@@ -40,6 +41,7 @@ const Button = ({
   square = false,
   primary = false,
   active = false,
+  accessibilityLabel,
 }: ButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
 
@@ -76,6 +78,7 @@ const Button = ({
         onShowUnderlay={() => setIsPressed(true)}
         underlayColor='none'
         accessibilityRole='button'
+        accessibilityLabel={accessibilityLabel}
       >
         <Text style={[disabled ? text.disabled : text.default]}>
           {children}

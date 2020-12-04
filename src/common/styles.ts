@@ -95,6 +95,10 @@ export const box = StyleSheet.create({
 });
 
 export const text = StyleSheet.create({
+  secondary: {
+    color: theme.materialTextDisabled,
+    fontSize: 16,
+  },
   default: {
     color: theme.materialText,
     fontSize: 16,

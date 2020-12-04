@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 
+import AppBarContent from './AppBarContent';
+import AppBarBackAction from './AppBarBackAction';
 import Panel from '../Panel';
 
 type Props = {
@@ -10,23 +12,23 @@ type Props = {
 
 const AppBar = ({ children, style = {} }: Props) => {
   return (
-    <Panel style={[styles.container, style]} variant='default'>
-      {children}
+    <Panel style={[styles.wrapper, style]} variant='default'>
+      <AppBarBackAction onPress={() => {}} />
+      {/* {children} */}
+      <AppBarContent title='Timeline' subtitle='sport' />
     </Panel>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 8,
-    paddingHorizontal: 8,
-    width: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
+  wrapper: {
+    height: 56,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 8,
   },
 });
+
+AppBar.Content = AppBarContent;
 
 export default AppBar;

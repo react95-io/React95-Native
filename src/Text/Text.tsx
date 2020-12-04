@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text as RNText,
+  Text as NativeText,
   Linking,
   StyleProp,
   TextStyle,
@@ -10,11 +10,12 @@ import {
 import { original as theme } from '../common/themes';
 import { text } from '../common/styles';
 
-type Props = {
-  children: string;
+type Props = React.ComponentProps<typeof NativeText> & {
+  children: React.ReactNode;
   style?: StyleProp<TextStyle>;
   linkUrl?: string | null;
   disabled?: boolean;
+  secondary?: boolean;
 };
 
 const Text = ({
@@ -22,6 +23,8 @@ const Text = ({
   style = {},
   linkUrl = null,
   disabled = false,
+  secondary = false,
+  ...rest
 }: Props) => {
   const onLinkPress = () => {
     if (disabled || !linkUrl) return;
@@ -30,16 +33,17 @@ const Text = ({
   };
 
   return (
-    <RNText
+    <NativeText
       style={[
-        disabled ? text.disabled : text.default,
+        disabled ? text.disabled : secondary ? text.secondary : text.default,
         linkUrl ? styles.link : {},
         style,
       ]}
       onPress={onLinkPress}
+      {...rest}
     >
       {children}
-    </RNText>
+    </NativeText>
   );
 };
 
