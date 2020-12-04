@@ -7,7 +7,7 @@ const CheckboxExample = () => {
   const [isIndeterminate, setIsIndeterminate] = useState(true);
 
   return (
-    <Panel style={styles.container}>
+    <Panel variant='clear' style={styles.container}>
       <Fieldset label='Default'>
         <Checkbox
           status={isChecked ? 'checked' : 'unchecked'}

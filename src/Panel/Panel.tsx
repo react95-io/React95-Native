@@ -9,7 +9,7 @@ export const testId = 'panel';
 // TODO: common interface with styleElements/Border ?
 type Props = {
   children?: React.ReactNode;
-  variant?: 'default' | 'well' | 'outside';
+  variant?: 'default' | 'well' | 'outside' | 'clear';
   style?: StyleProp<ViewStyle>;
 };
 
@@ -19,7 +19,7 @@ const Panel = ({ children, variant = 'default', style = {} }: Props) => {
       style={[styles.container, { padding: variant === 'well' ? 2 : 4 }, style]}
       testID={testId}
     >
-      <Border variant={variant} />
+      {variant !== 'clear' && <Border variant={variant} />}
       {children}
     </View>
   );
