@@ -6,59 +6,12 @@ import {
   TouchableHighlight,
   ImageBackground,
 } from 'react-native';
+
 import { original as theme } from '../common/themes';
 import { blockSizes, text, border } from '../common/styles';
 import { Border } from '../common/styleElements';
 
-type Option = {
-  value: any;
-  label: React.ReactNode;
-};
-
-type SelectItemProps = {
-  option: Option;
-  onPress: () => void;
-  isSelected: boolean;
-};
-
-const SelectItem = ({ option, onPress, isSelected }: SelectItemProps) => {
-  const [isPressed, setIsPressed] = useState(false);
-
-  return (
-    <TouchableHighlight
-      onPress={() => onPress(option)}
-      onHideUnderlay={() => setIsPressed(false)}
-      onShowUnderlay={() => setIsPressed(true)}
-      accessibilityRole='menuitem'
-      underlayColor='none'
-    >
-      <View
-        style={[
-          styles.center,
-          styles.optionWrapper,
-          {
-            backgroundColor:
-              isPressed || isSelected ? theme.hoverBackground : theme.canvas,
-          },
-        ]}
-      >
-        <Text
-          style={[
-            styles.optionText,
-            {
-              color:
-                isPressed || isSelected
-                  ? theme.canvasTextInvert
-                  : theme.canvasText,
-            },
-          ]}
-        >
-          {option.label}
-        </Text>
-      </View>
-    </TouchableHighlight>
-  );
-};
+import getSelectOptions, { Option } from './SelectBase';
 
 const dropdownSymbol = {
   default:
@@ -86,13 +39,17 @@ const Select = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
 
-  const selectedIndex = options.findIndex(option => option.value === value);
-
   function handleOptionSelect(option: Option) {
     onChange(option.value);
     setIsOpen(false);
   }
+  const [selectedOptions, selectOptions] = getSelectOptions({
+    options,
+    values: [value],
+    onChange: handleOptionSelect,
+  });
 
+  const selectedOption = selectedOptions[0];
   // TODO: close dropdown when user touches outside of component
   // TODO: native prop to use native select
 
@@ -115,7 +72,7 @@ const Select = ({
         <View style={[styles.flex]}>
           <View
             style={[
-              styles.value,
+              styles.selectValue,
               { backgroundColor: disabled ? theme.material : theme.canvas },
             ]}
           >
@@ -147,7 +104,7 @@ const Select = ({
                     },
                 ]}
               >
-                {options[selectedIndex].label}
+                {selectedOption.label}
               </Text>
             </View>
           </View>
@@ -178,14 +135,9 @@ const Select = ({
 
         {isOpen && (
           <View style={[styles.options]}>
-            {options.map((option, index) => (
-              <SelectItem
-                key={option.value}
-                option={option}
-                isSelected={index === selectedIndex}
-                onPress={handleOptionSelect}
-              />
-            ))}
+            {/* <ScrollView> */}
+            {selectOptions}
+            {/* </ScrollView> */}
           </View>
         )}
       </View>
@@ -212,7 +164,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
   },
-  value: {
+  selectValue: {
     flexGrow: 1,
     flex: 1,
     height: '100%',
@@ -244,12 +196,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.borderDarkest,
     padding: 2,
-  },
-  optionWrapper: {
-    height: selectHeight - 4,
-  },
-  optionText: {
-    fontSize: 16,
-    paddingLeft: 6,
+    display: 'flex',
   },
 });

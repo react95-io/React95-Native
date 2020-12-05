@@ -12,6 +12,7 @@ import FieldsetExample from './FieldsetExample';
 import MenuExample from './MenuExample';
 import ProgressExample from './ProgressExample';
 import SelectExample from './SelectExample';
+import SelectBoxExample from './SelectBoxExample';
 import DesktopExample from './DesktopExample';
 import TabsExample from './TabsExample';
 
@@ -30,6 +31,7 @@ export default [
   { name: 'MenuExample', component: MenuExample, title: 'Menu' },
   { name: 'ProgressExample', component: ProgressExample, title: 'Progress' },
   { name: 'SelectExample', component: SelectExample, title: 'Select' },
+  { name: 'SelectBoxExample', component: SelectBoxExample, title: 'SelectBox' },
   { name: 'DesktopExample', component: DesktopExample, title: 'Desktop' },
   { name: 'TabsExample', component: TabsExample, title: 'Tabs' },
 ].sort((a, b) => {
