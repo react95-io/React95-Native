@@ -12,6 +12,7 @@ import { blockSizes, text, border } from '../common/styles';
 import { Border } from '../common/styleElements';
 
 import getSelectOptions, { Option } from './SelectBase';
+import { ScrollView } from '..';
 
 const dropdownSymbol = {
   default:
@@ -27,12 +28,14 @@ type SelectProps = {
   // TODO: what to put below?
   onChange: () => void;
   style?: Object;
+  menuMaxHeight?: number;
 };
 
 const Select = ({
   value,
   options = [],
   disabled = false,
+  menuMaxHeight,
   onChange,
   style,
 }: SelectProps) => {
@@ -134,10 +137,15 @@ const Select = ({
         </View>
 
         {isOpen && (
-          <View style={[styles.options]}>
-            {/* <ScrollView> */}
-            {selectOptions}
-            {/* </ScrollView> */}
+          <View
+            style={[
+              styles.options,
+              {
+                height: menuMaxHeight || 'auto',
+              },
+            ]}
+          >
+            <ScrollView>{selectOptions}</ScrollView>
           </View>
         )}
       </View>
@@ -147,7 +155,7 @@ const Select = ({
 
 export default Select;
 
-const selectHeight = blockSizes.md + 2;
+const selectHeight = blockSizes.md;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -183,15 +191,15 @@ const styles = StyleSheet.create({
   fakeButton: {
     position: 'relative',
     height: '100%',
-    width: 33,
+    width: 30,
     padding: 4,
     backgroundColor: theme.material,
   },
   options: {
     position: 'absolute',
     top: selectHeight,
-    left: 2,
-    right: 4,
+    left: 0,
+    right: 0,
     backgroundColor: theme.canvas,
     borderWidth: 2,
     borderColor: theme.borderDarkest,

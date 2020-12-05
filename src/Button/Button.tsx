@@ -19,7 +19,7 @@ export type ButtonSizes = 'sm' | 'md' | 'lg';
 type ButtonProps = {
   children: React.ReactNode;
   onPress?: () => void;
-  variant?: 'menu' | 'flat' | 'default';
+  variant?: 'menu' | 'flat' | 'default' | 'outside';
   size?: ButtonSizes;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
@@ -107,7 +107,7 @@ export default Button;
 
 type BorderProps = {
   isPressed?: boolean;
-  variant?: 'menu' | 'flat' | 'default';
+  variant?: 'menu' | 'flat' | 'default' | 'outside';
   primary?: boolean;
   active?: boolean;
 };
@@ -127,6 +127,11 @@ const Borders = ({
     wrapper = primary ? [border.outline] : [];
     outer = [border.defaultOuter];
     inner = [border.defaultInner];
+    focus = isPressed ? [border.focusOutline] : [];
+  } else if (variant === 'outside') {
+    wrapper = primary ? [border.outline] : [];
+    outer = [border.outsideOuter];
+    inner = [border.outsideInner];
     focus = isPressed ? [border.focusOutline] : [];
   } else if (variant === 'menu' && (active || isPressed)) {
     wrapper = [border.well];

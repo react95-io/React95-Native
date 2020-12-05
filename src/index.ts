@@ -14,5 +14,6 @@ export { Select, SelectBox } from './Select';
 export { default as Desktop } from './Desktop';
 export { default as Menu } from './Menu';
 export { default as Tabs } from './Tabs';
+export { default as ScrollView } from './ScrollView';
 
 export * from './common/themes';

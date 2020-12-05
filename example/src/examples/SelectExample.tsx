@@ -27,6 +27,15 @@ const SelectExample = () => {
           style={[{ width: 150 }]}
         />
       </Fieldset>
+      <Fieldset label='Custom menu height:' style={[{ padding: 20 }]}>
+        <Select
+          menuMaxHeight={130}
+          options={options}
+          value={value}
+          onChange={newValue => setValue(newValue)}
+          style={[{ width: 150 }]}
+        />
+      </Fieldset>
     </Panel>
   );
 };

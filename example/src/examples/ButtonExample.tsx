@@ -7,6 +7,13 @@ const ButtonExample = () => {
   return (
     <Container>
       <Container.Section title='Default'>
+        <Button
+          primary
+          variant='default'
+          onPress={() => console.warn('Pressed')}
+        >
+          Primary
+        </Button>
         <Button variant='default' onPress={() => console.warn('Pressed')}>
           Default
         </Button>
@@ -20,6 +27,34 @@ const ButtonExample = () => {
 
         <Button
           variant='default'
+          disabled
+          onPress={() => console.warn('Pressed')}
+        >
+          Disabled
+        </Button>
+      </Container.Section>
+
+      <Container.Section title='Outside'>
+        <Button
+          primary
+          variant='outside'
+          onPress={() => console.warn('Pressed')}
+        >
+          Primary
+        </Button>
+        <Button variant='outside' onPress={() => console.warn('Pressed')}>
+          Default
+        </Button>
+        <Button
+          active
+          variant='outside'
+          onPress={() => console.warn('Pressed')}
+        >
+          Active
+        </Button>
+
+        <Button
+          variant='outside'
           disabled
           onPress={() => console.warn('Pressed')}
         >

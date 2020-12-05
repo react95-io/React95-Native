@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 import { Border } from '../common/styleElements';
+
+import { ScrollView } from '..';
 
 export const testId = 'cutout';
 
@@ -28,13 +24,13 @@ const Cutout = ({ children, style = {} }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  content: {
-    padding: 4,
-  },
   wrapper: {
     width: '100%',
-    height: '100%',
+    height: 100,
     // to compensate for borders
+    padding: 4,
+  },
+  content: {
     padding: 4,
   },
 });

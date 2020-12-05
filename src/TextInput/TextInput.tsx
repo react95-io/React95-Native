@@ -22,6 +22,8 @@ type Props = {
   [x: string]: any;
 };
 
+// TODO: implement scrollbars in TextInput
+
 const TextInput = ({
   disabled,
   value,

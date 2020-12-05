@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { original as theme } from '../common/themes';
 import { Border } from '../common/styleElements';
 
 import getSelectOptions, { Option } from './SelectBase';
 
+import { ScrollView } from '..';
 // TODO: multiselect
 // TODO: disabled,
 // TODO: original scrollbars
