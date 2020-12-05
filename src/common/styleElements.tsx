@@ -9,6 +9,7 @@ type BorderProps = {
   invert?: boolean;
   variant?: 'default' | 'well' | 'outside' | 'cutout';
   style?: object;
+  sharedStyle?: object;
   radius?: number;
   children?: React.ReactNode;
 };
@@ -17,7 +18,8 @@ export const Border = ({
   invert = false,
   variant = 'default',
   style = {},
-  radius,
+  sharedStyle = {},
+  radius = 0,
   children,
 }: BorderProps) => {
   const wrapper: StyleProp<ViewStyle> = [];
@@ -37,26 +39,34 @@ export const Border = ({
     inner = [border.cutoutInner];
   }
 
-  const sharedStyles = [
-    borderStyles.position,
-    {
-      borderRadius: radius || 0,
-    },
-  ];
+  const getSharedStyles = (function () {
+    let r = radius + 4;
+
+    return () => {
+      r -= 2;
+      return [
+        borderStyles.position,
+        sharedStyle,
+        {
+          borderRadius: radius ? r : 0,
+        },
+      ];
+    };
+  })();
 
   return (
     <View
       style={[
-        sharedStyles,
+        getSharedStyles(),
         invert ? borderStyles.invert : {},
         ...wrapper,
         style,
       ]}
     >
       {outer ? (
-        <View style={[sharedStyles, ...outer]}>
+        <View style={[getSharedStyles(), ...outer]}>
           {inner ? (
-            <View style={[sharedStyles, ...inner]}>{children}</View>
+            <View style={[getSharedStyles(), ...inner]}>{children}</View>
           ) : (
             children
           )}

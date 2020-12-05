@@ -13,6 +13,7 @@ import MenuExample from './MenuExample';
 import ProgressExample from './ProgressExample';
 import SelectExample from './SelectExample';
 import DesktopExample from './DesktopExample';
+import TabsExample from './TabsExample';
 
 export default [
   { name: 'ButtonExample', component: ButtonExample, title: 'Button' },
@@ -30,6 +31,7 @@ export default [
   { name: 'ProgressExample', component: ProgressExample, title: 'Progress' },
   { name: 'SelectExample', component: SelectExample, title: 'Select' },
   { name: 'DesktopExample', component: DesktopExample, title: 'Desktop' },
+  { name: 'TabsExample', component: TabsExample, title: 'Tabs' },
 ].sort((a, b) => {
   /* Sort screens alphabetically */
   if (a.title < b.title) return -1;
