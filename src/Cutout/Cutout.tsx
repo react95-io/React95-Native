@@ -25,9 +25,8 @@ const Cutout = ({ children, style = {} }: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: '100%',
-    height: 100,
     // to compensate for borders
+    position: 'relative',
     padding: 4,
   },
   content: {

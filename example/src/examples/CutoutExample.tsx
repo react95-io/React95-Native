@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Cutout, Text, Window } from 'react95-native';
 
 import Container from '../util/Container';
@@ -6,28 +7,26 @@ import Container from '../util/Container';
 const CutoutExample = () => {
   return (
     <Container>
-      <Container.Section title='Usage:'>
-        <Window style={{ padding: 12 }}>
-          <Cutout style={{ height: 120 }}>
-            <Text>
-              React95 React95 React95 React95 React95 React95 React95 React95
-              React95 React95
-            </Text>
-            <Text>
-              React95 React95 React95 React95 React95 React95 React95 React95
-              React95 React95
-            </Text>
-            <Text>
-              React95 React95 React95 React95 React95 React95 React95 React95
-              React95 React95
-            </Text>
-            <Text>
-              React95 React95 React95 React95 React95 React95 React95 React95
-              React95 React95
-            </Text>
-          </Cutout>
+      <View>
+        <Window title='Cutout example' style={{ width: '100%' }}>
+          <View style={{ height: 260, padding: 16 }}>
+            <Cutout>
+              <Text>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of
+                type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </Text>
+            </Cutout>
+          </View>
         </Window>
-      </Container.Section>
+      </View>
     </Container>
   );
 };

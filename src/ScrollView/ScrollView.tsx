@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
+    flex: 1,
   },
   scrollbarTrack: {
     height: '100%',
