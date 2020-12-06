@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 import { Border } from '../common/styleElements';
 
-import { ScrollView } from '..';
-
 export const testId = 'cutout';
 
 type Props = {
@@ -16,9 +14,7 @@ const Cutout = ({ children, style = {} }: Props) => {
   return (
     <View style={[styles.wrapper, style]} testID={testId}>
       <Border variant='cutout' />
-      <ScrollView>
-        <View style={[styles.content]}>{children}</View>
-      </ScrollView>
+      {children}
     </View>
   );
 };
