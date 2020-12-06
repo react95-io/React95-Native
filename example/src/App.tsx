@@ -8,6 +8,10 @@ import { AppBar } from 'react95-native';
 import ExamplesScreen from './ExamplesScreen';
 import examples from './examples';
 
+const flattenedExamples = examples
+  .map(group => group.sections.map(section => section.items))
+  .flat(2);
+
 type RootStackParamList = {
   Home: undefined;
   ButtonExample: undefined;
@@ -43,7 +47,7 @@ const App = () => {
           component={ExamplesScreen}
           options={{ title: 'Examples' }}
         />
-        {examples.map(({ name, title, component }) => (
+        {flattenedExamples.map(({ name, title, component }) => (
           <Stack.Screen
             key={name}
             /* @ts-ignore */
