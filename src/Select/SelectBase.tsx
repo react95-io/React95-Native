@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 import { original as theme } from '../common/themes';
 import { blockSizes } from '../common/styles';
 
+// TODO: allow for no option selected
 export type Option = {
   value: any;
   label: React.ReactNode;
