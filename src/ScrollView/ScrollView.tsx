@@ -14,6 +14,7 @@ import { Panel, Button } from '..';
 type ScrollViewProps = React.ComponentProps<typeof RNScrollView> & {
   style?: ViewStyle;
   children: React.ReactNode;
+  alwaysShowScrollbars?: boolean;
 };
 
 const scrollbarSize = 30;
@@ -35,7 +36,12 @@ const Icon = (
   />
 );
 
-const ScrollView = ({ children, style, ...rest }: ScrollViewProps) => {
+const ScrollView = ({
+  children,
+  style,
+  alwaysShowScrollbars = false,
+  ...rest
+}: ScrollViewProps) => {
   const scrollView = React.useRef(null);
   const [contentOffset, setContentOffset] = React.useState({ x: 0, y: 0 });
   const [contentSize, setContentSize] = React.useState(0);
@@ -58,6 +64,8 @@ const ScrollView = ({ children, style, ...rest }: ScrollViewProps) => {
     }
   };
 
+  const contentFullyVisible = contentSize <= scrollViewHeight;
+
   return (
     <View style={[styles.wrapper, style]}>
       <View style={[styles.content]}>
@@ -79,7 +87,7 @@ const ScrollView = ({ children, style, ...rest }: ScrollViewProps) => {
           {children}
         </RNScrollView>
       </View>
-      {contentSize > scrollViewHeight && (
+      {(!contentFullyVisible || alwaysShowScrollbars) && (
         <View style={[styles.scrollbarTrack]}>
           <ImageBackground
             style={[styles.background]}
@@ -95,6 +103,7 @@ const ScrollView = ({ children, style, ...rest }: ScrollViewProps) => {
           <Button
             variant='outside'
             onPress={() => moveScroll(-1)}
+            disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
             <View
@@ -109,21 +118,24 @@ const ScrollView = ({ children, style, ...rest }: ScrollViewProps) => {
             </View>
           </Button>
           <View style={[styles.scrollbar]}>
-            <Panel
-              variant='outside'
-              style={[
-                styles.scrollbarBar,
-                {
-                  position: 'absolute',
-                  top: `${thumbPosition}%`,
-                  height: `${scrollElementHeightPercent}%`,
-                },
-              ]}
-            />
+            {!contentFullyVisible && (
+              <Panel
+                variant='outside'
+                style={[
+                  styles.scrollbarBar,
+                  {
+                    position: 'absolute',
+                    top: `${thumbPosition}%`,
+                    height: `${scrollElementHeightPercent}%`,
+                  },
+                ]}
+              />
+            )}
           </View>
           <Button
             variant='outside'
             onPress={() => moveScroll(1)}
+            disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
             <View
