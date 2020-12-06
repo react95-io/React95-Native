@@ -55,7 +55,10 @@ const ScrollView = ({
 
   const thumbPosition = Math.max(
     0,
-    Math.min(100 - scrollElementHeightPercent, Math.round(scrollPerc || 0)),
+    Math.min(
+      100 - scrollElementHeightPercent,
+      parseFloat((scrollPerc || 0).toFixed(3)),
+    ),
   );
 
   const moveScroll = (direction: -1 | 1) => {
