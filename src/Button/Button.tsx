@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   StyleSheet,
+  // TODO: use Pressable instead of TouchableHighlight?
   TouchableHighlight,
   Text,
   View,

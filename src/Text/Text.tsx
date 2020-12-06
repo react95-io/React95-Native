@@ -16,6 +16,7 @@ type Props = React.ComponentProps<typeof NativeText> & {
   linkUrl?: string | null;
   disabled?: boolean;
   secondary?: boolean;
+  bold?: boolean;
 };
 
 const Text = ({
@@ -24,6 +25,7 @@ const Text = ({
   linkUrl = null,
   disabled = false,
   secondary = false,
+  bold = false,
   ...rest
 }: Props) => {
   const onLinkPress = () => {
@@ -37,6 +39,9 @@ const Text = ({
       style={[
         disabled ? text.disabled : secondary ? text.secondary : text.default,
         linkUrl ? styles.link : {},
+        {
+          fontWeight: bold ? 'bold' : 'normal',
+        },
         style,
       ]}
       onPress={onLinkPress}

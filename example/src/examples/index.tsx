@@ -16,6 +16,7 @@ import SelectBoxExample from './SelectBoxExample';
 import DesktopExample from './DesktopExample';
 import TabsExample from './TabsExample';
 import HourglassExample from './HourglassExample';
+import ListExample from './ListExample';
 
 export default [
   { name: 'ButtonExample', component: ButtonExample, title: 'Button' },
@@ -36,6 +37,7 @@ export default [
   { name: 'DesktopExample', component: DesktopExample, title: 'Desktop' },
   { name: 'TabsExample', component: TabsExample, title: 'Tabs' },
   { name: 'HourglassExample', component: HourglassExample, title: 'Hourglass' },
+  { name: 'ListExample', component: ListExample, title: 'List' },
 ].sort((a, b) => {
   /* Sort screens alphabetically */
   if (a.title < b.title) return -1;
