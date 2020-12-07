@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Button, Panel } from 'react95-native';
 

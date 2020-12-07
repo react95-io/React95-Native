@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Checkbox, Panel, Fieldset } from 'react95-native';

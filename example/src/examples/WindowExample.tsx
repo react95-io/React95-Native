@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { View } from 'react-native';
 import { Window, Text } from 'react95-native';

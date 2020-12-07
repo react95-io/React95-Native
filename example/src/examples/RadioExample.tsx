@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Radio, Panel, Fieldset } from 'react95-native';

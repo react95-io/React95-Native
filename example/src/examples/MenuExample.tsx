@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Menu, Divider } from 'react95-native';
 

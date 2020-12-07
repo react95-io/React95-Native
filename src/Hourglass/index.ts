@@ -1,1 +1,1 @@
-export { default } from './Hourglass.tsx';
+export { default } from './Hourglass';

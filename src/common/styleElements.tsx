@@ -39,7 +39,7 @@ export const Border = ({
     inner = [border.cutoutInner];
   }
 
-  const getSharedStyles = (function () {
+  const getSharedStyles = (() => {
     let r = radius + 4;
 
     return () => {
