@@ -18,4 +18,4 @@ export { default as ScrollView } from './ScrollView';
 export { default as Hourglass } from './Hourglass';
 export { default as List } from './List';
 
-export * from './common/themes';
+export * from './common/theming';
