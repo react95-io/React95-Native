@@ -10,7 +10,6 @@ import {
 
 import { Border } from '../common/styleElements';
 import { ThemeContext } from '../common/theming/Theme';
-import { border } from '../common/styles';
 
 import { Text } from '..';
 
@@ -135,7 +134,7 @@ const SwitchBase = ({
           <View
             style={[
               !disabled && isPressed
-                ? border.focusOutline
+                ? theme.border.focusOutline
                 : { borderWidth: 2, borderColor: 'transparent' },
             ]}
           >

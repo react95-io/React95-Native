@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
-import { text } from '../common/styles';
 
 type Props = React.ComponentProps<typeof NativeText> & {
   children: React.ReactNode;
@@ -39,7 +38,11 @@ const Text = ({
   return (
     <NativeText
       style={[
-        disabled ? text.disabled : secondary ? text.secondary : text.default,
+        disabled
+          ? theme.text.disabled
+          : secondary
+          ? theme.text.secondary
+          : theme.text.default,
         linkUrl ? { ...styles.link, color: theme.anchor } : {},
         {
           fontWeight: bold ? 'bold' : 'normal',

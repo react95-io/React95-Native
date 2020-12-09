@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
-import { blockSizes, text } from '../common/styles';
+import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
 type Props = {
@@ -43,7 +43,7 @@ const TextInput = ({
           {
             backgroundColor: disabled ? theme.material : theme.canvas,
           },
-          disabled && hasValue ? text.disabled : text.default,
+          disabled && hasValue ? theme.text.disabled : theme.text.default,
         ]}
         placeholderTextColor={theme.materialTextDisabled}
         defaultValue={defaultValue}

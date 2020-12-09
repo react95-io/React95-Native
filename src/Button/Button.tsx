@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
-import { border, text, blockSizes } from '../common/styles';
+import { blockSizes } from '../common/styles';
 
 export const testId = 'button';
 
@@ -44,6 +44,7 @@ const Button = ({
   active = false,
   accessibilityLabel,
 }: ButtonProps) => {
+  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   const getWidth = () => {
@@ -81,7 +82,7 @@ const Button = ({
         accessibilityRole='button'
         accessibilityLabel={accessibilityLabel}
       >
-        <Text style={[disabled ? text.disabled : text.default]}>
+        <Text style={[disabled ? theme.text.disabled : theme.text.default]}>
           {children}
         </Text>
       </TouchableHighlight>
@@ -127,17 +128,17 @@ const Borders = ({
   let focus;
 
   if (variant === 'default') {
-    wrapper = primary ? [border.outline] : [];
-    outer = [border.defaultOuter];
-    inner = [border.defaultInner];
-    focus = isPressed ? [border.focusOutline] : [];
+    wrapper = primary ? [theme.border.outline] : [];
+    outer = [theme.border.defaultOuter];
+    inner = [theme.border.defaultInner];
+    focus = isPressed ? [theme.border.focusOutline] : [];
   } else if (variant === 'outside') {
-    wrapper = primary ? [border.outline] : [];
-    outer = [border.outsideOuter];
-    inner = [border.outsideInner];
-    focus = isPressed ? [border.focusOutline] : [];
+    wrapper = primary ? [theme.border.outline] : [];
+    outer = [theme.border.outsideOuter];
+    inner = [theme.border.outsideInner];
+    focus = isPressed ? [theme.border.focusOutline] : [];
   } else if (variant === 'menu' && (active || isPressed)) {
-    wrapper = [border.well];
+    wrapper = [theme.border.well];
   }
 
   return (

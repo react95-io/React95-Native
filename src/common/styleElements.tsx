@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
-import { border } from './styles';
+
+import { ThemeContext } from './theming/Theme';
 
 // Borders acts like a pseudo element that
 // will be positioned absolutely in it's parent element
@@ -22,21 +23,23 @@ export const Border = ({
   radius = 0,
   children,
 }: BorderProps) => {
+  const theme = useContext(ThemeContext);
+
   const wrapper: StyleProp<ViewStyle> = [];
   let outer;
   let inner;
 
   if (variant === 'default') {
-    outer = [border.defaultOuter];
-    inner = [border.defaultInner];
+    outer = [theme.border.defaultOuter];
+    inner = [theme.border.defaultInner];
   } else if (variant === 'outside') {
-    outer = [border.outsideOuter];
-    inner = [border.outsideInner];
+    outer = [theme.border.outsideOuter];
+    inner = [theme.border.outsideInner];
   } else if (variant === 'well') {
-    outer = [border.well, borderStyles.invert];
+    outer = [theme.border.well, borderStyles.invert];
   } else if (variant === 'cutout') {
-    outer = [border.cutoutOuter];
-    inner = [border.cutoutInner];
+    outer = [theme.border.cutoutOuter];
+    inner = [theme.border.cutoutInner];
   }
 
   const getSharedStyles = (() => {

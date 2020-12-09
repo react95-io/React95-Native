@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
-import { border, padding, margin, blockSizes } from '../common/styles';
+import { padding, margin, blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 import { Text, Panel } from '..';
 
@@ -130,7 +130,9 @@ const Tab = ({
         />
         <Text>{children}</Text>
         <View style={[styles.mask, { backgroundColor: theme.material }]} />
-        {isPressed && <View style={[styles.focusOutline]} />}
+        {isPressed && (
+          <View style={[styles.focusOutline, theme.border.focusOutline]} />
+        )}
       </View>
     </TouchableHighlight>
   );
@@ -177,7 +179,6 @@ const styles = StyleSheet.create({
     top: 6,
     bottom: 4,
     right: 6,
-    ...border.focusOutline,
   },
 });
 

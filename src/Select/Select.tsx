@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
-import { blockSizes, text, border } from '../common/styles';
+import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
 import getSelectOptions, { Option } from './SelectBase';
@@ -93,13 +93,13 @@ const Select = ({
                     : theme.canvas,
                 },
 
-                isPressed && border.focusSecondaryOutline,
+                isPressed && theme.border.focusSecondaryOutline,
               ]}
             >
               <Text
                 style={[
                   styles.textValue,
-                  disabled ? text.disabled : text.default,
+                  disabled ? theme.text.disabled : theme.text.default,
                   !disabled &&
                     isPressed && {
                       color: isPressed

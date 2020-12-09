@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
-import { text, blockSizes } from '../common/styles';
+import { blockSizes } from '../common/styles';
 
 import { Text } from '..';
 
@@ -52,7 +52,7 @@ export const Item = ({
         <View pointerEvents='none' style={[styles.content]}>
           <Text
             style={[
-              disabled ? text.disabled : text.default,
+              disabled ? theme.text.disabled : theme.text.default,
               !disabled && {
                 color: isPressed
                   ? theme.materialTextInvert
