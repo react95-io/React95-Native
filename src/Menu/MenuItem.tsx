@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { text, blockSizes } from '../common/styles';
 
 import { Text } from '..';
@@ -25,6 +25,7 @@ export const Item = ({
   style,
   onPress,
 }: Props) => {
+  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   return (

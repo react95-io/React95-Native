@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,7 +7,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes, text, border } from '../common/styles';
 import { Border } from '../common/styleElements';
 
@@ -39,6 +39,7 @@ const Select = ({
   onChange,
   style,
 }: SelectProps) => {
+  const theme = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
 
@@ -111,7 +112,9 @@ const Select = ({
               </Text>
             </View>
           </View>
-          <View style={[styles.fakeButton]}>
+          <View
+            style={[styles.fakeButton, { backgroundColor: theme.material }]}
+          >
             <ImageBackground
               // border to compensate for Border
               style={[
@@ -142,6 +145,8 @@ const Select = ({
               styles.options,
               {
                 height: menuMaxHeight || 'auto',
+                backgroundColor: theme.canvas,
+                borderColor: theme.borderDarkest,
               },
             ]}
           >
@@ -193,16 +198,13 @@ const styles = StyleSheet.create({
     height: '100%',
     width: 30,
     padding: 4,
-    backgroundColor: theme.material,
   },
   options: {
     position: 'absolute',
     top: selectHeight,
     left: 0,
     right: 0,
-    backgroundColor: theme.canvas,
     borderWidth: 2,
-    borderColor: theme.borderDarkest,
     padding: 2,
     display: 'flex',
   },

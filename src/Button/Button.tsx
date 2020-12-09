@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   // TODO: use Pressable instead of TouchableHighlight?
@@ -10,7 +10,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { border, text, blockSizes } from '../common/styles';
 
 export const testId = 'button';
@@ -119,6 +119,8 @@ const Borders = ({
   primary = false,
   active = false,
 }: BorderProps) => {
+  const theme = useContext(ThemeContext);
+
   let wrapper: StyleProp<ViewStyle> = [];
   let outer;
   let inner;
@@ -137,6 +139,7 @@ const Borders = ({
   } else if (variant === 'menu' && (active || isPressed)) {
     wrapper = [border.well];
   }
+
   return (
     <View
       style={[

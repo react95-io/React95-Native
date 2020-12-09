@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   Text as NativeText,
@@ -7,7 +7,7 @@ import {
   TextStyle,
 } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { text } from '../common/styles';
 
 type Props = React.ComponentProps<typeof NativeText> & {
@@ -28,6 +28,8 @@ const Text = ({
   bold = false,
   ...rest
 }: Props) => {
+  const theme = useContext(ThemeContext);
+
   const onLinkPress = () => {
     if (disabled || !linkUrl) return;
 
@@ -38,7 +40,7 @@ const Text = ({
     <NativeText
       style={[
         disabled ? text.disabled : secondary ? text.secondary : text.default,
-        linkUrl ? styles.link : {},
+        linkUrl ? { ...styles.link, color: theme.anchor } : {},
         {
           fontWeight: bold ? 'bold' : 'normal',
         },
@@ -54,7 +56,6 @@ const Text = ({
 
 const styles = StyleSheet.create({
   link: {
-    color: theme.anchor,
     textDecorationLine: 'underline',
   },
 });

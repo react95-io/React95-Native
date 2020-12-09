@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { original as theme } from './themes';
+import { original as theme } from './theming';
 
 const commonBorderStyle = { borderWidth: 2 };
 
 export const border = StyleSheet.create({
-  /* createBorderStyles({ invert: false, windowBorders: false }) */
   focusSecondaryOutline: {
     ...commonBorderStyle,
     borderStyle: 'dotted',
@@ -48,7 +47,6 @@ export const border = StyleSheet.create({
     borderRightColor: theme.borderDark,
     borderBottomColor: theme.borderDark,
   },
-
   cutoutOuter: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderDark,
@@ -63,8 +61,6 @@ export const border = StyleSheet.create({
     borderRightColor: theme.borderLight,
     borderBottomColor: theme.borderLight,
   },
-
-  /* createWellBorderStyles(false) */
   well: {
     ...commonBorderStyle,
     borderLeftColor: theme.borderLightest,

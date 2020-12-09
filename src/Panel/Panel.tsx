@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { Border } from '../common/styleElements';
 
 export const testId = 'panel';
@@ -14,9 +14,18 @@ type Props = {
 };
 
 const Panel = ({ children, variant = 'default', style = {} }: Props) => {
+  const theme = useContext(ThemeContext);
+
   return (
     <View
-      style={[styles.container, { padding: variant === 'well' ? 2 : 4 }, style]}
+      style={[
+        styles.container,
+        {
+          padding: variant === 'well' ? 2 : 4,
+          backgroundColor: theme.material,
+        },
+        style,
+      ]}
       testID={testId}
     >
       {variant !== 'clear' && <Border variant={variant} />}
@@ -28,7 +37,6 @@ const Panel = ({ children, variant = 'default', style = {} }: Props) => {
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    backgroundColor: theme.material,
   },
 });
 

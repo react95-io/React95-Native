@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   ViewStyle,
@@ -7,9 +7,11 @@ import {
   TextStyle,
   TouchableOpacity,
 } from 'react-native';
-import { Text } from '..';
-import { original as theme } from '../common/themes';
+
+import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
+
+import { Text } from '..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   left?: React.ReactNode;
@@ -28,20 +30,27 @@ const ListItem = ({
   style,
   onPress,
   ...rest
-}: Props) => (
-  <View style={[styles.wrapper, style]} {...rest}>
-    <TouchableOpacity onPress={onPress} accessibilityRole='button'>
-      <View style={[styles.content]} pointerEvents='none'>
-        {left && <View style={[styles.left]}>{left}</View>}
-        {title && <Text style={[styles.title, titleStyle]}>{title}</Text>}
-        {right && <View style={[styles.right]}>{right}</View>}
-      </View>
-    </TouchableOpacity>
-  </View>
-);
+}: Props) => {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <View style={style} {...rest}>
+      <TouchableOpacity onPress={onPress} accessibilityRole='button'>
+        <View style={[styles.content]} pointerEvents='none'>
+          {left && <View style={[styles.left]}>{left}</View>}
+          {title && (
+            <Text style={[styles.title, { color: theme.progress }, titleStyle]}>
+              {title}
+            </Text>
+          )}
+          {right && <View style={[styles.right]}>{right}</View>}
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  wrapper: {},
   content: {
     display: 'flex',
     flexDirection: 'row',
@@ -50,7 +59,6 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   title: {
-    color: theme.progress,
     fontSize: 16,
   },
   left: {

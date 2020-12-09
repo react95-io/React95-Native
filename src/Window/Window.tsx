@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text, StyleProp, ViewStyle } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 
 import { Panel, Button } from '..';
 
@@ -25,8 +25,13 @@ const Window = ({
   title = '',
   style = {},
 }: WindowProps) => {
+  const theme = useContext(ThemeContext);
+
   return (
-    <Panel variant='outside' style={[styles.window, style]}>
+    <Panel
+      variant='outside'
+      style={[styles.window, { backgroundColor: theme.material }, style]}
+    >
       <View
         style={[
           styles.titleBar,
@@ -90,7 +95,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingVertical: 6,
     paddingHorizontal: 6,
-    backgroundColor: theme.material,
   },
 
   titleBar: {

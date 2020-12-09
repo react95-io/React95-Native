@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { original as theme } from '../common/themes';
+
+import { ThemeContext } from '../common/theming/Theme';
 import { Border } from '../common/styleElements';
 
 export const testId = 'fieldset';
@@ -12,6 +13,8 @@ type Props = {
 };
 
 const Fieldset = ({ children, label, style = {} }: Props) => {
+  const theme = useContext(ThemeContext);
+
   return (
     <View style={[styles.wrapper, style]} testID={testId}>
       <Border
@@ -23,7 +26,11 @@ const Fieldset = ({ children, label, style = {} }: Props) => {
       />
       <Border variant='well' />
       {/* TODO: allow passing components to label (see web react95 checkbox example) */}
-      {label && <Text style={[styles.label]}>{label}</Text>}
+      {label && (
+        <Text style={[styles.label, { backgroundColor: theme.material }]}>
+          {label}
+        </Text>
+      )}
       {children}
     </View>
   );
@@ -42,7 +49,6 @@ const styles = StyleSheet.create({
     // TODO: how to properly center the label?
     transform: [{ translateY: -8 }],
     paddingHorizontal: 8,
-    backgroundColor: theme.material,
     fontSize: 16,
     lineHeight: 16,
   },

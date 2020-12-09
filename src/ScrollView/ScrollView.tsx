@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,7 +7,7 @@ import {
   ImageBackground,
   Image,
 } from 'react-native';
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 
 import { Panel, Button } from '..';
 
@@ -42,6 +42,8 @@ const ScrollView = ({
   alwaysShowScrollbars = false,
   ...rest
 }: ScrollViewProps) => {
+  const theme = useContext(ThemeContext);
+
   const scrollView = React.useRef(null);
   const [contentOffset, setContentOffset] = React.useState({ x: 0, y: 0 });
   const [contentSize, setContentSize] = React.useState(0);
@@ -91,7 +93,9 @@ const ScrollView = ({
         </RNScrollView>
       </View>
       {(!contentFullyVisible || alwaysShowScrollbars) && (
-        <View style={[styles.scrollbarTrack]}>
+        <View
+          style={[styles.scrollbarTrack, { backgroundColor: theme.material }]}
+        >
           <ImageBackground
             style={[styles.background]}
             imageStyle={{
@@ -172,7 +176,6 @@ const styles = StyleSheet.create({
   },
   scrollbarTrack: {
     height: '100%',
-    backgroundColor: theme.material,
   },
   scrollbarButton: {
     height: scrollbarSize,

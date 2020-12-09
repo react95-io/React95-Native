@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { border, padding, margin, blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 import { Text, Panel } from '..';
@@ -27,6 +27,8 @@ const Tabs = ({
   stretch = false,
   ...rest
 }: TabsProps) => {
+  const theme = useContext(ThemeContext);
+
   const childrenWithProps = React.Children.map(children, child => {
     if (!React.isValidElement(child)) {
       return null;
@@ -42,7 +44,15 @@ const Tabs = ({
   return (
     <View style={[styles.tabs]} {...rest}>
       {childrenWithProps}
-      <View style={[styles.tabBodyBorder]} />
+      <View
+        style={[
+          styles.tabBodyBorder,
+          {
+            backgroundColor: theme.borderLight,
+            borderTopColor: theme.borderLightest,
+          },
+        ]}
+      />
     </View>
   );
 };
@@ -77,6 +87,7 @@ const Tab = ({
   children,
   ...rest
 }: TabProps) => {
+  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   return (
@@ -118,7 +129,7 @@ const Tab = ({
           }}
         />
         <Text>{children}</Text>
-        <View style={[styles.mask]} />
+        <View style={[styles.mask, { backgroundColor: theme.material }]} />
         {isPressed && <View style={[styles.focusOutline]} />}
       </View>
     </TouchableHighlight>
@@ -151,9 +162,7 @@ const styles = StyleSheet.create({
     left: 4,
     right: 4,
     bottom: -2,
-    backgroundColor: theme.borderLight,
     borderTopWidth: 2,
-    borderTopColor: theme.borderLightest,
   },
   mask: {
     height: 4,
@@ -161,7 +170,6 @@ const styles = StyleSheet.create({
     left: 4,
     right: 4,
     bottom: -2,
-    backgroundColor: theme.material,
   },
   focusOutline: {
     position: 'absolute',

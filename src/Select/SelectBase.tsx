@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
-import { original as theme } from '../common/themes';
+
+import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 
 // TODO: allow for no option selected
@@ -16,6 +17,7 @@ type SelectItemProps = {
 };
 
 const SelectItem = ({ option, onPress, isSelected }: SelectItemProps) => {
+  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   return (

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+
 import { Border } from '../common/styleElements';
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 
 type Props = {
   children?: React.ReactNode;
@@ -9,12 +10,24 @@ type Props = {
 };
 
 const Desktop = ({ children, style }: Props) => {
+  const theme = useContext(ThemeContext);
+
   return (
     <View style={[styles.wrapper]}>
       <View style={[styles.monitor]}>
         <Border variant='outside'>
-          <View style={[styles.monitorShadowBorder]}>
-            <View style={[styles.monitorShadowBorder]} />
+          <View
+            style={[
+              styles.monitorShadowBorder,
+              { borderColor: theme.borderDark },
+            ]}
+          >
+            <View
+              style={[
+                styles.monitorShadowBorder,
+                { borderColor: theme.borderDark },
+              ]}
+            />
           </View>
         </Border>
         <View style={[styles.screen, style]}>
@@ -24,7 +37,9 @@ const Desktop = ({ children, style }: Props) => {
         <View style={[styles.light]} />
       </View>
       <View style={[styles.stand]}>
-        <View style={[styles.standSegmentOne]}>
+        <View
+          style={[styles.standSegmentOne, { borderTopColor: theme.borderDark }]}
+        >
           <Border variant='outside' />
         </View>
         <View style={[styles.standSegmentTwo]}>
@@ -59,7 +74,6 @@ const styles = StyleSheet.create({
     right: 0,
     borderWidth: 1,
     borderStyle: 'dotted',
-    borderColor: theme.borderDark,
     // TODO: left and top dotted border shoulg be of light color
     // borderTopColor: theme.borderLightest,
     // borderLeftColor: theme.borderLightest,
@@ -91,7 +105,6 @@ const styles = StyleSheet.create({
     height: 14,
     borderWidth: 2,
     borderColor: 'transparent',
-    borderTopColor: theme.borderDark,
     zIndex: 1,
   },
   standSegmentTwo: {

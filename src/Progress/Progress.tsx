@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -7,7 +7,7 @@ import {
   LayoutChangeEvent,
 } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
@@ -22,17 +22,19 @@ const tileWidth = 17;
 
 // TODO: accessibility
 const Progress = ({ variant = 'default', percent = 0, style = {} }: Props) => {
+  const theme = useContext(ThemeContext);
+
   const [tilesNumber, setTilesNumber] = useState(0);
   const [progressWidth, setProgressWidth] = useState(0);
 
-  function updateTilesNumber() {
-    setTilesNumber(Math.round((percent / 100) * (progressWidth / tileWidth)));
-  }
   function onProgressWidthChange(e: LayoutChangeEvent) {
     const { width } = e.nativeEvent.layout;
     setProgressWidth(width);
   }
-  useEffect(updateTilesNumber, [percent]);
+
+  useEffect(() => {
+    setTilesNumber(Math.round((percent / 100) * (progressWidth / tileWidth)));
+  }, [percent]);
 
   return (
     <View
@@ -46,15 +48,33 @@ const Progress = ({ variant = 'default', percent = 0, style = {} }: Props) => {
     >
       <View style={[styles.progressWrapper]}>
         {variant === 'tile' ? (
-          <View style={[styles.tilesWrapper]} onLayout={onProgressWidthChange}>
+          <View
+            style={[styles.tilesWrapper, { borderColor: theme.material }]}
+            onLayout={onProgressWidthChange}
+          >
             {Array(tilesNumber)
               .fill(null)
               .map((_, index) => (
-                <View style={[styles.tile, styles.progress]} key={index} />
+                <View
+                  style={[
+                    styles.tile,
+                    styles.progress,
+                    {
+                      backgroundColor: theme.progress,
+                      borderColor: theme.material,
+                    },
+                  ]}
+                  key={index}
+                />
               ))}
           </View>
         ) : (
-          <View style={[styles.progress, { width: `${percent}%` }]} />
+          <View
+            style={[
+              styles.progress,
+              { width: `${percent}%`, backgroundColor: theme.progress },
+            ]}
+          />
         )}
       </View>
       <Border variant='cutout' />
@@ -73,18 +93,15 @@ const styles = StyleSheet.create({
   },
   progress: {
     height: '100%',
-    backgroundColor: theme.progress,
   },
   tilesWrapper: {
     flexDirection: 'row',
     flex: 1,
     borderWidth: 1,
-    borderColor: theme.material,
   },
   tile: {
     width: tileWidth,
     borderWidth: 1,
-    borderColor: theme.material,
   },
 });
 

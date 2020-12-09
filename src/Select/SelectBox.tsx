@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { original as theme } from '../common/themes';
-import { Border } from '../common/styleElements';
 
+import { Border } from '../common/styleElements';
+import { ThemeContext } from '../common/theming/Theme';
 import getSelectOptions, { Option } from './SelectBase';
 
 import { ScrollView } from '..';
@@ -26,9 +26,7 @@ const SelectBox = ({
   onChange,
   style,
 }: SelectBoxProps) => {
-  function handleOptionSelect(option: Option) {
-    onChange(option.value);
-  }
+  const theme = useContext(ThemeContext);
 
   const [, selectOptions] = getSelectOptions({
     options,
@@ -36,11 +34,17 @@ const SelectBox = ({
     onChange: handleOptionSelect,
   });
 
+  function handleOptionSelect(option: Option) {
+    onChange(option.value);
+  }
+
   return (
-    <View style={[styles.wrapper, style]}>
+    <View style={[styles.wrapper, { backgroundColor: theme.canvas }, style]}>
       <Border variant='cutout' />
       <ScrollView>
-        <View style={[styles.content]}>{selectOptions}</View>
+        <View style={[styles.content, { backgroundColor: theme.canvas }]}>
+          {selectOptions}
+        </View>
       </ScrollView>
     </View>
   );
@@ -52,10 +56,8 @@ const styles = StyleSheet.create({
   wrapper: {
     paddingVertical: 4,
     paddingHorizontal: 4,
-    backgroundColor: theme.canvas,
   },
   content: {
-    backgroundColor: theme.canvas,
     padding: 2,
   },
 });

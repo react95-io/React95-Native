@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { Border } from '../common/styleElements';
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { border } from '../common/styles';
 
 import { Text } from '..';
@@ -54,6 +54,7 @@ const SwitchBase = ({
   status,
   style = {},
 }: Props) => {
+  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
   const isRadio = component === 'radio';
   const borderRadius = isRadio ? switchSize / 2 : 0;
@@ -103,7 +104,7 @@ const SwitchBase = ({
 
   return (
     <TouchableHighlight
-      style={[styles.wrapper, style]}
+      style={[styles.wrapper, { backgroundColor: theme.material }, style]}
       onPress={onPress}
       activeOpacity={1}
       disabled={disabled}
@@ -153,7 +154,6 @@ const styles = StyleSheet.create({
     width: 'auto',
     alignSelf: 'flex-start',
     padding: 4,
-    backgroundColor: theme.material,
   },
   content: {
     flexDirection: 'row',

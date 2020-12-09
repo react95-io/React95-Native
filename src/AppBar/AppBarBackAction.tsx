@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { StyleProp, ViewStyle, StyleSheet, View } from 'react-native';
 
 import { Button } from '..';
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 
 type Props = {
   disabled?: boolean;
@@ -11,16 +11,20 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-const AppBarBackAction = ({ accessibilityLabel = 'Back', ...rest }: Props) => (
-  <Button
-    square
-    variant='menu'
-    accessibilityLabel={accessibilityLabel}
-    {...rest}
-  >
-    <View style={[styles.icon]} />
-  </Button>
-);
+const AppBarBackAction = ({ accessibilityLabel = 'Back', ...rest }: Props) => {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <Button
+      square
+      variant='menu'
+      accessibilityLabel={accessibilityLabel}
+      {...rest}
+    >
+      <View style={[styles.icon, { borderColor: theme.materialText }]} />
+    </Button>
+  );
+};
 
 export default AppBarBackAction;
 
@@ -35,7 +39,6 @@ const styles = StyleSheet.create({
     width: 13,
     borderLeftWidth: 2,
     borderTopWidth: 2,
-    borderColor: theme.materialText,
     transform: [
       {
         rotate: '-45deg',

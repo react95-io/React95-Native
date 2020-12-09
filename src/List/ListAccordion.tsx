@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   ViewStyle,
@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import { Text } from '..';
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 import useControlledOrUncontrolled from '../common/hooks/useControlledOrUncontrolled';
 
@@ -39,6 +39,8 @@ const ListAccordion = ({
   style,
   ...rest
 }: Props) => {
+  const theme = useContext(ThemeContext);
+
   const [expanded, setExpanded] = useControlledOrUncontrolled({
     value: expandedProp,
     defaultValue: defaultExpanded,
@@ -53,12 +55,21 @@ const ListAccordion = ({
   };
 
   return (
-    <View {...rest} style={[styles.wrapper, style]}>
+    <View
+      {...rest}
+      style={[styles.wrapper, { borderColor: theme.flatLight }, style]}
+    >
       <TouchableHighlight onPress={handlePress} accessibilityRole='button'>
-        <View style={[styles.header]} pointerEvents='none'>
+        <View
+          style={[styles.header, { backgroundColor: theme.flatLight }]}
+          pointerEvents='none'
+        >
           <View>
             {title && (
-              <Text bold style={[styles.title, titleStyle]}>
+              <Text
+                bold
+                style={[styles.title, { color: theme.progress }, titleStyle]}
+              >
                 {title}
               </Text>
             )}
@@ -100,22 +111,18 @@ const ListAccordion = ({
 const styles = StyleSheet.create({
   wrapper: {
     borderWidth: 2,
-    borderColor: theme.flatLight,
   },
   header: {
     paddingVertical: 4,
     paddingHorizontal: 8,
     minHeight: blockSizes.md,
     justifyContent: 'space-between',
-    backgroundColor: theme.flatLight,
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
   },
   title: {
     // TODO: create separate color variable for this? or should we use theme.materialColor instead?
-    // color: theme.progress,
-    color: theme.progress,
   },
   subtitle: {
     // TODO: make a Text component with standarized font sizes where normal is 16 / small 13 ...etc
@@ -127,14 +134,18 @@ const styles = StyleSheet.create({
     marginRight: 2,
   },
   body: {},
-
   divider: {
     height: 2,
     width: 'auto',
-    backgroundColor: theme.flatLight,
   },
 });
 
-export const Divider = () => <View style={[styles.divider]} />;
+export const Divider = () => {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <View style={[styles.divider, { backgroundColor: theme.flatLight }]} />
+  );
+};
 
 export default ListAccordion;

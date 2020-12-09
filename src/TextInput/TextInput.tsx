@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   StyleProp,
@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { original as theme } from '../common/themes';
+import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes, text } from '../common/styles';
 import { Border } from '../common/styleElements';
 
@@ -31,6 +31,8 @@ const TextInput = ({
   style = {},
   ...otherProps
 }: Props) => {
+  const theme = useContext(ThemeContext);
+
   const hasValue = !!(value || defaultValue);
   return (
     <View style={[styles.wrapper, style]}>
