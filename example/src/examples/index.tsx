@@ -20,86 +20,77 @@ import WindowExample from './WindowExample';
 
 export default [
   {
-    title: 'Components',
-    sections: [
+    title: 'Inputs',
+    items: [
+      { name: 'ButtonExample', component: ButtonExample, title: 'Button' },
       {
-        title: 'Inputs',
-        items: [
-          { name: 'ButtonExample', component: ButtonExample, title: 'Button' },
-          {
-            name: 'CheckboxExample',
-            component: CheckboxExample,
-            title: 'Checkbox',
-          },
-          {
-            name: 'FieldsetExample',
-            component: FieldsetExample,
-            title: 'Fieldset',
-          },
-          { name: 'RadioExample', component: RadioExample, title: 'Radio' },
-          { name: 'SelectExample', component: SelectExample, title: 'Select' },
-          {
-            name: 'SelectBoxExample',
-            component: SelectBoxExample,
-            title: 'SelectBox',
-          },
-          {
-            name: 'TextInputExample',
-            component: TextInputExample,
-            title: 'TextInput',
-          },
-        ],
+        name: 'CheckboxExample',
+        component: CheckboxExample,
+        title: 'Checkbox',
       },
       {
-        title: 'Layout',
-        items: [
-          { name: 'AppBarExample', component: AppBarExample, title: 'AppBar' },
-          { name: 'CutoutExample', component: CutoutExample, title: 'Cutout' },
-          {
-            name: 'DividerExample',
-            component: DividerExample,
-            title: 'Divider',
-          },
-          { name: 'PanelExample', component: PanelExample, title: 'Panel' },
-          { name: 'WindowExample', component: WindowExample, title: 'Window' },
-        ],
+        name: 'FieldsetExample',
+        component: FieldsetExample,
+        title: 'Fieldset',
+      },
+      { name: 'RadioExample', component: RadioExample, title: 'Radio' },
+      { name: 'SelectExample', component: SelectExample, title: 'Select' },
+      {
+        name: 'SelectBoxExample',
+        component: SelectBoxExample,
+        title: 'SelectBox',
       },
       {
-        title: 'Navigation',
-        items: [
-          { name: 'ListExample', component: ListExample, title: 'List' },
-          { name: 'MenuExample', component: MenuExample, title: 'Menu' },
-          { name: 'TabsExample', component: TabsExample, title: 'Tabs' },
-        ],
-      },
-      {
-        title: 'Other',
-        items: [
-          {
-            name: 'DesktopExample',
-            component: DesktopExample,
-            title: 'Desktop',
-          },
-          {
-            name: 'HourglassExample',
-            component: HourglassExample,
-            title: 'Hourglass',
-          },
-          {
-            name: 'ProgressExample',
-            component: ProgressExample,
-            title: 'Progress',
-          },
-        ],
-      },
-      {
-        title: 'Typography',
-        items: [{ name: 'TextExample', component: TextExample, title: 'Text' }],
+        name: 'TextInputExample',
+        component: TextInputExample,
+        title: 'TextInput',
       },
     ],
   },
   {
-    title: 'Themes',
-    sections: [],
+    title: 'Layout',
+    items: [
+      { name: 'AppBarExample', component: AppBarExample, title: 'AppBar' },
+      { name: 'CutoutExample', component: CutoutExample, title: 'Cutout' },
+      {
+        name: 'DividerExample',
+        component: DividerExample,
+        title: 'Divider',
+      },
+      { name: 'PanelExample', component: PanelExample, title: 'Panel' },
+      { name: 'WindowExample', component: WindowExample, title: 'Window' },
+    ],
+  },
+  {
+    title: 'Navigation',
+    items: [
+      { name: 'ListExample', component: ListExample, title: 'List' },
+      { name: 'MenuExample', component: MenuExample, title: 'Menu' },
+      { name: 'TabsExample', component: TabsExample, title: 'Tabs' },
+    ],
+  },
+  {
+    title: 'Other',
+    items: [
+      {
+        name: 'DesktopExample',
+        component: DesktopExample,
+        title: 'Desktop',
+      },
+      {
+        name: 'HourglassExample',
+        component: HourglassExample,
+        title: 'Hourglass',
+      },
+      {
+        name: 'ProgressExample',
+        component: ProgressExample,
+        title: 'Progress',
+      },
+    ],
+  },
+  {
+    title: 'Typography',
+    items: [{ name: 'TextExample', component: TextExample, title: 'Text' }],
   },
 ];

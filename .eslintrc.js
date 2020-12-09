@@ -4,6 +4,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier/react',
     'plugin:jest/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'prettier'],
@@ -37,5 +38,6 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };
