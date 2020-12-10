@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
-/* eslint-disable-next-line */
 const blacklist = require('metro-config/src/defaults/blacklist');
-/* eslint-disable-next-line */
 const escape = require('escape-string-regexp');
 const pak = require('../package.json');
 

@@ -9,8 +9,8 @@ import { ThemeContext } from './theming/Theme';
 type BorderProps = {
   invert?: boolean;
   variant?: 'default' | 'well' | 'outside' | 'cutout';
-  style?: object;
-  sharedStyle?: object;
+  style?: StyleProp<ViewStyle>;
+  sharedStyle?: StyleProp<ViewStyle>;
   radius?: number;
   children?: React.ReactNode;
 };

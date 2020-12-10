@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
-/* eslint-disable-next-line */
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 const { resolver } = require('./metro.config');
 

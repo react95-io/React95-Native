@@ -12,7 +12,7 @@ export type Option = {
 
 type SelectItemProps = {
   option: Option;
-  onPress: () => void;
+  onPress: (value: any) => void;
   isSelected: boolean;
 };
 
@@ -81,7 +81,7 @@ type SelectOptionsProps = {
   values: [any];
   disabled?: boolean;
   // TODO: what to put below?
-  onChange: () => void;
+  onChange: (value: any) => void;
 };
 
 export default function getSelectOptions({

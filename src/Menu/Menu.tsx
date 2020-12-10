@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 
 import { Panel } from '..';
 
@@ -10,7 +10,7 @@ type MenuProps = {
   // see react-native-paper
   children: React.ReactNode;
   orientation?: 'vertical' | 'horizontal';
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Menu = ({

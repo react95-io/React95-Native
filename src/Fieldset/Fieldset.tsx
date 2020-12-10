@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, StyleProp, ViewStyle } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
 import { Border } from '../common/styleElements';
@@ -9,7 +9,7 @@ export const testId = 'fieldset';
 type Props = {
   label?: React.ReactNode;
   children: React.ReactNode;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Fieldset = ({ children, label, style = {} }: Props) => {

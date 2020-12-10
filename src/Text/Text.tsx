@@ -35,14 +35,22 @@ const Text = ({
     Linking.openURL(linkUrl || '');
   };
 
+  const getTextStyle = () => {
+    if (disabled) {
+      return theme.text.disabled;
+    }
+
+    if (secondary) {
+      return theme.text.secondary;
+    }
+
+    return theme.text.default;
+  };
+
   return (
     <NativeText
       style={[
-        disabled
-          ? theme.text.disabled
-          : secondary
-          ? theme.text.secondary
-          : theme.text.default,
+        getTextStyle(),
         linkUrl ? { ...styles.link, color: theme.anchor } : {},
         {
           fontWeight: bold ? 'bold' : 'normal',

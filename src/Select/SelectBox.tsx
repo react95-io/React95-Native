@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { Border } from '../common/styleElements';
 import { ThemeContext } from '../common/theming/Theme';
@@ -15,8 +15,8 @@ type SelectBoxProps = {
   value: [any] | any;
   //   disabled?: boolean;
   // TODO: what to put below?
-  onChange: () => void;
-  style?: Object;
+  onChange: (value: any) => void;
+  style?: StyleProp<ViewStyle>;
 };
 
 const SelectBox = ({

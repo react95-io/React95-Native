@@ -5,6 +5,8 @@ import {
   Text,
   TouchableHighlight,
   ImageBackground,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
@@ -26,8 +28,8 @@ type SelectProps = {
   value: any;
   disabled?: boolean;
   // TODO: what to put below?
-  onChange: () => void;
-  style?: Object;
+  onChange: (value: any) => void;
+  style?: StyleProp<ViewStyle>;
   menuMaxHeight?: number;
 };
 
@@ -47,6 +49,19 @@ const Select = ({
     onChange(option.value);
     setIsOpen(false);
   }
+
+  function getLabelContainerBackgroundColor() {
+    if (disabled) {
+      return theme.material;
+    }
+
+    if (isPressed) {
+      return theme.hoverBackground;
+    }
+
+    return theme.canvas;
+  }
+
   const [selectedOptions, selectOptions] = getSelectOptions({
     options,
     values: [value],
@@ -86,11 +101,7 @@ const Select = ({
                 {
                   borderWidth: 2,
                   borderColor: disabled ? theme.material : theme.canvas,
-                  backgroundColor: disabled
-                    ? theme.material
-                    : isPressed
-                    ? theme.hoverBackground
-                    : theme.canvas,
+                  backgroundColor: getLabelContainerBackgroundColor(),
                 },
 
                 isPressed && theme.border.focusSecondaryOutline,

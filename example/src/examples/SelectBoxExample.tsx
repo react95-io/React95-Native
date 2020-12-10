@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Panel, SelectBox, Fieldset } from 'react95-native';
 
-const options = ['apple', 'orange', 'banana', 'pear', 'watermelon'].map(o => ({
-  label: o,
-  value: o,
-}));
+const options = ['apple', 'orange', 'banana', 'pear', 'watermelon'].map(
+  option => ({
+    label: option,
+    value: option,
+  }),
+);
 
 const SelectBoxExample = () => {
   const [value, setValue] = useState(options[0].value);

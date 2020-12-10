@@ -1,5 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, TouchableHighlight } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
@@ -15,7 +21,7 @@ type Props = {
   // icon: React.ReactNode;
   onPress: () => void;
   disabled?: boolean;
-  style?: Object;
+  style?: StyleProp<ViewStyle>;
 };
 
 export const Item = ({
