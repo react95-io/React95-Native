@@ -11,6 +11,7 @@ import MenuExample from './MenuExample';
 import PanelExample from './PanelExample';
 import ProgressExample from './ProgressExample';
 import RadioExample from './RadioExample';
+import ScrollPanelExample from './ScrollPanelExample';
 import SelectBoxExample from './SelectBoxExample';
 import SelectExample from './SelectExample';
 import TabsExample from './TabsExample';
@@ -58,6 +59,7 @@ export default [
         title: 'Divider',
       },
       { name: 'PanelExample', component: PanelExample, title: 'Panel' },
+      { name: 'ScrollPanelExample', component: ScrollPanelExample, title: 'ScrollPanel' },
       { name: 'WindowExample', component: WindowExample, title: 'Window' },
     ],
   },
