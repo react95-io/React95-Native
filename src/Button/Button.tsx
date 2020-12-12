@@ -114,6 +114,7 @@ type BorderProps = {
   active?: boolean;
 };
 
+// TODO: pass theme as an argument instead of using context ?
 const Borders = ({
   isPressed = false,
   variant = 'default',
@@ -156,7 +157,7 @@ const Borders = ({
             <View style={[borderStyles.position, ...inner]}>
               {focus && !active && (
                 <View
-                  style={[borderStyles.position, { margin: 2 }, ...focus]}
+                  style={[borderStyles.position, { margin: primary ? 0 : 2 }, ...focus]}
                 />
               )}
               {active && (
