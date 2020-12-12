@@ -91,9 +91,9 @@ export const text = (theme: Theme) =>
   });
 
 export const blockSizes = {
-  sm: 27,
-  md: 35,
-  lg: 43,
+  sm: 28,
+  md: 36,
+  lg: 44,
 };
 
 export function padding(a: number, b?: number, c?: number, d?: number) {

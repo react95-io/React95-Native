@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
   },
   panel: {
-    padding: 10,
+    padding: 8,
   },
   cutout: {
     backgroundColor: 'white',
