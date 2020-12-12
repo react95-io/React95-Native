@@ -24,7 +24,7 @@ const MainNavigation = () => {
       <Stack.Navigator
         headerMode='screen'
         screenOptions={{
-          header: ({ navigation, scene, previous }) => (
+          header: ({ navigation, scene, previous, name }) =>  scene.descriptor.options.title !== 'Examples' && (
             <AppBar>
               {previous && (
                 <AppBar.BackAction onPress={() => navigation.goBack()} />

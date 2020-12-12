@@ -1,7 +1,36 @@
-import { original, counterStrike, vaporTeal } from 'react95-native';
+import { themes } from 'react95-native';
 
-export default [
-  { id: original.name, theme: original },
-  { id: counterStrike.name, theme: counterStrike },
-  { id: vaporTeal.name, theme: vaporTeal },
-];
+const {
+  original,
+  rainyDay,
+  spruce,
+  rose,
+  coldGray,
+  counterStrike,
+  lilac,
+  olive,
+  tokyoDark,
+  plum,
+  matrix,
+  travel,
+  ...otherThemes
+} = themes;
+
+const reorderedThemes = {
+  original,
+  rainyDay,
+  spruce,
+  rose,
+  coldGray,
+  counterStrike,
+  lilac,
+  olive,
+  tokyoDark,
+  plum,
+  matrix,
+  travel,
+  ...otherThemes
+};
+
+
+export default Object.values(reorderedThemes);

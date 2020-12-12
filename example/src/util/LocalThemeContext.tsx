@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 
 import type { Theme } from 'react95-native';
-import { original } from 'react95-native';
+import { themes } from 'react95-native';
 
 type TLocalThemeContext = {
   theme: Theme;
@@ -9,7 +9,7 @@ type TLocalThemeContext = {
 };
 
 const LocalThemeContext = createContext<TLocalThemeContext>({
-  theme: original,
+  theme: themes.original,
   setTheme: () => null,
 });
 
@@ -18,7 +18,7 @@ type LocalThemeProviderProps = {
 };
 
 const LocalThemeProvider = ({ children }: LocalThemeProviderProps) => {
-  const [theme, setTheme] = useState(original);
+  const [theme, setTheme] = useState(themes.original);
 
   return (
     <LocalThemeContext.Provider
