@@ -31,13 +31,13 @@ const ExamplesScreen = () => {
       </AppBar>
       <ScrollPanel style={styles.scrollPanel}>
         {themes.map(theme => (
-          <ThemeProvider theme={theme} key={theme.name}>
             <ThemeButton
               theme={theme}
+              currentTheme={currentTheme}
               selected={theme.name === currentTheme.name}
               onPress={() => setTheme(theme)}
+              key={theme.name}
             />
-          </ThemeProvider>
         ))}
       </ScrollPanel>
       <Panel variant='outside' style={styles.panel}>
@@ -131,6 +131,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: -4,
     zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
   heading: {
     fontSize: 24,

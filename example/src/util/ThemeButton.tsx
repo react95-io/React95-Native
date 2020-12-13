@@ -5,55 +5,66 @@ import {
   TouchableHighlight,
   ImageBackground,
 } from 'react-native';
-import { Text, Panel } from 'react95-native';
+import { Text, Panel, ThemeProvider } from 'react95-native';
+import type { Theme } from 'react95-native';
 
 type Props = {
   onPress: () => {};
   selected?: boolean;
-  theme: any;
+  theme: Theme;
+  currentTheme: Theme;
 };
 
-const ThemeButton = ({ theme, selected, onPress }: Props) => (
+const ThemeButton = ({ theme, currentTheme, selected, onPress }: Props) => (
   <View style={[styles.themeButtonWrapper]}>
-    <TouchableHighlight
-      onPress={onPress}
-      style={[
-        styles.button,
-        {
-          borderColor: selected ? theme.focusSecondary : 'transparent',
-        },
-      ]}
-    >
-      {
-        <Panel style={[styles.square]}>
-          {selected && (
-            <ImageBackground
-              style={{ width: '100%', height: '100%' }}
-              imageStyle={{
-                resizeMode: 'repeat',
-              }}
-              source={{
-                uri:
-                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC',
-              }}
-            />
-          )}
-        </Panel>
-      }
-    </TouchableHighlight>
-    <Text bold={selected} numberOfLines={1} style={[styles.themeButtonName]}>
-      {theme.name}
-    </Text>
+    <ThemeProvider theme={currentTheme}>
+      <TouchableHighlight
+        onPress={onPress}
+        style={[
+          styles.button,
+          {
+            borderColor: selected ? theme.focusSecondary : 'transparent',
+          },
+        ]}
+      >
+        <ThemeProvider theme={theme}>
+          <Panel variant='outside' style={[styles.square]}>
+            <View
+              style={[
+                styles.header,
+                { backgroundColor: theme.headerBackground },
+              ]}
+            ></View>
+            {selected && (
+              <ImageBackground
+                style={{ width: '100%', height: '100%' }}
+                imageStyle={{
+                  resizeMode: 'repeat',
+                }}
+                source={{
+                  uri:
+                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC',
+                }}
+              />
+            )}
+          </Panel>
+        </ThemeProvider>
+      </TouchableHighlight>
+      <Text bold={selected} numberOfLines={1} style={[styles.themeButtonName]}>
+        {theme.name}
+      </Text>
+    </ThemeProvider>
   </View>
 );
 
-const buttonSize = 50;
+const buttonHeight = 50;
+const buttonWidth = 1.5 * buttonHeight;
 const selectedBorderWidth = 2;
 
 const styles = StyleSheet.create({
   themeButtonWrapper: {
     alignItems: 'center',
-    width: buttonSize + 16,
+    width: buttonWidth + 16,
     marginLeft: 4,
   },
   button: {
@@ -62,8 +73,15 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   square: {
-    height: buttonSize,
-    width: buttonSize,
+    height: buttonHeight,
+    width: buttonWidth,
+  },
+  header: {
+    position: 'absolute',
+    height: 10,
+    left: 4,
+    top: 4,
+    right: 4,
   },
   themeButtonName: {
     fontSize: 11,
