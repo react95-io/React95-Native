@@ -23,13 +23,14 @@ const ScrollPanel = ({ style = {}, children, noBackground }: Props) => {
         {
           backgroundColor: noBackground ? 'transparent' : theme.materialDark,
         },
+        style
       ]}
     >
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View style={[styles.borderWrapper]}>
           <Border variant='outside' />
           <View
-            style={[styles.inner, { backgroundColor: theme.material }, style]}
+            style={[styles.inner, { backgroundColor: theme.material }]}
           >
             <Divider orientation='vertical' variant='raised' />
             <Divider orientation='vertical' variant='raised' />

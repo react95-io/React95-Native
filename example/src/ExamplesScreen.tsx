@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   Panel,
+  AppBar,
   Cutout,
   List,
   Text,
@@ -22,7 +23,10 @@ const ExamplesScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollPanel>
+      <AppBar style={styles.header}>
+        <Text style={styles.heading} bold disabled>React95</Text>
+      </AppBar>
+      <ScrollPanel style={styles.scrollPanel}>
         {themes.map(theme => (
           <ThemeButton
             key={theme.name}
@@ -117,6 +121,18 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: 'center',
   },
+  header: {
+    justifyContent: 'center',
+    marginBottom: -4,
+    zIndex: 10,
+  },
+  heading: {
+    fontSize: 24,
+    fontStyle: 'italic'
+  },
+  scrollPanel: {
+    zIndex: -1,
+  }
 });
 
 export default ExamplesScreen;
