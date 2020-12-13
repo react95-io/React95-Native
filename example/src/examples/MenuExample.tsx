@@ -9,15 +9,17 @@ const TextExample = () => {
     <Container>
       <Container.Section title='Basic usage'>
         <Menu>
-          <Menu.Item
-            size='lg'
-            onPress={() => console.warn('Item 1')}
-            title='Item 1'
-          />
+        <Menu.Item primary onPress={() => console.warn('Item 1')} title='Item 1' />
+
           <Menu.Item
             size='lg'
             onPress={() => console.warn('Item 2')}
             title='Item 2'
+          />
+          <Menu.Item
+            size='lg'
+            onPress={() => console.warn('Item 3')}
+            title='Item 3'
           />
           <Divider size='auto' />
           <Menu.Item
@@ -28,8 +30,8 @@ const TextExample = () => {
           />
         </Menu>
         <Menu orientation='horizontal'>
-          <Menu.Item onPress={() => console.warn('Item 1')} title='Item 1' />
           <Menu.Item onPress={() => console.warn('Item 2')} title='Item 2' />
+          <Menu.Item onPress={() => console.warn('Item 3')} title='Item 3' />
           <Divider orientation='vertical' variant='raised' size='auto' />
           <Menu.Item
             disabled

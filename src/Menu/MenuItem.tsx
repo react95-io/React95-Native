@@ -21,6 +21,7 @@ type Props = {
   // icon: React.ReactNode;
   onPress: () => void;
   disabled?: boolean;
+  primary?: boolean;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -28,6 +29,7 @@ export const Item = ({
   title,
   size = 'md',
   disabled,
+  primary = false,
   style,
   onPress,
 }: Props) => {
@@ -57,6 +59,7 @@ export const Item = ({
       >
         <View pointerEvents='none' style={[styles.content]}>
           <Text
+            bold={primary}
             style={[
               disabled ? theme.text.disabled : theme.text.default,
               !disabled && {
