@@ -4,7 +4,7 @@ import { Card, Text } from 'react95-native';
 import Container from '../util/Container';
 import { LocalThemeContext } from '../util/LocalThemeContext';
 
-const TextExample = () => {
+const CardExample = () => {
   const { theme } = useContext(LocalThemeContext);
   return (
     <Container style={[{ backgroundColor: theme.materialDark }]}>
@@ -35,4 +35,4 @@ const TextExample = () => {
   );
 };
 
-export default TextExample;
+export default CardExample;

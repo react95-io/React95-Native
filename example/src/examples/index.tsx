@@ -15,6 +15,7 @@ import RadioExample from './RadioExample';
 import ScrollPanelExample from './ScrollPanelExample';
 import SelectBoxExample from './SelectBoxExample';
 import SelectExample from './SelectExample';
+import SnackbarExample from './SnackbarExample';
 import TabsExample from './TabsExample';
 import TextExample from './TextExample';
 import TextInputExample from './TextInputExample';
@@ -62,6 +63,7 @@ export default [
       },
       { name: 'PanelExample', component: PanelExample, title: 'Panel' },
       { name: 'ScrollPanelExample', component: ScrollPanelExample, title: 'ScrollPanel' },
+      { name: 'SnackbarExample', component: SnackbarExample, title: 'Snackbar' },
       { name: 'WindowExample', component: WindowExample, title: 'Window' },
     ],
   },

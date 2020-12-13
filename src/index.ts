@@ -19,5 +19,6 @@ export { default as Hourglass } from './Hourglass';
 export { default as List } from './List';
 export { default as ScrollPanel } from './ScrollPanel';
 export { default as Card } from './Card';
+export { default as Snackbar } from './Snackbar';
 
 export * from './common/theming';
