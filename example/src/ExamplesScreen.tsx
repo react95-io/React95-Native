@@ -10,6 +10,7 @@ import {
   ScrollView,
   ScrollPanel,
   Divider,
+  ThemeProvider,
 } from 'react95-native';
 
 import examples from './examples';
@@ -24,21 +25,26 @@ const ExamplesScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <AppBar style={styles.header}>
-        <Text style={styles.heading} bold disabled>React95</Text>
+        <Text style={styles.heading} bold disabled>
+          React95
+        </Text>
       </AppBar>
       <ScrollPanel style={styles.scrollPanel}>
         {themes.map(theme => (
-          <ThemeButton
-            key={theme.name}
-            theme={theme}
-            selected={theme.name === currentTheme.name}
-            onPress={() => setTheme(theme)}
-          />
+          <ThemeProvider theme={theme} key={theme.name}>
+            <ThemeButton
+              theme={theme}
+              selected={theme.name === currentTheme.name}
+              onPress={() => setTheme(theme)}
+            />
+          </ThemeProvider>
         ))}
       </ScrollPanel>
       <Panel variant='outside' style={styles.panel}>
         <Divider />
-        <Cutout style={[styles.cutout, {backgroundColor: currentTheme.canvas}]}>
+        <Cutout
+          style={[styles.cutout, { backgroundColor: currentTheme.canvas }]}
+        >
           <ScrollView
             style={styles.scrollView}
             contentContainerStyle={styles.content}
@@ -128,11 +134,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 24,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
   },
   scrollPanel: {
     zIndex: -1,
-  }
+  },
 });
 
 export default ExamplesScreen;
