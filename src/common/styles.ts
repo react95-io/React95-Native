@@ -69,6 +69,10 @@ export const border = (theme: Theme) =>
       borderRightColor: theme.borderDark,
       borderBottomColor: theme.borderDark,
     },
+    flat: {
+      ...commonBorderStyle,
+      borderColor: theme.flatDark
+    }
   });
 
 export const text = (theme: Theme) =>

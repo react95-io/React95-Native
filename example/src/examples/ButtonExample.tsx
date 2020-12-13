@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Button, Panel } from 'react95-native';
+import { Button, Panel, Card } from 'react95-native';
 
 import Container from '../util/Container';
 
@@ -112,9 +112,28 @@ const ButtonExample = () => {
       </Container.Section>
 
       <Container.Section title='Flat'>
-        <Button variant='flat' onPress={() => console.warn('Pressed')}>
-          This flat variant needs to be improved
-        </Button>
+        <Card>
+          <Card.Content style={{display: 'flex',
+    flexDirection: 'row',justifyContent:'space-between', padding: 40}}>
+            <Button
+              primary
+              variant='flat'
+              onPress={() => console.warn('Pressed')}
+            >
+              Primary
+            </Button>
+            <Button variant='flat' onPress={() => console.warn('Pressed')}>
+              Default
+            </Button>
+            <Button
+              variant='flat'
+              disabled
+              onPress={() => console.warn('Pressed')}
+            >
+              Disabled
+            </Button>
+          </Card.Content>
+        </Card>
       </Container.Section>
 
       <Container.Section title='Square'>

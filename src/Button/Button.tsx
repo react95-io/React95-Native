@@ -3,12 +3,13 @@ import {
   StyleSheet,
   // TODO: use Pressable instead of TouchableHighlight?
   TouchableHighlight,
-  Text,
   View,
   ImageBackground,
   StyleProp,
   ViewStyle,
 } from 'react-native';
+
+import { Text } from '..';
 
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
@@ -52,6 +53,8 @@ const Button = ({
     return square ? blockSizes[size] : 'auto';
   };
 
+  const isFlat = variant === 'flat';
+
   return (
     <View
       style={[
@@ -66,6 +69,13 @@ const Button = ({
         variant={variant}
         primary={primary}
         active={active}
+        style={{
+          backgroundColor: isFlat
+            ? disabled
+              ? theme.flatLight
+              : 'transparent'
+            : theme.material,
+        }}
       />
 
       <TouchableHighlight
@@ -82,9 +92,11 @@ const Button = ({
         accessibilityRole='button'
         accessibilityLabel={accessibilityLabel}
       >
-        <Text style={[disabled ? theme.text.disabled : theme.text.default]}>
-          {children}
-        </Text>
+        <View pointerEvents='none'>
+          <Text disabled={!isFlat && disabled} secondary={isFlat && disabled}>
+            {children}
+          </Text>
+        </View>
       </TouchableHighlight>
     </View>
   );
@@ -112,6 +124,7 @@ type BorderProps = {
   variant?: 'menu' | 'flat' | 'default' | 'outside';
   primary?: boolean;
   active?: boolean;
+  style?: StyleProp<ViewStyle>;
 };
 
 // TODO: pass theme as an argument instead of using context ?
@@ -120,6 +133,7 @@ const Borders = ({
   variant = 'default',
   primary = false,
   active = false,
+  style = {},
 }: BorderProps) => {
   const theme = useContext(ThemeContext);
 
@@ -140,15 +154,20 @@ const Borders = ({
     focus = isPressed ? [theme.border.focusOutline] : [];
   } else if (variant === 'menu' && (active || isPressed)) {
     wrapper = [theme.border.well];
+  } else if (variant === 'flat') {
+    wrapper = primary ? [theme.border.outline] : [];
+    outer = [theme.border.flat];
+    inner = [];
+    focus = isPressed ? [theme.border.focusOutline] : [];
   }
 
   return (
     <View
       style={[
         borderStyles.position,
-        { backgroundColor: theme.material },
         active || isPressed ? borderStyles.invert : {},
         ...wrapper,
+        style,
       ]}
     >
       {outer && (
@@ -157,7 +176,11 @@ const Borders = ({
             <View style={[borderStyles.position, ...inner]}>
               {focus && !active && (
                 <View
-                  style={[borderStyles.position, { margin: primary ? 0 : 2 }, ...focus]}
+                  style={[
+                    borderStyles.position,
+                    { margin: primary ? 0 : 2 },
+                    ...focus,
+                  ]}
                 />
               )}
               {active && (
