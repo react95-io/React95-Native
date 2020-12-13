@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
 
 type ContainerProps = {
   children: React.ReactNode;
+  style: any
 };
 
-const Container = ({ children }: ContainerProps) => (
-  <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+const Container = ({ children, style }: ContainerProps) => (
+  <ScrollView style={[styles.container, style]} contentContainerStyle={styles.content}>
     {children}
   </ScrollView>
 );

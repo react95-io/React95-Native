@@ -34,7 +34,7 @@ const ExamplesScreen = () => {
       </ScrollPanel>
       <Panel variant='outside' style={styles.panel}>
         <Divider />
-        <Cutout style={styles.cutout}>
+        <Cutout style={[styles.cutout, {backgroundColor: currentTheme.canvas}]}>
           <ScrollView
             style={styles.scrollView}
             contentContainerStyle={styles.content}
@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     paddingTop: 12,
   },
   cutout: {
-    backgroundColor: 'white',
     flexGrow: 1,
     marginTop: 8,
   },

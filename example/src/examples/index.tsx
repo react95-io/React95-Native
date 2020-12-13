@@ -1,5 +1,6 @@
 import AppBarExample from './AppBarExample';
 import ButtonExample from './ButtonExample';
+import CardExample from './CardExample';
 import CheckboxExample from './CheckboxExample';
 import CutoutExample from './CutoutExample';
 import DesktopExample from './DesktopExample';
@@ -52,6 +53,7 @@ export default [
     title: 'Layout',
     items: [
       { name: 'AppBarExample', component: AppBarExample, title: 'AppBar' },
+      { name: 'CardExample', component: CardExample, title: 'Card' },
       { name: 'CutoutExample', component: CutoutExample, title: 'Cutout' },
       {
         name: 'DividerExample',
