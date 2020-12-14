@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -44,10 +44,10 @@ const ScrollView = ({
 }: ScrollViewProps) => {
   const theme = useContext(ThemeContext);
 
-  const scrollView = React.useRef(null);
-  const [contentOffset, setContentOffset] = React.useState({ x: 0, y: 0 });
-  const [contentSize, setContentSize] = React.useState(0);
-  const [scrollViewHeight, setScrollViewHeight] = React.useState(0);
+  const scrollViewRef = useRef<RNScrollView>(null);
+  const [contentOffset, setContentOffset] = useState({ x: 0, y: 0 });
+  const [contentSize, setContentSize] = useState(0);
+  const [scrollViewHeight, setScrollViewHeight] = useState(0);
 
   const scrollElementHeightPercent = 100 * (scrollViewHeight / contentSize);
 
@@ -64,8 +64,8 @@ const ScrollView = ({
   );
 
   const moveScroll = (direction: -1 | 1) => {
-    if (scrollView.current) {
-      scrollView.current.scrollTo({ y: contentOffset.y + 24 * direction });
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ y: contentOffset.y + 24 * direction });
     }
   };
 
@@ -77,7 +77,7 @@ const ScrollView = ({
         <RNScrollView
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={10}
-          ref={scrollView}
+          ref={scrollViewRef}
           onScroll={e => {
             setContentOffset(e.nativeEvent.contentOffset);
           }}

@@ -71,8 +71,8 @@ export const border = (theme: Theme) =>
     },
     flat: {
       ...commonBorderStyle,
-      borderColor: theme.flatDark
-    }
+      borderColor: theme.flatDark,
+    },
   });
 
 export const text = (theme: Theme) =>

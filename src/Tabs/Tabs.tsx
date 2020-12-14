@@ -16,7 +16,7 @@ type TabsProps = {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   value: any;
-  onChange?: () => void;
+  onChange?: (value: any) => void;
   stretch?: boolean;
 };
 
@@ -74,14 +74,14 @@ type TabProps = {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   value: any;
-  onPress?: () => void;
+  onPress?: (value: any) => void;
   selected?: boolean;
   stretch?: boolean;
 };
 
 const Tab = ({
   value,
-  onPress,
+  onPress = () => {},
   selected,
   stretch,
   children,

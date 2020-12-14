@@ -29,5 +29,5 @@ export default {
   materialTextDisabledShadow: '#121317',
   materialTextInvert: '#202127',
   progress: '#f88702',
-  tooltip: '#fefbcc'
+  tooltip: '#fefbcc',
 };

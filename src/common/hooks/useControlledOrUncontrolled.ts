@@ -5,13 +5,18 @@ type Props = {
   defaultValue: any;
 };
 
-export default ({ value, defaultValue }: Props) => {
+export default ({
+  value,
+  defaultValue,
+}: Props): [any, (newValue: any) => void] => {
   const isControlled = value !== undefined;
   const [controlledValue, setControlledValue] = useState(defaultValue);
+
   const handleChangeIfUncontrolled = useCallback(newValue => {
     if (!isControlled) {
       setControlledValue(newValue);
     }
   }, []);
+
   return [isControlled ? value : controlledValue, handleChangeIfUncontrolled];
 };

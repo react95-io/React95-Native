@@ -7,14 +7,8 @@ type Props = {
 };
 
 const CardContent = ({ children, style = {} }: Props) => {
-  return (
-    <View style={[styles.wrapper, style]}>
-        {children}
-    </View>
-  );
+  return <View style={[styles.wrapper, style]}>{children}</View>;
 };
-
-
 
 const styles = StyleSheet.create({
   wrapper: {

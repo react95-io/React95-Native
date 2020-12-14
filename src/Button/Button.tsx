@@ -139,7 +139,7 @@ const Borders = ({
 
   let wrapper: StyleProp<ViewStyle> = [];
   let outer;
-  let inner;
+  let inner: any[] = [];
   let focus;
 
   if (variant === 'default') {
@@ -172,7 +172,7 @@ const Borders = ({
     >
       {outer && (
         <View style={[borderStyles.position, ...outer]}>
-          {inner && (
+          {inner.length > 0 && (
             <View style={[borderStyles.position, ...inner]}>
               {focus && !active && (
                 <View

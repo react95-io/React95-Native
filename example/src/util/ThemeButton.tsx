@@ -9,7 +9,7 @@ import { Text, Panel, ThemeProvider } from 'react95-native';
 import type { Theme } from 'react95-native';
 
 type Props = {
-  onPress: () => {};
+  onPress: () => void;
   selected?: boolean;
   theme: Theme;
   currentTheme: Theme;
@@ -34,7 +34,7 @@ const ThemeButton = ({ theme, currentTheme, selected, onPress }: Props) => (
                 styles.header,
                 { backgroundColor: theme.headerBackground },
               ]}
-            ></View>
+            />
             {selected && (
               <ImageBackground
                 style={{ width: '100%', height: '100%' }}

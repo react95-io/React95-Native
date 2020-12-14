@@ -50,6 +50,7 @@ const ListAccordion = ({
     onPress?.();
 
     if (expandedProp === undefined) {
+      /* @ts-ignore */
       setExpanded(currentExpanded => !currentExpanded);
     }
   };

@@ -24,14 +24,15 @@ const MainNavigation = () => {
       <Stack.Navigator
         headerMode='screen'
         screenOptions={{
-          header: ({ navigation, scene, previous, name }) =>  scene.descriptor.options.title !== 'Examples' && (
-            <AppBar>
-              {previous && (
-                <AppBar.BackAction onPress={() => navigation.goBack()} />
-              )}
-              <AppBar.Content title={scene.descriptor.options.title} />
-            </AppBar>
-          ),
+          header: ({ navigation, scene, previous }) =>
+            scene.descriptor.options.title !== 'Examples' && (
+              <AppBar>
+                {previous && (
+                  <AppBar.BackAction onPress={() => navigation.goBack()} />
+                )}
+                <AppBar.Content title={scene.descriptor.options.title} />
+              </AppBar>
+            ),
         }}
       >
         <Stack.Screen
@@ -42,6 +43,7 @@ const MainNavigation = () => {
         {flattenedExamples.map(({ name, title, component }) => (
           <Stack.Screen
             key={name}
+            /* @ts-ignore */
             name={name}
             component={component}
             options={{ title }}

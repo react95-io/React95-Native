@@ -1,18 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { ScrollPanel } from 'react95-native';
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+
+  Array(6)
+    .fill(null)
+    .forEach(() => {
+      color += letters[Math.floor(Math.random() * 16)];
+    });
+
   return color;
-}
+};
 
 const ScrollPanelExample = () => {
-
   const colors = new Array(16).fill(null).map(getRandomColor);
 
   return (

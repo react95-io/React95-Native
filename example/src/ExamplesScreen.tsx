@@ -10,7 +10,6 @@ import {
   ScrollView,
   ScrollPanel,
   Divider,
-  ThemeProvider,
 } from 'react95-native';
 
 import examples from './examples';
@@ -31,13 +30,13 @@ const ExamplesScreen = () => {
       </AppBar>
       <ScrollPanel style={styles.scrollPanel}>
         {themes.map(theme => (
-            <ThemeButton
-              theme={theme}
-              currentTheme={currentTheme}
-              selected={theme.name === currentTheme.name}
-              onPress={() => setTheme(theme)}
-              key={theme.name}
-            />
+          <ThemeButton
+            theme={theme}
+            currentTheme={currentTheme}
+            selected={theme.name === currentTheme.name}
+            onPress={() => setTheme(theme)}
+            key={theme.name}
+          />
         ))}
       </ScrollPanel>
       <Panel variant='outside' style={styles.panel}>

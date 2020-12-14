@@ -67,5 +67,5 @@ export default {
   vaporTeal,
   vermillion,
   violetDark,
-  water
+  water,
 };

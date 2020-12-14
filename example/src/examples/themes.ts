@@ -29,8 +29,7 @@ const reorderedThemes = {
   plum,
   matrix,
   travel,
-  ...otherThemes
+  ...otherThemes,
 };
-
 
 export default Object.values(reorderedThemes);

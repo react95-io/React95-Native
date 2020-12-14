@@ -169,8 +169,6 @@ const Select = ({
   );
 };
 
-export default Select;
-
 const selectHeight = blockSizes.md;
 
 const styles = StyleSheet.create({
@@ -220,3 +218,5 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
 });
+
+export default Select;

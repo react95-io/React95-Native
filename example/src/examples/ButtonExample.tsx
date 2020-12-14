@@ -113,8 +113,14 @@ const ButtonExample = () => {
 
       <Container.Section title='Flat'>
         <Card>
-          <Card.Content style={{display: 'flex',
-    flexDirection: 'row',justifyContent:'space-between', padding: 40}}>
+          <Card.Content
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              padding: 40,
+            }}
+          >
             <Button
               primary
               variant='flat'

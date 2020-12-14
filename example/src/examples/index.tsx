@@ -62,8 +62,16 @@ export default [
         title: 'Divider',
       },
       { name: 'PanelExample', component: PanelExample, title: 'Panel' },
-      { name: 'ScrollPanelExample', component: ScrollPanelExample, title: 'ScrollPanel' },
-      { name: 'SnackbarExample', component: SnackbarExample, title: 'Snackbar' },
+      {
+        name: 'ScrollPanelExample',
+        component: ScrollPanelExample,
+        title: 'ScrollPanel',
+      },
+      {
+        name: 'SnackbarExample',
+        component: SnackbarExample,
+        title: 'Snackbar',
+      },
       { name: 'WindowExample', component: WindowExample, title: 'Window' },
     ],
   },

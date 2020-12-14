@@ -9,8 +9,11 @@ const TextExample = () => {
     <Container>
       <Container.Section title='Basic usage'>
         <Menu>
-        <Menu.Item primary onPress={() => console.warn('Item 1')} title='Item 1' />
-
+          <Menu.Item
+            primary
+            onPress={() => console.warn('Item 1')}
+            title='Item 1'
+          />
           <Menu.Item
             size='lg'
             onPress={() => console.warn('Item 2')}
