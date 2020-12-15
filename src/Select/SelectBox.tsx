@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { ThemeContext } from '../common/theming/Theme';
+import type { AnyValue } from '../types';
 
 import getSelectOptions, { Option } from './SelectBase';
 import { Border } from '../common/styleElements';
@@ -10,8 +11,8 @@ import { ScrollView } from '..';
 
 type Props = {
   options: Array<Option>;
-  value: [any] | any;
-  onChange: (value: any) => void;
+  value: [AnyValue] | AnyValue;
+  onChange: (value: AnyValue) => void;
   style?: StyleProp<ViewStyle>;
 };
 

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 type ContainerProps = {
   children: React.ReactNode;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Container = ({ children, style }: ContainerProps) => (

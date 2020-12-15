@@ -24,9 +24,7 @@ const TypographyExample = () => {
       </Container.Section>
       <Container.Section title='Anchor underlined'>
         <Panel>
-          <Anchor onPress={() => console.warn('underline')} underline>
-            React95 website
-          </Anchor>
+          <Anchor underline>React95 website</Anchor>
         </Panel>
       </Container.Section>
     </Container>

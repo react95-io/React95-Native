@@ -1,14 +1,15 @@
 import { useState, useCallback } from 'react';
+import type { AnyValue } from '../../types';
 
 type Props = {
-  value: any;
-  defaultValue: any;
+  value: AnyValue;
+  defaultValue: AnyValue;
 };
 
 export default ({
   value,
   defaultValue,
-}: Props): [any, (newValue: any) => void] => {
+}: Props): [AnyValue, (newValue: AnyValue) => void] => {
   const isControlled = value !== undefined;
   const [controlledValue, setControlledValue] = useState(defaultValue);
 

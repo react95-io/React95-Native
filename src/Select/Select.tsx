@@ -8,6 +8,7 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
+import type { AnyValue } from '../types';
 
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
@@ -25,10 +26,10 @@ const dropdownSymbol = {
 
 type Props = {
   options: Array<Option>;
-  value: any;
+  value: AnyValue;
   disabled?: boolean;
   // TODO: what to put below?
-  onChange: (value: any) => void;
+  onChange: (value: AnyValue) => void;
   style?: StyleProp<ViewStyle>;
   menuMaxHeight?: number;
 };

@@ -44,6 +44,7 @@ const TextInput = ({
         placeholderTextColor={theme.materialTextDisabled}
         defaultValue={defaultValue}
         value={value}
+        editable={!disabled}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />

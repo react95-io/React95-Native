@@ -45,3 +45,6 @@ export type Theme = {
   progress: string;
   tooltip: string;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyValue = any;

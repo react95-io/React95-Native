@@ -1,9 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import { Text } from '..';
-
-const linkUrl = 'https://react95.io';
 
 const mockOpenUrl = jest.fn(url => Promise.resolve(url));
 

@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
-
+import type { AnyValue } from '../types';
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 
 // TODO: allow for no option selected
 export type Option = {
-  value: any;
+  value: AnyValue;
   label: React.ReactNode;
 };
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 
 type SelectOptionsProps = {
   options: Array<Option>;
-  values: [any];
+  values: [AnyValue];
   onChange: (option: Option) => void;
 };
 

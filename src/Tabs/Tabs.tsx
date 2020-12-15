@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-
+import type { AnyValue } from '../types';
 import { ThemeContext } from '../common/theming/Theme';
 import { padding, margin, blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
@@ -15,8 +15,8 @@ import { Text, Panel } from '..';
 type TabsProps = {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
-  value: any;
-  onChange?: (value: any) => void;
+  value: AnyValue;
+  onChange?: (value: AnyValue) => void;
   stretch?: boolean;
 };
 
@@ -74,8 +74,8 @@ const Body = ({ children, style, ...rest }: TabBodyProps) => {
 type TabProps = {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
-  value: any;
-  onPress?: (value: any) => void;
+  value: AnyValue;
+  onPress?: (value: AnyValue) => void;
   selected?: boolean;
   stretch?: boolean;
 };

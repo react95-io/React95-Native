@@ -8,13 +8,7 @@ import examples from './examples';
 
 const flattenedExamples = examples.map(section => section.items).flat();
 
-type RootStackParamList = {
-  Home: undefined;
-  ButtonExample: undefined;
-  TextInputExample: undefined;
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
 const MainNavigation = () => {
   const { theme } = useContext(LocalThemeContext);
@@ -43,7 +37,6 @@ const MainNavigation = () => {
         {flattenedExamples.map(({ name, title, component }) => (
           <Stack.Screen
             key={name}
-            /* @ts-ignore */
             name={name}
             component={component}
             options={{ title }}
