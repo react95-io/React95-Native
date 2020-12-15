@@ -1,17 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import type { StyleProp, ViewStyle } from 'react-native';
 import { ThemeContext } from '../common/theming/Theme';
 
 import { Border } from '../common/styleElements';
 import { Divider } from '..';
 
-// TODO: where to pass custom styles?
 // TODO: add noBottomBorder and noTopBorder prop
-type Props = React.ComponentPropsWithRef<typeof View> & {
+type Props = React.ComponentPropsWithRef<typeof ScrollView> & {
   children?: React.ReactNode;
   noBackground?: boolean;
-  style?: StyleProp<ViewStyle>;
 };
 
 const ScrollPanel = ({
@@ -23,34 +20,36 @@ const ScrollPanel = ({
   const theme = React.useContext(ThemeContext);
 
   return (
-    <View
-      {...rest}
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
       style={[
+        styles.wrapper,
         {
           backgroundColor: noBackground ? 'transparent' : theme.materialDark,
         },
         style,
       ]}
+      {...rest}
     >
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <View style={[styles.borderWrapper]}>
-          <Border variant='outside' />
-          <View style={[styles.inner, { backgroundColor: theme.material }]}>
-            <Divider orientation='vertical' variant='raised' />
-            <Divider orientation='vertical' variant='raised' />
-            <View style={[styles.content]}>{children}</View>
-          </View>
+      <View style={[styles.borderWrapper]}>
+        <Border variant='outside' />
+        <View style={[styles.inner, { backgroundColor: theme.material }]}>
+          <Divider orientation='vertical' variant='raised' />
+          <Divider orientation='vertical' variant='raised' />
+          <View style={[styles.content]}>{children}</View>
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flexGrow: 0,
+  },
   inner: {
     padding: 16,
-    // TODO: decide if left padding should be 8 or 16
-    paddingLeft: 16,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
