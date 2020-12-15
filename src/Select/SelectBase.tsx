@@ -12,7 +12,7 @@ export type Option = {
 
 type SelectItemProps = {
   option: Option;
-  onPress: (value: any) => void;
+  onPress: (option: Option) => void;
   isSelected: boolean;
 };
 
@@ -79,9 +79,7 @@ const styles = StyleSheet.create({
 type SelectOptionsProps = {
   options: Array<Option>;
   values: [any];
-  disabled?: boolean;
-  // TODO: what to put below?
-  onChange: (value: any) => void;
+  onChange: (option: Option) => void;
 };
 
 export default function getSelectOptions({

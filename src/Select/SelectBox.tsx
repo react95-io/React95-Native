@@ -1,20 +1,16 @@
 import React, { useContext } from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-
-import { Border } from '../common/styleElements';
 import { ThemeContext } from '../common/theming/Theme';
+
 import getSelectOptions, { Option } from './SelectBase';
-
+import { Border } from '../common/styleElements';
 import { ScrollView } from '..';
-// TODO: multiselect
-// TODO: disabled,
-// TODO: original scrollbars
 
-type SelectBoxProps = {
+// TODO: multiselect
+
+type Props = {
   options: Array<Option>;
   value: [any] | any;
-  //   disabled?: boolean;
-  // TODO: what to put below?
   onChange: (value: any) => void;
   style?: StyleProp<ViewStyle>;
 };
@@ -22,10 +18,10 @@ type SelectBoxProps = {
 const SelectBox = ({
   value,
   options = [],
-  //   disabled = false,
   onChange,
   style,
-}: SelectBoxProps) => {
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
 
   const [, selectOptions] = getSelectOptions({
@@ -39,7 +35,10 @@ const SelectBox = ({
   }
 
   return (
-    <View style={[styles.wrapper, { backgroundColor: theme.canvas }, style]}>
+    <View
+      style={[styles.wrapper, { backgroundColor: theme.canvas }, style]}
+      {...rest}
+    >
       <Border variant='cutout' />
       <ScrollView>
         <View style={[styles.content, { backgroundColor: theme.canvas }]}>

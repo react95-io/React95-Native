@@ -23,7 +23,7 @@ const dropdownSymbol = {
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAANklEQVQoU2NkIAIwEqGGgTRFLa0t/9FNramuARuCYhKyQpgCDEUgAZBCZAVYFWHzCGkOxxcUANHnDAplQ9G1AAAAAElFTkSuQmCC',
 };
 
-type SelectProps = {
+type Props = {
   options: Array<Option>;
   value: any;
   disabled?: boolean;
@@ -40,7 +40,8 @@ const Select = ({
   menuMaxHeight,
   onChange,
   style,
-}: SelectProps) => {
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -74,6 +75,7 @@ const Select = ({
 
   return (
     <TouchableHighlight
+      {...rest}
       onPress={() => setIsOpen(currentIsOpen => !currentIsOpen)}
       activeOpacity={1}
       disabled={disabled}
@@ -127,7 +129,6 @@ const Select = ({
             style={[styles.fakeButton, { backgroundColor: theme.material }]}
           >
             <ImageBackground
-              // border to compensate for Border
               style={[
                 {
                   marginTop: isPressed ? 1 : 0,
@@ -149,7 +150,6 @@ const Select = ({
             />
           </View>
         </View>
-
         {isOpen && (
           <View
             style={[
