@@ -1,32 +1,12 @@
 import React from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
-import SwitchBase from '../SwitchBase';
+import { SwitchBase, SwitchProps } from '../SwitchBase';
 
-type Props = {
-  disabled?: boolean;
-  label?: string;
-  onPress?: () => void;
+type Props = Omit<SwitchProps, 'status'> & {
   status: 'checked' | 'unchecked';
-  style?: StyleProp<ViewStyle>;
 };
 
-const Radio = ({
-  disabled = false,
-  label = '',
-  onPress = () => {},
-  status,
-  style = {},
-}: Props) => {
-  return (
-    <SwitchBase
-      component='radio'
-      disabled={disabled}
-      label={label}
-      onPress={onPress}
-      status={status}
-      style={style}
-    />
-  );
+const Radio = (props: Props) => {
+  return <SwitchBase component='radio' {...props} />;
 };
 
 export default Radio;

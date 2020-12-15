@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import {
-  StyleProp,
   StyleSheet,
   TouchableHighlight,
   ImageBackground,
   View,
+  StyleProp,
   ViewStyle,
 } from 'react-native';
 
@@ -14,15 +14,6 @@ import { ThemeContext } from '../common/theming/Theme';
 import { Text } from '..';
 
 const switchSize = 20;
-
-type Props = {
-  disabled?: boolean;
-  label?: string;
-  onPress?: () => void;
-  status: 'checked' | 'unchecked' | 'indeterminate';
-  component: 'radio' | 'checkbox';
-  style?: StyleProp<ViewStyle>;
-};
 
 const symbols = {
   checkbox: {
@@ -45,13 +36,32 @@ const symbols = {
   },
 };
 
-const SwitchBase = ({
+export type BaseSwitchStatus = 'checked' | 'unchecked' | 'indeterminate';
+
+export type SwitchProps = React.ComponentPropsWithRef<
+  typeof TouchableHighlight
+> & {
+  disabled?: boolean;
+  label?: string;
+  onPress?: () => void;
+  status: BaseSwitchStatus;
+  style?: StyleProp<ViewStyle>;
+};
+
+type Props = SwitchProps & {
+  component: 'radio' | 'checkbox';
+};
+
+// TODO: see if ref is passed
+
+export const SwitchBase = ({
+  component,
   disabled = false,
   label = '',
   onPress = () => {},
-  component,
   status,
   style = {},
+  ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
@@ -103,7 +113,7 @@ const SwitchBase = ({
 
   return (
     <TouchableHighlight
-      style={[styles.wrapper, { backgroundColor: theme.material }, style]}
+      style={[styles.wrapper, { backgroundColor: theme.material }]}
       onPress={onPress}
       activeOpacity={1}
       disabled={disabled}
@@ -115,8 +125,9 @@ const SwitchBase = ({
       accessibilityRole={component}
       accessibilityState={{ disabled, checked: status === 'checked' }}
       underlayColor='none'
+      {...rest}
     >
-      <View style={[styles.content]} pointerEvents='none'>
+      <View style={[styles.content, style]} pointerEvents='none'>
         <View
           style={[
             styles.switchSymbol,
@@ -168,5 +179,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-export default SwitchBase;

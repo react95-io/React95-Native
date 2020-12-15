@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Radio, Panel, Fieldset } from 'react95-native';
 
-const CheckboxExample = () => {
+const RadioExample = () => {
   const [value, setValue] = useState('Apple');
 
   return (
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckboxExample;
+export default RadioExample;

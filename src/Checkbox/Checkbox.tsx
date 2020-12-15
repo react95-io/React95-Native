@@ -1,32 +1,8 @@
 import React from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
-import SwitchBase from '../SwitchBase';
+import { SwitchBase, SwitchProps } from '../SwitchBase';
 
-type Props = {
-  disabled?: boolean;
-  label?: string;
-  onPress?: () => void;
-  status: 'checked' | 'unchecked' | 'indeterminate';
-  style?: StyleProp<ViewStyle>;
-};
-
-const Checkbox = ({
-  disabled = false,
-  label = '',
-  onPress = () => {},
-  status,
-  style = {},
-}: Props) => {
-  return (
-    <SwitchBase
-      component='checkbox'
-      disabled={disabled}
-      label={label}
-      onPress={onPress}
-      status={status}
-      style={style}
-    />
-  );
+const Checkbox = (props: SwitchProps) => {
+  return <SwitchBase component='checkbox' {...props} />;
 };
 
 export default Checkbox;
