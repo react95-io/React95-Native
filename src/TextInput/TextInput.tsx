@@ -3,7 +3,7 @@ import {
   View,
   StyleProp,
   StyleSheet,
-  TextInput as RNTextInput,
+  TextInput as NativeTextInput,
   ViewStyle,
 } from 'react-native';
 
@@ -11,15 +11,11 @@ import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof NativeTextInput> & {
   value?: string;
   defaultValue?: string;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
-  // TODO: add interface for react-natives TextInput
-  // so we can separate react-natives TextInput props
-  // from react95-native props
-  [x: string]: any;
 };
 
 // TODO: implement scrollbars in TextInput
@@ -29,7 +25,7 @@ const TextInput = ({
   value,
   defaultValue,
   style = {},
-  ...otherProps
+  ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
 
@@ -37,7 +33,7 @@ const TextInput = ({
   return (
     <View style={[styles.wrapper, style]}>
       <Border variant='cutout' />
-      <RNTextInput
+      <NativeTextInput
         style={[
           styles.input,
           {
@@ -49,7 +45,7 @@ const TextInput = ({
         defaultValue={defaultValue}
         value={value}
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...otherProps}
+        {...rest}
       />
     </View>
   );
