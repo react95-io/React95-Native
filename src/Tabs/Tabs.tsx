@@ -25,6 +25,7 @@ const Tabs = ({
   onChange,
   children,
   stretch = false,
+  style,
   ...rest
 }: TabsProps) => {
   const theme = useContext(ThemeContext);
@@ -42,7 +43,7 @@ const Tabs = ({
   });
 
   return (
-    <View style={[styles.tabs]} {...rest}>
+    <View style={[styles.tabs, style]} {...rest}>
       {childrenWithProps}
       <View
         style={[
@@ -85,6 +86,7 @@ const Tab = ({
   selected,
   stretch,
   children,
+  style,
   ...rest
 }: TabProps) => {
   const theme = useContext(ThemeContext);
@@ -101,6 +103,7 @@ const Tab = ({
         { zIndex: selected ? 1 : 0 },
         stretch ? { flexGrow: 1 } : { width: 'auto' },
         selected ? margin(0, -8) : margin(0, 0),
+        style,
       ]}
       {...rest}
     >
@@ -114,7 +117,6 @@ const Tab = ({
           selected ? padding(0, 16) : padding(0, 10),
         ]}
       >
-        {/* TODO: add 'background' boolean prop to Border component since its usually used with background color */}
         <Border
           radius={6}
           style={[
