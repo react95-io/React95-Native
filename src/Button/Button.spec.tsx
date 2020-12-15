@@ -56,14 +56,4 @@ describe('<Button />', () => {
 
     expect(getByTestId(testId)).toHaveStyle(style);
   });
-
-  it('should render a full width button', () => {
-    const { getByTestId } = render(
-      <Button onPress={noop} fullWidth>
-        <Text>Ok</Text>
-      </Button>,
-    );
-
-    expect(getByTestId(testId)).toHaveStyle({ width: '100%' });
-  });
 });

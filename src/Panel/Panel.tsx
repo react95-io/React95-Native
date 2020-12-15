@@ -7,13 +7,18 @@ import { Border } from '../common/styleElements';
 export const testId = 'panel';
 
 // TODO: common interface with styleElements/Border ?
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   variant?: 'default' | 'well' | 'outside' | 'clear';
   style?: StyleProp<ViewStyle>;
 };
 
-const Panel = ({ children, variant = 'default', style = {} }: Props) => {
+const Panel = ({
+  children,
+  variant = 'default',
+  style = {},
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
@@ -27,6 +32,7 @@ const Panel = ({ children, variant = 'default', style = {} }: Props) => {
         style,
       ]}
       testID={testId}
+      {...rest}
     >
       {variant !== 'clear' && <Border variant={variant} />}
       {children}

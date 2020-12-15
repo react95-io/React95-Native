@@ -1,31 +1,37 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import type {
+  $RemoveChildren,
+  OrientationProp,
+  DimensionValue,
+} from '../types';
+
 import { Border } from '../common/styleElements';
 
-type Props = {
+type Props = $RemoveChildren<typeof View> & {
+  orientation?: OrientationProp;
+  size?: DimensionValue;
   style?: StyleProp<ViewStyle>;
-  size?: string | number;
-  // TODO: create orientation type since it's gonna be used in many places
-  orientation?: 'horizontal' | 'vertical';
   // come up with a better name than 'raised'
   variant?: 'default' | 'raised';
 };
 
 const Divider = ({
-  variant = 'default',
   orientation = 'horizontal',
   size = '100%',
   style = {},
+  variant = 'default',
+  ...rest
 }: Props) => {
   const isHorizontal = orientation === 'horizontal';
   const isRaised = variant === 'raised';
   const thickness = isRaised ? 5 : 4;
-  const sizing = {
+  const sizing: StyleProp<ViewStyle> = {
     width: isHorizontal ? size : thickness,
     height: isHorizontal ? thickness : size,
   };
   return (
-    <View style={[styles.divider, sizing, style]}>
+    <View style={[styles.divider, sizing, style]} {...rest}>
       <Border variant='well' invert={isRaised} />
     </View>
   );

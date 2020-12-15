@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import type Theme from './theming/themeType';
+import type { Theme } from '../types';
 
 const commonBorderStyle = { borderWidth: 2 };
 

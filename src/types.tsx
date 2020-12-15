@@ -1,4 +1,19 @@
-type Theme = {
+import type * as React from 'react';
+
+export type $Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type $RemoveChildren<T extends React.ComponentType<any>> = $Omit<
+  React.ComponentPropsWithoutRef<T>,
+  'children'
+>;
+
+export type Sizes = 'sm' | 'md' | 'lg';
+
+export type OrientationProp = 'horizontal' | 'vertical';
+
+export type DimensionValue = undefined | number | string;
+
+export type Theme = {
   name: string;
   anchor: string;
   anchorVisited: string;
@@ -30,5 +45,3 @@ type Theme = {
   progress: string;
   tooltip: string;
 };
-
-export default Theme;

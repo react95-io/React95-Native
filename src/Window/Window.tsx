@@ -5,32 +5,34 @@ import { ThemeContext } from '../common/theming/Theme';
 
 import { Panel, Button } from '..';
 
-type WindowProps = {
-  children?: React.ReactNode;
-  title?: string;
+type Props = React.ComponentPropsWithRef<typeof View> & {
   // TODO: allow for inserting custom buttons to title bar?
-  onClose?: () => void;
-  onMinimize?: () => void;
-  onMaximize?: () => void;
   active?: boolean;
+  children?: React.ReactNode;
+  onClose?: () => void;
+  onMaximize?: () => void;
+  onMinimize?: () => void;
   style?: StyleProp<ViewStyle>;
+  title?: string;
 };
 
 const Window = ({
-  children,
   active = true,
+  children,
   onClose,
-  onMinimize,
   onMaximize,
-  title = '',
+  onMinimize,
   style = {},
-}: WindowProps) => {
+  title = '',
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
     <Panel
       variant='outside'
       style={[styles.window, { backgroundColor: theme.material }, style]}
+      {...rest}
     >
       <View
         style={[

@@ -1,13 +1,17 @@
 import React from 'react';
 import { StyleProp, StyleSheet, ViewStyle, View } from 'react-native';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
-const SnackbarContent = ({ children, style = {} }: Props) => {
-  return <View style={[styles.wrapper, style]}>{children}</View>;
+const SnackbarContent = ({ children, style = {}, ...rest }: Props) => {
+  return (
+    <View style={[styles.wrapper, style]} {...rest}>
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

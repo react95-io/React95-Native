@@ -4,16 +4,16 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Border } from '../common/styleElements';
 import { ThemeContext } from '../common/theming/Theme';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
-const Desktop = ({ children, style }: Props) => {
+const Desktop = ({ children, style, ...rest }: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <View style={[styles.wrapper]}>
+    <View style={[styles.wrapper]} {...rest}>
       <View style={[styles.monitor]}>
         <Border variant='outside'>
           <View

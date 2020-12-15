@@ -11,17 +11,20 @@ import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
-type Props = {
-  style?: StyleProp<ViewStyle>;
-  // come up with a better name than 'raised'
-  variant?: 'default' | 'tile' | 'indeterminate';
+type Props = React.ComponentPropsWithRef<typeof View> & {
   percent: number;
+  style?: StyleProp<ViewStyle>;
+  variant?: 'default' | 'tile' | 'indeterminate';
 };
 
 const tileWidth = 17;
 
-// TODO: accessibility
-const Progress = ({ variant = 'default', percent = 0, style = {} }: Props) => {
+const Progress = ({
+  percent = 0,
+  style = {},
+  variant = 'default',
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
 
   const [tilesNumber, setTilesNumber] = useState(0);
@@ -38,6 +41,7 @@ const Progress = ({ variant = 'default', percent = 0, style = {} }: Props) => {
 
   return (
     <View
+      {...rest}
       style={[
         styles.wrapper,
         {

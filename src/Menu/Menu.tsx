@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle, View } from 'react-native';
+import type { OrientationProp } from '../types';
 
 import { Panel } from '..';
 
 import MenuItem from './MenuItem';
 
-type MenuProps = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   // TODO: should we handle 'anchor' and 'overlayAccessibilityLabel' prop?
   // see react-native-paper
   children: React.ReactNode;
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: OrientationProp;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -17,9 +18,11 @@ const Menu = ({
   children,
   orientation = 'vertical',
   style = {},
-}: MenuProps) => {
+  ...rest
+}: Props) => {
   return (
     <Panel
+      {...rest}
       variant='outside'
       style={[
         styles.wrapper,

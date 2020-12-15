@@ -4,16 +4,26 @@ import { ThemeContext } from '../common/theming/Theme';
 
 import CardContent from './CardContent';
 
-type Props = {
+// TODO: add following props:
+// onLongPress,
+// onPress,
+
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   elevation?: number;
 };
 
-const Card = ({ children, style = {}, elevation = 2 }: Props) => {
+const Card = ({
+  children,
+  style = {},
+  elevation: elevationProp = 1,
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
+  const elevation = elevationProp * 2;
   return (
-    <View style={[styles.wrapper, style]}>
+    <View style={[styles.wrapper, style]} {...rest}>
       <View
         style={[
           styles.inner,

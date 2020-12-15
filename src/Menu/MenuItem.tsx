@@ -6,38 +6,38 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-
+import type { Sizes } from '../types';
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 
 import { Text } from '..';
 
-export type ItemSizes = 'sm' | 'md' | 'lg';
+// TODO: add icon prop
 
-type Props = {
-  title: string;
-  size?: ItemSizes;
-  // TODO: create icon type and component for this lib
-  // icon: React.ReactNode;
-  onPress: () => void;
+type Props = React.ComponentPropsWithRef<typeof View> & {
   disabled?: boolean;
+  onPress: () => void;
   primary?: boolean;
+  size?: Sizes;
   style?: StyleProp<ViewStyle>;
+  title: string;
 };
 
 export const Item = ({
-  title,
-  size = 'md',
   disabled,
-  primary = false,
-  style,
   onPress,
+  primary = false,
+  size = 'md',
+  style,
+  title,
+  ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   return (
     <View
+      {...rest}
       style={[
         styles.item,
         { height: blockSizes[size] },

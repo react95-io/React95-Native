@@ -11,7 +11,8 @@ const ButtonExample = () => {
         <Button
           primary
           variant='default'
-          onPress={() => console.warn('Pressed')}
+          onLongPress={() => console.warn('onLongPress')}
+          onPress={() => console.warn('onPress')}
         >
           Primary
         </Button>

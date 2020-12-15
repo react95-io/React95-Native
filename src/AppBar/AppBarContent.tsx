@@ -8,14 +8,16 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import type { $RemoveChildren } from '../types';
 
 import Text from '../Text';
 
-type Props = {
+type Props = $RemoveChildren<typeof View> & {
   color?: string;
   title: React.ReactNode;
+  titleRef?: React.RefObject<Text>;
   titleStyle?: StyleProp<TextStyle>;
-  //   TODO: pass refs in every component
+  //   TODO: titleRef
   //   titleRef?: React.RefObject<Text>;
   subtitle?: React.ReactNode;
   subtitleStyle?: StyleProp<TextStyle>;
@@ -29,16 +31,16 @@ const AppbarContent = ({
   subtitleStyle,
   onPress,
   style,
-  //   titleRef,
   titleStyle,
   title,
+  // titleRef,
   ...rest
 }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={onPress} disabled={!onPress}>
       <View style={[styles.container, style]} {...rest}>
         <Text
-          //   ref={titleRef}
+          // ref={titleRef}
           style={[
             {
               color: titleColor,

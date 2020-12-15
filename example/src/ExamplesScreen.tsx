@@ -46,7 +46,9 @@ const ExamplesScreen = () => {
         >
           <ScrollView
             style={styles.scrollView}
-            contentContainerStyle={styles.content}
+            scrollViewProps={{
+              contentContainerStyle: styles.content,
+            }}
             alwaysShowScrollbars
           >
             <List.Accordion

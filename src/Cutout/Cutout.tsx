@@ -4,15 +4,14 @@ import { Border } from '../common/styleElements';
 
 export const testId = 'cutout';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children: React.ReactNode;
-  // shadow?: boolean;
   style?: StyleProp<ViewStyle>;
 };
 
-const Cutout = ({ children, style = {} }: Props) => {
+const Cutout = ({ children, style = {}, ...rest }: Props) => {
   return (
-    <View style={[styles.wrapper, style]} testID={testId}>
+    <View style={[styles.wrapper, style]} testID={testId} {...rest}>
       <Border variant='cutout' />
       {children}
     </View>
@@ -21,11 +20,8 @@ const Cutout = ({ children, style = {} }: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    // to compensate for borders
     position: 'relative',
-    padding: 4,
-  },
-  content: {
+    // to compensate for borders
     padding: 4,
   },
 });

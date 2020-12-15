@@ -1,6 +1,3 @@
-/* TypeScript type for themes */
-export { default as Theme } from './themeType';
-
 /* Theme Context */
 export { ThemeProvider } from './Theme';
 

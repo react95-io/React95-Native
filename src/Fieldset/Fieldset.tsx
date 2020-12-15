@@ -6,17 +6,24 @@ import { Border } from '../common/styleElements';
 
 export const testId = 'fieldset';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
+  children?: React.ReactNode;
   label?: React.ReactNode;
-  children: React.ReactNode;
+  labelStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
 };
 
-const Fieldset = ({ children, label, style = {} }: Props) => {
+const Fieldset = ({
+  children,
+  label,
+  labelStyle = {},
+  style = {},
+  ...rest
+}: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <View style={[styles.wrapper, style]} testID={testId}>
+    <View style={[styles.wrapper, style]} testID={testId} {...rest}>
       <Border
         variant='well'
         invert
@@ -27,7 +34,13 @@ const Fieldset = ({ children, label, style = {} }: Props) => {
       <Border variant='well' />
       {/* TODO: allow passing components to label (see web react95 checkbox example) */}
       {label && (
-        <Text style={[styles.label, { backgroundColor: theme.material }]}>
+        <Text
+          style={[
+            styles.label,
+            { backgroundColor: theme.material },
+            labelStyle,
+          ]}
+        >
           {label}
         </Text>
       )}

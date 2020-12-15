@@ -8,52 +8,59 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-
-import { Text } from '..';
-
+import type { Sizes } from '../types';
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 
+import { Text } from '..';
+
 export const testId = 'button';
 
-export type ButtonSizes = 'sm' | 'md' | 'lg';
+export type ButtonVariants = 'menu' | 'flat' | 'default' | 'outside';
 
-type ButtonProps = {
-  children: React.ReactNode;
-  onPress?: () => void;
-  variant?: 'menu' | 'flat' | 'default' | 'outside';
-  size?: ButtonSizes;
-  style?: StyleProp<ViewStyle>;
-  disabled?: boolean;
-  fullWidth?: boolean;
+type ButtonProps = React.ComponentPropsWithRef<typeof View> & {
   accessibilityLabel?: string;
-  square?: boolean;
-  primary?: boolean;
   active?: boolean;
+  children: React.ReactNode;
+  disabled?: boolean;
+  onPress?: () => void;
+  onLongPress?: () => void;
+  primary?: boolean;
+  size?: Sizes;
+  square?: boolean;
+  style?: StyleProp<ViewStyle>;
+  variant?: ButtonVariants;
 };
 
 const Button = ({
-  children,
-  onPress,
-  variant = 'default',
-  size = 'md',
-  disabled = false,
-  style = {},
-  fullWidth = false,
-  square = false,
-  primary = false,
-  active = false,
   accessibilityLabel,
+  active = false,
+  children,
+  disabled = false,
+  onPress,
+  onLongPress,
+  primary = false,
+  size = 'md',
+  square = false,
+  style = {},
+  variant = 'default',
+  ...rest
 }: ButtonProps) => {
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   const getWidth = () => {
-    if (fullWidth) return '100%';
     return square ? blockSizes[size] : 'auto';
   };
 
   const isFlat = variant === 'flat';
+
+  const getBackgroundColor = () => {
+    if (isFlat) {
+      return disabled ? theme.flatLight : 'transparent';
+    }
+    return theme.material;
+  };
 
   return (
     <View
@@ -63,6 +70,7 @@ const Button = ({
         style,
       ]}
       testID={testId}
+      {...rest}
     >
       <Borders
         isPressed={isPressed}
@@ -70,11 +78,7 @@ const Button = ({
         primary={primary}
         active={active}
         style={{
-          backgroundColor: isFlat
-            ? disabled
-              ? theme.flatLight
-              : 'transparent'
-            : theme.material,
+          backgroundColor: getBackgroundColor(),
         }}
       />
 
@@ -85,6 +89,7 @@ const Button = ({
           { marginTop: active || isPressed ? 2 : 0 },
         ]}
         onPress={onPress}
+        onLongPress={onLongPress}
         disabled={disabled}
         onHideUnderlay={() => setIsPressed(false)}
         onShowUnderlay={() => setIsPressed(true)}
@@ -121,7 +126,7 @@ export default Button;
 
 type BorderProps = {
   isPressed?: boolean;
-  variant?: 'menu' | 'flat' | 'default' | 'outside';
+  variant?: ButtonVariants;
   primary?: boolean;
   active?: boolean;
   style?: StyleProp<ViewStyle>;
@@ -139,7 +144,7 @@ const Borders = ({
 
   let wrapper: StyleProp<ViewStyle> = [];
   let outer;
-  let inner: any[] = [];
+  let inner;
   let focus;
 
   if (variant === 'default') {
@@ -157,8 +162,7 @@ const Borders = ({
   } else if (variant === 'flat') {
     wrapper = primary ? [theme.border.outline] : [];
     outer = [theme.border.flat];
-    inner = [];
-    focus = isPressed ? [theme.border.focusOutline] : [];
+    inner = isPressed ? [theme.border.focusOutline] : [];
   }
 
   return (
@@ -172,7 +176,7 @@ const Borders = ({
     >
       {outer && (
         <View style={[borderStyles.position, ...outer]}>
-          {inner.length > 0 && (
+          {inner && inner.length > 0 && (
             <View style={[borderStyles.position, ...inner]}>
               {focus && !active && (
                 <View

@@ -10,23 +10,23 @@ import { ThemeContext } from '../common/theming/Theme';
 
 import SnackbarContent from './SnackbarContent';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
-const elevation = 8;
+const shadowOffset = 8;
 
-const Snackbar = ({ children, style = {} }: Props) => {
+const Snackbar = ({ children, style = {}, ...rest }: Props) => {
   const theme = useContext(ThemeContext);
   return (
-    <View style={[styles.wrapper, style]}>
+    <View style={[styles.wrapper, style]} {...rest}>
       <View
         style={[
           styles.inner,
           {
-            marginRight: elevation,
-            marginBottom: elevation,
+            marginRight: shadowOffset,
+            marginBottom: shadowOffset,
           },
         ]}
       >
@@ -34,8 +34,8 @@ const Snackbar = ({ children, style = {} }: Props) => {
           style={[
             styles.shadow,
             {
-              top: elevation,
-              left: elevation,
+              top: shadowOffset,
+              left: shadowOffset,
               width: '100%',
               height: '100%',
             },

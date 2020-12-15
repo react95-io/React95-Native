@@ -4,24 +4,30 @@ import {
   View,
   ScrollView as RNScrollView,
   ViewStyle,
+  StyleProp,
   ImageBackground,
   Image,
+} from 'react-native';
+import type {
+  LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
 } from 'react-native';
 import { ThemeContext } from '../common/theming/Theme';
 
 import { Panel, Button } from '..';
 
-type ScrollViewProps = React.ComponentProps<typeof RNScrollView> & {
-  style?: ViewStyle;
-  children: React.ReactNode;
+type ScrollViewProps = React.ComponentProps<typeof View> & {
   alwaysShowScrollbars?: boolean;
+  children: React.ReactNode;
+  scrollViewProps?: React.ComponentProps<typeof RNScrollView>;
+  style?: StyleProp<ViewStyle>;
 };
 
 const scrollbarSize = 30;
 
 const Icon = (
   <Image
-    // border to compensate for Border
     style={[
       {
         width: 18,
@@ -37,9 +43,10 @@ const Icon = (
 );
 
 const ScrollView = ({
-  children,
-  style,
   alwaysShowScrollbars = false,
+  children,
+  scrollViewProps = {},
+  style,
   ...rest
 }: ScrollViewProps) => {
   const theme = useContext(ThemeContext);
@@ -71,23 +78,32 @@ const ScrollView = ({
 
   const contentFullyVisible = contentSize <= scrollViewHeight;
 
+  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    scrollViewProps.onScroll?.(e);
+    setContentOffset(e.nativeEvent.contentOffset);
+  };
+
+  const handleContentSizeChange = (width: number, height: number) => {
+    scrollViewProps.onContentSizeChange?.(width, height);
+    setContentSize(height);
+  };
+
+  const handleLayout = (e: LayoutChangeEvent) => {
+    scrollViewProps.onLayout?.(e);
+    setScrollViewHeight(e.nativeEvent.layout.height);
+  };
+
   return (
-    <View style={[styles.wrapper, style]}>
+    <View style={[styles.wrapper, style]} {...rest}>
       <View style={[styles.content]}>
         <RNScrollView
+          {...scrollViewProps}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={10}
           ref={scrollViewRef}
-          onScroll={e => {
-            setContentOffset(e.nativeEvent.contentOffset);
-          }}
-          onContentSizeChange={(_, height) => {
-            setContentSize(height);
-          }}
-          onLayout={e => {
-            setScrollViewHeight(e.nativeEvent.layout.height);
-          }}
-          {...rest}
+          onScroll={handleScroll}
+          onContentSizeChange={handleContentSizeChange}
+          onLayout={handleLayout}
         >
           {children}
         </RNScrollView>
@@ -183,7 +199,6 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   scrollbar: {
-    // height: '100%',
     width: scrollbarSize,
     overflow: 'hidden',
     flex: 1,

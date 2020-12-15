@@ -8,17 +8,23 @@ import { Divider } from '..';
 
 // TODO: where to pass custom styles?
 // TODO: add noBottomBorder and noTopBorder prop
-type Props = {
-  style?: StyleProp<ViewStyle>;
+type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   noBackground?: boolean;
+  style?: StyleProp<ViewStyle>;
 };
 
-const ScrollPanel = ({ style = {}, children, noBackground }: Props) => {
+const ScrollPanel = ({
+  children,
+  noBackground,
+  style = {},
+  ...rest
+}: Props) => {
   const theme = React.useContext(ThemeContext);
 
   return (
     <View
+      {...rest}
       style={[
         {
           backgroundColor: noBackground ? 'transparent' : theme.materialDark,

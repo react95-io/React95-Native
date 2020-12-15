@@ -31,11 +31,6 @@ export default [
         component: CheckboxExample,
         title: 'Checkbox',
       },
-      {
-        name: 'FieldsetExample',
-        component: FieldsetExample,
-        title: 'Fieldset',
-      },
       { name: 'RadioExample', component: RadioExample, title: 'Radio' },
       { name: 'SelectExample', component: SelectExample, title: 'Select' },
       {
@@ -60,6 +55,11 @@ export default [
         name: 'DividerExample',
         component: DividerExample,
         title: 'Divider',
+      },
+      {
+        name: 'FieldsetExample',
+        component: FieldsetExample,
+        title: 'Fieldset',
       },
       { name: 'PanelExample', component: PanelExample, title: 'Panel' },
       {

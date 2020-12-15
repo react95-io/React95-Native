@@ -1,26 +1,17 @@
 import React, { useContext } from 'react';
-import { StyleProp, ViewStyle, StyleSheet, View } from 'react-native';
-
-import { Button } from '..';
+import { StyleSheet, View } from 'react-native';
+import type { $RemoveChildren } from '../types';
 import { ThemeContext } from '../common/theming/Theme';
 
-type Props = {
-  disabled?: boolean;
-  accessibilityLabel?: string;
-  onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
-};
+import { Button } from '..';
 
-const AppBarBackAction = ({ accessibilityLabel = 'Back', ...rest }: Props) => {
+type Props = $RemoveChildren<typeof Button>;
+
+const AppBarBackAction = ({ ...rest }: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <Button
-      square
-      variant='menu'
-      accessibilityLabel={accessibilityLabel}
-      {...rest}
-    >
+    <Button square variant='menu' {...rest}>
       <View style={[styles.icon, { borderColor: theme.materialText }]} />
     </Button>
   );
@@ -29,10 +20,6 @@ const AppBarBackAction = ({ accessibilityLabel = 'Back', ...rest }: Props) => {
 export default AppBarBackAction;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-  },
-
   icon: {
     position: 'relative',
     height: 13,

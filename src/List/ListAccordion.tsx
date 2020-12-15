@@ -16,27 +16,27 @@ import useControlledOrUncontrolled from '../common/hooks/useControlledOrUncontro
 // TODO: create LinkButton component that will have link colour that will serve as a clickable List.Item
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
-  expanded?: boolean;
-  defaultExpanded?: boolean;
-  onPress?: () => void;
-  title?: string;
-  subtitle?: string;
   children: React.ReactNode;
-  titleStyle?: StyleProp<TextStyle>;
-  subtitleStyle?: StyleProp<TextStyle>;
+  defaultExpanded?: boolean;
+  expanded?: boolean;
+  onPress?: () => void;
   style?: StyleProp<ViewStyle>;
+  subtitle?: string;
+  subtitleStyle?: StyleProp<TextStyle>;
+  title?: string;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
 const ListAccordion = ({
-  expanded: expandedProp,
-  defaultExpanded,
-  onPress,
   children,
-  title,
-  subtitle,
-  titleStyle,
-  subtitleStyle,
+  defaultExpanded,
+  expanded: expandedProp,
+  onPress,
   style,
+  subtitle,
+  subtitleStyle,
+  title,
+  titleStyle,
   ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
@@ -50,8 +50,7 @@ const ListAccordion = ({
     onPress?.();
 
     if (expandedProp === undefined) {
-      /* @ts-ignore */
-      setExpanded(currentExpanded => !currentExpanded);
+      setExpanded((currentExpanded: boolean) => !currentExpanded);
     }
   };
 

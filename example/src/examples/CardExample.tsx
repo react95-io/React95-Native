@@ -17,7 +17,7 @@ const CardExample = () => {
       </Container.Section>
 
       <Container.Section title='High elevation:'>
-        <Card elevation={8} style={[{ height: 100 }]}>
+        <Card elevation={4} style={[{ height: 100 }]}>
           <Card.Content>
             <Text>Simple text</Text>
           </Card.Content>
