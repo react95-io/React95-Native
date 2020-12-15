@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import { original, Text } from 'react95-native';
 
 const styles = StyleSheet.create({
