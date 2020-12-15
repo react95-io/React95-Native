@@ -36,21 +36,20 @@ const symbols = {
   },
 };
 
-export type BaseSwitchStatus = 'checked' | 'unchecked' | 'indeterminate';
+export type SwitchStatus = 'checked' | 'unchecked' | 'indeterminate';
 
-export type SwitchProps = React.ComponentPropsWithRef<
-  typeof TouchableHighlight
-> & {
+export type SwitchProps = {
   disabled?: boolean;
   label?: string;
   onPress?: () => void;
-  status: BaseSwitchStatus;
+  status: SwitchStatus;
   style?: StyleProp<ViewStyle>;
 };
 
-type Props = SwitchProps & {
-  component: 'radio' | 'checkbox';
-};
+type Props = SwitchProps &
+  React.ComponentPropsWithRef<typeof TouchableHighlight> & {
+    component: 'radio' | 'checkbox';
+  };
 
 // TODO: see if ref is passed
 
