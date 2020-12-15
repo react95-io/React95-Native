@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import type { $RemoveChildren } from '../types';
 
-import Text from '../Text';
+import { Text } from '..';
 
 type Props = $RemoveChildren<typeof View> & {
   color?: string;

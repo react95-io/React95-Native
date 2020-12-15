@@ -29,24 +29,4 @@ describe('<Text />', () => {
 
     expect(getByText('Potato')).toHaveStyle(style);
   });
-
-  it('should open a custom URL when text is a link', () => {
-    const { getByText } = render(<Text linkUrl={linkUrl}>Link</Text>);
-
-    fireEvent.press(getByText('Link'));
-
-    expect(mockOpenUrl).toHaveBeenCalledWith(linkUrl);
-  });
-
-  it('should not open a custom URL when text is disabled', () => {
-    const { getByText } = render(
-      <Text linkUrl={linkUrl} disabled>
-        Disabled
-      </Text>,
-    );
-
-    fireEvent.press(getByText('Disabled'));
-
-    expect(mockOpenUrl).toHaveBeenCalledTimes(0);
-  });
 });

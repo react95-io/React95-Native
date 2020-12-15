@@ -17,7 +17,7 @@ import SelectBoxExample from './SelectBoxExample';
 import SelectExample from './SelectExample';
 import SnackbarExample from './SnackbarExample';
 import TabsExample from './TabsExample';
-import TextExample from './TextExample';
+import TypographyExample from './TypographyExample';
 import TextInputExample from './TextInputExample';
 import WindowExample from './WindowExample';
 
@@ -101,10 +101,11 @@ export default [
         component: ProgressExample,
         title: 'Progress',
       },
+      {
+        name: 'TypographyExample',
+        component: TypographyExample,
+        title: 'Typography',
+      },
     ],
-  },
-  {
-    title: 'Typography',
-    items: [{ name: 'TextExample', component: TextExample, title: 'Text' }],
   },
 ];
