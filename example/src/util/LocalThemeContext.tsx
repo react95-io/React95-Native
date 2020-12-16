@@ -1,7 +1,5 @@
 import React, { createContext, useState } from 'react';
-
-import type { Theme } from 'react95-native';
-import { themes } from 'react95-native';
+import { themes, Theme } from 'react95-native';
 
 type TLocalThemeContext = {
   theme: Theme;

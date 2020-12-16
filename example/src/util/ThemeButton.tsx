@@ -5,8 +5,7 @@ import {
   TouchableHighlight,
   ImageBackground,
 } from 'react-native';
-import { Text, Panel, ThemeProvider } from 'react95-native';
-import type { Theme } from 'react95-native';
+import { Text, Panel, ThemeProvider, Theme } from 'react95-native';
 
 type Props = {
   onPress: () => void;

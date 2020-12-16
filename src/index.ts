@@ -22,3 +22,5 @@ export { default as Card } from './Card';
 export { default as Snackbar } from './Snackbar';
 
 export * from './common/theming';
+
+export { Theme } from './types';

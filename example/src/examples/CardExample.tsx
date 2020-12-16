@@ -27,7 +27,7 @@ const CardExample = () => {
       <Container.Section title='No elevation:'>
         <Card elevation={0} style={[{ height: 100 }]}>
           <Card.Content>
-            <Text linkUrl='https://react95.io'>React95 website</Text>
+            <Text>React95</Text>
           </Card.Content>
         </Card>
       </Container.Section>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-
+import type { Sizes } from '../types';
 import { blockSizes } from '../common/styles';
-import { ButtonSizes, testId } from './Button';
+import { testId } from './Button';
 import { Button, Text } from '..';
 
 const noop = () => {};
@@ -32,7 +32,7 @@ describe('<Button />', () => {
   });
 
   it('should handle square sizes', () => {
-    const sizes: ButtonSizes[] = ['sm', 'md', 'lg'];
+    const sizes: Sizes[] = ['sm', 'md', 'lg'];
 
     sizes.forEach(size => {
       const { getByTestId } = render(
