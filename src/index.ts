@@ -1,7 +1,7 @@
 export { default as Button } from './Button';
 export { default as TextInput } from './TextInput';
 export { default as Panel } from './Panel';
-export { Text, Anchor } from './Typography';
+export { Text, Anchor, fontNames } from './Typography';
 export { default as AppBar } from './AppBar';
 export { default as Cutout } from './Cutout';
 export { default as Window } from './Window';

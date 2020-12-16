@@ -3,6 +3,11 @@ import { Text as NativeText, StyleProp, TextStyle } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
 
+export const fontNames = {
+  normal: 'MS Sans Serif',
+  bold: 'MS Sans Serif Bold',
+};
+
 type Props = React.ComponentProps<typeof NativeText> & {
   bold?: boolean;
   children: React.ReactNode;
@@ -25,9 +30,11 @@ const Text = ({
     if (disabled) {
       return theme.text.disabled;
     }
+
     if (secondary) {
       return theme.text.secondary;
     }
+
     return theme.text.default;
   };
 
@@ -36,7 +43,7 @@ const Text = ({
       style={[
         getTextStyle(),
         {
-          fontWeight: bold ? 'bold' : 'normal',
+          fontFamily: bold ? fontNames.bold : fontNames.normal,
         },
         style,
       ]}

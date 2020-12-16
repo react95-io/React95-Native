@@ -11,6 +11,11 @@ const TypographyExample = () => {
           <Text>Simple text</Text>
         </Panel>
       </Container.Section>
+      <Container.Section title='Bold'>
+        <Panel>
+          <Text bold>Bold text</Text>
+        </Panel>
+      </Container.Section>
       <Container.Section title='Disabled'>
         <Panel>
           <Text disabled>Disabled</Text>
