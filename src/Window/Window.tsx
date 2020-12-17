@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Text, StyleProp, ViewStyle } from 'react-native';
+import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
 
-import { Panel, Button } from '..';
+import { Panel, Button, Text } from '..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   // TODO: allow for inserting custom buttons to title bar?
@@ -47,6 +47,7 @@ const Window = ({
       >
         <View style={[styles.flex]}>
           <Text
+            bold
             // TODO: truncate window title when window is really small
             ellipsizeMode='tail'
             numberOfLines={1}

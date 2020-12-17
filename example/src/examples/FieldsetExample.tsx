@@ -1,16 +1,15 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Panel, Fieldset } from 'react95-native';
+import { Panel, Fieldset, Text } from 'react95-native';
 
 const DividerExample = () => {
   return (
     <Panel style={{ flex: 1, padding: 20 }}>
       <Text style={{ marginBottom: 20 }}>Default</Text>
       <Fieldset label='Name:'>
-        <Text style={[{ fontSize: 16 }]}>Some text here</Text>
+        <Text>Some text here</Text>
       </Fieldset>
       <Fieldset>
-        <Text style={[{ fontSize: 16 }]}>No label here</Text>
+        <Text>No label here</Text>
       </Fieldset>
     </Panel>
   );

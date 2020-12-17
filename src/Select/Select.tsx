@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableHighlight,
   ImageBackground,
   StyleProp,
@@ -15,7 +14,7 @@ import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
 import getSelectOptions, { Option } from './SelectBase';
-import { ScrollView } from '..';
+import { ScrollView, Text } from '..';
 
 const dropdownSymbol = {
   default:

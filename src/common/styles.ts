@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 
 import type { Theme } from '../types';
 
+export const fontNames = {
+  normal: 'MS Sans Serif',
+  bold: 'MS Sans Serif Bold',
+};
+
 const commonBorderStyle = { borderWidth: 2 };
 
 export const border = (theme: Theme) =>
@@ -77,16 +82,21 @@ export const border = (theme: Theme) =>
 
 export const text = (theme: Theme) =>
   StyleSheet.create({
+    regular: {
+      fontFamily: 'MS Sans Serif',
+      fontSize: 16,
+    },
+    bold: {
+      fontFamily: 'MS Sans Serif Bold',
+      fontSize: 16,
+    },
     secondary: {
       color: theme.materialTextDisabled,
-      fontSize: 16,
     },
     default: {
       color: theme.materialText,
-      fontSize: 16,
     },
     disabled: {
-      fontSize: 16,
       color: theme.materialTextDisabled,
       textShadowColor: theme.materialTextDisabledShadow,
       textShadowOffset: { width: 1, height: 1 },

@@ -28,8 +28,8 @@ const TextInput = ({
   ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
-
   const hasValue = !!(value || defaultValue);
+
   return (
     <View style={[styles.wrapper, style]}>
       <Border variant='cutout' />
@@ -39,6 +39,7 @@ const TextInput = ({
           {
             backgroundColor: disabled ? theme.material : theme.canvas,
           },
+          theme.text.regular,
           disabled && hasValue ? theme.text.disabled : theme.text.default,
         ]}
         placeholderTextColor={theme.materialTextDisabled}
@@ -61,7 +62,6 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     paddingHorizontal: 4,
-    fontSize: 16,
   },
 });
 
