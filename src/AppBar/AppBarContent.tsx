@@ -13,7 +13,6 @@ import type { $RemoveChildren } from '../types';
 import { Text } from '..';
 
 type Props = $RemoveChildren<typeof View> & {
-  color?: string;
   title: React.ReactNode;
   titleRef?: React.RefObject<Text>;
   titleStyle?: StyleProp<TextStyle>;
@@ -26,7 +25,6 @@ type Props = $RemoveChildren<typeof View> & {
 };
 
 const AppbarContent = ({
-  color: titleColor,
   subtitle,
   subtitleStyle,
   onPress,
@@ -37,28 +35,24 @@ const AppbarContent = ({
   ...rest
 }: Props) => {
   return (
-    <TouchableWithoutFeedback onPress={onPress} disabled={!onPress}>
-      <View style={[styles.container, style]} {...rest}>
-        <Text
-          // ref={titleRef}
-          style={[
-            {
-              color: titleColor,
-            },
-            styles.title,
-            titleStyle,
-          ]}
-          accessibilityTraits='header'
-        >
-          {title}
-        </Text>
-        {subtitle ? (
-          <Text secondary style={[styles.subtitle, subtitleStyle]}>
-            {subtitle}
+    <View style={[styles.container, style]} {...rest}>
+      <TouchableWithoutFeedback onPress={onPress} disabled={!onPress}>
+        <View>
+          <Text
+            // ref={titleRef}
+            style={[styles.title, titleStyle]}
+            accessibilityTraits='header'
+          >
+            {title}
           </Text>
-        ) : null}
-      </View>
-    </TouchableWithoutFeedback>
+          {subtitle ? (
+            <Text secondary style={[styles.subtitle, subtitleStyle]}>
+              {subtitle}
+            </Text>
+          ) : null}
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
