@@ -143,6 +143,7 @@ export const SwitchBase = ({
         {Boolean(label) && (
           <View
             style={[
+              styles.labelWrapper,
               !disabled && isPressed
                 ? theme.border.focusOutline
                 : { borderWidth: 2, borderColor: 'transparent' },
@@ -173,6 +174,9 @@ const styles = StyleSheet.create({
     width: switchSize,
     height: switchSize,
     marginRight: 8,
+  },
+  labelWrapper: {
+    paddingHorizontal: 4,
   },
   label: {
     fontSize: 16,
