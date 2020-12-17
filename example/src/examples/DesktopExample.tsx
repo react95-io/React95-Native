@@ -6,7 +6,7 @@ const DesktopExample = () => {
   return (
     <Panel style={styles.container}>
       <Fieldset label='Default:' style={[{ paddingVertical: 20 }]}>
-        <Desktop style={[{ backgroundColor: 'teal' }]} />
+        <Desktop screenStyle={[{ backgroundColor: 'teal' }]} />
       </Fieldset>
       <Fieldset label='With children:' style={[{ paddingVertical: 20 }]}>
         <Desktop>

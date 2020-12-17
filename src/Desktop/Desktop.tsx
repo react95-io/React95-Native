@@ -7,13 +7,14 @@ import { ThemeContext } from '../common/theming/Theme';
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  screenStyle?: StyleProp<ViewStyle>;
 };
 
-const Desktop = ({ children, style, ...rest }: Props) => {
+const Desktop = ({ children, style, screenStyle, ...rest }: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <View style={[styles.wrapper]} {...rest}>
+    <View style={[styles.wrapper, style]} {...rest}>
       <View style={[styles.monitor]}>
         <Border variant='outside'>
           <View
@@ -30,7 +31,7 @@ const Desktop = ({ children, style, ...rest }: Props) => {
             />
           </View>
         </Border>
-        <View style={[styles.screen, style]}>
+        <View style={[styles.screen, screenStyle]} testID='desktopScreen'>
           <Border variant='cutout' />
           {children}
         </View>
