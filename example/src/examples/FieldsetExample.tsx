@@ -8,6 +8,9 @@ const DividerExample = () => {
       <Fieldset label='Name:'>
         <Text>Some text here</Text>
       </Fieldset>
+      <Fieldset disabled label='Disabled:'>
+        <Text disabled>Some text here</Text>
+      </Fieldset>
       <Fieldset>
         <Text>No label here</Text>
       </Fieldset>

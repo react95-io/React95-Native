@@ -9,6 +9,7 @@ export const testId = 'fieldset';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
+  disabled?: boolean;
   label?: React.ReactNode;
   labelStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
@@ -16,6 +17,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
 
 const Fieldset = ({
   children,
+  disabled,
   label,
   labelStyle = {},
   style = {},
@@ -36,6 +38,7 @@ const Fieldset = ({
       {/* TODO: allow passing components to label (see web react95 checkbox example) */}
       {label && (
         <Text
+          disabled={disabled}
           style={[
             styles.label,
             { backgroundColor: theme.material },
