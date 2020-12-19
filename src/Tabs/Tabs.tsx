@@ -43,7 +43,7 @@ const Tabs = ({
   });
 
   return (
-    <View style={[styles.tabs, style]} {...rest}>
+    <View accessibilityRole='tablist' style={[styles.tabs, style]} {...rest}>
       {childrenWithProps}
       <View
         style={[
@@ -105,6 +105,12 @@ const Tab = ({
         selected ? margin(0, -8) : margin(0, 0),
         style,
       ]}
+      accessibilityTraits={selected ? ['button', 'selected'] : 'button'}
+      accessibilityComponentType='button'
+      accessibilityRole='tab'
+      accessibilityState={{
+        selected,
+      }}
       {...rest}
     >
       <View
