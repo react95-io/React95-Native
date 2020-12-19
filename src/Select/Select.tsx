@@ -74,98 +74,99 @@ const Select = ({
   // TODO: native prop to use native select
 
   return (
-    <TouchableHighlight
-      {...rest}
-      onPress={() => setIsOpen(currentIsOpen => !currentIsOpen)}
-      activeOpacity={1}
-      disabled={disabled}
-      onHideUnderlay={() => setIsPressed(false)}
-      onShowUnderlay={() => setIsPressed(true)}
-      // TODO: accessibility
-      // accessibilityTraits
-      // accessibilityComponentType
-      // accessibilityRole
-      // accessibilityState
-      underlayColor='none'
-    >
-      <View style={[styles.wrapper, style]}>
-        <Border variant='cutout' />
-        <View style={[styles.flex]}>
-          <View
-            style={[
-              styles.selectValue,
-              { backgroundColor: disabled ? theme.material : theme.canvas },
-            ]}
-          >
+    <View style={[styles.wrapper, style]} {...rest}>
+      <Border variant='cutout' />
+      <TouchableHighlight
+        onPress={() => setIsOpen(currentIsOpen => !currentIsOpen)}
+        activeOpacity={1}
+        disabled={disabled}
+        onHideUnderlay={() => setIsPressed(false)}
+        onShowUnderlay={() => setIsPressed(true)}
+        // TODO: accessibility
+        // accessibilityTraits
+        // accessibilityComponentType
+        // accessibilityRole
+        // accessibilityState
+        underlayColor='none'
+      >
+        <View style={[styles.inner]}>
+          <View style={[styles.flex]}>
             <View
               style={[
-                styles.center,
-                {
-                  borderWidth: 2,
-                  borderColor: disabled ? theme.material : theme.canvas,
-                  backgroundColor: getLabelContainerBackgroundColor(),
-                },
-
-                isPressed && theme.border.focusSecondaryOutline,
+                styles.selectValue,
+                { backgroundColor: disabled ? theme.material : theme.canvas },
               ]}
             >
-              <Text
+              <View
                 style={[
-                  styles.textValue,
-                  disabled ? theme.text.disabled : theme.text.default,
-                  !disabled &&
-                    isPressed && {
-                      color: isPressed
-                        ? theme.canvasTextInvert
-                        : theme.canvasText,
-                    },
+                  styles.center,
+                  {
+                    borderWidth: 2,
+                    borderColor: disabled ? theme.material : theme.canvas,
+                    backgroundColor: getLabelContainerBackgroundColor(),
+                  },
+
+                  isPressed && theme.border.focusSecondaryOutline,
                 ]}
               >
-                {selectedOption.label}
-              </Text>
+                <Text
+                  style={[
+                    styles.textValue,
+                    disabled ? theme.text.disabled : theme.text.default,
+                    !disabled &&
+                      isPressed && {
+                        color: isPressed
+                          ? theme.canvasTextInvert
+                          : theme.canvasText,
+                      },
+                  ]}
+                >
+                  {selectedOption.label}
+                </Text>
+              </View>
+            </View>
+            <View
+              style={[styles.fakeButton, { backgroundColor: theme.material }]}
+            >
+              <ImageBackground
+                style={[
+                  {
+                    marginTop: isPressed ? 1 : 0,
+                    width: '100%',
+                    height: '100%',
+                  },
+                ]}
+                imageStyle={{
+                  resizeMode: 'contain',
+                  flex: 1,
+                }}
+                source={{
+                  uri: dropdownSymbol[disabled ? 'disabled' : 'default'],
+                }}
+              />
+              <Border
+                variant={isPressed ? 'default' : 'outside'}
+                invert={isPressed}
+              />
             </View>
           </View>
-          <View
-            style={[styles.fakeButton, { backgroundColor: theme.material }]}
-          >
-            <ImageBackground
+          {isOpen && (
+            <View
               style={[
+                styles.options,
                 {
-                  marginTop: isPressed ? 1 : 0,
-                  width: '100%',
-                  height: '100%',
+                  height: menuMaxHeight || 'auto',
+                  backgroundColor: theme.canvas,
+                  borderColor: theme.borderDarkest,
                 },
               ]}
-              imageStyle={{
-                resizeMode: 'contain',
-                flex: 1,
-              }}
-              source={{
-                uri: dropdownSymbol[disabled ? 'disabled' : 'default'],
-              }}
-            />
-            <Border
-              variant={isPressed ? 'default' : 'outside'}
-              invert={isPressed}
-            />
-          </View>
+            >
+              <ScrollView>{selectOptions}</ScrollView>
+            </View>
+          )}
         </View>
-        {isOpen && (
-          <View
-            style={[
-              styles.options,
-              {
-                height: menuMaxHeight || 'auto',
-                backgroundColor: theme.canvas,
-                borderColor: theme.borderDarkest,
-              },
-            ]}
-          >
-            <ScrollView>{selectOptions}</ScrollView>
-          </View>
-        )}
-      </View>
-    </TouchableHighlight>
+      </TouchableHighlight>
+    </View>
   );
 };
 
@@ -173,9 +174,11 @@ const selectHeight = blockSizes.md;
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'relative',
     height: selectHeight,
     alignSelf: 'flex-start',
+  },
+  inner: {
+    position: 'relative',
     padding: 4,
   },
   flex: {
