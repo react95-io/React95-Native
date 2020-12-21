@@ -101,10 +101,9 @@ const styles = StyleSheet.create({
   },
 
   titleBar: {
-    height: 33,
+    height: 36,
     margin: 2,
-    paddingLeft: 4,
-    paddingRight: 2,
+    paddingHorizontal: 4,
   },
 
   titleBarText: {
@@ -119,8 +118,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    height: 27,
-    width: 31,
+    height: 28,
+    width: 32,
     paddingVertical: 0,
     paddingHorizontal: 0,
   },
