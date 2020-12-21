@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 import { Border } from '../common/styleElements';
+import { ThemeContext } from '../common/theming/Theme';
 
 export const testId = 'cutout';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  background?: 'material' | 'canvas' | 'materialDark';
 };
 
-const Cutout = ({ children, style = {}, ...rest }: Props) => {
+const Cutout = ({
+  children,
+  background = 'canvas',
+  style = {},
+  ...rest
+}: Props) => {
+  const theme = useContext(ThemeContext);
+  const getBackgroundColor = () => {
+    return theme[background];
+  };
   return (
-    <View style={[styles.wrapper, style]} testID={testId} {...rest}>
+    <View
+      style={[styles.wrapper, { backgroundColor: getBackgroundColor() }, style]}
+      testID={testId}
+      {...rest}
+    >
       <Border variant='cutout' />
       {children}
     </View>
