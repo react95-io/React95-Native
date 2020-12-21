@@ -8,7 +8,7 @@ import { ThemeContext } from './theming/Theme';
 // will be positioned absolutely in it's parent element
 type BorderProps = {
   invert?: boolean;
-  variant?: 'default' | 'well' | 'outside' | 'cutout';
+  variant?: 'default' | 'well' | 'outside' | 'cutout' | 'flat';
   style?: StyleProp<ViewStyle>;
   sharedStyle?: StyleProp<ViewStyle>;
   radius?: number;
@@ -40,6 +40,8 @@ export const Border = ({
   } else if (variant === 'cutout') {
     outer = [theme.border.cutoutOuter];
     inner = [theme.border.cutoutInner];
+  } else if (variant === 'flat') {
+    outer = [theme.border.flat];
   }
 
   const getSharedStyles = (() => {

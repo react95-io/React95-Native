@@ -1,10 +1,10 @@
 import React from 'react';
-import { Panel, Fieldset, Text } from 'react95-native';
+import { View } from 'react-native';
+import { Panel, Fieldset, Text, Cutout } from 'react95-native';
 
-const DividerExample = () => {
+const FieldsetExample = () => {
   return (
     <Panel style={{ flex: 1, padding: 20 }}>
-      <Text style={{ marginBottom: 20 }}>Default</Text>
       <Fieldset label='Name:'>
         <Text>Some text here</Text>
       </Fieldset>
@@ -14,8 +14,22 @@ const DividerExample = () => {
       <Fieldset>
         <Text>No label here</Text>
       </Fieldset>
+
+      <Cutout>
+        <View style={{ padding: 20 }}>
+          <Fieldset variant='flat' label='Name:'>
+            <Text>Some text here</Text>
+          </Fieldset>
+          <Fieldset variant='flat' disabled label='Disabled:'>
+            <Text disabled>Some text here</Text>
+          </Fieldset>
+          <Fieldset variant='flat'>
+            <Text>No label here</Text>
+          </Fieldset>
+        </View>
+      </Cutout>
     </Panel>
   );
 };
 
-export default DividerExample;
+export default FieldsetExample;

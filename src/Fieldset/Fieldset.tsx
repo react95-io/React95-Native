@@ -13,6 +13,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   label?: React.ReactNode;
   labelStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
+  variant?: 'default' | 'flat';
 };
 
 const Fieldset = ({
@@ -21,27 +22,36 @@ const Fieldset = ({
   label,
   labelStyle = {},
   style = {},
+  variant = 'default',
   ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
     <View style={[styles.wrapper, style]} testID={testId} {...rest}>
-      <Border
-        variant='well'
-        invert
-        style={[
-          { marginLeft: 2, marginRight: 2, marginTop: 2, marginBottom: 2 },
-        ]}
-      />
-      <Border variant='well' />
-      {/* TODO: allow passing components to label (see web react95 checkbox example) */}
+      {variant === 'flat' ? (
+        <Border variant='flat' />
+      ) : (
+        <>
+          <Border
+            variant='well'
+            invert
+            style={[
+              { marginLeft: 2, marginRight: 2, marginTop: 2, marginBottom: 2 },
+            ]}
+          />
+          <Border variant='well' />
+        </>
+      )}
       {label && (
         <Text
           disabled={disabled}
           style={[
             styles.label,
-            { backgroundColor: theme.material },
+            {
+              backgroundColor:
+                variant === 'flat' ? theme.canvas : theme.material,
+            },
             labelStyle,
           ]}
         >
