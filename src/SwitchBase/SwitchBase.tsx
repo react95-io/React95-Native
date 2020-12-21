@@ -44,6 +44,7 @@ export type SwitchProps = {
   onPress?: () => void;
   status: SwitchStatus;
   style?: StyleProp<ViewStyle>;
+  variant?: 'default' | 'flat';
 };
 
 type Props = SwitchProps &
@@ -57,6 +58,7 @@ export const SwitchBase = ({
   component,
   disabled = false,
   label = '',
+  variant = 'default',
   onPress = () => {},
   status,
   style = {},
@@ -65,9 +67,11 @@ export const SwitchBase = ({
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
   const isRadio = component === 'radio';
-  const borderRadius = isRadio ? switchSize / 2 : 0;
+  const boxSize = variant === 'flat' ? switchSize - 4 : switchSize;
+  const borderRadius = isRadio ? boxSize / 2 : 0;
 
-  const renderBox = () => {
+  const renderCheckmark = () => {
+    const symbolOffset = variant === 'flat' ? 2 : 4;
     if (status === 'checked') {
       const symbol = symbols[component][disabled ? 'disabled' : 'default'];
 
@@ -76,9 +80,10 @@ export const SwitchBase = ({
           // border to compensate for Border
           style={[
             {
-              width: '100%',
-              height: '100%',
-              borderWidth: 4,
+              width: boxSize,
+              height: boxSize,
+              borderWidth: symbolOffset,
+              borderColor: 'transparent',
             },
           ]}
           imageStyle={{
@@ -110,9 +115,16 @@ export const SwitchBase = ({
     return <Text> </Text>;
   };
 
+  const getBackgroundColor = () => {
+    if (variant === 'flat') {
+      return disabled ? theme.flatLight : theme.canvas;
+    }
+    return disabled ? theme.material : theme.canvas;
+  };
+
   return (
     <TouchableHighlight
-      style={[styles.wrapper, { backgroundColor: theme.material }]}
+      style={[styles.wrapper]}
       onPress={onPress}
       activeOpacity={1}
       disabled={disabled}
@@ -131,14 +143,19 @@ export const SwitchBase = ({
           style={[
             styles.switchSymbol,
             {
-              backgroundColor: disabled ? theme.material : theme.canvas,
+              width: boxSize,
+              height: boxSize,
+              backgroundColor: getBackgroundColor(),
               borderRadius,
               overflow: 'hidden',
             },
           ]}
         >
-          {renderBox()}
-          <Border variant='cutout' radius={borderRadius} />
+          {renderCheckmark()}
+          <Border
+            variant={variant === 'flat' ? 'flat' : 'cutout'}
+            radius={borderRadius}
+          />
         </View>
         {Boolean(label) && (
           <View
@@ -171,9 +188,7 @@ const styles = StyleSheet.create({
     width: 'auto',
   },
   switchSymbol: {
-    width: switchSize,
-    height: switchSize,
-    marginRight: 8,
+    marginRight: 4,
   },
   labelWrapper: {
     paddingHorizontal: 4,
