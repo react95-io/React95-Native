@@ -3,7 +3,7 @@ import { Text as NativeText, StyleProp, TextStyle } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
 
-type Props = React.ComponentProps<typeof NativeText> & {
+export type TextProps = React.ComponentProps<typeof NativeText> & {
   bold?: boolean;
   children: React.ReactNode;
   disabled?: boolean;
@@ -18,7 +18,7 @@ const Text = ({
   secondary = false,
   style,
   ...rest
-}: Props) => {
+}: TextProps) => {
   const theme = useContext(ThemeContext);
   const { text } = theme;
 

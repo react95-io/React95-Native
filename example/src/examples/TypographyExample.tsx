@@ -1,12 +1,12 @@
 import React from 'react';
-import { Panel, Text, Anchor } from 'react95-native';
+import { Panel, Text, Title, Anchor } from 'react95-native';
 
 import Container from '../util/Container';
 
 const TypographyExample = () => {
   return (
     <Container>
-      <Container.Section title='Basic usage'>
+      <Container.Section title='Text'>
         <Panel>
           <Text>Simple text</Text>
         </Panel>
@@ -19,6 +19,36 @@ const TypographyExample = () => {
       <Container.Section title='Disabled'>
         <Panel>
           <Text disabled>Disabled</Text>
+        </Panel>
+      </Container.Section>
+      <Container.Section title='Secondary'>
+        <Panel>
+          <Text secondary>Disabled</Text>
+        </Panel>
+      </Container.Section>
+
+      <Container.Section title='Default'>
+        <Panel style={{ width: '100%', padding: 20 }}>
+          <Title>Title</Title>
+        </Panel>
+      </Container.Section>
+      <Container.Section title='Bold'>
+        <Panel style={{ width: '100%', padding: 20 }}>
+          <Title bold align='left'>
+            Bold title
+          </Title>
+        </Panel>
+      </Container.Section>
+      <Container.Section title='Disabled'>
+        <Panel style={{ width: '100%', padding: 20 }}>
+          <Title disabled align='right'>
+            Disabled title
+          </Title>
+        </Panel>
+      </Container.Section>
+      <Container.Section title='Secondary'>
+        <Panel style={{ width: '100%', padding: 20 }}>
+          <Title secondary>Secondary title</Title>
         </Panel>
       </Container.Section>
 

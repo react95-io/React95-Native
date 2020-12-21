@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Menu, Divider } from 'react95-native';
+import { Menu, Divider, Title } from 'react95-native';
 
 import Container from '../util/Container';
 
@@ -10,7 +10,7 @@ const TextExample = () => {
       <Container.Section title='Basic usage'>
         <Menu>
           <Menu.Item
-            primary
+            size='lg'
             onPress={() => console.warn('Item 1')}
             title='Item 1'
           />
@@ -24,6 +24,10 @@ const TextExample = () => {
             onPress={() => console.warn('Item 3')}
             title='Item 3'
           />
+          <Title>Letters</Title>
+          <Menu.Item size='lg' onPress={() => console.warn('A')} title='A' />
+          <Menu.Item size='lg' onPress={() => console.warn('B')} title='B' />
+          <Menu.Item size='lg' onPress={() => console.warn('C')} title='C' />
           <Divider size='auto' />
           <Menu.Item
             size='lg'
@@ -33,7 +37,11 @@ const TextExample = () => {
           />
         </Menu>
         <Menu orientation='horizontal'>
-          <Menu.Item onPress={() => console.warn('Item 2')} title='Item 2' />
+          <Menu.Item
+            primary
+            onPress={() => console.warn('Item 2')}
+            title='Item 2'
+          />
           <Menu.Item onPress={() => console.warn('Item 3')} title='Item 3' />
           <Divider orientation='vertical' variant='raised' size='auto' />
           <Menu.Item
