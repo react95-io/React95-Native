@@ -98,9 +98,13 @@ const Button = ({
         accessibilityLabel={accessibilityLabel}
       >
         <View pointerEvents='none'>
-          <Text disabled={!isFlat && disabled} secondary={isFlat && disabled}>
-            {children}
-          </Text>
+          {typeof children === 'string' ? (
+            <Text disabled={!isFlat && disabled} secondary={isFlat && disabled}>
+              {children}
+            </Text>
+          ) : (
+            children
+          )}
         </View>
       </TouchableHighlight>
     </View>
@@ -174,11 +178,11 @@ const Borders = ({
         style,
       ]}
     >
-      {outer && (
+      {Array.isArray(outer) && (
         <View style={[borderStyles.position, ...outer]}>
-          {inner && inner.length > 0 && (
+          {Array.isArray(inner) && inner.length > 0 && (
             <View style={[borderStyles.position, ...inner]}>
-              {focus && !active && (
+              {Array.isArray(focus) && !active && (
                 <View
                   style={[
                     borderStyles.position,

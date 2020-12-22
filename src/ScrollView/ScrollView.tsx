@@ -177,8 +177,6 @@ const ScrollView = ({
   );
 };
 
-export default ScrollView;
-
 const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
@@ -214,3 +212,5 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
+export default ScrollView;
