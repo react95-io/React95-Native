@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
       {
         rotate: '-45deg',
       },
-      { translateY: 4 },
     ],
   },
 });
