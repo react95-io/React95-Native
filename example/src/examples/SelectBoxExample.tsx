@@ -24,7 +24,7 @@ const SelectBoxExample = () => {
           options={options}
           value={value}
           onChange={newValue => setValue(newValue)}
-          style={[{ width: 200, height: 120 }]}
+          style={[{ height: 120 }]}
         />
       </Fieldset>
     </Panel>
