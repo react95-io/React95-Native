@@ -32,7 +32,6 @@ const Icon = (
       {
         width: 18,
         height: 18,
-        marginTop: 6,
       },
     ]}
     source={{
@@ -133,8 +132,7 @@ const ScrollView = ({
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                // flex: 1,
-                transform: [{ translateY: 6 }, { rotate: '180deg' }],
+                transform: [{ rotate: '180deg' }],
               }}
             >
               {Icon}
