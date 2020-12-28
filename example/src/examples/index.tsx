@@ -19,6 +19,7 @@ import SnackbarExample from './SnackbarExample';
 import TabsExample from './TabsExample';
 import TypographyExample from './TypographyExample';
 import TextInputExample from './TextInputExample';
+import NumberInputExample from './NumberInputExample';
 import WindowExample from './WindowExample';
 
 export default [
@@ -30,6 +31,11 @@ export default [
         name: 'CheckboxExample',
         component: CheckboxExample,
         title: 'Checkbox',
+      },
+      {
+        name: 'NumberInputExample',
+        component: NumberInputExample,
+        title: 'NumberInput',
       },
       { name: 'RadioExample', component: RadioExample, title: 'Radio' },
       { name: 'SelectExample', component: SelectExample, title: 'Select' },
