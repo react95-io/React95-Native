@@ -16,6 +16,7 @@ type Props = React.ComponentPropsWithRef<typeof NativeTextInput> & {
   defaultValue?: string;
   style?: StyleProp<ViewStyle>;
   disabled?: boolean;
+  variant?: 'default' | 'flat';
 };
 
 // TODO: implement scrollbars in TextInput
@@ -23,6 +24,7 @@ type Props = React.ComponentPropsWithRef<typeof NativeTextInput> & {
 const TextInput = ({
   disabled,
   value,
+  variant = 'default',
   defaultValue,
   style = {},
   ...rest
@@ -30,14 +32,23 @@ const TextInput = ({
   const theme = useContext(ThemeContext);
   const hasValue = !!(value || defaultValue);
 
+  const isFlat = variant === 'flat';
+
+  const getBackgroundColor = () => {
+    if (isFlat) {
+      return disabled ? theme.flatLight : 'transparent';
+    }
+    return disabled ? theme.material : theme.canvas;
+  };
+
   return (
-    <View style={[styles.wrapper, style]}>
-      <Border variant='cutout' />
+    <View style={[styles.wrapper, { padding: isFlat ? 2 : 4 }, style]}>
+      <Border variant={isFlat ? 'flat' : 'cutout'} />
       <NativeTextInput
         style={[
           styles.input,
           {
-            backgroundColor: disabled ? theme.material : theme.canvas,
+            backgroundColor: getBackgroundColor(),
           },
           theme.text.regular,
           disabled && hasValue ? theme.text.disabled : theme.text.default,
@@ -55,7 +66,6 @@ const TextInput = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: 4,
     minHeight: blockSizes.md,
     justifyContent: 'center',
   },
