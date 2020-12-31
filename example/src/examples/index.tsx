@@ -13,6 +13,7 @@ import PanelExample from './PanelExample';
 import ProgressExample from './ProgressExample';
 import RadioExample from './RadioExample';
 import ScrollPanelExample from './ScrollPanelExample';
+import ScrollViewExample from './ScrollViewExample';
 import SelectBoxExample from './SelectBoxExample';
 import SelectExample from './SelectExample';
 import SnackbarExample from './SnackbarExample';
@@ -68,6 +69,11 @@ export default [
         title: 'Fieldset',
       },
       { name: 'PanelExample', component: PanelExample, title: 'Panel' },
+      {
+        name: 'ScrollViewExample',
+        component: ScrollViewExample,
+        title: 'ScrollView',
+      },
       {
         name: 'ScrollPanelExample',
         component: ScrollPanelExample,

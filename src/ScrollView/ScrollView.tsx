@@ -20,6 +20,7 @@ import { Panel, Button } from '..';
 type ScrollViewProps = React.ComponentProps<typeof View> & {
   alwaysShowScrollbars?: boolean;
   children: React.ReactNode;
+  horizontal?: boolean;
   scrollViewProps?: React.ComponentProps<typeof RNScrollView>;
   style?: StyleProp<ViewStyle>;
 };
@@ -44,6 +45,7 @@ const Icon = (
 const ScrollView = ({
   alwaysShowScrollbars = false,
   children,
+  horizontal = false,
   scrollViewProps = {},
   style,
   ...rest
@@ -53,29 +55,31 @@ const ScrollView = ({
   const scrollViewRef = useRef<RNScrollView>(null);
   const [contentOffset, setContentOffset] = useState({ x: 0, y: 0 });
   const [contentSize, setContentSize] = useState(0);
-  const [scrollViewHeight, setScrollViewHeight] = useState(0);
+  const [scrollViewSize, setScrollViewSize] = useState(0);
 
-  const scrollElementHeightPercent = 100 * (scrollViewHeight / contentSize);
+  const visiblePercentage = 100 * (scrollViewSize / contentSize);
 
-  const scrollPerc =
-    (contentOffset.y / (contentSize - scrollViewHeight)) *
-    (100 - scrollElementHeightPercent);
+  const scrollAxis = horizontal ? 'x' : 'y';
+  const scrollDimension = horizontal ? 'width' : 'height';
 
+  const scrolledPercentage = (contentOffset[scrollAxis] / contentSize) * 100;
   const thumbPosition = Math.max(
     0,
     Math.min(
-      100 - scrollElementHeightPercent,
-      parseFloat((scrollPerc || 0).toFixed(3)),
+      100 - visiblePercentage,
+      parseFloat(scrolledPercentage.toFixed(3)),
     ),
   );
 
   const moveScroll = (direction: -1 | 1) => {
     if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({ y: contentOffset.y + 24 * direction });
+      scrollViewRef.current.scrollTo({
+        [scrollAxis]: contentOffset[scrollAxis] + 24 * direction,
+      });
     }
   };
 
-  const contentFullyVisible = contentSize <= scrollViewHeight;
+  const contentFullyVisible = contentSize <= scrollViewSize;
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     scrollViewProps.onScroll?.(e);
@@ -84,32 +88,49 @@ const ScrollView = ({
 
   const handleContentSizeChange = (width: number, height: number) => {
     scrollViewProps.onContentSizeChange?.(width, height);
-    setContentSize(height);
+    setContentSize(horizontal ? width : height);
   };
 
   const handleLayout = (e: LayoutChangeEvent) => {
     scrollViewProps.onLayout?.(e);
-    setScrollViewHeight(e.nativeEvent.layout.height);
+    setScrollViewSize(e.nativeEvent.layout[scrollDimension]);
   };
 
   return (
-    <View style={[styles.wrapper, style]} {...rest}>
+    <View
+      style={[
+        styles.wrapper,
+        {
+          flexDirection: horizontal ? 'column' : 'row',
+        },
+        style,
+      ]}
+      {...rest}
+    >
       <View style={[styles.content]}>
         <RNScrollView
           {...scrollViewProps}
           showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           scrollEventThrottle={10}
           ref={scrollViewRef}
           onScroll={handleScroll}
           onContentSizeChange={handleContentSizeChange}
           onLayout={handleLayout}
+          horizontal={horizontal}
         >
           {children}
         </RNScrollView>
       </View>
       {(!contentFullyVisible || alwaysShowScrollbars) && (
         <View
-          style={[styles.scrollbarTrack, { backgroundColor: theme.material }]}
+          style={[
+            {
+              flexDirection: horizontal ? 'row' : 'column',
+              [scrollDimension]: '100%',
+              backgroundColor: theme.material,
+            },
+          ]}
         >
           <ImageBackground
             style={[styles.background]}
@@ -132,22 +153,25 @@ const ScrollView = ({
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                transform: [{ rotate: '180deg' }],
+                transform: [{ rotate: horizontal ? '90deg' : '180deg' }],
               }}
             >
               {Icon}
             </View>
           </Button>
-          <View style={[styles.scrollbar]}>
+          <View style={[styles.scrollbarTrack]}>
             {!contentFullyVisible && (
+              // SCROLLBAR THUMB
               <Panel
                 variant='outside'
                 style={[
-                  styles.scrollbarBar,
                   {
                     position: 'absolute',
-                    top: `${thumbPosition}%`,
-                    height: `${scrollElementHeightPercent}%`,
+                    [horizontal ? 'left' : 'top']: `${thumbPosition}%`,
+                    height: horizontal
+                      ? scrollbarSize
+                      : `${visiblePercentage}%`,
+                    width: horizontal ? `${visiblePercentage}%` : scrollbarSize,
                   },
                 ]}
               />
@@ -163,7 +187,7 @@ const ScrollView = ({
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                // flex: 1,
+                transform: [{ rotate: horizontal ? '-90deg' : '0deg' }],
               }}
             >
               {Icon}
@@ -178,24 +202,18 @@ const ScrollView = ({
 const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    flexDirection: 'row',
-    height: 'auto',
     position: 'relative',
   },
   content: {
     flexGrow: 1,
-    flex: 1,
-  },
-  scrollbarTrack: {
-    height: '100%',
+    flexShrink: 1,
   },
   scrollbarButton: {
     height: scrollbarSize,
     width: scrollbarSize,
     padding: 0,
   },
-  scrollbar: {
-    width: scrollbarSize,
+  scrollbarTrack: {
     overflow: 'hidden',
     flex: 1,
   },
@@ -205,9 +223,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-  },
-  scrollbarBar: {
-    width: '100%',
   },
 });
 
