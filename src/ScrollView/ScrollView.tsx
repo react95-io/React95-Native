@@ -7,6 +7,7 @@ import {
   StyleProp,
   ImageBackground,
   Image,
+  PanResponder,
 } from 'react-native';
 import type {
   LayoutChangeEvent,
@@ -25,7 +26,7 @@ type ScrollViewProps = React.ComponentProps<typeof View> & {
   style?: StyleProp<ViewStyle>;
 };
 
-const scrollbarSize = 30;
+const scrollbarThickness = 30;
 
 const Icon = (
   <Image
@@ -51,9 +52,9 @@ const ScrollView = ({
   ...rest
 }: ScrollViewProps) => {
   const theme = useContext(ThemeContext);
-
   const scrollViewRef = useRef<RNScrollView>(null);
-  const [contentOffset, setContentOffset] = useState({ x: 0, y: 0 });
+
+  const [contentOffset, setContentOffset] = useState(0);
   const [contentSize, setContentSize] = useState(0);
   const [scrollViewSize, setScrollViewSize] = useState(0);
 
@@ -62,7 +63,7 @@ const ScrollView = ({
   const scrollAxis = horizontal ? 'x' : 'y';
   const scrollDimension = horizontal ? 'width' : 'height';
 
-  const scrolledPercentage = (contentOffset[scrollAxis] / contentSize) * 100;
+  const scrolledPercentage = (contentOffset / contentSize) * 100;
   const thumbPosition = Math.max(
     0,
     Math.min(
@@ -74,7 +75,7 @@ const ScrollView = ({
   const moveScroll = (direction: -1 | 1) => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        [scrollAxis]: contentOffset[scrollAxis] + 24 * direction,
+        [scrollAxis]: contentOffset + 24 * direction,
       });
     }
   };
@@ -83,7 +84,7 @@ const ScrollView = ({
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     scrollViewProps.onScroll?.(e);
-    setContentOffset(e.nativeEvent.contentOffset);
+    setContentOffset(e.nativeEvent.contentOffset[scrollAxis]);
   };
 
   const handleContentSizeChange = (width: number, height: number) => {
@@ -95,6 +96,46 @@ const ScrollView = ({
     scrollViewProps.onLayout?.(e);
     setScrollViewSize(e.nativeEvent.layout[scrollDimension]);
   };
+
+  // TODO: simplify those things
+  const scrollViewSizeRef = useRef(scrollViewSize);
+  const contentSizeRef = useRef(contentSize);
+  const contentOffsetRef = useRef(contentOffset);
+  const dragStartScrollPositionRef = useRef(0);
+
+  React.useEffect(() => {
+    scrollViewSizeRef.current = scrollViewSize;
+    contentSizeRef.current = contentSize;
+    contentOffsetRef.current = contentOffset;
+  }, [scrollViewSize, contentSize, contentOffset]);
+
+  const panResponder = React.useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponderCapture: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponderCapture: () => true,
+
+      onPanResponderGrant: () => {
+        dragStartScrollPositionRef.current = contentOffsetRef.current;
+      },
+      onPanResponderMove: (_evt, gestureState) => {
+        const scrollbarTrackSize =
+          scrollViewSizeRef.current - 2 * scrollbarThickness;
+        const translatedScrollTo =
+          (gestureState[horizontal ? 'dx' : 'dy'] / scrollbarTrackSize) *
+          contentSizeRef.current;
+        if (scrollViewRef.current) {
+          scrollViewRef.current.scrollTo({
+            [scrollAxis]:
+              dragStartScrollPositionRef.current + translatedScrollTo,
+            animated: false,
+          });
+        }
+      },
+      onPanResponderTerminationRequest: () => true,
+    }),
+  ).current;
 
   return (
     <View
@@ -169,11 +210,14 @@ const ScrollView = ({
                     position: 'absolute',
                     [horizontal ? 'left' : 'top']: `${thumbPosition}%`,
                     height: horizontal
-                      ? scrollbarSize
+                      ? scrollbarThickness
                       : `${visiblePercentage}%`,
-                    width: horizontal ? `${visiblePercentage}%` : scrollbarSize,
+                    width: horizontal
+                      ? `${visiblePercentage}%`
+                      : scrollbarThickness,
                   },
                 ]}
+                {...panResponder.panHandlers}
               />
             )}
           </View>
@@ -209,8 +253,8 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   scrollbarButton: {
-    height: scrollbarSize,
-    width: scrollbarSize,
+    height: scrollbarThickness,
+    width: scrollbarThickness,
     padding: 0,
   },
   scrollbarTrack: {
