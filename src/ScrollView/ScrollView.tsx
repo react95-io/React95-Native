@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,25 +8,22 @@ import {
   ImageBackground,
   Image,
   PanResponder,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import type {
   LayoutChangeEvent,
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from 'react-native';
+import useAsyncReference from '../common/hooks/useAsyncReference';
 import { ThemeContext } from '../common/theming/Theme';
 
 import { Panel, Button } from '..';
 
-type ScrollViewProps = React.ComponentProps<typeof View> & {
-  alwaysShowScrollbars?: boolean;
-  children: React.ReactNode;
-  horizontal?: boolean;
-  scrollViewProps?: React.ComponentProps<typeof RNScrollView>;
-  style?: StyleProp<ViewStyle>;
-};
+type Direction = -1 | 1;
 
 const scrollbarThickness = 30;
+const scrollbarButtonSize = scrollbarThickness;
 
 const Icon = (
   <Image
@@ -43,6 +40,15 @@ const Icon = (
   />
 );
 
+type ScrollViewProps = React.ComponentProps<typeof View> & {
+  alwaysShowScrollbars?: boolean;
+  children: React.ReactNode;
+  horizontal?: boolean;
+  scrollViewProps?: React.ComponentProps<typeof RNScrollView>;
+  style?: StyleProp<ViewStyle>;
+};
+
+// TODO: performance improvements (callbacks, refs ...etc)
 const ScrollView = ({
   alwaysShowScrollbars = false,
   children,
@@ -54,37 +60,51 @@ const ScrollView = ({
   const theme = useContext(ThemeContext);
   const scrollViewRef = useRef<RNScrollView>(null);
 
-  const [contentOffset, setContentOffset] = useState(0);
-  const [contentSize, setContentSize] = useState(0);
-  const [scrollViewSize, setScrollViewSize] = useState(0);
+  const [contentOffset, setContentOffset] = useAsyncReference(0);
+  const [contentSize, setContentSize] = useAsyncReference(0);
+  const [scrollViewSize, setScrollViewSize] = useAsyncReference(0);
 
-  const visiblePercentage = 100 * (scrollViewSize / contentSize);
+  const scrollbarAxis = horizontal ? 'x' : 'y';
+  const scrollbarLengthDimension = horizontal ? 'width' : 'height';
+  const scrollbarThicknessDimension = horizontal ? 'height' : 'width';
 
-  const scrollAxis = horizontal ? 'x' : 'y';
-  const scrollDimension = horizontal ? 'width' : 'height';
+  const contentFullyVisible = contentSize.current <= scrollViewSize.current;
 
-  const scrolledPercentage = (contentOffset / contentSize) * 100;
-  const thumbPosition = Math.max(
-    0,
-    Math.min(
-      100 - visiblePercentage,
-      parseFloat(scrolledPercentage.toFixed(3)),
-    ),
-  );
+  const visibleContentRatio = scrollViewSize.current / contentSize.current;
 
-  const moveScroll = (direction: -1 | 1) => {
+  const scrolledContentRatio = contentOffset.current / contentSize.current;
+
+  const thumbPosition =
+    Math.max(
+      0,
+      Math.min(
+        1 - visibleContentRatio,
+        parseFloat(scrolledContentRatio.toFixed(3)),
+      ),
+    ) * 100;
+
+  // CALLBACKS
+
+  const scrollTo = (distance: number, animated = false) => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        [scrollAxis]: contentOffset + 24 * direction,
+        [scrollbarAxis]: distance,
+        animated,
       });
     }
   };
 
-  const contentFullyVisible = contentSize <= scrollViewSize;
+  const handleScrollButtonPress = (direction: Direction) => {
+    scrollTo(contentOffset.current + 24 * direction, true);
+  };
+
+  const handleTrackPress = (direction: Direction) => {
+    scrollTo(contentOffset.current + scrollViewSize.current * direction);
+  };
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     scrollViewProps.onScroll?.(e);
-    setContentOffset(e.nativeEvent.contentOffset[scrollAxis]);
+    setContentOffset(e.nativeEvent.contentOffset[scrollbarAxis]);
   };
 
   const handleContentSizeChange = (width: number, height: number) => {
@@ -94,22 +114,12 @@ const ScrollView = ({
 
   const handleLayout = (e: LayoutChangeEvent) => {
     scrollViewProps.onLayout?.(e);
-    setScrollViewSize(e.nativeEvent.layout[scrollDimension]);
+    setScrollViewSize(e.nativeEvent.layout[scrollbarLengthDimension]);
   };
 
-  // TODO: simplify those things
-  const scrollViewSizeRef = useRef(scrollViewSize);
-  const contentSizeRef = useRef(contentSize);
-  const contentOffsetRef = useRef(contentOffset);
   const dragStartScrollPositionRef = useRef(0);
 
-  React.useEffect(() => {
-    scrollViewSizeRef.current = scrollViewSize;
-    contentSizeRef.current = contentSize;
-    contentOffsetRef.current = contentOffset;
-  }, [scrollViewSize, contentSize, contentOffset]);
-
-  const panResponder = React.useRef(
+  const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onStartShouldSetPanResponderCapture: () => true,
@@ -117,21 +127,16 @@ const ScrollView = ({
       onMoveShouldSetPanResponderCapture: () => true,
 
       onPanResponderGrant: () => {
-        dragStartScrollPositionRef.current = contentOffsetRef.current;
+        dragStartScrollPositionRef.current = contentOffset.current;
       },
       onPanResponderMove: (_evt, gestureState) => {
-        const scrollbarTrackSize =
-          scrollViewSizeRef.current - 2 * scrollbarThickness;
-        const translatedScrollTo =
-          (gestureState[horizontal ? 'dx' : 'dy'] / scrollbarTrackSize) *
-          contentSizeRef.current;
-        if (scrollViewRef.current) {
-          scrollViewRef.current.scrollTo({
-            [scrollAxis]:
-              dragStartScrollPositionRef.current + translatedScrollTo,
-            animated: false,
-          });
-        }
+        const scrollTrackLength =
+          scrollViewSize.current - 2 * scrollbarButtonSize;
+        const scrollDistanceChange =
+          gestureState[horizontal ? 'dx' : 'dy'] / scrollTrackLength;
+
+        const translatedDistance = scrollDistanceChange * contentSize.current;
+        scrollTo(dragStartScrollPositionRef.current + translatedDistance);
       },
       onPanResponderTerminationRequest: () => true,
     }),
@@ -168,7 +173,8 @@ const ScrollView = ({
           style={[
             {
               flexDirection: horizontal ? 'row' : 'column',
-              [scrollDimension]: '100%',
+              [scrollbarLengthDimension]: '100%',
+              [scrollbarThicknessDimension]: scrollbarThickness,
               backgroundColor: theme.material,
             },
           ]}
@@ -186,7 +192,7 @@ const ScrollView = ({
           />
           <Button
             variant='outside'
-            onPress={() => moveScroll(-1)}
+            onPress={() => handleScrollButtonPress(-1)}
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
@@ -202,28 +208,42 @@ const ScrollView = ({
           </Button>
           <View style={[styles.scrollbarTrack]}>
             {!contentFullyVisible && (
-              // SCROLLBAR THUMB
-              <Panel
-                variant='outside'
-                style={[
-                  {
-                    position: 'absolute',
-                    [horizontal ? 'left' : 'top']: `${thumbPosition}%`,
-                    height: horizontal
-                      ? scrollbarThickness
-                      : `${visiblePercentage}%`,
-                    width: horizontal
-                      ? `${visiblePercentage}%`
-                      : scrollbarThickness,
-                  },
-                ]}
-                {...panResponder.panHandlers}
-              />
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: horizontal ? 'row' : 'column',
+                }}
+              >
+                <TouchableWithoutFeedback
+                  onPressIn={() => handleTrackPress(-1)}
+                >
+                  <View
+                    style={{
+                      [scrollbarLengthDimension]: `${thumbPosition}%`,
+                    }}
+                  />
+                </TouchableWithoutFeedback>
+                {/* SCROLLBAR THUMB */}
+                <Panel
+                  variant='outside'
+                  style={{
+                    [scrollbarLengthDimension]: `${visibleContentRatio * 100}%`,
+                  }}
+                  {...panResponder.panHandlers}
+                />
+                <TouchableWithoutFeedback onPressIn={() => handleTrackPress(1)}>
+                  <View
+                    style={{
+                      flex: 1,
+                    }}
+                  />
+                </TouchableWithoutFeedback>
+              </View>
             )}
           </View>
           <Button
             variant='outside'
-            onPress={() => moveScroll(1)}
+            onPress={() => handleScrollButtonPress(1)}
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
@@ -253,8 +273,8 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   scrollbarButton: {
-    height: scrollbarThickness,
-    width: scrollbarThickness,
+    height: scrollbarButtonSize,
+    width: scrollbarButtonSize,
     padding: 0,
   },
   scrollbarTrack: {
