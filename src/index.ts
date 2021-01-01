@@ -1,4 +1,6 @@
 export { default as Button } from './Button';
+export { default as ColorButton } from './ColorButton';
+export { default as ColorPicker } from './ColorPicker';
 export { default as TextInput } from './TextInput';
 export { default as NumberInput } from './NumberInput';
 export { default as Panel } from './Panel';

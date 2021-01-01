@@ -7,6 +7,9 @@ export type $RemoveChildren<T extends React.ComponentType<any>> = $Omit<
   'children'
 >;
 
+// TODO: proper Color type
+export type Color = string;
+
 export type Sizes = 'sm' | 'md' | 'lg';
 
 export type OrientationProp = 'horizontal' | 'vertical';

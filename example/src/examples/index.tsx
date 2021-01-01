@@ -2,6 +2,7 @@ import AppBarExample from './AppBarExample';
 import ButtonExample from './ButtonExample';
 import CardExample from './CardExample';
 import CheckboxExample from './CheckboxExample';
+import ColorPickerExample from './ColorPickerExample';
 import CutoutExample from './CutoutExample';
 import DesktopExample from './DesktopExample';
 import DividerExample from './DividerExample';
@@ -9,6 +10,7 @@ import FieldsetExample from './FieldsetExample';
 import HourglassExample from './HourglassExample';
 import ListExample from './ListExample';
 import MenuExample from './MenuExample';
+import NumberInputExample from './NumberInputExample';
 import PanelExample from './PanelExample';
 import ProgressExample from './ProgressExample';
 import RadioExample from './RadioExample';
@@ -18,9 +20,8 @@ import SelectBoxExample from './SelectBoxExample';
 import SelectExample from './SelectExample';
 import SnackbarExample from './SnackbarExample';
 import TabsExample from './TabsExample';
-import TypographyExample from './TypographyExample';
 import TextInputExample from './TextInputExample';
-import NumberInputExample from './NumberInputExample';
+import TypographyExample from './TypographyExample';
 import WindowExample from './WindowExample';
 
 export default [
@@ -32,6 +33,11 @@ export default [
         name: 'CheckboxExample',
         component: CheckboxExample,
         title: 'Checkbox',
+      },
+      {
+        name: 'ColorPickerExample',
+        component: ColorPickerExample,
+        title: 'ColorPicker',
       },
       {
         name: 'NumberInputExample',
