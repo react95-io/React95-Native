@@ -2,22 +2,30 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ScrollPanel } from 'react95-native';
 
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-
-  Array(6)
-    .fill(null)
-    .forEach(() => {
-      color += letters[Math.floor(Math.random() * 16)];
-    });
-
-  return color;
-};
+const colors = [
+  'white',
+  'black',
+  '#bdbebd',
+  '#7a7d7b',
+  '#ff0102',
+  '#7c0000',
+  '#feff00',
+  '#7c7d04',
+  '#00ff00',
+  '#077d04',
+  '#0afeff',
+  '#067d7b',
+  '#1402ff',
+  '#05007b',
+  '#ff01ff',
+  '#7a037b',
+  '#cdaeb4',
+  '#9b5d6a',
+  '#e5d6de',
+  '#9c9d9d',
+];
 
 const ScrollPanelExample = () => {
-  const colors = new Array(16).fill(null).map(getRandomColor);
-
   return (
     <View style={{ backgroundColor: 'teal', flex: 1 }}>
       <ScrollPanel>
