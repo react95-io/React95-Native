@@ -27,6 +27,7 @@ type Props = {
   onChange?: (value: Color) => void;
   style?: StyleProp<ViewStyle>;
   value?: Color;
+  wide?: boolean;
 };
 
 const ColorPicker = ({
@@ -35,6 +36,7 @@ const ColorPicker = ({
   onChange,
   style,
   value,
+  wide = false,
   ...rest
 }: Props) => {
   const theme = useContext(ThemeContext);
@@ -56,8 +58,10 @@ const ColorPicker = ({
                 key={color}
                 onPress={() => handleColorPress(color)}
                 style={[
-                  styles.color,
+                  styles.colorPreview,
                   {
+                    width: (wide ? 1.4 : 1) * colorPreviewSize,
+                    height: colorPreviewSize,
                     borderWidth: 2,
                     borderColor: isSelected
                       ? theme.materialText
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
   },
-  color: {
+  colorPreview: {
     width: colorPreviewSize,
     height: colorPreviewSize,
   },

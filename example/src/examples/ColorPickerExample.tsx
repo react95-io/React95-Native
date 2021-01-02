@@ -7,6 +7,8 @@ import {
   ColorPicker,
   Divider,
   Button,
+  Window,
+  Text,
 } from 'react95-native';
 
 import Container from '../util/Container';
@@ -42,6 +44,24 @@ const ColorPickerExample = () => {
     setColor(value);
     setColorMenuOpen(false);
   };
+
+  const [secondColorMenuOpen, setSecondColorMenuOpen] = React.useState(true);
+  const [secondColor, setSecondColor] = React.useState(colors[6]);
+  const [tempSecondColor, setTempSecondColor] = React.useState(secondColor);
+
+  const handleTempSecondColorChange = (value: string) => {
+    setTempSecondColor(value);
+  };
+
+  const handleSecondColorApply = () => {
+    setSecondColor(tempSecondColor);
+    setSecondColorMenuOpen(false);
+  };
+  const handleSecondColorCancel = () => {
+    setTempSecondColor(secondColor);
+    setSecondColorMenuOpen(false);
+  };
+
   return (
     <Container>
       <Container.Section title='Default'>
@@ -61,12 +81,14 @@ const ColorPickerExample = () => {
               />
             }
           >
-            <ColorPicker
-              onChange={handleColorChange}
-              value={color}
-              colors={colors}
-              colorsPerRow={5}
-            />
+            <View style={{ padding: 4 }}>
+              <ColorPicker
+                onChange={handleColorChange}
+                value={color}
+                colors={colors}
+                colorsPerRow={5}
+              />
+            </View>
             <Divider style={{ marginVertical: 4 }} />
             <Button
               disabled
@@ -77,9 +99,66 @@ const ColorPickerExample = () => {
               Other...
             </Button>
           </Menu>
-          <ColorButton color='red' disabled />
+          <ColorButton
+            onPress={() => setSecondColorMenuOpen(true)}
+            color={secondColor}
+          />
         </View>
       </Container.Section>
+
+      {secondColorMenuOpen && (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Window title='Colors' onClose={handleSecondColorCancel}>
+            <View style={{ padding: 8 }}>
+              <Text style={{ marginVertical: 8, fontSize: 16 }}>
+                Basic colors:
+              </Text>
+              <ColorPicker
+                onChange={handleTempSecondColorChange}
+                value={tempSecondColor}
+                wide
+                colors={colors}
+                colorsPerRow={5}
+              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'flex-end',
+                  marginTop: 8,
+                }}
+              >
+                <Button
+                  style={{
+                    marginRight: 2,
+                    flex: 1,
+                  }}
+                  onPress={handleSecondColorCancel}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  style={{
+                    flex: 1,
+                  }}
+                  onPress={handleSecondColorApply}
+                >
+                  Ok
+                </Button>
+              </View>
+            </View>
+          </Window>
+        </View>
+      )}
     </Container>
   );
 };
