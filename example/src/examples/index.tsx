@@ -18,6 +18,7 @@ import ScrollPanelExample from './ScrollPanelExample';
 import ScrollViewExample from './ScrollViewExample';
 import SelectBoxExample from './SelectBoxExample';
 import SelectExample from './SelectExample';
+import SliderExample from './SliderExample';
 import SnackbarExample from './SnackbarExample';
 import TabsExample from './TabsExample';
 import TextInputExample from './TextInputExample';
@@ -51,6 +52,7 @@ export default [
         component: SelectBoxExample,
         title: 'SelectBox',
       },
+      { name: 'SliderExample', component: SliderExample, title: 'Slider' },
       {
         name: 'TextInputExample',
         component: TextInputExample,
