@@ -1,16 +1,9 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import type { $RemoveChildren, Color } from '../types';
 
-import { Button, Divider } from '..';
+import { Button, Divider, ArrowIcon } from '..';
 import { ThemeContext } from '../common/theming/Theme';
-
-const dropdownSymbol = {
-  default:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAALElEQVQoU2NkIAIwEqGGgWRF/7GYCjYE3SRkhXA5bNaBFKKIk+wmnB4lyiQAAsgDCqkPxTcAAAAASUVORK5CYII=',
-  disabled:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAANklEQVQoU2NkIAIwEqGGgTRFLa0t/9FNramuARuCYhKyQpgCDEUgAZBCZAVYFWHzCGkOxxcUANHnDAplQ9G1AAAAAElFTkSuQmCC',
-};
 
 type Props = $RemoveChildren<typeof Button> & {
   color?: Color;
@@ -46,11 +39,11 @@ const ColorButton = ({ disabled, color, ...rest }: Props) => {
           ]}
         />
         <Divider orientation='vertical' size={previewHeight} />
-        <Image
+        <ArrowIcon
+          direction='bottom'
+          disabled={disabled}
+          segments={3}
           style={styles.dropdownIcon}
-          source={{
-            uri: dropdownSymbol[disabled ? 'disabled' : 'default'],
-          }}
         />
       </View>
     </Button>
@@ -66,11 +59,9 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   dropdownIcon: {
-    width: 20,
-    height: 20,
     alignSelf: 'center',
-    marginRight: -4,
-    marginLeft: 1,
+    marginRight: 2,
+    marginLeft: 4,
   },
 });
 

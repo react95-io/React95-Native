@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   TouchableHighlight,
-  ImageBackground,
   StyleProp,
   ViewStyle,
 } from 'react-native';
@@ -14,14 +13,7 @@ import { blockSizes } from '../common/styles';
 import { Border } from '../common/styleElements';
 
 import getSelectOptions, { Option } from './SelectBase';
-import { ScrollView, Text } from '..';
-
-const dropdownSymbol = {
-  default:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAALElEQVQoU2NkIAIwEqGGgWRF/7GYCjYE3SRkhXA5bNaBFKKIk+wmnB4lyiQAAsgDCqkPxTcAAAAASUVORK5CYII=',
-  disabled:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAANklEQVQoU2NkIAIwEqGGgTRFLa0t/9FNramuARuCYhKyQpgCDEUgAZBCZAVYFWHzCGkOxxcUANHnDAplQ9G1AAAAAElFTkSuQmCC',
-};
+import { ScrollView, Text, ArrowIcon } from '..';
 
 type Props = {
   options: Array<Option>;
@@ -126,22 +118,19 @@ const Select = ({
               </View>
             </View>
             <View
-              style={[styles.fakeButton, { backgroundColor: theme.material }]}
+              style={[
+                styles.fakeButton,
+                {
+                  backgroundColor: theme.material,
+                },
+              ]}
             >
-              <ImageBackground
-                style={[
-                  {
-                    marginTop: isPressed ? 1 : 0,
-                    width: '100%',
-                    height: '100%',
-                  },
-                ]}
-                imageStyle={{
-                  resizeMode: 'contain',
-                  flex: 1,
-                }}
-                source={{
-                  uri: dropdownSymbol[disabled ? 'disabled' : 'default'],
+              <ArrowIcon
+                segments={4}
+                direction='bottom'
+                disabled={disabled}
+                style={{
+                  paddingTop: isPressed ? 2 : 0,
                 }}
               />
               <Border
@@ -210,6 +199,8 @@ const styles = StyleSheet.create({
     height: '100%',
     width: 30,
     padding: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   options: {
     position: 'absolute',

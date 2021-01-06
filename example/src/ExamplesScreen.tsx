@@ -82,11 +82,11 @@ const ExamplesScreen = () => {
             </List.Accordion>
           </ScrollView>
         </Cutout>
-        <View style={[styles.info]}>
-          <Panel variant='well' style={[styles.infoItem, { flexGrow: 1 }]}>
+        <View style={[styles.statusBar]}>
+          <Panel variant='well' style={[styles.statusBarItem, { flexGrow: 1 }]}>
             <Text>Current theme: {currentTheme.name}</Text>
           </Panel>
-          <Panel variant='well' style={[styles.infoItem]}>
+          <Panel variant='well' style={[styles.statusBarItem]}>
             <Text>Total themes: {themes.length}</Text>
           </Panel>
         </View>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 16,
   },
-  info: {
+  statusBar: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
@@ -131,10 +131,11 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginBottom: 2,
   },
-  infoItem: {
+  statusBarItem: {
     marginHorizontal: 2,
     paddingHorizontal: 4,
     height: 30,
+    justifyContent: 'center',
   },
   header: {
     justifyContent: 'center',
