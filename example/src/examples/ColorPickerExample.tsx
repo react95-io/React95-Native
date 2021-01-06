@@ -45,7 +45,7 @@ const ColorPickerExample = () => {
     setColorMenuOpen(false);
   };
 
-  const [secondColorMenuOpen, setSecondColorMenuOpen] = React.useState(true);
+  const [secondColorMenuOpen, setSecondColorMenuOpen] = React.useState(false);
   const [secondColor, setSecondColor] = React.useState(colors[6]);
   const [tempSecondColor, setTempSecondColor] = React.useState(secondColor);
 

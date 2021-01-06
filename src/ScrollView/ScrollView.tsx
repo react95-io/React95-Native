@@ -6,7 +6,6 @@ import {
   ViewStyle,
   StyleProp,
   ImageBackground,
-  Image,
   PanResponder,
   TouchableWithoutFeedback,
 } from 'react-native';
@@ -18,27 +17,12 @@ import type {
 import useAsyncReference from '../common/hooks/useAsyncReference';
 import { ThemeContext } from '../common/theming/Theme';
 
-import { Panel, Button } from '..';
+import { Panel, Button, ArrowIcon } from '..';
 
 type Direction = -1 | 1;
 
 const scrollbarThickness = 30;
 const scrollbarButtonSize = scrollbarThickness;
-
-const Icon = (
-  <Image
-    style={[
-      {
-        width: 18,
-        height: 18,
-      },
-    ]}
-    source={{
-      uri:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAALElEQVQoU2NkIAIwEqGGgWRF/7GYCjYE3SRkhXA5bNaBFKKIk+wmnB4lyiQAAsgDCqkPxTcAAAAASUVORK5CYII=',
-    }}
-  />
-);
 
 type ScrollViewProps = React.ComponentProps<typeof View> & {
   alwaysShowScrollbars?: boolean;
@@ -196,15 +180,11 @@ const ScrollView = ({
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                transform: [{ rotate: horizontal ? '90deg' : '180deg' }],
-              }}
-            >
-              {Icon}
-            </View>
+            <ArrowIcon
+              direction={horizontal ? 'left' : 'top'}
+              disabled={contentFullyVisible}
+              segments={4}
+            />
           </Button>
           <View style={[styles.scrollbarTrack]}>
             {!contentFullyVisible && (
@@ -247,15 +227,11 @@ const ScrollView = ({
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                transform: [{ rotate: horizontal ? '-90deg' : '0deg' }],
-              }}
-            >
-              {Icon}
-            </View>
+            <ArrowIcon
+              direction={horizontal ? 'right' : 'bottom'}
+              disabled={contentFullyVisible}
+              segments={4}
+            />
           </Button>
         </View>
       )}
