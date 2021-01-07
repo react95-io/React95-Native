@@ -1,12 +1,14 @@
 import React, { createContext } from 'react';
 
 import type { Theme } from '../../types';
-import originalTheme from './themes/original';
+import themes from './themes';
 
 import {
   border as borderStylesBuilder,
   text as textStylesBuilder,
 } from '../styles';
+
+const defaultTheme = themes.original;
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -14,9 +16,9 @@ type ThemeProviderProps = {
 };
 
 const ThemeContext = createContext({
-  ...originalTheme,
-  border: borderStylesBuilder(originalTheme),
-  text: textStylesBuilder(originalTheme),
+  ...defaultTheme,
+  border: borderStylesBuilder(defaultTheme),
+  text: textStylesBuilder(defaultTheme),
 });
 
 const ThemeProvider = ({ children, theme }: ThemeProviderProps) => {

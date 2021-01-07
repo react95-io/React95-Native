@@ -26,7 +26,8 @@ export { Select, SelectBox } from './Select';
 export { Text, Title, Anchor } from './Typography';
 
 export * from './Icons';
-export * from './common/theming';
+export { ThemeProvider } from './common/theming/Theme';
+export { default as themes } from './common/theming/themes';
 
 export { Theme } from './types';
 export { fontNames } from './common/styles';
