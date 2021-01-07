@@ -53,8 +53,8 @@ const ArrowIcon = ({
                 ? theme.materialTextDisabledShadow
                 : 'transparent',
               shadowOffset: {
-                width: 1,
-                height: 1,
+                width: pixelSize,
+                height: pixelSize,
               },
               shadowOpacity: 1,
               shadowRadius: 0,

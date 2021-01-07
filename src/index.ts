@@ -1,5 +1,4 @@
 export { default as AppBar } from './AppBar';
-export { default as ArrowIcon } from './ArrowIcon';
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as Checkbox } from './Checkbox';
@@ -26,6 +25,7 @@ export { default as Window } from './Window';
 export { Select, SelectBox } from './Select';
 export { Text, Title, Anchor } from './Typography';
 
+export * from './Icons';
 export * from './common/theming';
 
 export { Theme } from './types';

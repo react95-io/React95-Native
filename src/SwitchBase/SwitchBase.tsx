@@ -11,30 +11,10 @@ import {
 import { Border } from '../common/styleElements';
 import { ThemeContext } from '../common/theming/Theme';
 
-import { Text } from '..';
+import { Text, CheckmarkIcon } from '..';
 
-const switchSize = 20;
-
-const symbols = {
-  checkbox: {
-    default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAQ0lEQVQoU42Q0Q4AIARFj///6BqNSat4sXFcF6ER8mEGIC9IAY2AbCKpOnBAVgA2wIuac8MFQ/m6Ih9UjVdvy3njTUwR1AkKqm4yNwAAAABJRU5ErkJggg==',
-    disabled:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAR0lEQVQoU2NkIAIw4lPT0tryv6a6hhGnIpACkAFwRTAdMFNhCjAUwQTQFYDEwdYhS8BMA1kDY8MZ2EzAUAQzEdkErIpwBQcA7RckCvjAHfcAAAAASUVORK5CYII=',
-  },
-  radio: {
-    default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAKElEQVQoU2NkIAAYSVXwH6oBrhHZBJgkzFCwHEkKQBrwWoHVvQR9AQAfmgQJp08TYAAAAABJRU5ErkJggg==',
-    disabled:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAALUlEQVQoU2NkIAAYSVLQ0tryH6ShproGrhHOgEnCTIQpIl4BSCdeK3A5lqAvAEBkEAkDjL/SAAAAAElFTkSuQmCC',
-  },
-  indeterminate: {
-    default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NkYGD4z4AKGJG5IA4dFKA5AdVKFAdBVaK4iXIFAEiuCAWq9MdHAAAAAElFTkSuQmCC',
-    disabled:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NsaW35z4AEaqprGJH5jHRQgGwfiI1uJYqDaKMAAHKtGjlbjgHwAAAAAElFTkSuQmCC',
-  },
-};
+const checkboxSize = 20;
+const radioSize = 20;
 
 export type SwitchStatus = 'checked' | 'unchecked' | 'indeterminate';
 
@@ -67,38 +47,28 @@ export const SwitchBase = ({
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
   const isRadio = component === 'radio';
+  const switchSize = component === 'checkbox' ? checkboxSize : radioSize;
   const boxSize = variant === 'flat' ? switchSize - 4 : switchSize;
   const borderRadius = isRadio ? boxSize / 2 : 0;
 
   const renderCheckmark = () => {
-    const symbolOffset = variant === 'flat' ? 2 : 4;
     if (status === 'checked') {
-      const symbol = symbols[component][disabled ? 'disabled' : 'default'];
-
-      return (
-        <ImageBackground
-          // border to compensate for Border
-          style={[
-            {
-              width: boxSize,
-              height: boxSize,
-              borderWidth: symbolOffset,
-              borderColor: 'transparent',
-            },
-          ]}
-          imageStyle={{
-            resizeMode: 'contain',
-            flex: 1,
-          }}
-          source={{
-            uri: symbol,
+      return component === 'checkbox' ? (
+        <CheckmarkIcon disabled={disabled} />
+      ) : (
+        <View
+          style={{
+            borderRadius: 6,
+            height: 6,
+            width: 6,
+            backgroundColor: disabled
+              ? theme.checkmarkDisabled
+              : theme.checkmark,
           }}
         />
       );
     }
     if (status === 'indeterminate') {
-      const symbol = symbols[status][disabled ? 'disabled' : 'default'];
-
       return (
         <ImageBackground
           style={[{ width: '100%', height: '100%' }]}
@@ -106,7 +76,12 @@ export const SwitchBase = ({
             resizeMode: 'repeat',
           }}
           source={{
-            uri: symbol,
+            uri: {
+              default:
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NkYGD4z4AKGJG5IA4dFKA5AdVKFAdBVaK4iXIFAEiuCAWq9MdHAAAAAElFTkSuQmCC',
+              disabled:
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NsaW35z4AEaqprGJH5jHRQgGwfiI1uJYqDaKMAAHKtGjlbjgHwAAAAAElFTkSuQmCC',
+            }[disabled ? 'disabled' : 'default'],
           }}
         />
       );
@@ -189,6 +164,8 @@ const styles = StyleSheet.create({
   },
   switchSymbol: {
     marginRight: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   labelWrapper: {
     paddingHorizontal: 4,
