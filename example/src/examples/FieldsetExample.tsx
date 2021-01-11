@@ -1,10 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Panel, Fieldset, Text, Cutout } from 'react95-native';
+import { Fieldset, Text, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const FieldsetExample = () => {
   return (
-    <Panel style={{ flex: 1, padding: 20 }}>
+    <ExamplePanel>
       <Fieldset label='Name:'>
         <Text>Some text here</Text>
       </Fieldset>
@@ -28,7 +30,7 @@ const FieldsetExample = () => {
           </Fieldset>
         </View>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

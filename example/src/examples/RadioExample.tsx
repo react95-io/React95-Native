@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Radio, Panel, Fieldset, Cutout } from 'react95-native';
+import { View } from 'react-native';
+import { Radio, Fieldset, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const RadioExample = () => {
   const [value, setValue] = useState('Apple');
 
   return (
-    <Panel style={styles.container}>
+    <ExamplePanel variant='clear'>
       <Fieldset label='Default'>
         <Radio
           status={value === 'Apple' ? 'checked' : 'unchecked'}
@@ -79,15 +81,8 @@ const RadioExample = () => {
           </Fieldset>
         </View>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default RadioExample;

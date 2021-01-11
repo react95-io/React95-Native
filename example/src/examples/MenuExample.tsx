@@ -3,22 +3,22 @@ import React from 'react';
 import { Menu, Divider, Title, Button } from 'react95-native';
 
 import { View } from 'react-native';
-import Container from '../util/Container';
+import ExamplePanel from '../util/ExamplePanel';
 
 const TextExample = () => {
   const [verticalMenuOpen, setVerticalMenuOpen] = React.useState(true);
   const [horizontalMenuOpen, setHorizontalMenuOpen] = React.useState(true);
   return (
-    <Container>
-      <Container.Section title='Basic usage'>
-        <View
-          style={{
-            paddingTop: 100,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '100%',
-          }}
-        >
+    <ExamplePanel>
+      <View
+        style={{
+          paddingTop: 100,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          flex: 1,
+        }}
+      >
+        <View>
           <Menu
             open={verticalMenuOpen}
             anchor={
@@ -57,6 +57,8 @@ const TextExample = () => {
               title='Disabled Item'
             />
           </Menu>
+        </View>
+        <View>
           <Menu
             orientation='horizontal'
             open={horizontalMenuOpen}
@@ -82,8 +84,8 @@ const TextExample = () => {
             />
           </Menu>
         </View>
-      </Container.Section>
-    </Container>
+      </View>
+    </ExamplePanel>
   );
 };
 

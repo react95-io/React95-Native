@@ -12,6 +12,7 @@ import {
 } from 'react95-native';
 
 import Container from '../util/Container';
+import ExamplePanel from '../util/ExamplePanel';
 
 const colors = [
   'white',
@@ -63,7 +64,7 @@ const ColorPickerExample = () => {
   };
 
   return (
-    <Container>
+    <ExamplePanel variant='clear'>
       <Container.Section title='Default'>
         <View
           style={{
@@ -159,7 +160,7 @@ const ColorPickerExample = () => {
           </Window>
         </View>
       )}
-    </Container>
+    </ExamplePanel>
   );
 };
 

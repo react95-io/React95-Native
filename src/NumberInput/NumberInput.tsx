@@ -20,8 +20,8 @@ type Props = {
   variant?: 'default' | 'flat';
 };
 
-// TODO: accessibility etc.
 // TODO: allow to center input text horizontally
+// TODO: how are uncontrolled inputs handled in RN?
 const NumberInput = ({
   defaultValue,
   disabled,
@@ -62,7 +62,17 @@ const NumberInput = ({
   const isFlat = variant === 'flat';
 
   return (
-    <View style={[styles.wrapper, style]}>
+    <View
+      style={[styles.wrapper, style]}
+      accessibilityState={{ disabled }}
+      // TODO: are these accessibility traits correct?
+      accessibilityRole='adjustable'
+      accessibilityValue={{
+        min: min === null ? undefined : min,
+        max: max === null ? undefined : max,
+        now: valueDerived,
+      }}
+    >
       <Button
         disabled={isDecrementDisabled}
         onPress={() => handleClick(-step)}

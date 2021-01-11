@@ -1,14 +1,16 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Checkbox, Panel, Fieldset, Cutout } from 'react95-native';
+import { View } from 'react-native';
+import { Checkbox, Fieldset, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const CheckboxExample = () => {
   const [isChecked, setIsChecked] = useState(true);
   const [isIndeterminate, setIsIndeterminate] = useState(true);
 
   return (
-    <Panel variant='clear' style={styles.container}>
+    <ExamplePanel>
       <Fieldset label='Default'>
         <Checkbox
           status={isChecked ? 'checked' : 'unchecked'}
@@ -69,15 +71,8 @@ const CheckboxExample = () => {
           </Fieldset>
         </View>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default CheckboxExample;

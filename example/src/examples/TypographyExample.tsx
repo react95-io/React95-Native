@@ -1,69 +1,52 @@
 import React from 'react';
-import { Panel, Text, Title, Anchor } from 'react95-native';
+import { Text, Title, Anchor, Fieldset } from 'react95-native';
 
-import Container from '../util/Container';
+import { StyleSheet } from 'react-native';
+import ExamplePanel from '../util/ExamplePanel';
 
 const TypographyExample = () => {
   return (
-    <Container>
-      <Container.Section title='Text'>
-        <Panel>
-          <Text>Simple text</Text>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Bold'>
-        <Panel>
-          <Text bold>Bold text</Text>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Disabled'>
-        <Panel>
-          <Text disabled>Disabled</Text>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Secondary'>
-        <Panel>
-          <Text secondary>Disabled</Text>
-        </Panel>
-      </Container.Section>
+    <ExamplePanel>
+      <Fieldset label='Text component:'>
+        <Text style={styles.example}>Default text</Text>
+        <Text bold style={styles.example}>
+          Bold text
+        </Text>
+        <Text disabled style={styles.example}>
+          Disabled text
+        </Text>
+        <Text secondary style={styles.example}>
+          Secondary text
+        </Text>
+      </Fieldset>
 
-      <Container.Section title='Default'>
-        <Panel style={{ width: '100%', padding: 20 }}>
-          <Title>Title</Title>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Bold'>
-        <Panel style={{ width: '100%', padding: 20 }}>
-          <Title bold align='left'>
-            Bold title
-          </Title>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Disabled'>
-        <Panel style={{ width: '100%', padding: 20 }}>
-          <Title disabled align='right'>
-            Disabled title
-          </Title>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Secondary'>
-        <Panel style={{ width: '100%', padding: 20 }}>
-          <Title secondary>Secondary title</Title>
-        </Panel>
-      </Container.Section>
+      <Fieldset label='Title component:'>
+        <Title style={styles.example}>Default title</Title>
+        <Title bold align='left' style={styles.example}>
+          Bold title
+        </Title>
+        <Title disabled align='right' style={styles.example}>
+          Disabled title
+        </Title>
+        <Title secondary style={styles.example}>
+          Secondary title
+        </Title>
+      </Fieldset>
 
-      <Container.Section title='Anchor'>
-        <Panel>
-          <Anchor>React95 website</Anchor>
-        </Panel>
-      </Container.Section>
-      <Container.Section title='Anchor underlined'>
-        <Panel>
-          <Anchor underline>React95 website</Anchor>
-        </Panel>
-      </Container.Section>
-    </Container>
+      <Fieldset label='Anchor component:'>
+        <Anchor style={styles.example}>Default anchor</Anchor>
+        <Anchor underline style={styles.example}>
+          Underlined anchor
+        </Anchor>
+      </Fieldset>
+    </ExamplePanel>
   );
 };
 
 export default TypographyExample;
+
+const styles = StyleSheet.create({
+  example: {
+    marginVertical: 8,
+  },
+});

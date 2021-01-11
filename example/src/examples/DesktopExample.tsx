@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Desktop, Panel, Fieldset } from 'react95-native';
+import { Desktop, Fieldset } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const DesktopExample = () => {
   return (
-    <Panel style={styles.container}>
+    <ExamplePanel>
       <Fieldset label='Default:' style={[{ paddingVertical: 20 }]}>
         <Desktop screenStyle={[{ backgroundColor: 'teal' }]} />
       </Fieldset>
@@ -13,15 +15,11 @@ const DesktopExample = () => {
           <View style={[styles.child]} />
         </Desktop>
       </Fieldset>
-    </Panel>
+    </ExamplePanel>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
   child: {
     backgroundColor: 'pink',
     flex: 1,

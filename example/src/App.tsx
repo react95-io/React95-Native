@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import React from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Hourglass, fontNames } from 'react95-native';
@@ -30,11 +30,13 @@ const App = () => {
   }
 
   return (
-    <LocalThemeProvider>
-      <NavigationContainer>
-        <MainNavigation />
-      </NavigationContainer>
-    </LocalThemeProvider>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+      <LocalThemeProvider>
+        <NavigationContainer>
+          <MainNavigation />
+        </NavigationContainer>
+      </LocalThemeProvider>
+    </SafeAreaView>
   );
 };
 

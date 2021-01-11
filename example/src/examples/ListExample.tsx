@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { View } from 'react-native';
-import { Panel, List, Hourglass, Cutout } from 'react95-native';
+import { List, Hourglass, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const items = [
   'Control Panel',
@@ -19,7 +21,7 @@ const HourglassExample = () => {
   };
 
   return (
-    <Panel style={{ flex: 1, padding: 8, marginBottom: 44 }}>
+    <ExamplePanel style={{ padding: 8, paddingTop: 10 }}>
       <Cutout style={[{ flex: 1, backgroundColor: 'white' }]}>
         <View style={[{ padding: 20 }]}>
           <List.Accordion
@@ -59,7 +61,7 @@ const HourglassExample = () => {
           </List.Accordion>
         </View>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
   },
   label: {
     color: themes.original.borderDarkest,
-    marginBottom: 4,
+    marginBottom: 8,
   },
   section: {
-    marginBottom: 12,
+    marginBottom: 16,
     display: 'flex',
     flexDirection: 'row',
   },

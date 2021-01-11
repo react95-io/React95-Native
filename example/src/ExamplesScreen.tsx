@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, SafeAreaView, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   Panel,
@@ -22,7 +22,7 @@ const ExamplesScreen = () => {
   const { theme: currentTheme, setTheme } = useContext(LocalThemeContext);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <AppBar style={styles.header}>
         <View style={styles.logo}>
           <Image
@@ -91,14 +91,13 @@ const ExamplesScreen = () => {
           </Panel>
         </View>
       </Panel>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
   },
   listItem: {
     height: 40,

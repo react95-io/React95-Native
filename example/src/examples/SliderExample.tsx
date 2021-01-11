@@ -1,5 +1,7 @@
 import React from 'react';
-import { Panel, Slider, Fieldset } from 'react95-native';
+import { Slider, Fieldset } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const restrictedValues = [0, 20, 80, 100].map(n => ({
   label: `${n.toString()}°C`,
@@ -19,7 +21,7 @@ const DividerExample = () => {
   };
 
   return (
-    <Panel style={{ flex: 1, padding: 16 }}>
+    <ExamplePanel>
       <Fieldset label='Default:' style={{ padding: 16 }}>
         <Slider
           onChange={handleChange}
@@ -57,7 +59,7 @@ const DividerExample = () => {
           step={null}
         />
       </Fieldset>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

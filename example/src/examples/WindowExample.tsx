@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Window, Text } from 'react95-native';
 
 const onClose = () => console.warn('onClose');
@@ -9,15 +9,17 @@ const onMaximize = () => console.warn('onMaximize');
 
 const AppBarExample = () => {
   return (
-    <View style={{ backgroundColor: 'teal', flex: 1, padding: 2 }}>
+    <View style={{ backgroundColor: 'teal', flex: 1, padding: 16 }}>
       <Window
         title='Window.exe'
         onClose={onClose}
         onMinimize={onMinimize}
         onMaximize={onMaximize}
-        style={[{ width: '100%', height: 120 }]}
+        style={styles.window}
       >
-        <Text disabled>This is a Window</Text>
+        <View style={styles.windowContent}>
+          <Text>This is a Window</Text>
+        </View>
       </Window>
 
       <Window
@@ -26,12 +28,31 @@ const AppBarExample = () => {
         onClose={onClose}
         onMinimize={onMinimize}
         onMaximize={onMaximize}
-        style={[{ width: 200, marginTop: 30 }]}
+        style={[
+          styles.window,
+          {
+            marginTop: 16,
+            // TODO: truncate title text with ellipsis on small widths
+            // width: 200
+          },
+        ]}
       >
-        <Text disabled>This window is inactive</Text>
+        <View style={styles.windowContent}>
+          <Text>This window is inactive</Text>
+        </View>
       </Window>
     </View>
   );
 };
 
 export default AppBarExample;
+
+const styles = StyleSheet.create({
+  window: {
+    width: '100%',
+    height: 120,
+  },
+  windowContent: {
+    padding: 8,
+  },
+});

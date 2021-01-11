@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text, Panel, Cutout, ScrollView } from 'react95-native';
+import { View } from 'react-native';
+import { Text, Cutout, ScrollView } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const lorem = `Lorem Ipsum is simply dummy text of the printing and typesetting
 industry. Lorem Ipsum has been the industry standard dummy text
@@ -15,7 +17,7 @@ Lorem Ipsum.`;
 
 const NumberInputExample = () => {
   return (
-    <Panel style={styles.container}>
+    <ExamplePanel>
       <Cutout style={{ height: 200 }}>
         <ScrollView alwaysShowScrollbars>
           <Text>{lorem}</Text>
@@ -28,18 +30,8 @@ const NumberInputExample = () => {
           </View>
         </ScrollView>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  fieldset: {
-    padding: 20,
-  },
-});
 
 export default NumberInputExample;

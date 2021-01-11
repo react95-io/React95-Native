@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Panel, SelectBox, Fieldset } from 'react95-native';
+import { SelectBox, Fieldset } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const options = ['apple', 'orange', 'banana', 'pear', 'watermelon'].map(
   option => ({
@@ -11,7 +13,7 @@ const options = ['apple', 'orange', 'banana', 'pear', 'watermelon'].map(
 const SelectBoxExample = () => {
   const [value, setValue] = useState(options[0].value);
   return (
-    <Panel style={{ flex: 1, padding: 20 }}>
+    <ExamplePanel variant='clear'>
       <Fieldset label='Default:' style={[{ padding: 20 }]}>
         <SelectBox
           options={options}
@@ -27,7 +29,7 @@ const SelectBoxExample = () => {
           style={[{ height: 120 }]}
         />
       </Fieldset>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

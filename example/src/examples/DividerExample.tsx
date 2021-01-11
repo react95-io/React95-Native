@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Panel, Divider } from 'react95-native';
+import { View } from 'react-native';
+import { Divider, Text } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const DividerExample = () => {
   return (
-    <Panel style={{ flex: 1, padding: 20 }}>
-      <Text>Default</Text>
+    <ExamplePanel>
+      <Text>Default:</Text>
       <View style={{ paddingVertical: 20 }}>
         <Divider size={130} />
       </View>
@@ -13,7 +15,7 @@ const DividerExample = () => {
         <Divider orientation='vertical' size={130} />
       </View>
 
-      <Text>Raised</Text>
+      <Text>Raised:</Text>
       <View style={{ paddingVertical: 20 }}>
         <Divider variant='raised' size='75%' />
       </View>
@@ -23,7 +25,7 @@ const DividerExample = () => {
         <Divider variant='raised' orientation='vertical' size={130} />
         <Divider variant='raised' orientation='vertical' size={130} />
       </View>
-    </Panel>
+    </ExamplePanel>
   );
 };
 
