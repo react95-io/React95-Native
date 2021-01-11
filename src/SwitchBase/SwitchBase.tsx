@@ -47,15 +47,15 @@ export const SwitchBase = ({
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
   const isRadio = component === 'radio';
-  const switchSize = component === 'checkbox' ? checkboxSize : radioSize;
+  const switchSize = !isRadio ? checkboxSize : radioSize;
   const boxSize = variant === 'flat' ? switchSize - 4 : switchSize;
   const borderRadius = isRadio ? boxSize / 2 : 0;
 
+  const checked = status === 'checked';
+
   const renderCheckmark = () => {
-    if (status === 'checked') {
-      return component === 'checkbox' ? (
-        <CheckmarkIcon disabled={disabled} />
-      ) : (
+    if (checked) {
+      return isRadio ? (
         <View
           style={{
             borderRadius: 6,
@@ -66,6 +66,8 @@ export const SwitchBase = ({
               : theme.checkmark,
           }}
         />
+      ) : (
+        <CheckmarkIcon disabled={disabled} />
       );
     }
     if (status === 'indeterminate') {
@@ -97,6 +99,13 @@ export const SwitchBase = ({
     return disabled ? theme.material : theme.canvas;
   };
 
+  const getAccessibilityComponentType = () => {
+    if (isRadio) {
+      return checked ? 'radiobutton_checked' : 'radiobutton_unchecked';
+    }
+    return 'button';
+  };
+
   return (
     <TouchableHighlight
       style={[styles.wrapper]}
@@ -107,13 +116,14 @@ export const SwitchBase = ({
       onShowUnderlay={() => setIsPressed(true)}
       // TODO: check if those accessibility properties are correct
       accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
-      accessibilityComponentType='button'
+      accessibilityComponentType={getAccessibilityComponentType()}
       accessibilityRole={component}
-      accessibilityState={{ disabled, checked: status === 'checked' }}
+      accessibilityState={{ disabled, checked }}
+      accessibilityLiveRegion='polite'
       underlayColor='none'
       {...rest}
     >
-      <View style={[styles.content, style]} pointerEvents='none'>
+      <View style={[styles.content, style]}>
         <View
           style={[
             styles.switchSymbol,

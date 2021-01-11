@@ -36,6 +36,7 @@ const Cutout = ({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'relative',
+    // TODO: add another element to compensate for borders?
     // to compensate for borders
     padding: 4,
   },

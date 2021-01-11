@@ -49,6 +49,13 @@ const Progress = ({
         },
         style,
       ]}
+      accessible
+      accessibilityRole='progressbar'
+      accessibilityValue={{
+        min: 0,
+        max: 100,
+        now: percent,
+      }}
     >
       <View style={[styles.progressWrapper]}>
         {variant === 'tile' ? (

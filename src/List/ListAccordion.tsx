@@ -27,6 +27,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   titleStyle?: StyleProp<TextStyle>;
 };
 
+// TODO: add accessibilityState=expanded ?
 const ListAccordion = ({
   children,
   defaultExpanded,

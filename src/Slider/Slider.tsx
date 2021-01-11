@@ -123,7 +123,17 @@ const Slider = ({
   ).current;
 
   return (
-    <View style={[styles.wrapper, style]} {...rest}>
+    <View
+      style={[styles.wrapper, style]}
+      {...rest}
+      accessibilityRole='adjustable'
+      accessibilityState={{ disabled }}
+      accessibilityValue={{
+        min,
+        max,
+        now: value,
+      }}
+    >
       <View
         style={[
           styles.inner,

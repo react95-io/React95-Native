@@ -154,6 +154,7 @@ const ScrollView = ({
       </View>
       {(!contentFullyVisible || alwaysShowScrollbars) && (
         <View
+          accessibilityRole='scrollbar'
           style={[
             {
               flexDirection: horizontal ? 'row' : 'column',

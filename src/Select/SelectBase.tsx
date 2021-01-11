@@ -26,7 +26,6 @@ const SelectItem = ({ option, onPress, isSelected }: SelectItemProps) => {
       onPress={() => onPress(option)}
       onHideUnderlay={() => setIsPressed(false)}
       onShowUnderlay={() => setIsPressed(true)}
-      accessibilityRole='menuitem'
       underlayColor='none'
       // delay to prevent item highlighting on scroll
       delayPressIn={70}
