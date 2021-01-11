@@ -37,11 +37,10 @@ const DividerExample = () => {
           value={withTicksValue}
           marks
           step={10}
-          style={{ width: '80%' }}
         />
       </Fieldset>
 
-      <Fieldset label='Restricted values:' style={{ padding: 16 }}>
+      <Fieldset label='Restricted values:' style={{ padding: 24 }}>
         <Slider
           onChange={newValue => setRestrictedValue(newValue)}
           onChangeCommitted={v => console.warn('onChangeCommited', v)}
@@ -51,7 +50,7 @@ const DividerExample = () => {
         />
       </Fieldset>
 
-      <Fieldset label='Disabled:' style={{ padding: 16 }}>
+      <Fieldset label='Disabled:' style={{ padding: 24 }}>
         <Slider
           disabled
           // value={restrictedValue}

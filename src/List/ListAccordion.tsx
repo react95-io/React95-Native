@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
   subtitle: {
     // TODO: make a Text component with standarized font sizes where normal is 16 / small 13 ...etc
     fontSize: 13,
+    marginTop: 4,
   },
   expandIcon: {
     width: 14,

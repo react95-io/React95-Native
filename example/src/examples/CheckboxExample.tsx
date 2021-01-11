@@ -7,6 +7,8 @@ import ExamplePanel from '../util/ExamplePanel';
 
 const CheckboxExample = () => {
   const [isChecked, setIsChecked] = useState(true);
+  const [isCheckedFlat, setIsCheckedFlat] = useState(true);
+
   const [isIndeterminate, setIsIndeterminate] = useState(true);
 
   return (
@@ -15,12 +17,12 @@ const CheckboxExample = () => {
         <Checkbox
           status={isChecked ? 'checked' : 'unchecked'}
           onPress={() => setIsChecked(prevState => !prevState)}
-          label='Potato'
+          label='Cheese'
         />
         <Checkbox
           status='checked'
           onPress={() => console.warn('pressed')}
-          label='Disabled'
+          label='Pineapple'
           disabled
         />
       </Fieldset>
@@ -28,12 +30,12 @@ const CheckboxExample = () => {
         <Checkbox
           status={isIndeterminate ? 'indeterminate' : 'unchecked'}
           onPress={() => setIsIndeterminate(prevState => !prevState)}
-          label='Potato'
+          label='Cheese'
         />
         <Checkbox
           status='indeterminate'
           onPress={() => console.warn('pressed')}
-          label='Disabled'
+          label='Pineapple'
           disabled
         />
       </Fieldset>
@@ -42,15 +44,15 @@ const CheckboxExample = () => {
           <Fieldset variant='flat' label='Default'>
             <Checkbox
               variant='flat'
-              status={isChecked ? 'checked' : 'unchecked'}
-              onPress={() => setIsChecked(prevState => !prevState)}
-              label='Potato'
+              status={isCheckedFlat ? 'checked' : 'unchecked'}
+              onPress={() => setIsCheckedFlat(prevState => !prevState)}
+              label='Cheese'
             />
             <Checkbox
               variant='flat'
               status='checked'
               onPress={() => console.warn('pressed')}
-              label='Disabled'
+              label='Pineapple'
               disabled
             />
           </Fieldset>
@@ -59,13 +61,13 @@ const CheckboxExample = () => {
               variant='flat'
               status={isIndeterminate ? 'indeterminate' : 'unchecked'}
               onPress={() => setIsIndeterminate(prevState => !prevState)}
-              label='Potato'
+              label='Cheese'
             />
             <Checkbox
               variant='flat'
               status='indeterminate'
               onPress={() => console.warn('pressed')}
-              label='Disabled'
+              label='Pineapple'
               disabled
             />
           </Fieldset>

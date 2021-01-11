@@ -24,7 +24,7 @@ const HourglassExample = () => {
     <ExamplePanel style={{ padding: 8, paddingTop: 10 }}>
       <Cutout style={[{ flex: 1, backgroundColor: 'white' }]}>
         <ScrollView>
-          <View style={[{ padding: 20 }]}>
+          <View style={[{ paddingHorizontal: 16, marginTop: 16 }]}>
             <List.Accordion
               title='Uncontrolled'
               subtitle='subtitle'
@@ -43,7 +43,7 @@ const HourglassExample = () => {
               </List.Section>
             </List.Accordion>
           </View>
-          <View style={[{ padding: 20 }]}>
+          <View style={[{ paddingHorizontal: 16, marginTop: 16 }]}>
             <List.Accordion
               title='Controlled'
               expanded={expanded}
