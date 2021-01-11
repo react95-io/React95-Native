@@ -57,7 +57,7 @@ const ThemeButton = ({ theme, currentTheme, selected, onPress }: Props) => (
 );
 
 const buttonHeight = 50;
-const buttonWidth = 1.5 * buttonHeight;
+const buttonWidth = 76;
 const selectedBorderWidth = 2;
 
 const styles = StyleSheet.create({
