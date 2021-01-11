@@ -21,11 +21,6 @@ const RadioExample = () => {
           onPress={() => setValue('Orange')}
           label='Orange'
         />
-        <Radio
-          status={value === 'Watermelon' ? 'checked' : 'unchecked'}
-          onPress={() => setValue('Watermelon')}
-          label='Watermelon'
-        />
       </Fieldset>
       <Fieldset label='Disabled'>
         <Radio
@@ -42,7 +37,7 @@ const RadioExample = () => {
         />
       </Fieldset>
       <Cutout>
-        <View style={{ padding: 20 }}>
+        <View style={{ padding: 16 }}>
           <Fieldset variant='flat' label='Default'>
             <Radio
               variant='flat'
