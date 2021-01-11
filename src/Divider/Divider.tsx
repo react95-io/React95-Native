@@ -1,15 +1,11 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import type {
-  $RemoveChildren,
-  OrientationProp,
-  DimensionValue,
-} from '../types';
+import type { $RemoveChildren, Orientation, DimensionValue } from '../types';
 
 import { Border } from '../common/styleElements';
 
 type Props = $RemoveChildren<typeof View> & {
-  orientation?: OrientationProp;
+  orientation?: Orientation;
   size?: DimensionValue;
   style?: StyleProp<ViewStyle>;
   // come up with a better name than 'raised'
