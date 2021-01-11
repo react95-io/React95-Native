@@ -18,14 +18,16 @@ Lorem Ipsum.`;
 const NumberInputExample = () => {
   return (
     <ExamplePanel>
-      <Cutout style={{ height: 200 }}>
+      <Cutout style={{ maxHeight: 200 }}>
         <ScrollView alwaysShowScrollbars>
-          <Text>{lorem}</Text>
+          <View style={{ padding: 4 }}>
+            <Text>{lorem}</Text>
+          </View>
         </ScrollView>
       </Cutout>
       <Cutout style={{ marginTop: 20 }}>
         <ScrollView alwaysShowScrollbars horizontal>
-          <View style={{ width: 1000 }}>
+          <View style={{ width: 1000, padding: 4 }}>
             <Text>{lorem}</Text>
           </View>
         </ScrollView>
