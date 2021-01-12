@@ -22,8 +22,11 @@ const ChevronIcon = ({
 }: Props) => {
   const theme = useContext(ThemeContext);
 
-  const segmentSizes = new Array(segments).fill(null).map((_, i) => 1 + i * 2);
+  let segmentSizes = new Array(segments).fill(null).map((_, i) => 1 + i * 2);
 
+  if (['right', 'bottom'].includes(direction)) {
+    segmentSizes = segmentSizes.reverse();
+  }
   const isHorizontal = ['left', 'right'].includes(direction);
 
   const SegmentPixel = () => (
@@ -47,27 +50,12 @@ const ChevronIcon = ({
     />
   );
 
-  const getFlexDirection = () => {
-    switch (direction) {
-      case 'left':
-        return 'row';
-      case 'top':
-        return 'column';
-      case 'right':
-        return 'row-reverse';
-      case 'bottom':
-        return 'column-reverse';
-      default:
-        return 'row';
-    }
-  };
-
   return (
     <View
       style={[
         styles.wrapper,
         {
-          flexDirection: getFlexDirection(),
+          flexDirection: isHorizontal ? 'row' : 'column',
         },
         style,
       ]}
@@ -85,7 +73,7 @@ const ChevronIcon = ({
             },
           ]}
         >
-          {i > 0 && <SegmentPixel />}
+          {segmentSize !== 1 && <SegmentPixel />}
           <SegmentPixel />
         </View>
       ))}
