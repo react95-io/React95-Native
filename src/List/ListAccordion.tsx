@@ -5,10 +5,9 @@ import {
   StyleSheet,
   StyleProp,
   TextStyle,
-  Image,
   TouchableHighlight,
 } from 'react-native';
-import { Text } from '..';
+import { Text, ChevronIcon } from '..';
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
 import useControlledOrUncontrolled from '../common/hooks/useControlledOrUncontrolled';
@@ -80,25 +79,19 @@ const ListAccordion = ({
               </Text>
             )}
           </View>
-          <Image
-            style={[
-              styles.expandIcon,
-              {
-                transform: [
-                  {
-                    rotate: expanded ? '0deg' : '180deg',
-                  },
-                  {
-                    translateY: -2,
-                  },
-                ],
-              },
-            ]}
-            source={{
-              uri:
-                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAM0lEQVQoU2NkIAIwoqthY2j5/4uhBkUchQNSANOErBCuCKYAJInMBmkCK0IXRBcbjG4CANI8JAqzEEN5AAAAAElFTkSuQmCC',
-            }}
-          />
+          <View style={styles.expandIcon}>
+            <ChevronIcon
+              color={theme.progress}
+              segments={3}
+              direction={expanded ? 'top' : 'bottom'}
+            />
+            <ChevronIcon
+              color={theme.progress}
+              segments={3}
+              style={{ marginVertical: 1 }}
+              direction={expanded ? 'top' : 'bottom'}
+            />
+          </View>
         </View>
       </TouchableHighlight>
       {expanded && <View style={[styles.body]}>{children}</View>}
@@ -131,9 +124,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   expandIcon: {
-    width: 14,
-    height: 14,
-    marginRight: 2,
+    marginRight: 4,
   },
   body: {},
   divider: {
