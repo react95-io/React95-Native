@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   logoImage: {
     position: 'absolute',
-    left: -36,
+    left: -38,
     top: -4,
     height: 32,
     width: 32,

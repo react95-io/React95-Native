@@ -103,13 +103,11 @@ const styles = StyleSheet.create({
   titleBar: {
     height: 36,
     margin: 2,
-    paddingHorizontal: 4,
+    paddingRight: 4,
+    paddingLeft: 8,
   },
 
   titleBarText: {
-    // TODO: make 16 px font default everywhere
-    fontSize: 16,
-    fontWeight: 'bold',
     flexShrink: 1,
   },
 
