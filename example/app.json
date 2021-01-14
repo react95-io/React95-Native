@@ -1,16 +1,23 @@
 {
   "name": "react95-native-example",
-  "displayName": "React95Native Example",
+  "displayName": "React95 Native example",
   "expo": {
-    "name": "react95-native-example",
+    "name": "React95 Native example",
     "slug": "react95-native-example",
-    "description": "Example app for react95-native",
+    "description": "Example app for React95 Native: https://github.com/react95-io",
     "privacy": "public",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#008080",
+    "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/images/icon.png",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "cover"
+    },
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "ios": {
       "supportsTablet": true
