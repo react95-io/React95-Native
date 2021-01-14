@@ -33,6 +33,7 @@ type ButtonProps = React.ComponentPropsWithRef<typeof View> & {
 };
 
 const Button = ({
+  accessible,
   accessibilityLabel,
   active = false,
   children,
@@ -91,11 +92,16 @@ const Button = ({
         onPress={onPress}
         onLongPress={onLongPress}
         disabled={disabled}
+        // TODO: use onHideUnderlay or onPressIn?
         onHideUnderlay={() => setIsPressed(false)}
         onShowUnderlay={() => setIsPressed(true)}
         underlayColor='none'
-        accessibilityRole='button'
         accessibilityLabel={accessibilityLabel}
+        accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
+        accessibilityComponentType='button'
+        accessibilityRole='button'
+        accessibilityState={{ disabled }}
+        accessible={accessible}
       >
         <View pointerEvents='none'>
           {typeof children === 'string' ? (

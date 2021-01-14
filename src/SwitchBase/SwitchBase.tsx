@@ -11,30 +11,10 @@ import {
 import { Border } from '../common/styleElements';
 import { ThemeContext } from '../common/theming/Theme';
 
-import { Text } from '..';
+import { Text, CheckmarkIcon } from '..';
 
-const switchSize = 20;
-
-const symbols = {
-  checkbox: {
-    default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAQ0lEQVQoU42Q0Q4AIARFj///6BqNSat4sXFcF6ER8mEGIC9IAY2AbCKpOnBAVgA2wIuac8MFQ/m6Ih9UjVdvy3njTUwR1AkKqm4yNwAAAABJRU5ErkJggg==',
-    disabled:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAR0lEQVQoU2NkIAIw4lPT0tryv6a6hhGnIpACkAFwRTAdMFNhCjAUwQTQFYDEwdYhS8BMA1kDY8MZ2EzAUAQzEdkErIpwBQcA7RckCvjAHfcAAAAASUVORK5CYII=',
-  },
-  radio: {
-    default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAKElEQVQoU2NkIAAYSVXwH6oBrhHZBJgkzFCwHEkKQBrwWoHVvQR9AQAfmgQJp08TYAAAAABJRU5ErkJggg==',
-    disabled:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAALUlEQVQoU2NkIAAYSVLQ0tryH6ShproGrhHOgEnCTIQpIl4BSCdeK3A5lqAvAEBkEAkDjL/SAAAAAElFTkSuQmCC',
-  },
-  indeterminate: {
-    default:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NkYGD4z4AKGJG5IA4dFKA5AdVKFAdBVaK4iXIFAEiuCAWq9MdHAAAAAElFTkSuQmCC',
-    disabled:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NsaW35z4AEaqprGJH5jHRQgGwfiI1uJYqDaKMAAHKtGjlbjgHwAAAAAElFTkSuQmCC',
-  },
-};
+const checkboxSize = 20;
+const radioSize = 20;
 
 export type SwitchStatus = 'checked' | 'unchecked' | 'indeterminate';
 
@@ -67,38 +47,30 @@ export const SwitchBase = ({
   const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
   const isRadio = component === 'radio';
+  const switchSize = !isRadio ? checkboxSize : radioSize;
   const boxSize = variant === 'flat' ? switchSize - 4 : switchSize;
   const borderRadius = isRadio ? boxSize / 2 : 0;
 
-  const renderCheckmark = () => {
-    const symbolOffset = variant === 'flat' ? 2 : 4;
-    if (status === 'checked') {
-      const symbol = symbols[component][disabled ? 'disabled' : 'default'];
+  const checked = status === 'checked';
 
-      return (
-        <ImageBackground
-          // border to compensate for Border
-          style={[
-            {
-              width: boxSize,
-              height: boxSize,
-              borderWidth: symbolOffset,
-              borderColor: 'transparent',
-            },
-          ]}
-          imageStyle={{
-            resizeMode: 'contain',
-            flex: 1,
-          }}
-          source={{
-            uri: symbol,
+  const renderCheckmark = () => {
+    if (checked) {
+      return isRadio ? (
+        <View
+          style={{
+            borderRadius: 6,
+            height: 6,
+            width: 6,
+            backgroundColor: disabled
+              ? theme.checkmarkDisabled
+              : theme.checkmark,
           }}
         />
+      ) : (
+        <CheckmarkIcon disabled={disabled} />
       );
     }
     if (status === 'indeterminate') {
-      const symbol = symbols[status][disabled ? 'disabled' : 'default'];
-
       return (
         <ImageBackground
           style={[{ width: '100%', height: '100%' }]}
@@ -106,7 +78,12 @@ export const SwitchBase = ({
             resizeMode: 'repeat',
           }}
           source={{
-            uri: symbol,
+            uri: {
+              default:
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NkYGD4z4AKGJG5IA4dFKA5AdVKFAdBVaK4iXIFAEiuCAWq9MdHAAAAAElFTkSuQmCC',
+              disabled:
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQoU2NsaW35z4AEaqprGJH5jHRQgGwfiI1uJYqDaKMAAHKtGjlbjgHwAAAAAElFTkSuQmCC',
+            }[disabled ? 'disabled' : 'default'],
           }}
         />
       );
@@ -122,6 +99,13 @@ export const SwitchBase = ({
     return disabled ? theme.material : theme.canvas;
   };
 
+  const getAccessibilityComponentType = () => {
+    if (isRadio) {
+      return checked ? 'radiobutton_checked' : 'radiobutton_unchecked';
+    }
+    return 'button';
+  };
+
   return (
     <TouchableHighlight
       style={[styles.wrapper]}
@@ -132,13 +116,14 @@ export const SwitchBase = ({
       onShowUnderlay={() => setIsPressed(true)}
       // TODO: check if those accessibility properties are correct
       accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
-      accessibilityComponentType='button'
+      accessibilityComponentType={getAccessibilityComponentType()}
       accessibilityRole={component}
-      accessibilityState={{ disabled, checked: status === 'checked' }}
+      accessibilityState={{ disabled, checked }}
+      accessibilityLiveRegion='polite'
       underlayColor='none'
       {...rest}
     >
-      <View style={[styles.content, style]} pointerEvents='none'>
+      <View style={[styles.content, style]}>
         <View
           style={[
             styles.switchSymbol,
@@ -189,6 +174,8 @@ const styles = StyleSheet.create({
   },
   switchSymbol: {
     marginRight: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   labelWrapper: {
     paddingHorizontal: 4,

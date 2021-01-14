@@ -3,17 +3,16 @@ import { View, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import useControlledOrUncontrolled from '../common/hooks/useControlledOrUncontrolled';
 import type { DimensionValue } from '../types';
 import { blockSizes } from '../common/styles';
+import { clamp } from '../common/utils';
 
 import { TextInput, Button, Text } from '..';
-
-type OptionalNumber = number | null;
 
 type Props = {
   defaultValue?: number;
   disabled?: boolean;
   inputWidth?: DimensionValue;
-  max?: OptionalNumber;
-  min?: OptionalNumber;
+  max?: number | null;
+  min?: number | null;
   onChange?: (value: number) => void;
   step?: number;
   style?: StyleProp<ViewStyle>;
@@ -21,23 +20,8 @@ type Props = {
   variant?: 'default' | 'flat';
 };
 
-// TODO: test clamp function
-export function clamp(
-  value: number,
-  min: OptionalNumber,
-  max: OptionalNumber,
-): number {
-  if (max !== null && value > max) {
-    return max;
-  }
-  if (min !== null && value < min) {
-    return min;
-  }
-  return value;
-}
-
-// TODO: accessibility etc.
 // TODO: allow to center input text horizontally
+// TODO: how are uncontrolled inputs handled in RN?
 const NumberInput = ({
   defaultValue,
   disabled,
@@ -78,7 +62,17 @@ const NumberInput = ({
   const isFlat = variant === 'flat';
 
   return (
-    <View style={[styles.wrapper, style]}>
+    <View
+      style={[styles.wrapper, style]}
+      accessibilityState={{ disabled }}
+      // TODO: are these accessibility traits correct?
+      accessibilityRole='adjustable'
+      accessibilityValue={{
+        min: min === null ? undefined : min,
+        max: max === null ? undefined : max,
+        now: valueDerived,
+      }}
+    >
       <Button
         disabled={isDecrementDisabled}
         onPress={() => handleClick(-step)}

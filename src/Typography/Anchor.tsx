@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import { Text as NativeText, StyleProp, TextStyle } from 'react-native';
 
+import { Text } from '..';
 import { ThemeContext } from '../common/theming/Theme';
 
-type Props = React.ComponentProps<typeof NativeText> & {
-  children: React.ReactNode;
-  style?: StyleProp<TextStyle>;
+type Props = React.ComponentProps<typeof Text> & {
   underline?: boolean;
 };
 
@@ -13,19 +11,18 @@ const Anchor = ({ underline = false, children, style, ...rest }: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <NativeText
+    <Text
       style={[
         {
           color: theme.anchor,
           textDecorationLine: underline ? 'underline' : 'none',
-          fontSize: 16,
         },
         style,
       ]}
       {...rest}
     >
       {children}
-    </NativeText>
+    </Text>
   );
 };
 

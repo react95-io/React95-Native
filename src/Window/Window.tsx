@@ -3,7 +3,7 @@ import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
 import { ThemeContext } from '../common/theming/Theme';
 
-import { Panel, Button, Text } from '..';
+import { Panel, Button, Text, CloseIcon } from '..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   // TODO: allow for inserting custom buttons to title bar?
@@ -75,7 +75,7 @@ const Window = ({
           </View>
           {onClose && (
             <Button onPress={onClose} style={[styles.button]}>
-              X
+              <CloseIcon />
             </Button>
           )}
         </View>
@@ -103,13 +103,11 @@ const styles = StyleSheet.create({
   titleBar: {
     height: 36,
     margin: 2,
-    paddingHorizontal: 4,
+    paddingRight: 4,
+    paddingLeft: 8,
   },
 
   titleBarText: {
-    // TODO: make 16 px font default everywhere
-    fontSize: 16,
-    fontWeight: 'bold',
     flexShrink: 1,
   },
 
@@ -120,8 +118,7 @@ const styles = StyleSheet.create({
   button: {
     height: 28,
     width: 32,
-    paddingVertical: 0,
-    paddingHorizontal: 0,
+    padding: 0,
   },
 });
 

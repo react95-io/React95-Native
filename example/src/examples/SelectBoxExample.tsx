@@ -1,33 +1,36 @@
 import React, { useState } from 'react';
-import { Panel, SelectBox, Fieldset } from 'react95-native';
+import { SelectBox, Fieldset } from 'react95-native';
 
-const options = ['apple', 'orange', 'banana', 'pear', 'watermelon'].map(
-  option => ({
-    label: option,
-    value: option,
-  }),
-);
+import ExamplePanel from '../util/ExamplePanel';
+
+const options = [
+  'apple',
+  'orange',
+  'banana',
+  'pear',
+  'watermelon',
+  'kiwi',
+  'raspberry',
+  'pineapple',
+  'grapefruit',
+].map(option => ({
+  label: option,
+  value: option,
+}));
 
 const SelectBoxExample = () => {
   const [value, setValue] = useState(options[0].value);
   return (
-    <Panel style={{ flex: 1, padding: 20 }}>
+    <ExamplePanel variant='clear'>
       <Fieldset label='Default:' style={[{ padding: 20 }]}>
         <SelectBox
           options={options}
           value={value}
           onChange={newValue => setValue(newValue)}
+          style={[{ height: 180 }]}
         />
       </Fieldset>
-      <Fieldset label='Custom size:' style={[{ padding: 20 }]}>
-        <SelectBox
-          options={options}
-          value={value}
-          onChange={newValue => setValue(newValue)}
-          style={[{ height: 120 }]}
-        />
-      </Fieldset>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

@@ -36,7 +36,7 @@ const ListItem = ({
   return (
     <View style={style} {...rest}>
       <TouchableOpacity onPress={onPress} accessibilityRole='button'>
-        <View style={[styles.content]} pointerEvents='none'>
+        <View style={[styles.content]}>
           {left && <View style={[styles.left]}>{left}</View>}
           {title && (
             <Text style={[styles.title, { color: theme.progress }, titleStyle]}>

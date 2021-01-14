@@ -1,24 +1,28 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Checkbox, Panel, Fieldset, Cutout } from 'react95-native';
+import { View } from 'react-native';
+import { Checkbox, Fieldset, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const CheckboxExample = () => {
   const [isChecked, setIsChecked] = useState(true);
+  const [isCheckedFlat, setIsCheckedFlat] = useState(true);
+
   const [isIndeterminate, setIsIndeterminate] = useState(true);
 
   return (
-    <Panel variant='clear' style={styles.container}>
+    <ExamplePanel>
       <Fieldset label='Default'>
         <Checkbox
           status={isChecked ? 'checked' : 'unchecked'}
           onPress={() => setIsChecked(prevState => !prevState)}
-          label='Potato'
+          label='Cheese'
         />
         <Checkbox
           status='checked'
           onPress={() => console.warn('pressed')}
-          label='Disabled'
+          label='Pineapple'
           disabled
         />
       </Fieldset>
@@ -26,12 +30,12 @@ const CheckboxExample = () => {
         <Checkbox
           status={isIndeterminate ? 'indeterminate' : 'unchecked'}
           onPress={() => setIsIndeterminate(prevState => !prevState)}
-          label='Potato'
+          label='Cheese'
         />
         <Checkbox
           status='indeterminate'
           onPress={() => console.warn('pressed')}
-          label='Disabled'
+          label='Pineapple'
           disabled
         />
       </Fieldset>
@@ -40,15 +44,15 @@ const CheckboxExample = () => {
           <Fieldset variant='flat' label='Default'>
             <Checkbox
               variant='flat'
-              status={isChecked ? 'checked' : 'unchecked'}
-              onPress={() => setIsChecked(prevState => !prevState)}
-              label='Potato'
+              status={isCheckedFlat ? 'checked' : 'unchecked'}
+              onPress={() => setIsCheckedFlat(prevState => !prevState)}
+              label='Cheese'
             />
             <Checkbox
               variant='flat'
               status='checked'
               onPress={() => console.warn('pressed')}
-              label='Disabled'
+              label='Pineapple'
               disabled
             />
           </Fieldset>
@@ -57,27 +61,20 @@ const CheckboxExample = () => {
               variant='flat'
               status={isIndeterminate ? 'indeterminate' : 'unchecked'}
               onPress={() => setIsIndeterminate(prevState => !prevState)}
-              label='Potato'
+              label='Cheese'
             />
             <Checkbox
               variant='flat'
               status='indeterminate'
               onPress={() => console.warn('pressed')}
-              label='Disabled'
+              label='Pineapple'
               disabled
             />
           </Fieldset>
         </View>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default CheckboxExample;

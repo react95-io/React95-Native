@@ -12,6 +12,7 @@ import {
 } from 'react95-native';
 
 import Container from '../util/Container';
+import ExamplePanel from '../util/ExamplePanel';
 
 const colors = [
   'white',
@@ -45,7 +46,7 @@ const ColorPickerExample = () => {
     setColorMenuOpen(false);
   };
 
-  const [secondColorMenuOpen, setSecondColorMenuOpen] = React.useState(true);
+  const [secondColorMenuOpen, setSecondColorMenuOpen] = React.useState(false);
   const [secondColor, setSecondColor] = React.useState(colors[6]);
   const [tempSecondColor, setTempSecondColor] = React.useState(secondColor);
 
@@ -63,7 +64,7 @@ const ColorPickerExample = () => {
   };
 
   return (
-    <Container>
+    <ExamplePanel variant='clear'>
       <Container.Section title='Default'>
         <View
           style={{
@@ -159,7 +160,7 @@ const ColorPickerExample = () => {
           </Window>
         </View>
       )}
-    </Container>
+    </ExamplePanel>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Cutout, Text, Window } from 'react95-native';
+import { Cutout, Text } from 'react95-native';
 
-import Container from '../util/Container';
+import ExamplePanel from '../util/ExamplePanel';
 
 const lorem = `Lorem Ipsum is simply dummy text of the printing and typesetting
 industry. Lorem Ipsum has been the industry standard dummy text
@@ -17,27 +17,23 @@ Lorem Ipsum.`;
 
 const CutoutExample = () => {
   return (
-    <Container>
-      <View>
-        <Window title='Cutout example' style={{ width: '100%' }}>
-          <View style={{ height: 260, margin: 16 }}>
-            <Cutout>
-              <Text style={{ padding: 12 }}>{lorem}</Text>
-            </Cutout>
-          </View>
-          <View style={{ height: 260, margin: 16 }}>
-            <Cutout background='material'>
-              <Text style={{ padding: 12 }}>{lorem}</Text>
-            </Cutout>
-          </View>
-          <View style={{ height: 260, margin: 16 }}>
-            <Cutout background='materialDark'>
-              <Text style={{ padding: 12 }}>{lorem}</Text>
-            </Cutout>
-          </View>
-        </Window>
+    <ExamplePanel>
+      <View style={{ height: 150, marginTop: 16 }}>
+        <Cutout>
+          <Text style={{ padding: 12 }}>{lorem}</Text>
+        </Cutout>
       </View>
-    </Container>
+      <View style={{ height: 150, marginTop: 8 }}>
+        <Cutout background='material'>
+          <Text style={{ padding: 12 }}>{lorem}</Text>
+        </Cutout>
+      </View>
+      <View style={{ height: 150, marginTop: 8 }}>
+        <Cutout background='materialDark'>
+          <Text style={{ padding: 12 }}>{lorem}</Text>
+        </Cutout>
+      </View>
+    </ExamplePanel>
   );
 };
 

@@ -6,7 +6,7 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import { original, Text } from 'react95-native';
+import { themes, Text } from 'react95-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   label: {
-    color: original.borderDarkest,
-    marginBottom: 4,
+    color: themes.original.borderDarkest,
+    marginBottom: 8,
   },
   section: {
-    marginBottom: 12,
+    marginBottom: 16,
     display: 'flex',
     flexDirection: 'row',
   },

@@ -26,16 +26,17 @@ const SelectItem = ({ option, onPress, isSelected }: SelectItemProps) => {
       onPress={() => onPress(option)}
       onHideUnderlay={() => setIsPressed(false)}
       onShowUnderlay={() => setIsPressed(true)}
-      accessibilityRole='menuitem'
       underlayColor='none'
       // delay to prevent item highlighting on scroll
       delayPressIn={70}
+      activeOpacity={1}
     >
       <View
         style={[
           styles.center,
           styles.optionWrapper,
           {
+            borderColor: isPressed ? theme.focusSecondary : 'transparent',
             backgroundColor:
               isPressed || isSelected ? theme.hoverBackground : theme.canvas,
           },
@@ -70,6 +71,8 @@ const styles = StyleSheet.create({
   },
   optionWrapper: {
     height: selectHeight - 4,
+    borderWidth: 2,
+    borderStyle: 'dotted',
   },
   optionText: {
     fontSize: 16,

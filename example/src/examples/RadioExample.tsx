@@ -1,13 +1,16 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Radio, Panel, Fieldset, Cutout } from 'react95-native';
+import { View } from 'react-native';
+import { Radio, Fieldset, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const RadioExample = () => {
   const [value, setValue] = useState('Apple');
+  const [valueFlat, setValueFlat] = useState('Apple');
 
   return (
-    <Panel style={styles.container}>
+    <ExamplePanel variant='clear'>
       <Fieldset label='Default'>
         <Radio
           status={value === 'Apple' ? 'checked' : 'unchecked'}
@@ -18,11 +21,6 @@ const RadioExample = () => {
           status={value === 'Orange' ? 'checked' : 'unchecked'}
           onPress={() => setValue('Orange')}
           label='Orange'
-        />
-        <Radio
-          status={value === 'Watermelon' ? 'checked' : 'unchecked'}
-          onPress={() => setValue('Watermelon')}
-          label='Watermelon'
         />
       </Fieldset>
       <Fieldset label='Disabled'>
@@ -40,25 +38,19 @@ const RadioExample = () => {
         />
       </Fieldset>
       <Cutout>
-        <View style={{ padding: 20 }}>
+        <View style={{ padding: 16 }}>
           <Fieldset variant='flat' label='Default'>
             <Radio
               variant='flat'
-              status={value === 'Apple' ? 'checked' : 'unchecked'}
-              onPress={() => setValue('Apple')}
+              status={valueFlat === 'Apple' ? 'checked' : 'unchecked'}
+              onPress={() => setValueFlat('Apple')}
               label='Apple'
             />
             <Radio
               variant='flat'
-              status={value === 'Orange' ? 'checked' : 'unchecked'}
-              onPress={() => setValue('Orange')}
+              status={valueFlat === 'Orange' ? 'checked' : 'unchecked'}
+              onPress={() => setValueFlat('Orange')}
               label='Orange'
-            />
-            <Radio
-              variant='flat'
-              status={value === 'Watermelon' ? 'checked' : 'unchecked'}
-              onPress={() => setValue('Watermelon')}
-              label='Watermelon'
             />
           </Fieldset>
           <Fieldset variant='flat' label='Disabled'>
@@ -79,15 +71,8 @@ const RadioExample = () => {
           </Fieldset>
         </View>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});
 
 export default RadioExample;

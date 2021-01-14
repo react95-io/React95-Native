@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleProp, StyleSheet, ViewStyle, View } from 'react-native';
 import type { LayoutChangeEvent } from 'react-native';
-import type { OrientationProp } from '../types';
+import type { Orientation } from '../types';
 
 import { Panel } from '..';
 
@@ -11,7 +11,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   anchor?: React.ReactNode;
   children: React.ReactNode;
   open?: boolean;
-  orientation?: OrientationProp;
+  orientation?: Orientation;
   style?: StyleProp<ViewStyle>;
   horizontalAlignment?: 'left' | 'right';
   verticalAlignment?: 'above' | 'below';

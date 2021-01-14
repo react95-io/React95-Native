@@ -114,7 +114,6 @@ const Tab = ({
       {...rest}
     >
       <View
-        pointerEvents='none'
         style={[
           styles.tabContent,
           {

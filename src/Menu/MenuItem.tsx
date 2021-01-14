@@ -14,7 +14,7 @@ import { Text } from '..';
 
 // TODO: add icon prop
 
-type Props = React.ComponentPropsWithRef<typeof View> & {
+type Props = {
   disabled?: boolean;
   onPress: () => void;
   primary?: boolean;
@@ -55,7 +55,8 @@ export const Item = ({
         onShowUnderlay={() => setIsPressed(true)}
         underlayColor='none'
         // TODO: which accessibilityRole put in here?
-        accessibilityRole='button'
+        accessibilityRole='menuitem'
+        accessibilityState={{ disabled }}
       >
         <View pointerEvents='none' style={[styles.content]}>
           <Text

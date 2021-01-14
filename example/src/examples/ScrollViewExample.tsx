@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text, Panel, Cutout, ScrollView } from 'react95-native';
+import { View } from 'react-native';
+import { Text, Cutout, ScrollView } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const lorem = `Lorem Ipsum is simply dummy text of the printing and typesetting
 industry. Lorem Ipsum has been the industry standard dummy text
@@ -15,31 +17,23 @@ Lorem Ipsum.`;
 
 const NumberInputExample = () => {
   return (
-    <Panel style={styles.container}>
-      <Cutout style={{ height: 200 }}>
+    <ExamplePanel>
+      <Cutout style={{ maxHeight: 200 }}>
         <ScrollView alwaysShowScrollbars>
-          <Text>{lorem}</Text>
-        </ScrollView>
-      </Cutout>
-      <Cutout style={{ marginTop: 20 }}>
-        <ScrollView alwaysShowScrollbars horizontal>
-          <View style={{ width: 1000 }}>
+          <View style={{ padding: 4 }}>
             <Text>{lorem}</Text>
           </View>
         </ScrollView>
       </Cutout>
-    </Panel>
+      <Cutout style={{ marginTop: 20 }}>
+        <ScrollView alwaysShowScrollbars horizontal>
+          <View style={{ width: 1000, padding: 4 }}>
+            <Text>{lorem}</Text>
+          </View>
+        </ScrollView>
+      </Cutout>
+    </ExamplePanel>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  fieldset: {
-    padding: 20,
-  },
-});
 
 export default NumberInputExample;

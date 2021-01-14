@@ -1,101 +1,89 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Panel, Fieldset, Cutout, ScrollView } from 'react95-native';
+import { TextInput, Text, Cutout, ScrollView } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const loremIpsum =
   'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself';
 const TextInputExample = () => {
   return (
-    <Panel style={styles.container}>
+    <ExamplePanel style={styles.container}>
       <Cutout background='material'>
         <ScrollView>
           <View style={{ padding: 16 }}>
-            <Fieldset label='Default' style={[styles.fieldset]}>
-              <TextInput defaultValue={loremIpsum} />
+            <Text style={styles.label}>Default:</Text>
+            <TextInput defaultValue={loremIpsum} />
+            <TextInput
+              disabled
+              defaultValue={loremIpsum}
+              style={[{ marginTop: 20 }]}
+            />
+
+            <Text style={styles.label}>Empty:</Text>
+            <TextInput defaultValue='' placeholder='Placeholder text here...' />
+            <TextInput
+              disabled
+              defaultValue=''
+              placeholder='Placeholder text here...'
+              style={[{ marginTop: 20 }]}
+            />
+
+            <Text style={styles.label}>Multiline:</Text>
+            <TextInput
+              multiline
+              style={[{ height: 120 }]}
+              defaultValue={loremIpsum}
+            />
+            <TextInput
+              disabled
+              multiline
+              style={[{ height: 120, marginTop: 20 }]}
+              defaultValue={loremIpsum}
+            />
+
+            <Cutout style={{ padding: 16, marginTop: 16 }}>
+              <Text style={styles.label}>Default:</Text>
+              <TextInput variant='flat' defaultValue={loremIpsum} />
               <TextInput
+                variant='flat'
                 disabled
                 defaultValue={loremIpsum}
                 style={[{ marginTop: 20 }]}
               />
-            </Fieldset>
-            <Fieldset label='Empty' style={[styles.fieldset]}>
               <TextInput
+                variant='flat'
                 defaultValue=''
                 placeholder='Placeholder text here...'
+                style={[{ marginTop: 20 }]}
               />
               <TextInput
+                variant='flat'
                 disabled
                 defaultValue=''
                 placeholder='Placeholder text here...'
                 style={[{ marginTop: 20 }]}
               />
-            </Fieldset>
-            <Fieldset label='Multiline' style={[styles.fieldset]}>
+
+              <Text style={styles.label}>Multiline:</Text>
               <TextInput
+                variant='flat'
                 multiline
                 style={[{ height: 120 }]}
                 defaultValue={loremIpsum}
               />
               <TextInput
+                variant='flat'
                 disabled
                 multiline
                 style={[{ height: 120, marginTop: 20 }]}
                 defaultValue={loremIpsum}
               />
-            </Fieldset>
-
-            <Cutout style={{ padding: 20 }}>
-              <Fieldset
-                variant='flat'
-                label='Default'
-                style={[styles.fieldset]}
-              >
-                <TextInput variant='flat' defaultValue={loremIpsum} />
-                <TextInput
-                  variant='flat'
-                  disabled
-                  defaultValue={loremIpsum}
-                  style={[{ marginTop: 20 }]}
-                />
-              </Fieldset>
-              <Fieldset variant='flat' label='Empty' style={[styles.fieldset]}>
-                <TextInput
-                  variant='flat'
-                  defaultValue=''
-                  placeholder='Placeholder text here...'
-                />
-                <TextInput
-                  variant='flat'
-                  disabled
-                  defaultValue=''
-                  placeholder='Placeholder text here...'
-                  style={[{ marginTop: 20 }]}
-                />
-              </Fieldset>
-              <Fieldset
-                variant='flat'
-                label='Multiline'
-                style={[styles.fieldset]}
-              >
-                <TextInput
-                  variant='flat'
-                  multiline
-                  style={[{ height: 120 }]}
-                  defaultValue={loremIpsum}
-                />
-                <TextInput
-                  variant='flat'
-                  disabled
-                  multiline
-                  style={[{ height: 120, marginTop: 20 }]}
-                  defaultValue={loremIpsum}
-                />
-              </Fieldset>
             </Cutout>
           </View>
         </ScrollView>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
 
@@ -103,9 +91,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 8,
+    paddingTop: 10,
   },
-  fieldset: {
-    padding: 20,
+  label: {
+    marginTop: 16,
+    marginBottom: 8,
   },
 });
 

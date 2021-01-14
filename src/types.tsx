@@ -12,7 +12,9 @@ export type Color = string;
 
 export type Sizes = 'sm' | 'md' | 'lg';
 
-export type OrientationProp = 'horizontal' | 'vertical';
+export type Orientation = 'horizontal' | 'vertical';
+
+export type Direction = 'top' | 'bottom' | 'left' | 'right';
 
 export type DimensionValue = undefined | number | string;
 

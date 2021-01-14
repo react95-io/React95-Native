@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Tabs, Panel, Text } from 'react95-native';
+import { Tabs, Text } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const AppBarExample = () => {
   const [value, setValue] = useState(0);
   const [secondValue, setSecondValue] = useState(0);
 
   return (
-    <Panel variant='clear' style={[{ flex: 1 }]}>
-      <View style={[{ padding: 8 }]}>
+    <ExamplePanel>
+      <View style={[{ paddingVertical: 8 }]}>
+        <Text style={{ marginBottom: 8 }}>Default:</Text>
         <Tabs value={value} onChange={setValue}>
           <Tabs.Tab value={0}>Shoes</Tabs.Tab>
           <Tabs.Tab value={1}>Accesories</Tabs.Tab>
@@ -19,7 +22,9 @@ const AppBarExample = () => {
         </Tabs.Body>
       </View>
 
-      <View style={[{ padding: 8 }]}>
+      <View style={[{ paddingVertical: 8 }]}>
+        <Text style={{ marginBottom: 8 }}>Stretched:</Text>
+
         <Tabs stretch value={secondValue} onChange={setSecondValue}>
           <Tabs.Tab value={0}>Shoes</Tabs.Tab>
           <Tabs.Tab value={1}>A</Tabs.Tab>
@@ -29,7 +34,7 @@ const AppBarExample = () => {
           <Text>{secondValue}</Text>
         </Tabs.Body>
       </View>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

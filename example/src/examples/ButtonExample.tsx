@@ -1,95 +1,119 @@
 /* eslint-disable no-console */
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Button, Panel, Card } from 'react95-native';
 
 import Container from '../util/Container';
+import ExamplePanel from '../util/ExamplePanel';
 
 const ButtonExample = () => {
   return (
-    <Container>
+    <ExamplePanel>
       <Container.Section title='Default'>
-        <Button
-          primary
-          variant='default'
-          onLongPress={() => console.warn('onLongPress')}
-          onPress={() => console.warn('onPress')}
-        >
-          Primary
-        </Button>
-        <Button variant='default' onPress={() => console.warn('Pressed')}>
-          Default
-        </Button>
-        <Button
-          active
-          variant='default'
-          onPress={() => console.warn('Pressed')}
-        >
-          Active
-        </Button>
-
-        <Button
-          variant='default'
-          disabled
-          onPress={() => console.warn('Pressed')}
-        >
-          Disabled
-        </Button>
+        <View style={styles.buttonWrapper}>
+          <Button
+            primary
+            variant='default'
+            onLongPress={() => console.warn('onLongPress')}
+            onPress={() => console.warn('onPress')}
+          >
+            Primary
+          </Button>
+          <Button variant='default' onPress={() => console.warn('Pressed')}>
+            Default
+          </Button>
+          <Button
+            active
+            variant='default'
+            onPress={() => console.warn('Pressed')}
+          >
+            Active
+          </Button>
+          <Button
+            variant='default'
+            disabled
+            onPress={() => console.warn('Pressed')}
+          >
+            Disabled
+          </Button>
+          <Button onPress={() => console.warn('Pressed')} square>
+            Ok
+          </Button>
+        </View>
       </Container.Section>
 
-      <Container.Section title='Outside'>
-        <Button
-          primary
-          variant='outside'
-          onPress={() => console.warn('Pressed')}
-        >
-          Primary
-        </Button>
-        <Button variant='outside' onPress={() => console.warn('Pressed')}>
-          Default
-        </Button>
-        <Button
-          active
-          variant='outside'
-          onPress={() => console.warn('Pressed')}
-        >
-          Active
-        </Button>
-
-        <Button
-          variant='outside'
-          disabled
-          onPress={() => console.warn('Pressed')}
-        >
-          Disabled
-        </Button>
+      <Container.Section title=''>
+        <View style={styles.buttonWrapper}>
+          <Button
+            primary
+            variant='outside'
+            onPress={() => console.warn('Pressed')}
+          >
+            Primary
+          </Button>
+          <Button variant='outside' onPress={() => console.warn('Pressed')}>
+            Default
+          </Button>
+          <Button
+            active
+            variant='outside'
+            onPress={() => console.warn('Pressed')}
+          >
+            Active
+          </Button>
+          <Button
+            variant='outside'
+            disabled
+            onPress={() => console.warn('Pressed')}
+          >
+            Disabled
+          </Button>
+          <Button
+            variant='outside'
+            onPress={() => console.warn('Pressed')}
+            square
+          >
+            Ok
+          </Button>
+        </View>
       </Container.Section>
 
-      <Container.Section title='Primary'>
-        <Button
-          primary
-          variant='default'
-          onPress={() => console.warn('Pressed')}
-        >
-          Primary
-        </Button>
-
-        <Button
-          primary
-          active
-          variant='default'
-          onPress={() => console.warn('Pressed')}
-        >
-          Active
-        </Button>
-
-        <Button
-          primary
-          variant='default'
-          disabled
-          onPress={() => console.warn('Pressed')}
-        >
-          Disabled
-        </Button>
+      <Container.Section title=''>
+        <View style={styles.buttonWrapper}>
+          <Button
+            primary
+            variant='default'
+            onPress={() => console.warn('Pressed')}
+          >
+            Primary
+          </Button>
+          <Button
+            primary
+            variant='default'
+            onPress={() => console.warn('Pressed')}
+          >
+            Default
+          </Button>
+          <Button
+            primary
+            active
+            variant='default'
+            onPress={() => console.warn('Pressed')}
+          >
+            Active
+          </Button>
+          <Button
+            primary
+            variant='default'
+            disabled
+            onPress={() => console.warn('Pressed')}
+          >
+            Disabled
+          </Button>
+          <Button primary onPress={() => console.warn('Pressed')} square>
+            Ok
+          </Button>
+        </View>
       </Container.Section>
 
       <Container.Section title='Menu'>
@@ -142,14 +166,17 @@ const ButtonExample = () => {
           </Card.Content>
         </Card>
       </Container.Section>
-
-      <Container.Section title='Square'>
-        <Button onPress={() => console.warn('Pressed')} square>
-          Ok
-        </Button>
-      </Container.Section>
-    </Container>
+    </ExamplePanel>
   );
 };
 
 export default ButtonExample;
+
+const styles = StyleSheet.create({
+  buttonWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+});

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { NumberInput, Panel, Fieldset, Cutout } from 'react95-native';
+import { NumberInput, Fieldset, Cutout } from 'react95-native';
+
+import ExamplePanel from '../util/ExamplePanel';
 
 const NumberInputExample = () => {
   const [value, setValue] = useState(20);
 
   const handleChange = (newValue: number) => setValue(newValue);
   return (
-    <Panel style={styles.container}>
+    <ExamplePanel variant='clear' style={styles.container}>
       <Fieldset label='Default' style={[styles.fieldset]}>
         <NumberInput value={value} onChange={handleChange} />
         <NumberInput
@@ -46,7 +48,7 @@ const NumberInputExample = () => {
           />
         </Fieldset>
       </Cutout>
-    </Panel>
+    </ExamplePanel>
   );
 };
 

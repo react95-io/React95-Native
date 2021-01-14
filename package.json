@@ -1,31 +1,29 @@
 {
   "name": "react95-native",
   "version": "0.1.0",
-  "description": "Refreshed Windows 95 style UI components for your React native app ",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
+  "description": "Refreshed Windows 95 style UI components for your React Native app",
+  "main": "dist/commonjs/index",
+  "module": "dist/module/index",
+  "types": "dist/typescript/src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
     "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "react95-native.podspec",
-    "!lib/typescript/example",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
+    "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "typescript": "tsc --noEmit",
+    "cz": "git-cz",
+    "test": "jest ./src",
+    "test:ci": "jest ./src --maxWorkers=2",
+    "test:watch": "jest ./src --watch",
+    "test:coverage": "jest ./src --coverage",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build",
-    "release": "release-it",
+    "typescript": "tsc --noEmit",
+    "build": "bob build",
+    "semantic-release": "semantic-release",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods"
@@ -33,10 +31,15 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "windows95",
+    "components",
+    "vaporwave"
   ],
-  "repository": "https://github.com/react95-io/react95-native",
-  "author": "Luiz Baldi <baldilp@gmail.com> (https://github.com/luizbaldi)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react95-io/react95-native"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/react95-io/react95-native/issues"
@@ -45,7 +48,6 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",
-    "@release-it/conventional-changelog": "^1.1.4",
     "@testing-library/jest-native": "^3.4.3",
     "@testing-library/react-native": "^7.1.0",
     "@types/jest": "^26.0.0",
@@ -53,7 +55,9 @@
     "@types/react-native": "0.62.13",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.6.0",
+    "commitizen": "^4.2.2",
     "commitlint": "^8.3.5",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -65,12 +69,13 @@
     "eslint-plugin-react-hooks": "4.0.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "lint-staged": "^10.5.3",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-test-renderer": "^17.0.1",
-    "release-it": "^13.5.8",
+    "semantic-release": "^17.3.1",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
@@ -81,51 +86,54 @@
     "preset": "react-native",
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
+      "<rootDir>/dist/"
     ],
     "setupFilesAfterEnv": [
       "./jest.setup.ts"
     ]
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn lint && yarn typescript"
-    }
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged && yarn typescript"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "dist/"
   ],
   "@react-native-community/bob": {
     "source": "src",
-    "output": "lib",
+    "output": "dist",
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ],
+    "files": [
+      "src/"
     ]
   }
 }
