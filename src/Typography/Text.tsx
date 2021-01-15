@@ -11,6 +11,7 @@ export type TextProps = React.ComponentProps<typeof NativeText> & {
   style?: StyleProp<TextStyle>;
 };
 
+// TODO: set proper lineHeight and make it so that it automatically adjusts for every fontSize
 const Text = ({
   bold = false,
   children,
