@@ -16,7 +16,7 @@ const pixelSize = 2;
 
 const ChevronIcon = ({
   color,
-  direction = 'bottom',
+  direction = 'down',
   disabled = false,
   segments = 5,
   style = {},
@@ -27,7 +27,7 @@ const ChevronIcon = ({
   const baseColor = color || theme.materialText;
   let segmentSizes = new Array(segments).fill(null).map((_, i) => 1 + i * 2);
 
-  if (['right', 'bottom'].includes(direction)) {
+  if (['right', 'down'].includes(direction)) {
     segmentSizes = segmentSizes.reverse();
   }
   const isHorizontal = ['left', 'right'].includes(direction);

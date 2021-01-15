@@ -127,7 +127,7 @@ const Select = ({
             >
               <ArrowIcon
                 segments={4}
-                direction='bottom'
+                direction='down'
                 disabled={disabled}
                 style={{
                   paddingTop: isPressed ? 2 : 0,

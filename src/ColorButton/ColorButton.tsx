@@ -40,7 +40,7 @@ const ColorButton = ({ disabled, color, ...rest }: Props) => {
         />
         <Divider orientation='vertical' size={previewHeight} />
         <ArrowIcon
-          direction='bottom'
+          direction='down'
           disabled={disabled}
           segments={3}
           style={styles.dropdownIcon}

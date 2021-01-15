@@ -5,7 +5,7 @@ import type { DimensionValue } from '../types';
 import { blockSizes } from '../common/styles';
 import { clamp } from '../common/utils';
 
-import { TextInput, Button, Text } from '..';
+import { TextInput, Button, ArrowIcon } from '..';
 
 type Props = {
   defaultValue?: number;
@@ -80,9 +80,11 @@ const NumberInput = ({
         style={styles.button}
         testID='decrement'
       >
-        <Text disabled={isDecrementDisabled} style={styles.buttonText}>
-          -
-        </Text>
+        <ArrowIcon
+          segments={4}
+          disabled={isDecrementDisabled}
+          direction='left'
+        />
       </Button>
       <TextInput
         variant={variant}
@@ -101,9 +103,11 @@ const NumberInput = ({
         style={styles.button}
         testID='increment'
       >
-        <Text disabled={isIncrementDisabled} style={styles.buttonText}>
-          +
-        </Text>
+        <ArrowIcon
+          segments={4}
+          disabled={isIncrementDisabled}
+          direction='right'
+        />
       </Button>
     </View>
   );

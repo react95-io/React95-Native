@@ -83,13 +83,13 @@ const ListAccordion = ({
             <ChevronIcon
               color={theme.progress}
               segments={3}
-              direction={expanded ? 'top' : 'bottom'}
+              direction={expanded ? 'up' : 'down'}
             />
             <ChevronIcon
               color={theme.progress}
               segments={3}
               style={{ marginVertical: 1 }}
-              direction={expanded ? 'top' : 'bottom'}
+              direction={expanded ? 'up' : 'down'}
             />
           </View>
         </View>

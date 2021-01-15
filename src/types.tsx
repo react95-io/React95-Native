@@ -14,7 +14,7 @@ export type Sizes = 'sm' | 'md' | 'lg';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-export type Direction = 'top' | 'bottom' | 'left' | 'right';
+export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export type DimensionValue = undefined | number | string;
 

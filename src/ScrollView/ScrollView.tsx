@@ -182,7 +182,7 @@ const ScrollView = ({
             style={[styles.scrollbarButton]}
           >
             <ArrowIcon
-              direction={horizontal ? 'left' : 'top'}
+              direction={horizontal ? 'left' : 'up'}
               disabled={contentFullyVisible}
               segments={4}
             />
@@ -229,7 +229,7 @@ const ScrollView = ({
             style={[styles.scrollbarButton]}
           >
             <ArrowIcon
-              direction={horizontal ? 'right' : 'bottom'}
+              direction={horizontal ? 'right' : 'down'}
               disabled={contentFullyVisible}
               segments={4}
             />

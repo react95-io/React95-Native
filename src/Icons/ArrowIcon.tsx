@@ -14,7 +14,7 @@ type Props = {
 const pixelSize = 2;
 
 const ArrowIcon = ({
-  direction = 'bottom',
+  direction = 'down',
   disabled = false,
   segments = 4,
   style = {},
@@ -24,7 +24,7 @@ const ArrowIcon = ({
 
   const segmentSizes = new Array(segments).fill(null).map((_, i) => 1 + i * 2);
 
-  if (['right', 'bottom'].includes(direction)) {
+  if (['right', 'down'].includes(direction)) {
     segmentSizes.reverse();
   }
   const isHorizontal = ['left', 'right'].includes(direction);
