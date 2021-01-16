@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View,
   ViewStyle,
@@ -7,8 +7,11 @@ import {
   TextStyle,
   TouchableHighlight,
 } from 'react-native';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { Text, ChevronIcon } from '../..';
-import { ThemeContext } from '../../styles/theming/Theme';
 import { blockSizes } from '../../styles/styles';
 import useControlledOrUncontrolled from '../../hooks/useControlledOrUncontrolled';
 
@@ -22,6 +25,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   style?: StyleProp<ViewStyle>;
   subtitle?: string;
   subtitleStyle?: StyleProp<TextStyle>;
+  theme: Theme;
   title?: string;
   titleStyle?: StyleProp<TextStyle>;
 };
@@ -35,12 +39,11 @@ const ListAccordion = ({
   style,
   subtitle,
   subtitleStyle,
+  theme,
   title,
   titleStyle,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const [expanded, setExpanded] = useControlledOrUncontrolled({
     value: expandedProp,
     defaultValue: defaultExpanded,
@@ -81,11 +84,13 @@ const ListAccordion = ({
           </View>
           <View style={styles.expandIcon}>
             <ChevronIcon
+              theme={theme}
               color={theme.progress}
               segments={3}
               direction={expanded ? 'up' : 'down'}
             />
             <ChevronIcon
+              theme={theme}
               color={theme.progress}
               segments={3}
               style={{ marginVertical: 1 }}
@@ -133,12 +138,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Divider = () => {
-  const theme = useContext(ThemeContext);
+type DividerProps = {
+  theme: Theme;
+};
 
+const Divider = ({ theme }: DividerProps) => {
   return (
     <View style={[styles.divider, { backgroundColor: theme.flatLight }]} />
   );
 };
 
-export default ListAccordion;
+const DividerWithTheme = withTheme(Divider);
+
+export { DividerWithTheme as Divider };
+export default withTheme(ListAccordion);

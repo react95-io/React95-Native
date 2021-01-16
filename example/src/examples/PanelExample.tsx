@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Panel, Text, themes } from 'react95-native';
+import { Panel, Text } from 'react95-native';
 
 import Container from '../util/Container';
 
@@ -43,10 +43,6 @@ const styles = StyleSheet.create({
   panel: {
     marginBottom: margin,
     padding,
-  },
-  label: {
-    color: themes.original.borderLightest,
-    marginBottom: 4,
   },
 });
 

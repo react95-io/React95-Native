@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,35 +6,41 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import type { AnyValue } from '../../types';
 
-import { ThemeContext } from '../../styles/theming/Theme';
-import { blockSizes } from '../../styles/styles';
+import type { Theme, AnyValue } from '../../types';
+import { withTheme } from '../../core/theming';
+
+import {
+  blockSizes,
+  buildBorderStyles,
+  builtTextStyles,
+} from '../../styles/styles';
 import shadow from '../../styles/shadow';
 
 import getSelectOptions, { Option } from './SelectBase';
 import { ScrollView, Text, ArrowIcon, Panel } from '../..';
 
 type Props = {
-  options: Array<Option>;
-  value: AnyValue;
   disabled?: boolean;
+  menuMaxHeight?: number;
   // TODO: what to put below?
   onChange: (value: AnyValue) => void;
+  options: Array<Option>;
   style?: StyleProp<ViewStyle>;
-  menuMaxHeight?: number;
+  theme: Theme;
+  value: AnyValue;
 };
 
 const Select = ({
-  value,
-  options = [],
   disabled = false,
   menuMaxHeight,
   onChange,
+  options = [],
   style,
+  theme,
+  value,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
 
@@ -59,14 +65,19 @@ const Select = ({
     options,
     values: [value],
     onChange: handleOptionSelect,
+    theme,
   });
 
   const selectedOption = selectedOptions[0];
   // TODO: close dropdown when user touches outside of component
   // TODO: native prop to use native select
 
+  const borderStyles = buildBorderStyles(theme);
+  const textStyles = builtTextStyles(theme);
+
   return (
     <Panel
+      theme={theme}
       variant='cutout'
       background={disabled ? 'material' : 'canvas'}
       style={[styles.wrapper, style]}
@@ -102,13 +113,14 @@ const Select = ({
                     backgroundColor: getLabelContainerBackgroundColor(),
                   },
 
-                  isPressed && theme.border.focusSecondaryOutline,
+                  isPressed && borderStyles.focusSecondaryOutline,
                 ]}
               >
                 <Text
+                  theme={theme}
                   style={[
                     styles.textValue,
-                    disabled ? theme.text.disabled : theme.text.default,
+                    disabled ? textStyles.disabled : textStyles.default,
                     !disabled &&
                       isPressed && {
                         color: isPressed
@@ -122,11 +134,13 @@ const Select = ({
               </View>
             </View>
             <Panel
+              theme={theme}
               variant={isPressed ? 'default' : 'raised'}
               invert={isPressed}
               style={[styles.fakeButton]}
             >
               <ArrowIcon
+                theme={theme}
                 segments={4}
                 direction='down'
                 disabled={disabled}
@@ -147,7 +161,7 @@ const Select = ({
                 },
               ]}
             >
-              <ScrollView>{selectOptions}</ScrollView>
+              <ScrollView theme={theme}>{selectOptions}</ScrollView>
             </View>
           )}
         </View>
@@ -212,4 +226,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Select;
+export default withTheme(Select);

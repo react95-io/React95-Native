@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   TouchableHighlight,
@@ -6,10 +6,10 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import type { Color } from '../../types';
+import type { Theme, Color } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Border } from '../../styles/styleElements';
-import { ThemeContext } from '../../styles/theming/Theme';
 
 const colorPreviewSize = 34;
 
@@ -26,6 +26,7 @@ type Props = {
   colorsPerRow?: number;
   onChange?: (value: Color) => void;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   value?: Color;
   wide?: boolean;
 };
@@ -35,12 +36,11 @@ const ColorPicker = ({
   colorsPerRow = 5,
   onChange,
   style,
+  theme,
   value,
   wide = false,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const handleColorPress = (v: Color) => {
     onChange?.(v);
   };
@@ -84,7 +84,7 @@ const ColorPicker = ({
                       borderColor: theme.materialText,
                     }}
                   >
-                    {!isSelected && <Border variant='cutout' />}
+                    {!isSelected && <Border variant='cutout' theme={theme} />}
                   </View>
                 </View>
               </TouchableHighlight>
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColorPicker;
+export default withTheme(ColorPicker);

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -15,7 +15,9 @@ import type {
   NativeSyntheticEvent,
 } from 'react-native';
 import useAsyncReference from '../../hooks/useAsyncReference';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Panel, Button, ArrowIcon } from '../..';
 
@@ -30,6 +32,7 @@ type ScrollViewProps = React.ComponentProps<typeof View> & {
   horizontal?: boolean;
   scrollViewProps?: React.ComponentProps<typeof RNScrollView>;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 // TODO: performance improvements (callbacks, refs ...etc)
@@ -39,9 +42,9 @@ const ScrollView = ({
   horizontal = false,
   scrollViewProps = {},
   style,
+  theme,
   ...rest
 }: ScrollViewProps) => {
-  const theme = useContext(ThemeContext);
   const scrollViewRef = useRef<RNScrollView>(null);
 
   const [contentOffset, setContentOffset] = useAsyncReference(0);
@@ -176,12 +179,14 @@ const ScrollView = ({
             }}
           />
           <Button
+            theme={theme}
             variant='raised'
             onPress={() => handleScrollButtonPress(-1)}
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
             <ArrowIcon
+              theme={theme}
               direction={horizontal ? 'left' : 'up'}
               disabled={contentFullyVisible}
               segments={4}
@@ -206,6 +211,7 @@ const ScrollView = ({
                 </TouchableWithoutFeedback>
                 {/* SCROLLBAR THUMB */}
                 <Panel
+                  theme={theme}
                   variant='raised'
                   style={{
                     [scrollbarLengthDimension]: `${visibleContentRatio * 100}%`,
@@ -223,12 +229,14 @@ const ScrollView = ({
             )}
           </View>
           <Button
+            theme={theme}
             variant='raised'
             onPress={() => handleScrollButtonPress(1)}
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
           >
             <ArrowIcon
+              theme={theme}
               direction={horizontal ? 'right' : 'down'}
               disabled={contentFullyVisible}
               segments={4}
@@ -267,4 +275,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScrollView;
+export default withTheme(ScrollView);

@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Text as NativeText, StyleProp, TextStyle } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
+import { withTheme } from '../../core/theming';
+import { builtTextStyles } from '../../styles/styles';
+import type { Theme } from '../../types';
 
 export type TextProps = React.ComponentProps<typeof NativeText> & {
   bold?: boolean;
@@ -9,6 +11,7 @@ export type TextProps = React.ComponentProps<typeof NativeText> & {
   disabled?: boolean;
   secondary?: boolean;
   style?: StyleProp<TextStyle>;
+  theme: Theme;
 };
 
 // TODO: set proper lineHeight and make it so that it automatically adjusts for every fontSize
@@ -17,27 +20,31 @@ const Text = ({
   children,
   disabled = false,
   secondary = false,
+  theme,
   style,
   ...rest
 }: TextProps) => {
-  const theme = useContext(ThemeContext);
-  const { text } = theme;
+  const textStyles = builtTextStyles(theme);
 
   const getTextStyle = () => {
     if (disabled) {
-      return theme.text.disabled;
+      return textStyles.disabled;
     }
 
     if (secondary) {
-      return theme.text.secondary;
+      return textStyles.secondary;
     }
 
-    return theme.text.default;
+    return textStyles.default;
   };
 
   return (
     <NativeText
-      style={[bold ? text.bold : text.regular, getTextStyle(), style]}
+      style={[
+        bold ? textStyles.bold : textStyles.regular,
+        getTextStyle(),
+        style,
+      ]}
       {...rest}
     >
       {children}
@@ -45,4 +52,4 @@ const Text = ({
   );
 };
 
-export default Text;
+export default withTheme(Text);

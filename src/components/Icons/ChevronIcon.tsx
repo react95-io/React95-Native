@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
 
-import type { Color, Direction } from '../../types';
+import { withTheme } from '../../core/theming';
+
+import type { Color, Direction, Theme } from '../../types';
 
 type Props = {
   color?: Color;
@@ -10,6 +11,7 @@ type Props = {
   disabled?: boolean;
   segments?: number;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const pixelSize = 2;
@@ -20,10 +22,9 @@ const ChevronIcon = ({
   disabled = false,
   segments = 5,
   style = {},
+  theme,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const baseColor = color || theme.materialText;
   let segmentSizes = new Array(segments).fill(null).map((_, i) => 1 + i * 2);
 
@@ -89,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChevronIcon;
+export default withTheme(ChevronIcon);

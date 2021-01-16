@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import useControlledOrUncontrolled from '../../hooks/useControlledOrUncontrolled';
-import type { DimensionValue } from '../../types';
+
+import type { Theme, DimensionValue } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { blockSizes } from '../../styles/styles';
 import { clamp } from '../../utils';
 
@@ -16,6 +19,7 @@ type Props = {
   onChange?: (value: number) => void;
   step?: number;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   value?: number;
   variant?: 'default' | 'flat';
 };
@@ -31,6 +35,7 @@ const NumberInput = ({
   onChange,
   step = 1,
   style = {},
+  theme,
   value,
   variant = 'default',
   ...rest
@@ -74,6 +79,7 @@ const NumberInput = ({
       }}
     >
       <Button
+        theme={theme}
         disabled={isDecrementDisabled}
         onPress={() => handleClick(-step)}
         variant={isFlat ? 'flat' : 'raised'}
@@ -81,12 +87,14 @@ const NumberInput = ({
         testID='decrement'
       >
         <ArrowIcon
+          theme={theme}
           segments={4}
           disabled={isDecrementDisabled}
           direction='left'
         />
       </Button>
       <TextInput
+        theme={theme}
         variant={variant}
         disabled={disabled}
         value={valueDerived.toString()}
@@ -97,6 +105,7 @@ const NumberInput = ({
         {...rest}
       />
       <Button
+        theme={theme}
         disabled={isIncrementDisabled}
         onPress={() => handleClick(step)}
         variant={isFlat ? 'flat' : 'raised'}
@@ -104,6 +113,7 @@ const NumberInput = ({
         testID='increment'
       >
         <ArrowIcon
+          theme={theme}
           segments={4}
           disabled={isIncrementDisabled}
           direction='right'
@@ -131,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NumberInput;
+export default withTheme(NumberInput);

@@ -6,12 +6,14 @@ export { default as ColorButton } from './components/ColorButton';
 export { default as ColorPicker } from './components/ColorPicker';
 export { default as Desktop } from './components/Desktop';
 export { default as Divider } from './components/Divider';
+export { default as FAB } from './components/FAB';
 export { default as Fieldset } from './components/Fieldset';
 export { default as Hourglass } from './components/Hourglass';
 export { default as List } from './components/List';
 export { default as Menu } from './components/Menu';
 export { default as NumberInput } from './components/NumberInput';
 export { default as Panel } from './components/Panel';
+export { default as Portal } from './components/Portal';
 export { default as Progress } from './components/Progress';
 export { default as Radio } from './components/Radio';
 export { default as ScrollPanel } from './components/ScrollPanel';
@@ -25,8 +27,10 @@ export { Select, SelectBox } from './components/Select';
 export { Text, Title, Anchor } from './components/Typography';
 
 export * from './components/Icons';
-export { ThemeProvider } from './styles/theming/Theme';
-export { default as themes } from './styles/theming/themes';
+export { default as themes } from './styles/themes';
 
 export { Theme } from './types';
 export { fontNames } from './styles/styles';
+
+export { useTheme, withTheme, ThemeProvider } from './core/theming';
+export { default as Provider } from './core/Provider';

@@ -1,24 +1,27 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
 
-import { Border } from '../../styles/styleElements';
-import { Divider } from '../..';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
+import { Divider, Panel } from '../..';
+
+// TODO: should we pass theme to wrapped components? (Divider, Panel etc);
 
 // TODO: add noBottomBorder and noTopBorder prop
 type Props = React.ComponentPropsWithRef<typeof ScrollView> & {
   children?: React.ReactNode;
   noBackground?: boolean;
+  theme: Theme;
 };
 
 const ScrollPanel = ({
   children,
   noBackground,
   style = {},
+  theme,
   ...rest
 }: Props) => {
-  const theme = React.useContext(ThemeContext);
-
   return (
     <ScrollView
       horizontal
@@ -32,14 +35,13 @@ const ScrollPanel = ({
       ]}
       {...rest}
     >
-      <View style={[styles.borderWrapper]}>
-        <Border variant='raised' />
+      <Panel theme={theme} variant='raised' style={[styles.borderWrapper]}>
         <View style={[styles.inner, { backgroundColor: theme.material }]}>
-          <Divider orientation='vertical' variant='raised' />
-          <Divider orientation='vertical' variant='raised' />
+          <Divider theme={theme} orientation='vertical' variant='raised' />
+          <Divider theme={theme} orientation='vertical' variant='raised' />
           <View style={[styles.content]}>{children}</View>
         </View>
-      </View>
+      </Panel>
     </ScrollView>
   );
 };
@@ -67,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScrollPanel;
+export default withTheme(ScrollPanel);

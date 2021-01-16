@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -6,19 +6,21 @@ import {
   View,
   ImageBackground,
 } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import SnackbarContent from './SnackbarContent';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const shadowOffset = 8;
 
-const Snackbar = ({ children, style = {}, ...rest }: Props) => {
-  const theme = useContext(ThemeContext);
+const Snackbar = ({ children, style = {}, theme, ...rest }: Props) => {
   return (
     <View style={[styles.wrapper, style]} {...rest}>
       <View
@@ -87,4 +89,4 @@ const styles = StyleSheet.create({
 
 Snackbar.Content = SnackbarContent;
 
-export default Snackbar;
+export default withTheme(Snackbar);

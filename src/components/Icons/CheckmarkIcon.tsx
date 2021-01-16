@@ -1,18 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
 type Props = {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const pixelSize = 1.5;
 const segmentSize = 3 * pixelSize;
 
-const CheckmarkIcon = ({ disabled = false, style = {}, ...rest }: Props) => {
-  const theme = useContext(ThemeContext);
-
+const CheckmarkIcon = ({
+  disabled = false,
+  style = {},
+  theme,
+  ...rest
+}: Props) => {
   const segmentOffsets = [2, 3, 4, 3, 2, 1, 0];
 
   return (
@@ -46,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckmarkIcon;
+export default withTheme(CheckmarkIcon);

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   TouchableHighlight,
@@ -8,9 +8,11 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { Border } from '../../styles/styleElements';
-import { ThemeContext } from '../../styles/theming/Theme';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
+import { buildBorderStyles } from '../../styles/styles';
+import { Border } from '../../styles/styleElements';
 import { Text, CheckmarkIcon } from '../..';
 
 const checkboxSize = 20;
@@ -25,6 +27,7 @@ export type SwitchProps = {
   status: SwitchStatus;
   style?: StyleProp<ViewStyle>;
   variant?: 'default' | 'flat';
+  theme: Theme;
 };
 
 type Props = SwitchProps &
@@ -34,7 +37,7 @@ type Props = SwitchProps &
 
 // TODO: see if ref is passed
 
-export const SwitchBase = ({
+const SwitchBase = ({
   component,
   disabled = false,
   label = '',
@@ -42,9 +45,9 @@ export const SwitchBase = ({
   onPress = () => {},
   status,
   style = {},
+  theme,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = React.useState(false);
   const isRadio = component === 'radio';
   const switchSize = !isRadio ? checkboxSize : radioSize;
@@ -53,6 +56,7 @@ export const SwitchBase = ({
 
   const checked = status === 'checked';
 
+  const borders = buildBorderStyles(theme);
   const renderCheckmark = () => {
     if (checked) {
       return isRadio ? (
@@ -147,7 +151,7 @@ export const SwitchBase = ({
             style={[
               styles.labelWrapper,
               !disabled && isPressed
-                ? theme.border.focusOutline
+                ? borders.focusOutline
                 : { borderWidth: 2, borderColor: 'transparent' },
             ]}
           >
@@ -184,3 +188,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+const SwitchBaseWithTheme = withTheme(SwitchBase);
+export { SwitchBaseWithTheme as SwitchBase };

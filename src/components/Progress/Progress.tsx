@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -7,15 +7,18 @@ import {
   LayoutChangeEvent,
 } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { blockSizes } from '../../styles/styles';
 import { Panel } from '../..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
+  background?: 'canvas' | 'material';
   percent: number;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   variant?: 'default' | 'tile' | 'indeterminate';
-  background?: 'canvas' | 'material';
 };
 
 const tileWidth = 17;
@@ -24,11 +27,10 @@ const Progress = ({
   background = 'material',
   percent = 0,
   style = {},
+  theme,
   variant = 'default',
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const [tilesNumber, setTilesNumber] = useState(0);
   const [progressWidth, setProgressWidth] = useState(0);
 
@@ -43,6 +45,7 @@ const Progress = ({
 
   return (
     <Panel
+      theme={theme}
       variant='cutout'
       background={background}
       {...rest}
@@ -119,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Progress;
+export default withTheme(Progress);

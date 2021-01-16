@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Image, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -12,18 +12,23 @@ import {
   Divider,
   Window,
   Anchor,
+  useTheme,
 } from 'react95-native';
-
+import type { Theme } from 'react95-native';
 import examples from './examples';
 import themes from './examples/themes';
-import { LocalThemeContext } from './util/LocalThemeContext';
 import ThemeButton from './util/ThemeButton';
 
-const ExamplesScreen = () => {
+type Props = {
+  setTheme: (theme: Theme) => void;
+};
+
+const ExamplesScreen = ({ setTheme: setThemeProp }: Props) => {
   const [showAboutModal, setShowAboutModal] = useState(false);
   const navigation = useNavigation();
-  const { theme: currentTheme, setTheme } = useContext(LocalThemeContext);
+  // const { theme: currentTheme, setTheme } = useContext(LocalThemeContext);
 
+  const currentTheme = useTheme();
   const openLink = (url: string) => {
     Linking.openURL(url).catch(err => console.warn("Couldn't load page", err));
   };
@@ -150,7 +155,7 @@ const ExamplesScreen = () => {
                 theme={theme}
                 currentTheme={currentTheme}
                 selected={theme.name === currentTheme.name}
-                onPress={() => setTheme(theme)}
+                onPress={() => setThemeProp(theme)}
                 key={theme.name}
               />
             ))}

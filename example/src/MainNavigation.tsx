@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppBar, ThemeProvider as React95Provider } from 'react95-native';
-
-import { LocalThemeContext } from './util/LocalThemeContext';
+import { AppBar } from 'react95-native';
+import type { Theme } from 'react95-native';
 import ExamplesScreen from './ExamplesScreen';
 import examples from './examples';
 
@@ -10,11 +9,13 @@ const flattenedExamples = examples.map(section => section.items).flat();
 
 const Stack = createStackNavigator();
 
-const MainNavigation = () => {
-  const { theme } = useContext(LocalThemeContext);
+type Props = {
+  setTheme: (theme: Theme) => void;
+};
 
+const MainNavigation = (props: Props) => {
   return (
-    <React95Provider theme={theme}>
+    <>
       <Stack.Navigator
         headerMode='screen'
         screenOptions={{
@@ -29,11 +30,9 @@ const MainNavigation = () => {
             ),
         }}
       >
-        <Stack.Screen
-          name='Home'
-          component={ExamplesScreen}
-          options={{ title: 'Examples' }}
-        />
+        <Stack.Screen name='Home' options={{ title: 'Examples' }}>
+          {() => <ExamplesScreen {...props} />}
+        </Stack.Screen>
         {flattenedExamples.map(({ name, title, component }) => (
           <Stack.Screen
             key={name}
@@ -43,7 +42,7 @@ const MainNavigation = () => {
           />
         ))}
       </Stack.Navigator>
-    </React95Provider>
+    </>
   );
 };
 

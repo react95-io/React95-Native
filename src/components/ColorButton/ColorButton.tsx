@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import type { $RemoveChildren, Color } from '../../types';
+
+import type { Theme, $RemoveChildren, Color } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Button, Divider, ArrowIcon } from '../..';
-import { ThemeContext } from '../../styles/theming/Theme';
 
 type Props = $RemoveChildren<typeof Button> & {
   color?: Color;
+  theme: Theme;
 };
 
 const previewHeight = 20;
 
-const ColorButton = ({ disabled, color, ...rest }: Props) => {
-  const theme = useContext(ThemeContext);
-
+const ColorButton = ({ disabled, color, theme, ...rest }: Props) => {
   return (
     <Button variant='raised' disabled={disabled} {...rest}>
       <View style={styles.row}>
@@ -40,6 +40,7 @@ const ColorButton = ({ disabled, color, ...rest }: Props) => {
         />
         <Divider orientation='vertical' size={previewHeight} />
         <ArrowIcon
+          theme={theme}
           direction='down'
           disabled={disabled}
           segments={3}
@@ -65,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ColorButton;
+export default withTheme(ColorButton);

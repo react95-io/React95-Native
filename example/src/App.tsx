@@ -1,15 +1,16 @@
 /* eslint-disable global-require */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { fontNames } from 'react95-native';
+import { fontNames, Provider, themes } from 'react95-native';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { LocalThemeProvider } from './util/LocalThemeContext';
 import MainNavigation from './MainNavigation';
 
 const App = () => {
+  const [theme, setTheme] = useState(themes.original);
+
   const [fontLoaded] = useFonts({
     [fontNames.normal]: require('./assets/fonts/MS-Sans-Serif.ttf'),
     [fontNames.bold]: require('./assets/fonts/MS-Sans-Serif-Bold.ttf'),
@@ -31,11 +32,11 @@ const App = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-      <LocalThemeProvider>
+      <Provider theme={theme}>
         <NavigationContainer>
-          <MainNavigation />
+          <MainNavigation setTheme={setTheme} />
         </NavigationContainer>
-      </LocalThemeProvider>
+      </Provider>
     </SafeAreaView>
   );
 };

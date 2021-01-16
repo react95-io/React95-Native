@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,9 +6,10 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import type { Sizes } from '../../types';
-import { ThemeContext } from '../../styles/theming/Theme';
-import { blockSizes } from '../../styles/styles';
+
+import type { Theme, Sizes } from '../../types';
+import { withTheme } from '../../core/theming';
+import { blockSizes, builtTextStyles } from '../../styles/styles';
 
 import { Text } from '../..';
 
@@ -20,6 +21,7 @@ type Props = {
   primary?: boolean;
   size?: Sizes;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   title: string;
 };
 
@@ -29,12 +31,13 @@ export const Item = ({
   primary = false,
   size = 'md',
   style,
+  theme,
   title,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
+  const textStyles = builtTextStyles(theme);
   return (
     <View
       {...rest}
@@ -60,9 +63,10 @@ export const Item = ({
       >
         <View pointerEvents='none' style={[styles.content]}>
           <Text
+            theme={theme}
             bold={primary}
             style={[
-              disabled ? theme.text.disabled : theme.text.default,
+              disabled ? textStyles.disabled : textStyles.default,
               !disabled && {
                 color: isPressed
                   ? theme.materialTextInvert
@@ -93,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Item;
+export default withTheme(Item);

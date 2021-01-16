@@ -1,22 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { Border } from '../../styles/styleElements';
-import { ThemeContext } from '../../styles/theming/Theme';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   screenStyle?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
-const Desktop = ({ children, style, screenStyle, ...rest }: Props) => {
-  const theme = useContext(ThemeContext);
-
+const Desktop = ({ children, style, screenStyle, theme, ...rest }: Props) => {
   return (
     <View style={[styles.wrapper, style]} {...rest}>
-      <View style={[styles.monitor]}>
-        <Border variant='raised'>
+      <View style={[styles.monitor, { backgroundColor: theme.material }]}>
+        <Border theme={theme} variant='raised'>
           <View
             style={[
               styles.monitorShadowBorder,
@@ -32,7 +33,7 @@ const Desktop = ({ children, style, screenStyle, ...rest }: Props) => {
           </View>
         </Border>
         <View style={[styles.screen, screenStyle]} testID='desktopScreen'>
-          <Border variant='cutout' />
+          <Border theme={theme} variant='cutout' />
           {children}
         </View>
         <View style={[styles.light]} />
@@ -41,13 +42,19 @@ const Desktop = ({ children, style, screenStyle, ...rest }: Props) => {
         <View
           style={[styles.standSegmentOne, { borderTopColor: theme.borderDark }]}
         >
-          <Border variant='raised' />
+          <Border
+            theme={theme}
+            variant='raised'
+            style={{ backgroundColor: theme.material }}
+          />
         </View>
-        <View style={[styles.standSegmentTwo]}>
-          <Border variant='default' />
+        <View
+          style={[styles.standSegmentTwo, { backgroundColor: theme.material }]}
+        >
+          <Border theme={theme} variant='default' />
         </View>
         <View style={[styles.standSegmentThree]}>
-          <Border variant='raised' />
+          <Border theme={theme} variant='raised' />
         </View>
       </View>
     </View>
@@ -122,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Desktop;
+export default withTheme(Desktop);

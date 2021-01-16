@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
-import { Snackbar, Text } from 'react95-native';
+import React from 'react';
+import { Snackbar, Text, useTheme } from 'react95-native';
 
 import Container from '../util/Container';
-import { LocalThemeContext } from '../util/LocalThemeContext';
 
 const SnackbarExample = () => {
-  const { theme } = useContext(LocalThemeContext);
+  const theme = useTheme();
   return (
     <Container style={[{ backgroundColor: theme.materialDark }]}>
       <Container.Section title='Default:'>

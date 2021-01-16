@@ -135,5 +135,8 @@
     "files": [
       "src/"
     ]
+  },
+  "dependencies": {
+    "@callstack/react-theme-provider": "^2.1.0"
   }
 }

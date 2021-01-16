@@ -9,7 +9,7 @@ export const fontNames = {
 
 const commonBorderStyle = { borderWidth: 2 };
 
-export const border = (theme: Theme) =>
+export const buildBorderStyles = (theme: Theme) =>
   StyleSheet.create({
     focusSecondaryOutline: {
       ...commonBorderStyle,
@@ -80,7 +80,7 @@ export const border = (theme: Theme) =>
     },
   });
 
-export const text = (theme: Theme) =>
+export const builtTextStyles = (theme: Theme) =>
   StyleSheet.create({
     regular: {
       fontFamily: 'MS Sans Serif',
