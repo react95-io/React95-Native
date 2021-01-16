@@ -27,7 +27,7 @@ const ThemeButton = ({ theme, currentTheme, selected, onPress }: Props) => (
         ]}
       >
         <ThemeProvider theme={theme}>
-          <Panel variant='outside' style={[styles.square]}>
+          <Panel variant='raised' style={[styles.square]}>
             <View
               style={[
                 styles.header,

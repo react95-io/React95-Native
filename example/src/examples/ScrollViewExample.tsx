@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text, Cutout, ScrollView } from 'react95-native';
+import { Text, Panel, ScrollView } from 'react95-native';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -18,20 +18,20 @@ Lorem Ipsum.`;
 const NumberInputExample = () => {
   return (
     <ExamplePanel>
-      <Cutout style={{ maxHeight: 200 }}>
+      <Panel variant='cutout' background='canvas' style={{ maxHeight: 200 }}>
         <ScrollView alwaysShowScrollbars>
           <View style={{ padding: 4 }}>
             <Text>{lorem}</Text>
           </View>
         </ScrollView>
-      </Cutout>
-      <Cutout style={{ marginTop: 20 }}>
+      </Panel>
+      <Panel variant='cutout' style={{ marginTop: 20 }}>
         <ScrollView alwaysShowScrollbars horizontal>
           <View style={{ width: 1000, padding: 4 }}>
             <Text>{lorem}</Text>
           </View>
         </ScrollView>
-      </Cutout>
+      </Panel>
     </ExamplePanel>
   );
 };

@@ -176,7 +176,7 @@ const ScrollView = ({
             }}
           />
           <Button
-            variant='outside'
+            variant='raised'
             onPress={() => handleScrollButtonPress(-1)}
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}
@@ -206,7 +206,7 @@ const ScrollView = ({
                 </TouchableWithoutFeedback>
                 {/* SCROLLBAR THUMB */}
                 <Panel
-                  variant='outside'
+                  variant='raised'
                   style={{
                     [scrollbarLengthDimension]: `${visibleContentRatio * 100}%`,
                   }}
@@ -223,7 +223,7 @@ const ScrollView = ({
             )}
           </View>
           <Button
-            variant='outside'
+            variant='raised'
             onPress={() => handleScrollButtonPress(1)}
             disabled={contentFullyVisible}
             style={[styles.scrollbarButton]}

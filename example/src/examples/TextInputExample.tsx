@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Text, Cutout, ScrollView } from 'react95-native';
+import { TextInput, Text, Panel, ScrollView } from 'react95-native';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -9,7 +9,7 @@ const loremIpsum =
 const TextInputExample = () => {
   return (
     <ExamplePanel style={styles.container}>
-      <Cutout background='material'>
+      <Panel variant='cutout' background='material'>
         <ScrollView>
           <View style={{ padding: 16 }}>
             <Text style={styles.label}>Default:</Text>
@@ -42,7 +42,11 @@ const TextInputExample = () => {
               defaultValue={loremIpsum}
             />
 
-            <Cutout style={{ padding: 16, marginTop: 16 }}>
+            <Panel
+              variant='cutout'
+              background='canvas'
+              style={{ padding: 16, marginTop: 16 }}
+            >
               <Text style={styles.label}>Default:</Text>
               <TextInput variant='flat' defaultValue={loremIpsum} />
               <TextInput
@@ -79,10 +83,10 @@ const TextInputExample = () => {
                 style={[{ height: 120, marginTop: 20 }]}
                 defaultValue={loremIpsum}
               />
-            </Cutout>
+            </Panel>
           </View>
         </ScrollView>
-      </Cutout>
+      </Panel>
     </ExamplePanel>
   );
 };

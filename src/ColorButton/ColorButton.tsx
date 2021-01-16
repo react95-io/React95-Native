@@ -15,7 +15,7 @@ const ColorButton = ({ disabled, color, ...rest }: Props) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <Button variant='outside' disabled={disabled} {...rest}>
+    <Button variant='raised' disabled={disabled} {...rest}>
       <View style={styles.row}>
         <View
           style={[

@@ -7,7 +7,7 @@ import Container from '../util/Container';
 const PanelExample = () => {
   return (
     <Container>
-      <Panel variant='outside' style={[styles.panel, { padding }]}>
+      <Panel variant='raised' style={[styles.panel, { padding }]}>
         <Text>
           Notice the subtle difference in borders. The lightest border is not on
           the edge of this panel.
@@ -15,9 +15,13 @@ const PanelExample = () => {
         <Panel variant='default' style={{ padding, margin }}>
           <Text>
             This panel on the other hand has the lightest border on the edge.
-            Use this panel inside &apos;outside&apos; panels.
+            Use this panel inside &apos;raised&apos; panels.
           </Text>
-          <Panel variant='well' style={{ padding, marginTop: margin }}>
+          <Panel
+            variant='cutout'
+            background='canvas'
+            style={{ padding, marginTop: margin, height: 100 }}
+          >
             <Text>Put some content here</Text>
           </Panel>
         </Panel>
@@ -28,6 +32,8 @@ const PanelExample = () => {
     </Container>
   );
 };
+
+// TODO: fox paddings
 
 const defaultSpacing = 12;
 const margin = defaultSpacing;

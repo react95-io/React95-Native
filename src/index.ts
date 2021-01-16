@@ -4,7 +4,6 @@ export { default as Card } from './Card';
 export { default as Checkbox } from './Checkbox';
 export { default as ColorButton } from './ColorButton';
 export { default as ColorPicker } from './ColorPicker';
-export { default as Cutout } from './Cutout';
 export { default as Desktop } from './Desktop';
 export { default as Divider } from './Divider';
 export { default as Fieldset } from './Fieldset';

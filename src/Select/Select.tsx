@@ -10,10 +10,10 @@ import type { AnyValue } from '../types';
 
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
-import { Border } from '../common/styleElements';
+import shadow from '../common/shadow';
 
 import getSelectOptions, { Option } from './SelectBase';
-import { ScrollView, Text, ArrowIcon } from '..';
+import { ScrollView, Text, ArrowIcon, Panel } from '..';
 
 type Props = {
   options: Array<Option>;
@@ -66,8 +66,12 @@ const Select = ({
   // TODO: native prop to use native select
 
   return (
-    <View style={[styles.wrapper, style]} {...rest}>
-      <Border variant='cutout' />
+    <Panel
+      variant='cutout'
+      background={disabled ? 'material' : 'canvas'}
+      style={[styles.wrapper, style]}
+      {...rest}
+    >
       <TouchableHighlight
         onPress={() => setIsOpen(currentIsOpen => !currentIsOpen)}
         activeOpacity={1}
@@ -117,13 +121,10 @@ const Select = ({
                 </Text>
               </View>
             </View>
-            <View
-              style={[
-                styles.fakeButton,
-                {
-                  backgroundColor: theme.material,
-                },
-              ]}
+            <Panel
+              variant={isPressed ? 'default' : 'raised'}
+              invert={isPressed}
+              style={[styles.fakeButton]}
             >
               <ArrowIcon
                 segments={4}
@@ -133,11 +134,7 @@ const Select = ({
                   paddingTop: isPressed ? 2 : 0,
                 }}
               />
-              <Border
-                variant={isPressed ? 'default' : 'outside'}
-                invert={isPressed}
-              />
-            </View>
+            </Panel>
           </View>
           {isOpen && (
             <View
@@ -155,7 +152,7 @@ const Select = ({
           )}
         </View>
       </TouchableHighlight>
-    </View>
+    </Panel>
   );
 };
 
@@ -165,6 +162,7 @@ const styles = StyleSheet.create({
   wrapper: {
     height: selectHeight,
     alignSelf: 'flex-start',
+    padding: 0,
   },
   inner: {
     position: 'relative',
@@ -210,6 +208,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 2,
     display: 'flex',
+    ...shadow(2),
   },
 });
 

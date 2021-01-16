@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  View,
-  ViewStyle,
-  SafeAreaView,
-} from 'react-native';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import AppBarContent from './AppBarContent';
 import AppBarBackAction from './AppBarBackAction';
@@ -18,12 +12,14 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
 
 const AppBar = ({ children, style = {}, ...rest }: Props) => {
   return (
-    // TODO: should we put SafeAreaView here?
-    <SafeAreaView>
-      <Panel style={[styles.wrapper, style]} variant='default' {...rest}>
-        {children}
-      </Panel>
-    </SafeAreaView>
+    <Panel
+      style={[styles.wrapper, style]}
+      variant='raised'
+      elevation={2}
+      {...rest}
+    >
+      {children}
+    </Panel>
   );
 };
 

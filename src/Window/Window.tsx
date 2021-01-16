@@ -30,7 +30,8 @@ const Window = ({
 
   return (
     <Panel
-      variant='outside'
+      variant='raised'
+      elevation={4}
       style={[styles.window, { backgroundColor: theme.material }, style]}
       {...rest}
     >
