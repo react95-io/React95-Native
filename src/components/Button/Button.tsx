@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   // TODO: use Pressable instead of TouchableHighlight?
@@ -8,9 +8,9 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import type { Sizes } from '../../types';
-import { ThemeContext } from '../../styles/theming/Theme';
-import { blockSizes } from '../../styles/styles';
+import type { Sizes, Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+import { blockSizes, buildBorderStyles } from '../../styles/styles';
 
 import { Text } from '../..';
 
@@ -30,6 +30,7 @@ type ButtonProps = React.ComponentPropsWithRef<typeof View> & {
   square?: boolean;
   style?: StyleProp<ViewStyle>;
   variant?: ButtonVariants;
+  theme: Theme;
 };
 
 const Button = ({
@@ -45,9 +46,9 @@ const Button = ({
   square = false,
   style = {},
   variant = 'default',
+  theme,
   ...rest
 }: ButtonProps) => {
-  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
 
   const getWidth = () => {
@@ -74,6 +75,7 @@ const Button = ({
       {...rest}
     >
       <Borders
+        theme={theme}
         isPressed={isPressed}
         variant={variant}
         primary={primary}
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default withTheme(Button);
 
 // Borders acts like a pseudo element that
 // will be positioned absolutely in it's parent element
@@ -140,6 +142,7 @@ type BorderProps = {
   primary?: boolean;
   active?: boolean;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 // TODO: pass theme as an argument instead of using context ?
@@ -149,30 +152,30 @@ const Borders = ({
   primary = false,
   active = false,
   style = {},
+  theme,
 }: BorderProps) => {
-  const theme = useContext(ThemeContext);
-
   let wrapper: StyleProp<ViewStyle> = [];
   let outer;
   let inner;
   let focus;
 
+  const botders = buildBorderStyles(theme);
   if (variant === 'default') {
-    wrapper = primary ? [theme.border.outline] : [];
-    outer = [theme.border.defaultOuter];
-    inner = [theme.border.defaultInner];
-    focus = isPressed ? [theme.border.focusOutline] : [];
+    wrapper = primary ? [botders.outline] : [];
+    outer = [botders.defaultOuter];
+    inner = [botders.defaultInner];
+    focus = isPressed ? [botders.focusOutline] : [];
   } else if (variant === 'raised') {
-    wrapper = primary ? [theme.border.outline] : [];
-    outer = [theme.border.outsideOuter];
-    inner = [theme.border.outsideInner];
-    focus = isPressed ? [theme.border.focusOutline] : [];
+    wrapper = primary ? [botders.outline] : [];
+    outer = [botders.outsideOuter];
+    inner = [botders.outsideInner];
+    focus = isPressed ? [botders.focusOutline] : [];
   } else if (variant === 'menu' && (active || isPressed)) {
-    wrapper = [theme.border.well];
+    wrapper = [botders.well];
   } else if (variant === 'flat') {
-    wrapper = primary ? [theme.border.outline] : [];
-    outer = [theme.border.flat];
-    inner = isPressed ? [theme.border.focusOutline] : [];
+    wrapper = primary ? [botders.outline] : [];
+    outer = [botders.flat];
+    inner = isPressed ? [botders.focusOutline] : [];
   }
 
   return (

@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleProp, StyleSheet, ViewStyle, View } from 'react-native';
 import type { LayoutChangeEvent } from 'react-native';
-import type { Orientation } from '../../types';
+
+import type { Theme, Orientation } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Panel } from '../..';
 
@@ -13,6 +15,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   open?: boolean;
   orientation?: Orientation;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   horizontalAlignment?: 'left' | 'right';
   verticalAlignment?: 'above' | 'below';
 };
@@ -23,6 +26,7 @@ const Menu = ({
   open = false,
   orientation = 'vertical',
   style = {},
+  theme,
   horizontalAlignment: horizontalAlign = 'left',
   verticalAlignment: verticalAlign = 'below',
   ...rest
@@ -54,6 +58,7 @@ const Menu = ({
         <View style={[styles.menuWrapper, menuPosition]}>
           <Panel
             {...rest}
+            theme={theme}
             variant='raised'
             elevation={2}
             onLayout={handleMenuLayout}
@@ -92,4 +97,4 @@ const styles = StyleSheet.create({
 
 Menu.Item = MenuItem;
 
-export default Menu;
+export default withTheme(Menu);

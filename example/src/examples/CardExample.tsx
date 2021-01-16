@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { ScrollView } from 'react-native';
-import { Card, Text } from 'react95-native';
+import { Card, Text, useTheme } from 'react95-native';
 
 import Container from '../util/Container';
-import { LocalThemeContext } from '../util/LocalThemeContext';
 
 const CardExample = () => {
-  const { theme } = useContext(LocalThemeContext);
+  const theme = useTheme();
   return (
     <ScrollView
       style={[

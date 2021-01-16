@@ -1,24 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
-import type { AnyValue } from '../../types';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+import type { Theme, AnyValue } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { blockSizes } from '../../styles/styles';
 
 import { Text } from '../..';
 // TODO: allow for no option selected
 export type Option = {
-  value: AnyValue;
   label: React.ReactNode;
+  value: AnyValue;
 };
 
 type SelectItemProps = {
-  option: Option;
-  onPress: (option: Option) => void;
   isSelected: boolean;
+  onPress: (option: Option) => void;
+  option: Option;
+  theme: Theme;
 };
 
-const SelectItem = ({ option, onPress, isSelected }: SelectItemProps) => {
-  const theme = useContext(ThemeContext);
+const SelectItem = ({
+  isSelected,
+  onPress,
+  option,
+  theme,
+}: SelectItemProps) => {
   const [isPressed, setIsPressed] = useState(false);
 
   return (
@@ -60,6 +67,8 @@ const SelectItem = ({ option, onPress, isSelected }: SelectItemProps) => {
   );
 };
 
+const SelectItemWithTheme = withTheme(SelectItem);
+
 const selectHeight = blockSizes.md + 2;
 
 const styles = StyleSheet.create({
@@ -84,19 +93,22 @@ type SelectOptionsProps = {
   options: Array<Option>;
   values: [AnyValue];
   onChange: (option: Option) => void;
+  theme: Theme;
 };
 
 export default function getSelectOptions({
   options,
   values,
   onChange,
+  theme,
 }: SelectOptionsProps): [Option[], JSX.Element[]] {
   const selectedOptions = options.filter(option =>
     values.includes(option.value),
   );
 
   const optionItems = options.map(option => (
-    <SelectItem
+    <SelectItemWithTheme
+      theme={theme}
       key={option.value}
       option={option}
       isSelected={selectedOptions.includes(option)}

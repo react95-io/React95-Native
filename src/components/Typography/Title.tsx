@@ -1,16 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { Divider } from '../..';
 import Text, { TextProps } from './Text';
 
 type Props = TextProps & {
   align?: 'center' | 'left' | 'right';
+  theme: Theme;
 };
 
-const Title = ({ align = 'center', children, ...rest }: Props) => {
-  const theme = useContext(ThemeContext);
-
+const Title = ({ align = 'center', children, theme, ...rest }: Props) => {
   const getAlignment = () => {
     switch (align) {
       case 'left':
@@ -53,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Title;
+export default withTheme(Title);

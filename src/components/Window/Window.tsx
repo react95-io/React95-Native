@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Panel, Button, Text, CloseIcon } from '../..';
 
@@ -13,6 +14,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   onMaximize?: () => void;
   onMinimize?: () => void;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   title?: string;
 };
 
@@ -23,13 +25,13 @@ const Window = ({
   onMaximize,
   onMinimize,
   style = {},
+  theme,
   title = '',
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   return (
     <Panel
+      theme={theme}
       variant='raised'
       elevation={4}
       style={[styles.window, { backgroundColor: theme.material }, style]}
@@ -48,6 +50,7 @@ const Window = ({
       >
         <View style={[styles.flex]}>
           <Text
+            theme={theme}
             bold
             // TODO: truncate window title when window is really small
             ellipsizeMode='tail'
@@ -64,18 +67,26 @@ const Window = ({
         <View style={[styles.flex]}>
           <View style={[styles.flex, styles.buttonGroup]}>
             {onMinimize && (
-              <Button onPress={onMinimize} style={[styles.button]}>
+              <Button
+                theme={theme}
+                onPress={onMinimize}
+                style={[styles.button]}
+              >
                 _
               </Button>
             )}
             {onMaximize && (
-              <Button onPress={onMaximize} style={[styles.button]}>
+              <Button
+                theme={theme}
+                onPress={onMaximize}
+                style={[styles.button]}
+              >
                 []
               </Button>
             )}
           </View>
           {onClose && (
-            <Button onPress={onClose} style={[styles.button]}>
+            <Button theme={theme} onPress={onClose} style={[styles.button]}>
               <CloseIcon />
             </Button>
           )}
@@ -94,28 +105,23 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
-
   window: {
     position: 'relative',
     paddingVertical: 6,
     paddingHorizontal: 6,
   },
-
   titleBar: {
     height: 36,
     margin: 2,
     paddingRight: 4,
     paddingLeft: 8,
   },
-
   titleBarText: {
     flexShrink: 1,
   },
-
   buttonGroup: {
     marginRight: 6,
   },
-
   button: {
     height: 28,
     width: 32,
@@ -123,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Window;
+export default withTheme(Window);

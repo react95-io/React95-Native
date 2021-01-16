@@ -5,6 +5,7 @@ import CheckboxExample from './CheckboxExample';
 import ColorPickerExample from './ColorPickerExample';
 import DesktopExample from './DesktopExample';
 import DividerExample from './DividerExample';
+import FABExample from './FABExample';
 import FieldsetExample from './FieldsetExample';
 import HourglassExample from './HourglassExample';
 import ListExample from './ListExample';
@@ -38,6 +39,11 @@ export default [
         name: 'ColorPickerExample',
         component: ColorPickerExample,
         title: 'ColorPicker',
+      },
+      {
+        name: 'FABExample',
+        component: FABExample,
+        title: 'Floating Action Button',
       },
       {
         name: 'NumberInputExample',

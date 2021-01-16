@@ -1,8 +1,11 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
-import { ThemeContext } from './theming/Theme';
+import { withTheme } from '../core/theming';
+
+import { buildBorderStyles } from './styles';
+import type { Theme } from '../types';
 
 // Borders acts like a pseudo element that
 // will be positioned absolutely in it's parent element
@@ -13,35 +16,37 @@ type BorderProps = {
   sharedStyle?: StyleProp<ViewStyle>;
   radius?: number;
   children?: React.ReactNode;
+  theme: Theme;
 };
 
-export const Border = ({
+const Border = ({
   invert = false,
   variant = 'default',
   style = {},
   sharedStyle = {},
   radius = 0,
+  theme,
   children,
 }: BorderProps) => {
-  const theme = useContext(ThemeContext);
-
   const wrapper: StyleProp<ViewStyle> = [];
   let outer;
   let inner;
 
+  const themedBorders = buildBorderStyles(theme);
+
   if (variant === 'default') {
-    outer = [theme.border.defaultOuter];
-    inner = [theme.border.defaultInner];
+    outer = [themedBorders.defaultOuter];
+    inner = [themedBorders.defaultInner];
   } else if (variant === 'raised') {
-    outer = [theme.border.outsideOuter];
-    inner = [theme.border.outsideInner];
+    outer = [themedBorders.outsideOuter];
+    inner = [themedBorders.outsideInner];
   } else if (variant === 'well') {
-    outer = [theme.border.well, borderStyles.invert];
+    outer = [themedBorders.well, borderStyles.invert];
   } else if (variant === 'cutout') {
-    outer = [theme.border.cutoutOuter];
-    inner = [theme.border.cutoutInner];
+    outer = [themedBorders.cutoutOuter];
+    inner = [themedBorders.cutoutInner];
   } else if (variant === 'flat') {
-    outer = [theme.border.flat];
+    outer = [themedBorders.flat];
   }
 
   const getSharedStyles = (() => {
@@ -95,3 +100,6 @@ const borderStyles = StyleSheet.create({
     transform: [{ rotate: '180deg' }],
   },
 });
+
+const BorderWithTheme = withTheme(Border);
+export { BorderWithTheme as Border };

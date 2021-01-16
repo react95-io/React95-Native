@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, ViewStyle, View } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import CardContent from './CardContent';
 
@@ -10,17 +12,18 @@ import CardContent from './CardContent';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children?: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
   elevation?: number;
+  style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const Card = ({
   children,
-  style = {},
   elevation: elevationProp = 1,
+  style = {},
+  theme,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
   const elevation = elevationProp * 2;
   return (
     <View style={[styles.wrapper, style]} {...rest}>
@@ -82,4 +85,4 @@ const styles = StyleSheet.create({
 
 Card.Content = CardContent;
 
-export default Card;
+export default withTheme(Card);

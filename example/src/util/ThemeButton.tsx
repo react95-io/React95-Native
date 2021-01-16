@@ -26,28 +26,23 @@ const ThemeButton = ({ theme, currentTheme, selected, onPress }: Props) => (
           },
         ]}
       >
-        <ThemeProvider theme={theme}>
-          <Panel variant='raised' style={[styles.square]}>
-            <View
-              style={[
-                styles.header,
-                { backgroundColor: theme.headerBackground },
-              ]}
+        <Panel theme={theme} variant='raised' style={[styles.square]}>
+          <View
+            style={[styles.header, { backgroundColor: theme.headerBackground }]}
+          />
+          {selected && (
+            <ImageBackground
+              style={{ width: '100%', height: '100%' }}
+              imageStyle={{
+                resizeMode: 'repeat',
+              }}
+              source={{
+                uri:
+                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC',
+              }}
             />
-            {selected && (
-              <ImageBackground
-                style={{ width: '100%', height: '100%' }}
-                imageStyle={{
-                  resizeMode: 'repeat',
-                }}
-                source={{
-                  uri:
-                    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAIUlEQVQoU2P8////fwYkwMjIyIjCp4MCZPtAbAwraa8AAEGrH/nfAIhgAAAAAElFTkSuQmCC',
-                }}
-              />
-            )}
-          </Panel>
-        </ThemeProvider>
+          )}
+        </Panel>
       </TouchableHighlight>
       <Text bold={selected} numberOfLines={1} style={[styles.themeButtonName]}>
         {theme.name}

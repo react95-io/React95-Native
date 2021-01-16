@@ -1,27 +1,31 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
 
-import type { Direction } from '../../types';
+import { withTheme } from '../../core/theming';
+import type { Direction, Color, Theme } from '../../types';
 
 type Props = {
+  color?: Color;
   direction?: Direction;
   disabled?: boolean;
   segments?: number;
+  shadowOffset?: number;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const pixelSize = 2;
 
 const ArrowIcon = ({
+  color,
   direction = 'down',
   disabled = false,
   segments = 4,
+  shadowOffset,
   style = {},
+  theme,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const segmentSizes = new Array(segments).fill(null).map((_, i) => 1 + i * 2);
 
   if (['right', 'down'].includes(direction)) {
@@ -48,15 +52,15 @@ const ArrowIcon = ({
             {
               [isHorizontal ? 'height' : 'width']: pixelSize * segmentSize,
               [isHorizontal ? 'width' : 'height']: pixelSize,
-              backgroundColor: disabled
-                ? theme.materialTextDisabled
-                : theme.materialText,
+              backgroundColor:
+                color ||
+                (disabled ? theme.materialTextDisabled : theme.materialText),
               shadowColor: disabled
                 ? theme.materialTextDisabledShadow
                 : 'transparent',
               shadowOffset: {
-                width: pixelSize,
-                height: pixelSize,
+                width: shadowOffset || pixelSize,
+                height: shadowOffset || pixelSize,
               },
               shadowOpacity: 1,
               shadowRadius: 0,
@@ -78,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArrowIcon;
+export default withTheme(ArrowIcon);

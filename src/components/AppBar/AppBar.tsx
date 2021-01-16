@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import AppBarContent from './AppBarContent';
 import AppBarBackAction from './AppBarBackAction';
 import Panel from '../Panel';
@@ -8,6 +11,7 @@ import Panel from '../Panel';
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const AppBar = ({ children, style = {}, ...rest }: Props) => {
@@ -36,4 +40,4 @@ const styles = StyleSheet.create({
 AppBar.Content = AppBarContent;
 AppBar.BackAction = AppBarBackAction;
 
-export default AppBar;
+export default withTheme(AppBar);

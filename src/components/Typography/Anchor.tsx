@@ -1,15 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Text } from '../..';
-import { ThemeContext } from '../../styles/theming/Theme';
+
+// TODO: separate Anchor props from React95 Text component
 
 type Props = React.ComponentProps<typeof Text> & {
+  theme: Theme;
   underline?: boolean;
 };
 
-const Anchor = ({ underline = false, children, style, ...rest }: Props) => {
-  const theme = useContext(ThemeContext);
-
+const Anchor = ({
+  children,
+  style,
+  theme,
+  underline = false,
+  ...rest
+}: Props) => {
   return (
     <Text
       style={[
@@ -26,4 +35,4 @@ const Anchor = ({ underline = false, children, style, ...rest }: Props) => {
   );
 };
 
-export default Anchor;
+export default withTheme(Anchor);

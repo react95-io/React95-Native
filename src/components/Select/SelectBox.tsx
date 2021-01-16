@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
-import { ThemeContext } from '../../styles/theming/Theme';
-import type { AnyValue } from '../../types';
+
+import type { Theme, AnyValue } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import getSelectOptions, { Option } from './SelectBase';
 import { ScrollView, Panel } from '../..';
@@ -9,22 +10,23 @@ import { ScrollView, Panel } from '../..';
 // TODO: multiselect
 
 type Props = {
-  options: Array<Option>;
-  value: [AnyValue] | AnyValue;
   onChange: (value: AnyValue) => void;
+  options: Array<Option>;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
+  value: [AnyValue] | AnyValue;
 };
 
 const SelectBox = ({
-  value,
-  options = [],
   onChange,
+  options = [],
   style,
+  theme,
+  value,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const [, selectOptions] = getSelectOptions({
+    theme,
     options,
     values: [value],
     onChange: handleOptionSelect,
@@ -36,12 +38,13 @@ const SelectBox = ({
 
   return (
     <Panel
+      theme={theme}
       variant='cutout'
       background='canvas'
       style={[styles.wrapper, style]}
       {...rest}
     >
-      <ScrollView>
+      <ScrollView theme={theme}>
         <View style={[styles.content, { backgroundColor: theme.canvas }]}>
           {selectOptions}
         </View>
@@ -50,7 +53,7 @@ const SelectBox = ({
   );
 };
 
-export default SelectBox;
+export default withTheme(SelectBox);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View,
   StyleProp,
@@ -7,29 +7,32 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
-import { blockSizes } from '../../styles/styles';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
+import { blockSizes, builtTextStyles } from '../../styles/styles';
 import { Border } from '../../styles/styleElements';
 
 type Props = React.ComponentPropsWithRef<typeof NativeTextInput> & {
-  value?: string;
   defaultValue?: string;
-  style?: StyleProp<ViewStyle>;
   disabled?: boolean;
+  style?: StyleProp<ViewStyle>;
+  theme: Theme;
+  value?: string;
   variant?: 'default' | 'flat';
 };
 
 // TODO: implement scrollbars in TextInput
 
 const TextInput = ({
+  defaultValue,
   disabled,
+  style = {},
+  theme,
   value,
   variant = 'default',
-  defaultValue,
-  style = {},
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
   const hasValue = !!(value || defaultValue);
 
   const isFlat = variant === 'flat';
@@ -41,17 +44,18 @@ const TextInput = ({
     return disabled ? theme.material : theme.canvas;
   };
 
+  const textStyles = builtTextStyles(theme);
   return (
     <View style={[styles.wrapper, { padding: isFlat ? 2 : 4 }, style]}>
-      <Border variant={isFlat ? 'flat' : 'cutout'} />
+      <Border theme={theme} variant={isFlat ? 'flat' : 'cutout'} />
       <NativeTextInput
         style={[
           styles.input,
           {
             backgroundColor: getBackgroundColor(),
           },
-          theme.text.regular,
-          disabled && hasValue ? theme.text.disabled : theme.text.default,
+          textStyles.regular,
+          disabled && hasValue ? textStyles.disabled : textStyles.default,
         ]}
         placeholderTextColor={theme.materialTextDisabled}
         defaultValue={defaultValue}
@@ -75,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TextInput;
+export default withTheme(TextInput);

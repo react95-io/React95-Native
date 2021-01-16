@@ -1,35 +1,36 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleProp, StyleSheet, Animated, View, ViewStyle } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
+import { withTheme } from '../../core/theming';
 import { Border } from '../../styles/styleElements';
 import shadow from '../../styles/shadow';
+import type { Theme } from '../../types';
 
 export const testId = 'panel';
 
 // TODO: common interface with styleElements/Border ?
 type Props = React.ComponentPropsWithRef<typeof View> & {
+  background?: 'material' | 'canvas' | 'materialDark';
   children?: React.ReactNode;
-  variant?: 'default' | 'well' | 'raised' | 'clear' | 'cutout';
-  style?: StyleProp<ViewStyle>;
-  radius?: number;
   elevation?: number;
   invert?: boolean;
-  background?: 'material' | 'canvas' | 'materialDark';
+  radius?: number;
+  style?: StyleProp<ViewStyle>;
+  theme: Theme;
+  variant?: 'default' | 'well' | 'raised' | 'clear' | 'cutout';
 };
 
 const Panel = ({
-  children,
-  variant = 'default',
-  style = {},
-  radius = 0,
-  elevation = 0,
   background = 'material',
+  children,
+  elevation = 0,
   invert = false,
+  radius = 0,
+  style = {},
+  theme,
+  variant = 'default',
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   const getBackgroundColor = () => {
     return theme[background];
   };
@@ -53,7 +54,12 @@ const Panel = ({
       testID={testId}
     >
       {variant !== 'clear' && (
-        <Border variant={variant} radius={radius} invert={invert} />
+        <Border
+          theme={theme}
+          variant={variant}
+          radius={radius}
+          invert={invert}
+        />
       )}
       {children}
     </Animated.View>
@@ -66,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Panel;
+export default withTheme(Panel);

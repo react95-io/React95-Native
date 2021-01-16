@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -10,9 +10,12 @@ import {
   ImageBackground,
 } from 'react-native';
 import useAsyncReference from '../../hooks/useAsyncReference';
-import { ThemeContext } from '../../styles/theming/Theme';
 
-import type { $RemoveChildren } from '../../types';
+import type { Theme, $RemoveChildren } from '../../types';
+import { withTheme } from '../../core/theming';
+
+import { buildBorderStyles } from '../../styles/styles';
+import { Border } from '../../styles/styleElements';
 import { clamp, roundValueToStep, findClosest } from '../../utils';
 
 import { Panel, Text } from '../..';
@@ -32,6 +35,7 @@ type Props = $RemoveChildren<typeof View> & {
   onChangeCommitted?: (a: number) => void;
   step?: number | null;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   value?: number;
 };
 
@@ -44,10 +48,10 @@ const Slider = ({
   onChangeCommitted,
   step = 1,
   style,
+  theme,
   value = 0,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
   const [isUsed, setIsUsed] = useState(false);
 
   let marks: Mark[];
@@ -120,6 +124,7 @@ const Slider = ({
     }),
   ).current;
 
+  const borderStyles = buildBorderStyles(theme);
   return (
     <View
       style={[styles.wrapper, style]}
@@ -136,7 +141,7 @@ const Slider = ({
         style={[
           styles.inner,
           isUsed
-            ? theme.border.focusOutline
+            ? borderStyles.focusOutline
             : { borderWidth: 2, borderColor: 'transparent' },
         ]}
       >
@@ -146,9 +151,11 @@ const Slider = ({
           onLayout={handleLayout}
           {...panResponder.panHandlers}
         >
-          <Panel variant='cutout' style={[styles.trackInner]}>
+          <View style={[styles.trackInner]}>
+            <Border theme={theme} variant='cutout' />
             {/* THUMB */}
             <Panel
+              theme={theme}
               pointerEvents='none'
               style={[
                 styles.thumb,
@@ -188,7 +195,7 @@ const Slider = ({
                 </View>
               )}
             </Panel>
-          </Panel>
+          </View>
         </View>
         {marks && (
           <View style={styles.marksWrapper}>
@@ -256,6 +263,7 @@ const styles = StyleSheet.create({
   },
   trackInner: {
     height: 8,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -306,4 +314,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Slider;
+export default withTheme(Slider);

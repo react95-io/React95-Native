@@ -6,11 +6,16 @@ import {
   StyleProp,
   TextStyle,
 } from 'react-native';
+
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { Text } from '../..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   title?: string;
   titleStyle?: StyleProp<TextStyle>;
 };
@@ -18,13 +23,14 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
 const ListSection = ({
   children,
   style,
+  theme,
   title,
   titleStyle,
   ...rest
 }: Props) => (
   <View {...rest} style={[styles.container, style]}>
     {title && (
-      <Text bold secondary style={[styles.title, titleStyle]}>
+      <Text theme={theme} bold secondary style={[styles.title, titleStyle]}>
         {title}
       </Text>
     )}
@@ -42,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListSection;
+export default withTheme(ListSection);

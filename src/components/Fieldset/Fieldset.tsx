@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { Border } from '../../styles/styleElements';
 import { Text } from '../..';
 
@@ -13,6 +15,7 @@ type Props = React.ComponentPropsWithRef<typeof View> & {
   label?: React.ReactNode;
   labelStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
   variant?: 'default' | 'flat';
 };
 
@@ -22,15 +25,14 @@ const Fieldset = ({
   label,
   labelStyle = {},
   style = {},
+  theme,
   variant = 'default',
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   return (
     <View style={[styles.wrapper, style]} testID={testId} {...rest}>
       {variant === 'flat' ? (
-        <Border variant='flat' />
+        <Border variant='flat' theme={theme} />
       ) : (
         <>
           <Border
@@ -40,11 +42,12 @@ const Fieldset = ({
               { marginLeft: 2, marginRight: 2, marginTop: 2, marginBottom: 2 },
             ]}
           />
-          <Border variant='well' />
+          <Border variant='well' theme={theme} />
         </>
       )}
       {label && (
         <Text
+          theme={theme}
           disabled={disabled}
           style={[
             styles.label,
@@ -81,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Fieldset;
+export default withTheme(Fieldset);

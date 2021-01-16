@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View,
   ViewStyle,
@@ -8,31 +8,33 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { ThemeContext } from '../../styles/theming/Theme';
+import type { Theme } from '../../types';
+import { withTheme } from '../../core/theming';
+
 import { blockSizes } from '../../styles/styles';
 
 import { Text } from '../..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   left?: React.ReactNode;
-  right?: React.ReactNode;
-  titleStyle?: StyleProp<TextStyle>;
-  title?: string;
   onPress?: () => void;
+  right?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
+  title?: string;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
 const ListItem = ({
   left,
+  onPress,
   right,
+  style,
+  theme,
   title,
   titleStyle,
-  style,
-  onPress,
   ...rest
 }: Props) => {
-  const theme = useContext(ThemeContext);
-
   return (
     <View style={style} {...rest}>
       <TouchableOpacity onPress={onPress} accessibilityRole='button'>
@@ -69,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItem;
+export default withTheme(ListItem);

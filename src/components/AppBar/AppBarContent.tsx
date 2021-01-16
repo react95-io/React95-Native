@@ -8,30 +8,34 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import type { $RemoveChildren } from '../../types';
+
+import type { Theme, $RemoveChildren } from '../../types';
+import { withTheme } from '../../core/theming';
 
 import { Text } from '../..';
 
 type Props = $RemoveChildren<typeof View> & {
+  //   titleRef?: React.RefObject<Text>;
+  //   TODO: titleRef
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
+  subtitle?: React.ReactNode;
+  subtitleStyle?: StyleProp<TextStyle>;
+  theme: Theme;
   title: React.ReactNode;
   titleRef?: React.RefObject<Text>;
   titleStyle?: StyleProp<TextStyle>;
-  //   TODO: titleRef
-  //   titleRef?: React.RefObject<Text>;
-  subtitle?: React.ReactNode;
-  subtitleStyle?: StyleProp<TextStyle>;
-  onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
 };
 
 const AppbarContent = ({
-  subtitle,
-  subtitleStyle,
+  // titleRef,
   onPress,
   style,
-  titleStyle,
+  subtitle,
+  subtitleStyle,
+  theme,
   title,
-  // titleRef,
+  titleStyle,
   ...rest
 }: Props) => {
   return (
@@ -39,6 +43,7 @@ const AppbarContent = ({
       <TouchableWithoutFeedback onPress={onPress} disabled={!onPress}>
         <View>
           <Text
+            theme={theme}
             // ref={titleRef}
             style={[styles.title, titleStyle]}
             accessibilityTraits='header'
@@ -46,7 +51,11 @@ const AppbarContent = ({
             {title}
           </Text>
           {subtitle ? (
-            <Text secondary style={[styles.subtitle, subtitleStyle]}>
+            <Text
+              theme={theme}
+              secondary
+              style={[styles.subtitle, subtitleStyle]}
+            >
               {subtitle}
             </Text>
           ) : null}
@@ -56,6 +65,7 @@ const AppbarContent = ({
   );
 };
 
+// TODO: attach displayName to every component?
 AppbarContent.displayName = 'Appbar.Content';
 
 const styles = StyleSheet.create({
@@ -71,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppbarContent;
+export default withTheme(AppbarContent);

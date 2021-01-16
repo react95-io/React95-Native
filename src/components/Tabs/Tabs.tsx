@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -6,30 +6,37 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import type { AnyValue } from '../../types';
-import { ThemeContext } from '../../styles/theming/Theme';
-import { padding, margin, blockSizes } from '../../styles/styles';
+
+import type { Theme, AnyValue } from '../../types';
+import { withTheme } from '../../core/theming';
+
+import {
+  padding,
+  margin,
+  blockSizes,
+  buildBorderStyles,
+} from '../../styles/styles';
 import { Border } from '../../styles/styleElements';
 import { Text, Panel } from '../..';
 
 type TabsProps = {
   children?: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
-  value: AnyValue;
   onChange?: (value: AnyValue) => void;
   stretch?: boolean;
+  style?: StyleProp<ViewStyle>;
+  theme: Theme;
+  value: AnyValue;
 };
 
 const Tabs = ({
-  value,
-  onChange,
   children,
+  onChange,
   stretch = false,
   style,
+  theme,
+  value,
   ...rest
 }: TabsProps) => {
-  const theme = useContext(ThemeContext);
-
   const childrenWithProps = React.Children.map(children, child => {
     if (!React.isValidElement(child)) {
       return null;
@@ -61,6 +68,7 @@ const Tabs = ({
 type TabBodyProps = {
   children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  theme: Theme;
 };
 
 const Body = ({ children, style, ...rest }: TabBodyProps) => {
@@ -73,24 +81,27 @@ const Body = ({ children, style, ...rest }: TabBodyProps) => {
 
 type TabProps = {
   children?: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
-  value: AnyValue;
   onPress?: (value: AnyValue) => void;
   selected?: boolean;
   stretch?: boolean;
+  style?: StyleProp<ViewStyle>;
+  theme: Theme;
+  value: AnyValue;
 };
 
 const Tab = ({
-  value,
+  children,
   onPress = () => {},
   selected,
   stretch,
-  children,
   style,
+  theme,
+  value,
   ...rest
 }: TabProps) => {
-  const theme = useContext(ThemeContext);
   const [isPressed, setIsPressed] = useState(false);
+
+  const borderStyles = buildBorderStyles(theme);
 
   return (
     <TouchableHighlight
@@ -138,7 +149,7 @@ const Tab = ({
         <Text>{children}</Text>
         <View style={[styles.mask, { backgroundColor: theme.material }]} />
         {isPressed && (
-          <View style={[styles.focusOutline, theme.border.focusOutline]} />
+          <View style={[styles.focusOutline, borderStyles.focusOutline]} />
         )}
       </View>
     </TouchableHighlight>
@@ -188,8 +199,10 @@ const styles = StyleSheet.create({
     right: 6,
   },
 });
+const TabWithTheme = withTheme(Tab);
+const BodyWithTheme = withTheme(Body);
 
-Tabs.Tab = Tab;
-Tabs.Body = Body;
+Tabs.Tab = TabWithTheme;
+Tabs.Body = BodyWithTheme;
 
-export default Tabs;
+export default withTheme(Tabs);
