@@ -3,7 +3,6 @@ import ButtonExample from './ButtonExample';
 import CardExample from './CardExample';
 import CheckboxExample from './CheckboxExample';
 import ColorPickerExample from './ColorPickerExample';
-import CutoutExample from './CutoutExample';
 import DesktopExample from './DesktopExample';
 import DividerExample from './DividerExample';
 import FieldsetExample from './FieldsetExample';
@@ -65,7 +64,6 @@ export default [
     items: [
       { name: 'AppBarExample', component: AppBarExample, title: 'AppBar' },
       { name: 'CardExample', component: CardExample, title: 'Card' },
-      { name: 'CutoutExample', component: CutoutExample, title: 'Cutout' },
       {
         name: 'DividerExample',
         component: DividerExample,

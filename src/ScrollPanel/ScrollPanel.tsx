@@ -33,7 +33,7 @@ const ScrollPanel = ({
       {...rest}
     >
       <View style={[styles.borderWrapper]}>
-        <Border variant='outside' />
+        <Border variant='raised' />
         <View style={[styles.inner, { backgroundColor: theme.material }]}>
           <Divider orientation='vertical' variant='raised' />
           <Divider orientation='vertical' variant='raised' />

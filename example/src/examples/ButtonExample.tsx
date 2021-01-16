@@ -46,30 +46,30 @@ const ButtonExample = () => {
         <View style={styles.buttonWrapper}>
           <Button
             primary
-            variant='outside'
+            variant='raised'
             onPress={() => console.warn('Pressed')}
           >
             Primary
           </Button>
-          <Button variant='outside' onPress={() => console.warn('Pressed')}>
+          <Button variant='raised' onPress={() => console.warn('Pressed')}>
             Default
           </Button>
           <Button
             active
-            variant='outside'
+            variant='raised'
             onPress={() => console.warn('Pressed')}
           >
             Active
           </Button>
           <Button
-            variant='outside'
+            variant='raised'
             disabled
             onPress={() => console.warn('Pressed')}
           >
             Disabled
           </Button>
           <Button
-            variant='outside'
+            variant='raised'
             onPress={() => console.warn('Pressed')}
             square
           >

@@ -4,8 +4,7 @@ import { ThemeContext } from '../common/theming/Theme';
 import type { AnyValue } from '../types';
 
 import getSelectOptions, { Option } from './SelectBase';
-import { Border } from '../common/styleElements';
-import { ScrollView } from '..';
+import { ScrollView, Panel } from '..';
 
 // TODO: multiselect
 
@@ -36,17 +35,18 @@ const SelectBox = ({
   }
 
   return (
-    <View
-      style={[styles.wrapper, { backgroundColor: theme.canvas }, style]}
+    <Panel
+      variant='cutout'
+      background='canvas'
+      style={[styles.wrapper, style]}
       {...rest}
     >
-      <Border variant='cutout' />
       <ScrollView>
         <View style={[styles.content, { backgroundColor: theme.canvas }]}>
           {selectOptions}
         </View>
       </ScrollView>
-    </View>
+    </Panel>
   );
 };
 

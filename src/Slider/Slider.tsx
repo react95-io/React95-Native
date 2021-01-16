@@ -15,8 +15,6 @@ import { ThemeContext } from '../common/theming/Theme';
 import type { $RemoveChildren } from '../types';
 import { clamp, roundValueToStep, findClosest } from '../common/utils';
 
-import { Border } from '../common/styleElements';
-
 import { Panel, Text } from '..';
 
 function percentToValue(percent: number, min: number, max: number) {
@@ -148,8 +146,7 @@ const Slider = ({
           onLayout={handleLayout}
           {...panResponder.panHandlers}
         >
-          <View style={[styles.trackInner]}>
-            <Border variant='cutout' />
+          <Panel variant='cutout' style={[styles.trackInner]}>
             {/* THUMB */}
             <Panel
               pointerEvents='none'
@@ -191,7 +188,7 @@ const Slider = ({
                 </View>
               )}
             </Panel>
-          </View>
+          </Panel>
         </View>
         {marks && (
           <View style={styles.marksWrapper}>

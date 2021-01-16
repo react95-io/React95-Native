@@ -23,7 +23,7 @@ const DividerExample = () => {
   return (
     <ExamplePanel>
       <Fieldset label='Default' style={[{ padding: 20 }]}>
-        <Progress percent={percent} />
+        <Progress percent={percent} background='canvas' />
       </Fieldset>
       <Fieldset label='Tile' style={[{ padding: 20 }]}>
         <Progress variant='tile' percent={percent} />

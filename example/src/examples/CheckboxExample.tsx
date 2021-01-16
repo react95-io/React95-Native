@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Checkbox, Fieldset, Cutout } from 'react95-native';
+import { Checkbox, Fieldset, Panel } from 'react95-native';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -39,7 +39,7 @@ const CheckboxExample = () => {
           disabled
         />
       </Fieldset>
-      <Cutout>
+      <Panel variant='cutout' background='canvas'>
         <View style={{ padding: 20 }}>
           <Fieldset variant='flat' label='Default'>
             <Checkbox
@@ -72,7 +72,7 @@ const CheckboxExample = () => {
             />
           </Fieldset>
         </View>
-      </Cutout>
+      </Panel>
     </ExamplePanel>
   );
 };

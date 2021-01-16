@@ -54,7 +54,8 @@ const Menu = ({
         <View style={[styles.menuWrapper, menuPosition]}>
           <Panel
             {...rest}
-            variant='outside'
+            variant='raised'
+            elevation={2}
             onLayout={handleMenuLayout}
             style={[
               styles.menu,

@@ -9,17 +9,19 @@ import {
 
 import { ThemeContext } from '../common/theming/Theme';
 import { blockSizes } from '../common/styles';
-import { Border } from '../common/styleElements';
+import { Panel } from '..';
 
 type Props = React.ComponentPropsWithRef<typeof View> & {
   percent: number;
   style?: StyleProp<ViewStyle>;
   variant?: 'default' | 'tile' | 'indeterminate';
+  background?: 'canvas' | 'material';
 };
 
 const tileWidth = 17;
 
 const Progress = ({
+  background = 'material',
   percent = 0,
   style = {},
   variant = 'default',
@@ -40,7 +42,9 @@ const Progress = ({
   }, [percent]);
 
   return (
-    <View
+    <Panel
+      variant='cutout'
+      background={background}
       {...rest}
       style={[
         styles.wrapper,
@@ -88,8 +92,7 @@ const Progress = ({
           />
         )}
       </View>
-      <Border variant='cutout' />
-    </View>
+    </Panel>
   );
 };
 

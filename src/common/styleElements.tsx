@@ -8,7 +8,7 @@ import { ThemeContext } from './theming/Theme';
 // will be positioned absolutely in it's parent element
 type BorderProps = {
   invert?: boolean;
-  variant?: 'default' | 'well' | 'outside' | 'cutout' | 'flat';
+  variant?: 'default' | 'well' | 'raised' | 'cutout' | 'flat';
   style?: StyleProp<ViewStyle>;
   sharedStyle?: StyleProp<ViewStyle>;
   radius?: number;
@@ -32,7 +32,7 @@ export const Border = ({
   if (variant === 'default') {
     outer = [theme.border.defaultOuter];
     inner = [theme.border.defaultInner];
-  } else if (variant === 'outside') {
+  } else if (variant === 'raised') {
     outer = [theme.border.outsideOuter];
     inner = [theme.border.outsideInner];
   } else if (variant === 'well') {

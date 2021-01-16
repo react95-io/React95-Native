@@ -16,7 +16,7 @@ import { Text } from '..';
 
 export const testId = 'button';
 
-export type ButtonVariants = 'menu' | 'flat' | 'default' | 'outside';
+export type ButtonVariants = 'menu' | 'flat' | 'default' | 'raised';
 
 type ButtonProps = React.ComponentPropsWithRef<typeof View> & {
   accessibilityLabel?: string;
@@ -162,7 +162,7 @@ const Borders = ({
     outer = [theme.border.defaultOuter];
     inner = [theme.border.defaultInner];
     focus = isPressed ? [theme.border.focusOutline] : [];
-  } else if (variant === 'outside') {
+  } else if (variant === 'raised') {
     wrapper = primary ? [theme.border.outline] : [];
     outer = [theme.border.outsideOuter];
     inner = [theme.border.outsideInner];

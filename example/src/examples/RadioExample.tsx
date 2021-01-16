@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Radio, Fieldset, Cutout } from 'react95-native';
+import { Radio, Fieldset, Panel } from 'react95-native';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -37,7 +37,7 @@ const RadioExample = () => {
           disabled
         />
       </Fieldset>
-      <Cutout>
+      <Panel variant='cutout' background='canvas'>
         <View style={{ padding: 16 }}>
           <Fieldset variant='flat' label='Default'>
             <Radio
@@ -70,7 +70,7 @@ const RadioExample = () => {
             />
           </Fieldset>
         </View>
-      </Cutout>
+      </Panel>
     </ExamplePanel>
   );
 };

@@ -76,7 +76,7 @@ const NumberInput = ({
       <Button
         disabled={isDecrementDisabled}
         onPress={() => handleClick(-step)}
-        variant={isFlat ? 'flat' : 'outside'}
+        variant={isFlat ? 'flat' : 'raised'}
         style={styles.button}
         testID='decrement'
       >
@@ -99,7 +99,7 @@ const NumberInput = ({
       <Button
         disabled={isIncrementDisabled}
         onPress={() => handleClick(step)}
-        variant={isFlat ? 'flat' : 'outside'}
+        variant={isFlat ? 'flat' : 'raised'}
         style={styles.button}
         testID='increment'
       >

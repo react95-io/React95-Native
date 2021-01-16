@@ -16,7 +16,7 @@ const Desktop = ({ children, style, screenStyle, ...rest }: Props) => {
   return (
     <View style={[styles.wrapper, style]} {...rest}>
       <View style={[styles.monitor]}>
-        <Border variant='outside'>
+        <Border variant='raised'>
           <View
             style={[
               styles.monitorShadowBorder,
@@ -41,13 +41,13 @@ const Desktop = ({ children, style, screenStyle, ...rest }: Props) => {
         <View
           style={[styles.standSegmentOne, { borderTopColor: theme.borderDark }]}
         >
-          <Border variant='outside' />
+          <Border variant='raised' />
         </View>
         <View style={[styles.standSegmentTwo]}>
           <Border variant='default' />
         </View>
         <View style={[styles.standSegmentThree]}>
-          <Border variant='outside' />
+          <Border variant='raised' />
         </View>
       </View>
     </View>

@@ -5,7 +5,6 @@ import {
   Panel,
   AppBar,
   Button,
-  Cutout,
   List,
   Text,
   ScrollView,
@@ -131,7 +130,7 @@ const ExamplesScreen = () => {
             </View>
             <Button
               square
-              variant='outside'
+              variant='raised'
               size='lg'
               style={styles.aboutButton}
               onPress={() => setShowAboutModal(true)}
@@ -156,11 +155,9 @@ const ExamplesScreen = () => {
               />
             ))}
           </ScrollPanel>
-          <Panel variant='outside' style={styles.panel}>
+          <Panel variant='raised' style={styles.panel}>
             <Divider />
-            <Cutout
-              style={[styles.cutout, { backgroundColor: currentTheme.canvas }]}
-            >
+            <Panel variant='cutout' background='canvas' style={styles.cutout}>
               <ScrollView
                 style={styles.scrollView}
                 scrollViewProps={{
@@ -189,7 +186,7 @@ const ExamplesScreen = () => {
                   ))}
                 </List.Accordion>
               </ScrollView>
-            </Cutout>
+            </Panel>
             <View style={[styles.statusBar]}>
               <Panel
                 variant='well'
@@ -251,14 +248,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: -4,
     zIndex: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.4,
-    elevation: 2,
   },
   logo: {
     flexDirection: 'row',

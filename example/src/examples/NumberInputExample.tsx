@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { NumberInput, Fieldset, Cutout } from 'react95-native';
+import { NumberInput, Fieldset, Panel } from 'react95-native';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -29,7 +29,7 @@ const NumberInputExample = () => {
         />
       </Fieldset>
 
-      <Cutout style={{ padding: 20 }}>
+      <Panel variant='cutout' background='canvas' style={{ padding: 20 }}>
         <Fieldset variant='flat' label='Flat' style={[styles.fieldset]}>
           <NumberInput
             variant='flat'
@@ -47,7 +47,7 @@ const NumberInputExample = () => {
             inputWidth={80}
           />
         </Fieldset>
-      </Cutout>
+      </Panel>
     </ExamplePanel>
   );
 };
