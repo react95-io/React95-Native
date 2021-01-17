@@ -8,6 +8,7 @@ import DividerExample from './DividerExample';
 import FABExample from './FABExample';
 import FieldsetExample from './FieldsetExample';
 import HourglassExample from './HourglassExample';
+import LabelExample from './LabelExample';
 import ListExample from './ListExample';
 import MenuExample from './MenuExample';
 import NumberInputExample from './NumberInputExample';
@@ -119,6 +120,11 @@ export default [
         name: 'HourglassExample',
         component: HourglassExample,
         title: 'Hourglass',
+      },
+      {
+        name: 'LabelExample',
+        component: LabelExample,
+        title: 'Label',
       },
       {
         name: 'ProgressExample',

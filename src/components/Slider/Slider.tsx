@@ -18,7 +18,7 @@ import { buildBorderStyles } from '../../styles/styles';
 import { Border } from '../../styles/styleElements';
 import { clamp, roundValueToStep, findClosest } from '../../utils';
 
-import { Panel, Text } from '../..';
+import { Panel, Text, Label } from '../..';
 
 function percentToValue(percent: number, min: number, max: number) {
   return (max - min) * percent + min;
@@ -181,17 +181,9 @@ const Slider = ({
               )}
               {isUsed && (
                 <View style={styles.tooltipWrapper}>
-                  <View
-                    style={[
-                      styles.tooltip,
-                      {
-                        borderColor: theme.borderDarkest,
-                        backgroundColor: theme.tooltip,
-                      },
-                    ]}
-                  >
-                    <Text style={styles.tooltipText}>{value}</Text>
-                  </View>
+                  <Label elevation={4} style={styles.tooltip}>
+                    {value}
+                  </Label>
                 </View>
               )}
             </Panel>
@@ -249,7 +241,6 @@ const thumbWidth = 18;
 const thumbHeight = 32;
 const tickSize = 6;
 
-const tooltipHeight = 30;
 const styles = StyleSheet.create({
   wrapper: {
     paddingVertical: 4,
@@ -279,7 +270,7 @@ const styles = StyleSheet.create({
   },
   tooltipWrapper: {
     position: 'absolute',
-    top: -(tooltipHeight + 18),
+    top: -44,
     left: thumbWidth / 2,
     alignItems: 'center',
   },
@@ -287,13 +278,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 4,
-    borderWidth: 2,
-    padding: 8,
-    backgroundColor: 'red',
-  },
-  tooltipText: {
-    fontSize: 16,
   },
   marksWrapper: {
     position: 'relative',

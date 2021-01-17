@@ -58,7 +58,7 @@ const DURATION_MEDIUM = 7000;
 const DURATION_LONG = 10000;
 
 const shadowOffset = 8;
-const radius = 5;
+const radius = 4;
 
 const Snackbar = ({
   visible,
