@@ -1,21 +1,39 @@
 import React from 'react';
-import { Snackbar, Text, useTheme } from 'react95-native';
-
-import Container from '../util/Container';
+import { StyleSheet, View } from 'react-native';
+import { Snackbar, Button, useTheme } from 'react95-native';
 
 const SnackbarExample = () => {
+  const [visible, setVisible] = React.useState<boolean>(true);
+
   const theme = useTheme();
   return (
-    <Container style={[{ backgroundColor: theme.materialDark }]}>
-      <Container.Section title='Default:'>
-        <Snackbar style={[{ height: 80 }]}>
-          <Snackbar.Content>
-            <Text>Display some information here.</Text>
-          </Snackbar.Content>
-        </Snackbar>
-      </Container.Section>
-    </Container>
+    <View style={[styles.container, { backgroundColor: theme.materialDark }]}>
+      <Button size='lg' onPress={() => setVisible(!visible)}>
+        {visible ? 'Hide' : 'Show'}
+      </Button>
+      <Snackbar
+        visible={visible}
+        onDismiss={() => setVisible(false)}
+        action={{
+          label: 'Undo',
+          onPress: () => {
+            // Do something
+          },
+        }}
+        duration={Snackbar.DURATION_MEDIUM}
+      >
+        Hi! I am Clippy, your office assistant.
+      </Snackbar>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default SnackbarExample;
