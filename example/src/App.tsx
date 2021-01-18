@@ -7,6 +7,7 @@ import { fontNames, Provider, themes } from 'react95-native';
 import * as SplashScreen from 'expo-splash-screen';
 
 import MainNavigation from './MainNavigation';
+import { NotificationProvider } from './util/notifications';
 
 const App = () => {
   const [theme, setTheme] = useState(themes.original);
@@ -36,6 +37,7 @@ const App = () => {
         <NavigationContainer>
           <MainNavigation setTheme={setTheme} />
         </NavigationContainer>
+        <NotificationProvider />
       </Provider>
     </SafeAreaView>
   );

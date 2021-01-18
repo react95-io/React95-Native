@@ -24,18 +24,8 @@ const RadioExample = () => {
         />
       </Fieldset>
       <Fieldset label='Disabled'>
-        <Radio
-          status='checked'
-          onPress={() => console.warn('pressed')}
-          label='Apple'
-          disabled
-        />
-        <Radio
-          status='unchecked'
-          onPress={() => console.warn('pressed')}
-          label='Pear'
-          disabled
-        />
+        <Radio status='checked' label='Apple' disabled />
+        <Radio status='unchecked' label='Pear' disabled />
       </Fieldset>
       <Panel variant='cutout' background='canvas'>
         <View style={{ padding: 16 }}>
@@ -54,20 +44,8 @@ const RadioExample = () => {
             />
           </Fieldset>
           <Fieldset variant='flat' label='Disabled'>
-            <Radio
-              variant='flat'
-              status='checked'
-              onPress={() => console.warn('pressed')}
-              label='Apple'
-              disabled
-            />
-            <Radio
-              variant='flat'
-              status='unchecked'
-              onPress={() => console.warn('pressed')}
-              label='Pear'
-              disabled
-            />
+            <Radio variant='flat' status='checked' label='Apple' disabled />
+            <Radio variant='flat' status='unchecked' label='Pear' disabled />
           </Fieldset>
         </View>
       </Panel>

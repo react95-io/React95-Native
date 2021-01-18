@@ -2,10 +2,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Window, Text } from 'react95-native';
+import { notificationService } from '../util/notifications';
 
-const onClose = () => console.warn('onClose');
-const onMinimize = () => console.warn('onMinimize');
-const onMaximize = () => console.warn('onMaximize');
+const onClose = () => notificationService.send({ message: 'onClose' });
+const onMinimize = () => notificationService.send({ message: 'onMinimize' });
+const onMaximize = () => notificationService.send({ message: 'onMaximize' });
 
 const AppBarExample = () => {
   return (

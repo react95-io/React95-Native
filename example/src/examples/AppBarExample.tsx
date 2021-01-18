@@ -5,7 +5,7 @@ import { AppBar } from 'react95-native';
 const AppBarExample = () => {
   return (
     <View style={{ backgroundColor: 'teal', flex: 1 }}>
-      <AppBar style={{ padding: 2 }}>
+      <AppBar>
         <AppBar.BackAction onPress={() => {}} />
         <AppBar.Content title='Timeline' subtitle='sport' />
       </AppBar>

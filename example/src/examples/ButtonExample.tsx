@@ -2,41 +2,33 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Panel, Card } from 'react95-native';
+import { notificationService } from '../util/notifications';
 
 import Container from '../util/Container';
 import ExamplePanel from '../util/ExamplePanel';
 
 const ButtonExample = () => {
+  const sharedProps = {
+    onLongPress: () => notificationService.send({ message: 'onLongPress' }),
+    onPress: () => notificationService.send({ message: 'onPress' }),
+  };
   return (
     <ExamplePanel>
       <Container.Section title='Default'>
         <View style={styles.buttonWrapper}>
-          <Button
-            primary
-            variant='default'
-            onLongPress={() => console.warn('onLongPress')}
-            onPress={() => console.warn('onPress')}
-          >
+          <Button primary variant='default' {...sharedProps}>
             Primary
           </Button>
-          <Button variant='default' onPress={() => console.warn('Pressed')}>
+          <Button variant='default' {...sharedProps}>
             Default
           </Button>
-          <Button
-            active
-            variant='default'
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button active variant='default' {...sharedProps}>
             Active
           </Button>
-          <Button
-            variant='default'
-            disabled
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button variant='default' disabled {...sharedProps}>
             Disabled
           </Button>
-          <Button onPress={() => console.warn('Pressed')} square>
+          <Button {...sharedProps} square>
             Ok
           </Button>
         </View>
@@ -44,35 +36,19 @@ const ButtonExample = () => {
 
       <Container.Section title=''>
         <View style={styles.buttonWrapper}>
-          <Button
-            primary
-            variant='raised'
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button primary variant='raised' {...sharedProps}>
             Primary
           </Button>
-          <Button variant='raised' onPress={() => console.warn('Pressed')}>
+          <Button variant='raised' {...sharedProps}>
             Default
           </Button>
-          <Button
-            active
-            variant='raised'
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button active variant='raised' {...sharedProps}>
             Active
           </Button>
-          <Button
-            variant='raised'
-            disabled
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button variant='raised' disabled {...sharedProps}>
             Disabled
           </Button>
-          <Button
-            variant='raised'
-            onPress={() => console.warn('Pressed')}
-            square
-          >
+          <Button variant='raised' {...sharedProps} square>
             Ok
           </Button>
         </View>
@@ -80,37 +56,19 @@ const ButtonExample = () => {
 
       <Container.Section title=''>
         <View style={styles.buttonWrapper}>
-          <Button
-            primary
-            variant='default'
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button primary variant='default' {...sharedProps}>
             Primary
           </Button>
-          <Button
-            primary
-            variant='default'
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button primary variant='default' {...sharedProps}>
             Default
           </Button>
-          <Button
-            primary
-            active
-            variant='default'
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button primary active variant='default' {...sharedProps}>
             Active
           </Button>
-          <Button
-            primary
-            variant='default'
-            disabled
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button primary variant='default' disabled {...sharedProps}>
             Disabled
           </Button>
-          <Button primary onPress={() => console.warn('Pressed')} square>
+          <Button primary {...sharedProps} square>
             Ok
           </Button>
         </View>
@@ -118,19 +76,15 @@ const ButtonExample = () => {
 
       <Container.Section title='Menu'>
         <Panel style={{ padding: 12 }}>
-          <Button variant='menu' onPress={() => console.warn('Pressed')}>
+          <Button variant='menu' {...sharedProps}>
             Menu
           </Button>
 
-          <Button active variant='menu' onPress={() => console.warn('Pressed')}>
+          <Button active variant='menu' {...sharedProps}>
             Active
           </Button>
 
-          <Button
-            variant='menu'
-            disabled
-            onPress={() => console.warn('Pressed')}
-          >
+          <Button variant='menu' disabled {...sharedProps}>
             Disabled
           </Button>
         </Panel>
@@ -146,21 +100,13 @@ const ButtonExample = () => {
               padding: 40,
             }}
           >
-            <Button
-              primary
-              variant='flat'
-              onPress={() => console.warn('Pressed')}
-            >
+            <Button primary variant='flat' {...sharedProps}>
               Primary
             </Button>
-            <Button variant='flat' onPress={() => console.warn('Pressed')}>
+            <Button variant='flat' {...sharedProps}>
               Default
             </Button>
-            <Button
-              variant='flat'
-              disabled
-              onPress={() => console.warn('Pressed')}
-            >
+            <Button variant='flat' disabled {...sharedProps}>
               Disabled
             </Button>
           </Card.Content>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { List, Hourglass, Panel, ScrollView } from 'react95-native';
+import { notificationService } from '../util/notifications';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -57,7 +58,7 @@ const HourglassExample = () => {
                 {items.map(item => (
                   <List.Item
                     title={item}
-                    onPress={() => console.warn(item)}
+                    onPress={() => notificationService.send({ message: item })}
                     left={<Hourglass />}
                     key={item}
                   />
