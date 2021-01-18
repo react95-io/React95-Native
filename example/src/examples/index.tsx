@@ -23,6 +23,7 @@ import SliderExample from './SliderExample';
 import SnackbarExample from './SnackbarExample';
 import TabsExample from './TabsExample';
 import TextInputExample from './TextInputExample';
+import ToolbarExample from './ToolbarExample';
 import TypographyExample from './TypographyExample';
 import WindowExample from './WindowExample';
 
@@ -96,6 +97,11 @@ export default [
         name: 'SnackbarExample',
         component: SnackbarExample,
         title: 'Snackbar',
+      },
+      {
+        name: 'ToolbarExample',
+        component: ToolbarExample,
+        title: 'Toolbar',
       },
       { name: 'WindowExample', component: WindowExample, title: 'Window' },
     ],
