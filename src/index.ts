@@ -23,6 +23,7 @@ export { default as Slider } from './components/Slider';
 export { default as Snackbar } from './components/Snackbar';
 export { default as Tabs } from './components/Tabs';
 export { default as TextInput } from './components/TextInput';
+export { default as Toolbar } from './components/Toolbar';
 export { default as Window } from './components/Window';
 export { Select, SelectBox } from './components/Select';
 export { Text, Title, Anchor } from './components/Typography';

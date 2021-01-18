@@ -73,7 +73,7 @@ export const NotificationProvider = () => {
             label: notification.closeButtonLabel || 'OK',
             onPress: () => notificationService.remove(notification),
           }}
-          duration={Snackbar.DURATION_SHORT}
+          duration={1000}
         >
           {notification.message}
         </Snackbar>
