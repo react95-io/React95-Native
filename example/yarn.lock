@@ -5738,6 +5738,11 @@ expo-font@~8.2.1:
     fbjs "1.0.0"
     fontfaceobserver "^2.1.0"
 
+expo-haptics@~8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/expo-haptics/-/expo-haptics-8.2.1.tgz#e4723cc6f25280631841ef178cb732b4cf637267"
+  integrity sha512-isw7ocEK1lNZ5dFfgyiJMj9s6jYIqfOKyEUYwhFP8KPOIDYVZJ2N5RPwvS95MRGprwrVetxbbGNEqZOELyhZKg==
+
 expo-image-loader@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-1.1.1.tgz#6c65bd1a41761c8acb91575060579e4864b93394"
