@@ -19,12 +19,7 @@ const CheckboxExample = () => {
           onPress={() => setIsChecked(prevState => !prevState)}
           label='Cheese'
         />
-        <Checkbox
-          status='checked'
-          onPress={() => console.warn('pressed')}
-          label='Pineapple'
-          disabled
-        />
+        <Checkbox status='checked' label='Pineapple' disabled />
       </Fieldset>
       <Fieldset label='Indeterminate'>
         <Checkbox
@@ -32,12 +27,7 @@ const CheckboxExample = () => {
           onPress={() => setIsIndeterminate(prevState => !prevState)}
           label='Cheese'
         />
-        <Checkbox
-          status='indeterminate'
-          onPress={() => console.warn('pressed')}
-          label='Pineapple'
-          disabled
-        />
+        <Checkbox status='indeterminate' label='Pineapple' disabled />
       </Fieldset>
       <Panel variant='cutout' background='canvas'>
         <View style={{ padding: 20 }}>
@@ -51,7 +41,6 @@ const CheckboxExample = () => {
             <Checkbox
               variant='flat'
               status='checked'
-              onPress={() => console.warn('pressed')}
               label='Pineapple'
               disabled
             />
@@ -66,7 +55,6 @@ const CheckboxExample = () => {
             <Checkbox
               variant='flat'
               status='indeterminate'
-              onPress={() => console.warn('pressed')}
               label='Pineapple'
               disabled
             />

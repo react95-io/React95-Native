@@ -15,7 +15,7 @@ containing Lorem Ipsum passages, and more recently with desktop
 publishing software like Aldus PageMaker including versions of
 Lorem Ipsum.`;
 
-const NumberInputExample = () => {
+const ScrollViewExample = () => {
   return (
     <ExamplePanel>
       <Panel variant='cutout' background='canvas' style={{ maxHeight: 200 }}>
@@ -36,4 +36,4 @@ const NumberInputExample = () => {
   );
 };
 
-export default NumberInputExample;
+export default ScrollViewExample;

@@ -1,13 +1,16 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Menu, Divider, Title, Button } from 'react95-native';
-
 import { View } from 'react-native';
+import { Menu, Divider, Title, Button } from 'react95-native';
+import { notificationService } from '../util/notifications';
+
 import ExamplePanel from '../util/ExamplePanel';
 
+const notify = (message: string) => notificationService.send({ message });
 const TextExample = () => {
   const [verticalMenuOpen, setVerticalMenuOpen] = React.useState(true);
   const [horizontalMenuOpen, setHorizontalMenuOpen] = React.useState(true);
+
   return (
     <ExamplePanel>
       <View
@@ -32,28 +35,28 @@ const TextExample = () => {
           >
             <Menu.Item
               size='lg'
-              onPress={() => console.warn('Item 1')}
+              onPress={() => notify('Item 1')}
               title='Item 1'
             />
             <Menu.Item
               size='lg'
-              onPress={() => console.warn('Item 2')}
+              onPress={() => notify('Item 2')}
               title='Item 2'
             />
             <Menu.Item
               size='lg'
-              onPress={() => console.warn('Item 3')}
+              onPress={() => notify('Item 3')}
               title='Item 3'
             />
             <Title>Letters</Title>
-            <Menu.Item size='lg' onPress={() => console.warn('A')} title='A' />
-            <Menu.Item size='lg' onPress={() => console.warn('B')} title='B' />
-            <Menu.Item size='lg' onPress={() => console.warn('C')} title='C' />
+            <Menu.Item size='lg' onPress={() => notify('A')} title='A' />
+            <Menu.Item size='lg' onPress={() => notify('B')} title='B' />
+            <Menu.Item size='lg' onPress={() => notify('C')} title='C' />
             <Divider size='auto' />
             <Menu.Item
               size='lg'
               disabled
-              onPress={() => console.warn('Disabled Item')}
+              onPress={() => notify('Disabled Item')}
               title='Disabled Item'
             />
           </Menu>
@@ -72,14 +75,14 @@ const TextExample = () => {
           >
             <Menu.Item
               primary
-              onPress={() => console.warn('Item 2')}
+              onPress={() => notify('Item 2')}
               title='Item 2'
             />
-            <Menu.Item onPress={() => console.warn('Item 3')} title='Item 3' />
+            <Menu.Item onPress={() => notify('Item 3')} title='Item 3' />
             <Divider orientation='vertical' variant='raised' size='auto' />
             <Menu.Item
               disabled
-              onPress={() => console.warn('Disabled Item')}
+              onPress={() => notify('Disabled Item')}
               title='Disabled Item'
             />
           </Menu>

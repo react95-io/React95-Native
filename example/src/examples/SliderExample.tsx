@@ -1,6 +1,7 @@
 import React from 'react';
 import { Slider, Fieldset } from 'react95-native';
 import * as Haptics from 'expo-haptics';
+import { notificationService } from '../util/notifications';
 
 import ExamplePanel from '../util/ExamplePanel';
 
@@ -34,13 +35,20 @@ const DividerExample = () => {
     setRestrictedValue(newValue);
   };
 
+  const sendNotification = (val: number) => {
+    notificationService.send({
+      message: `Value selected: ${val}`,
+      closeButtonLabel: 'OK!',
+    });
+  };
+
   return (
     <ExamplePanel>
       <Fieldset label='Default:' style={{ padding: 16 }}>
         <Slider
           step={2}
           onChange={handleChange}
-          onChangeCommitted={v => console.warn('onChangeCommited', v)}
+          onChangeCommitted={sendNotification}
           value={value}
         />
       </Fieldset>
@@ -48,7 +56,7 @@ const DividerExample = () => {
       <Fieldset label='With ticks:' style={{ padding: 16 }}>
         <Slider
           onChange={handleWithTicksValueChange}
-          onChangeCommitted={v => console.warn('onChangeCommited', v)}
+          onChangeCommitted={sendNotification}
           value={withTicksValue}
           marks
           step={10}
@@ -58,7 +66,7 @@ const DividerExample = () => {
       <Fieldset label='Restricted values:' style={{ padding: 24 }}>
         <Slider
           onChange={handleRestrictedValueChange}
-          onChangeCommitted={v => console.warn('onChangeCommited', v)}
+          onChangeCommitted={sendNotification}
           value={restrictedValue}
           marks={restrictedValues}
           step={null}
