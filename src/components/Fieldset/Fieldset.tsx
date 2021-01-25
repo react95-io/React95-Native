@@ -1,3 +1,4 @@
+// ORIGINAL WINDOWS NAME: GROUPBOX
 import React from 'react';
 import { StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
@@ -35,14 +36,26 @@ const Fieldset = ({
         <Border variant='flat' theme={theme} />
       ) : (
         <>
-          <Border
-            variant='well'
-            invert
+          <View
             style={[
-              { marginLeft: 2, marginRight: 2, marginTop: 2, marginBottom: 2 },
+              styles.border,
+              {
+                borderWidth: 4,
+                borderColor: theme.borderLightest,
+              },
             ]}
           />
-          <Border variant='well' theme={theme} />
+          <View
+            style={[
+              styles.border,
+              {
+                marginRight: 2,
+                marginBottom: 2,
+                borderWidth: 2,
+                borderColor: theme.borderDark,
+              },
+            ]}
+          />
         </>
       )}
       {label && (
@@ -81,6 +94,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontSize: 16,
     lineHeight: 16,
+  },
+  border: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });
 
