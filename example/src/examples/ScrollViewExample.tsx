@@ -26,7 +26,7 @@ const ScrollViewExample = () => {
         </ScrollView>
       </Panel>
       <Panel variant='cutout' style={{ marginTop: 20 }}>
-        <ScrollView alwaysShowScrollbars horizontal>
+        <ScrollView alwaysShowScrollbars horizontal small>
           <View style={{ width: 1000, padding: 4 }}>
             <Text>{lorem}</Text>
           </View>

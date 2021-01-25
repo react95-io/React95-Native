@@ -23,23 +23,24 @@ import { Panel, Button, ArrowIcon } from '../..';
 
 type Direction = -1 | 1;
 
-const scrollbarThickness = 30;
-const scrollbarButtonSize = scrollbarThickness;
-
 type ScrollViewProps = React.ComponentProps<typeof View> & {
   alwaysShowScrollbars?: boolean;
   children: React.ReactNode;
   horizontal?: boolean;
+  small?: boolean;
   scrollViewProps?: React.ComponentProps<typeof RNScrollView>;
   style?: StyleProp<ViewStyle>;
   theme: Theme;
 };
 
 // TODO: performance improvements (callbacks, refs ...etc)
+// TODO: disable scroll buttons when scroll position reached min or max
+// TODO: add 'scrollIncrement' prop (granularity of scroll buttons)
 const ScrollView = ({
   alwaysShowScrollbars = false,
   children,
   horizontal = false,
+  small = false,
   scrollViewProps = {},
   style,
   theme,
@@ -51,6 +52,8 @@ const ScrollView = ({
   const [contentSize, setContentSize] = useAsyncReference(0);
   const [scrollViewSize, setScrollViewSize] = useAsyncReference(0);
 
+  const scrollbarThickness = small ? 26 : 30;
+  const scrollbarButtonSize = scrollbarThickness;
   const scrollbarAxis = horizontal ? 'x' : 'y';
   const scrollbarLengthDimension = horizontal ? 'width' : 'height';
   const scrollbarThicknessDimension = horizontal ? 'height' : 'width';
@@ -183,13 +186,17 @@ const ScrollView = ({
             variant='raised'
             onPress={() => handleScrollButtonPress(-1)}
             disabled={contentFullyVisible}
-            style={[styles.scrollbarButton]}
+            style={{
+              height: scrollbarButtonSize,
+              width: scrollbarButtonSize,
+              padding: 0,
+            }}
           >
             <ArrowIcon
               theme={theme}
               direction={horizontal ? 'left' : 'up'}
               disabled={contentFullyVisible}
-              segments={4}
+              segments={small ? 3 : 4}
             />
           </Button>
           <View style={[styles.scrollbarTrack]}>
@@ -233,13 +240,17 @@ const ScrollView = ({
             variant='raised'
             onPress={() => handleScrollButtonPress(1)}
             disabled={contentFullyVisible}
-            style={[styles.scrollbarButton]}
+            style={{
+              height: scrollbarButtonSize,
+              width: scrollbarButtonSize,
+              padding: 0,
+            }}
           >
             <ArrowIcon
               theme={theme}
               direction={horizontal ? 'right' : 'down'}
               disabled={contentFullyVisible}
-              segments={4}
+              segments={small ? 3 : 4}
             />
           </Button>
         </View>
@@ -256,11 +267,6 @@ const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
     flexShrink: 1,
-  },
-  scrollbarButton: {
-    height: scrollbarButtonSize,
-    width: scrollbarButtonSize,
-    padding: 0,
   },
   scrollbarTrack: {
     overflow: 'hidden',
