@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
 import { fontNames, Provider, themes } from 'react95-native';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -32,14 +33,18 @@ const App = () => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
-      <Provider theme={theme}>
-        <NavigationContainer>
-          <MainNavigation setTheme={setTheme} />
-        </NavigationContainer>
-        <NotificationProvider />
-      </Provider>
-    </SafeAreaView>
+    <>
+      {/* eslint-disable-next-line react/style-prop-object */}
+      <StatusBar style='light' />
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+        <Provider theme={theme}>
+          <NavigationContainer>
+            <MainNavigation setTheme={setTheme} />
+          </NavigationContainer>
+          <NotificationProvider />
+        </Provider>
+      </SafeAreaView>
+    </>
   );
 };
 

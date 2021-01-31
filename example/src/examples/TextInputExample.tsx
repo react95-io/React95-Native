@@ -10,7 +10,7 @@ const TextInputExample = () => {
   return (
     <ExamplePanel style={styles.container}>
       <Panel variant='cutout' background='material'>
-        <ScrollView>
+        <ScrollView small>
           <View style={{ padding: 16 }}>
             <Text style={styles.label}>Default:</Text>
             <TextInput defaultValue={loremIpsum} />
