@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: 40,
-    width: 240,
+    minWidth: 200,
   },
   toolbarWrapper: {
     flex: 1,

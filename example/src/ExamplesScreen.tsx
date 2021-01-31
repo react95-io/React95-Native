@@ -42,72 +42,87 @@ const ExamplesScreen = ({ setTheme: setThemeProp }: Props) => {
           onClose={() => setShowAboutModal(false)}
         >
           <View
-            style={{ padding: 16, justifyContent: 'space-between', flex: 1 }}
+            style={{
+              padding: 16,
+              justifyContent: 'space-between',
+              flex: 1,
+            }}
           >
-            <View>
-              <Text
-                bold
-                style={{
-                  fontSize: 22,
-                  marginBottom: 16,
-                  marginTop: 16,
+            <Panel variant='cutout' background='material' style={styles.cutout}>
+              <ScrollView
+                style={styles.scrollView}
+                scrollViewProps={{
+                  contentContainerStyle: styles.content,
                 }}
               >
-                Welcome to React95 Native
-              </Text>
+                <View>
+                  <Text
+                    bold
+                    style={{
+                      fontSize: 22,
+                      marginBottom: 16,
+                    }}
+                  >
+                    Welcome to React95 Native
+                  </Text>
 
-              <Text style={{ lineHeight: 24 }}>
-                This <Text style={{ color: 'red' }}>PRERELEASE</Text> version of
-                React95 Native is under construction!
-                {'\n'}
-                {'\n'}
-                Please remember that the components, themes and API will
-                continue to change through the product&apos;s development cycle.
-                {'\n'}
-                {'\n'}
-                If you find this project interesting consider doing the
-                following:
-                {'\n'}
-                {'\n'}- follow our{' '}
-                <Anchor
-                  underline
-                  onPress={() => openLink('https://twitter.com/react95_io')}
-                >
-                  Twitter account
-                </Anchor>
-                {'\n'}- visit our{' '}
-                <Anchor
-                  underline
-                  onPress={() => openLink('https://react95.io/')}
-                >
-                  Website
-                </Anchor>
-                {'\n'}- sponsor us on{' '}
-                <Anchor
-                  underline
-                  onPress={() => openLink('https://www.patreon.com/arturbien')}
-                >
-                  Patreon
-                </Anchor>
-                {'\n'}- donate through{' '}
-                <Anchor
-                  underline
-                  onPress={() =>
-                    openLink('https://www.paypal.com/paypalme/react95')
-                  }
-                >
-                  PayPal
-                </Anchor>
-                {'\n'}- tell your friends!
-                {'\n'}
-                {'\n'}
-                Thanks!
-                {'\n'}
-                {'\n'}- the React95 team
-              </Text>
-            </View>
+                  <Text style={{ lineHeight: 24 }}>
+                    This <Text style={{ color: 'red' }}>PRERELEASE</Text>{' '}
+                    version of React95 Native is under construction!
+                    {'\n'}
+                    {'\n'}
+                    Please remember that the components, themes and API will
+                    continue to change through the product&apos;s development
+                    cycle.
+                    {'\n'}
+                    {'\n'}
+                    If you find this project interesting consider doing the
+                    following:
+                    {'\n'}
+                    {'\n'}- follow our{' '}
+                    <Anchor
+                      underline
+                      onPress={() => openLink('https://twitter.com/react95_io')}
+                    >
+                      Twitter account
+                    </Anchor>
+                    {'\n'}- visit our{' '}
+                    <Anchor
+                      underline
+                      onPress={() => openLink('https://react95.io/')}
+                    >
+                      Website
+                    </Anchor>
+                    {'\n'}- sponsor us on{' '}
+                    <Anchor
+                      underline
+                      onPress={() =>
+                        openLink('https://www.patreon.com/arturbien')
+                      }
+                    >
+                      Patreon
+                    </Anchor>
+                    {'\n'}- donate through{' '}
+                    <Anchor
+                      underline
+                      onPress={() =>
+                        openLink('https://www.paypal.com/paypalme/react95')
+                      }
+                    >
+                      PayPal
+                    </Anchor>
+                    {'\n'}- tell your friends!
+                    {'\n'}
+                    {'\n'}
+                    Thanks!
+                    {'\n'}
+                    {'\n'}- the React95 team
+                  </Text>
+                </View>
+              </ScrollView>
+            </Panel>
             <View>
-              <Divider />
+              <Divider style={{ marginTop: 16 }} />
               <Button
                 primary
                 style={{ marginTop: 16, alignSelf: 'flex-end', width: 150 }}

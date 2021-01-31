@@ -64,7 +64,7 @@ const ColorPickerExample = () => {
   };
 
   return (
-    <ExamplePanel variant='clear'>
+    <ExamplePanel variant='clear' disableScroll>
       <Container.Section title='Default'>
         <View
           style={{
@@ -101,7 +101,7 @@ const ColorPickerExample = () => {
             </Button>
           </Menu>
           <ColorButton
-            onPress={() => setSecondColorMenuOpen(true)}
+            onPress={() => setSecondColorMenuOpen(!secondColorMenuOpen)}
             color={secondColor}
           />
         </View>
@@ -118,6 +118,7 @@ const ColorPickerExample = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}
+          pointerEvents='box-none'
         >
           <Window title='Colors' onClose={handleSecondColorCancel}>
             <View style={{ padding: 8 }}>

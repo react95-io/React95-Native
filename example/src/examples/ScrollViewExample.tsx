@@ -17,7 +17,7 @@ Lorem Ipsum.`;
 
 const ScrollViewExample = () => {
   return (
-    <ExamplePanel>
+    <ExamplePanel disableScroll>
       <Panel variant='cutout' background='canvas' style={{ maxHeight: 200 }}>
         <ScrollView alwaysShowScrollbars>
           <View style={{ padding: 4 }}>

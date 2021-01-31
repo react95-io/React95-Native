@@ -55,7 +55,6 @@ const NumberInputExample = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
   },
   fieldset: {
     padding: 20,

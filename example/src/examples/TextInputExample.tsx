@@ -8,7 +8,7 @@ const loremIpsum =
   'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself';
 const TextInputExample = () => {
   return (
-    <ExamplePanel style={styles.container}>
+    <ExamplePanel style={styles.container} disableScroll padding={4}>
       <Panel variant='cutout' background='material'>
         <ScrollView small>
           <View style={{ padding: 16 }}>
@@ -94,8 +94,7 @@ const TextInputExample = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
-    paddingTop: 10,
+    paddingTop: 6,
   },
   label: {
     marginTop: 16,

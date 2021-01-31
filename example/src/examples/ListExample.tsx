@@ -22,7 +22,7 @@ const HourglassExample = () => {
   };
 
   return (
-    <ExamplePanel style={{ padding: 8, paddingTop: 10 }}>
+    <ExamplePanel style={{ paddingTop: 6 }} padding={4} disableScroll>
       <Panel
         variant='cutout'
         background='canvas'

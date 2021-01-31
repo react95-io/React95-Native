@@ -25,9 +25,6 @@ const FieldsetExample = () => {
           <Fieldset variant='flat' disabled label='Disabled:'>
             <Text disabled>Some text here</Text>
           </Fieldset>
-          <Fieldset variant='flat'>
-            <Text>No label here</Text>
-          </Fieldset>
         </View>
       </Panel>
     </ExamplePanel>

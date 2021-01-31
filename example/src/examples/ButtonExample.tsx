@@ -11,6 +11,10 @@ const ButtonExample = () => {
   const sharedProps = {
     onLongPress: () => notificationService.send({ message: 'onLongPress' }),
     onPress: () => notificationService.send({ message: 'onPress' }),
+    style: {
+      marginRight: 8,
+      marginBottom: 8,
+    },
   };
   return (
     <ExamplePanel>
@@ -97,7 +101,7 @@ const ButtonExample = () => {
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
-              padding: 40,
+              padding: 20,
             }}
           >
             <Button primary variant='flat' {...sharedProps}>
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
     flex: 1,
   },
 });
