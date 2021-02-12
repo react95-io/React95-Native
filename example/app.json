@@ -1,8 +1,8 @@
 {
   "name": "react95-native-example",
-  "displayName": "React95 Native example",
+  "displayName": "React95 Native",
   "expo": {
-    "name": "React95 Native example",
+    "name": "React95 Native",
     "slug": "react95-native-example",
     "description": "Example app for React95 Native: https://github.com/react95-io",
     "privacy": "public",
@@ -20,7 +20,9 @@
       "android"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "io.native.react95",
+      "buildNumber": "0.1.0"
     },
     "assetBundlePatterns": [
       "**/*"
