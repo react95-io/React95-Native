@@ -20,7 +20,7 @@
       "android"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "io.native.react95",
       "buildNumber": "0.1.0"
     },
