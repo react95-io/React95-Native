@@ -159,23 +159,23 @@ const Borders = ({
   let inner;
   let focus;
 
-  const botders = buildBorderStyles(theme);
+  const borders = buildBorderStyles(theme);
   if (variant === 'default') {
-    wrapper = primary ? [botders.outline] : [];
-    outer = [botders.defaultOuter];
-    inner = [botders.defaultInner];
-    focus = isPressed ? [botders.focusOutline] : [];
+    wrapper = primary ? [borders.outline] : [];
+    outer = [borders.defaultOuter];
+    inner = [borders.defaultInner];
+    focus = isPressed ? [borders.focusOutline] : [];
   } else if (variant === 'raised') {
-    wrapper = primary ? [botders.outline] : [];
-    outer = [botders.outsideOuter];
-    inner = [botders.outsideInner];
-    focus = isPressed ? [botders.focusOutline] : [];
+    wrapper = primary ? [borders.outline] : [];
+    outer = [borders.outsideOuter];
+    inner = [borders.outsideInner];
+    focus = isPressed ? [borders.focusOutline] : [];
   } else if (variant === 'menu' && (active || isPressed)) {
-    wrapper = [botders.well];
+    wrapper = [borders.well];
   } else if (variant === 'flat') {
-    wrapper = primary ? [botders.outline] : [];
-    outer = [botders.flat];
-    inner = isPressed ? [botders.focusOutline] : [];
+    wrapper = primary ? [borders.outline] : [];
+    outer = [borders.flat];
+    inner = isPressed ? [borders.focusOutline] : [];
   }
 
   return (
