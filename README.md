@@ -1,4 +1,4 @@
-<h1 align="center">React95</h1>
+<h1 align="center">React95 Native</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/react95-native"><img src="https://flat.badgen.net/npm/dt/react95-native" alt="NPM" /></a>
