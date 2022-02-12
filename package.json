@@ -2,6 +2,28 @@
   "name": "react95-native",
   "version": "0.1.0",
   "description": "Refreshed Windows 95 style UI components for your React Native app",
+  "funding": [
+    {
+      "type" : "paypal",
+      "url" : "https://www.paypal.me/react95"
+    },
+    {
+      "type" : "patreon",
+      "url" : "https://www.patreon.com/arturbien"
+    }
+  ],
+  "contributors": [
+    {
+      "name" : "Artur Bień",
+      "email" : "artur.bien+react95@gmail.com",
+      "url" : "https://www.linkedin.com/in/arturbien/"
+    },
+    {
+      "name" : "Luiz Baldi",
+      "email" : "baldilp@gmail.com",
+      "url" : "https://www.linkedin.com/in/luizbaldi/"
+    }
+  ],
   "main": "dist/commonjs/index",
   "module": "dist/module/index",
   "types": "dist/typescript/src/index.d.ts",
