@@ -4,24 +4,24 @@
   "description": "Refreshed Windows 95 style UI components for your React Native app",
   "funding": [
     {
-      "type" : "paypal",
-      "url" : "https://www.paypal.me/react95"
+      "type": "paypal",
+      "url": "https://www.paypal.me/react95"
     },
     {
-      "type" : "patreon",
-      "url" : "https://www.patreon.com/arturbien"
+      "type": "patreon",
+      "url": "https://www.patreon.com/arturbien"
     }
   ],
   "contributors": [
     {
-      "name" : "Artur Bień",
-      "email" : "artur.bien+react95@gmail.com",
-      "url" : "https://www.linkedin.com/in/arturbien/"
+      "name": "Artur Bień",
+      "email": "artur.bien+react95@gmail.com",
+      "url": "https://www.linkedin.com/in/arturbien/"
     },
     {
-      "name" : "Luiz Baldi",
-      "email" : "baldilp@gmail.com",
-      "url" : "https://www.linkedin.com/in/luizbaldi/"
+      "name": "Luiz Baldi",
+      "email": "baldilp@gmail.com",
+      "url": "https://www.linkedin.com/in/luizbaldi/"
     }
   ],
   "main": "dist/commonjs/index",
@@ -103,16 +103,6 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
-  },
-  "jest": {
-    "preset": "react-native",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/dist/"
-    ],
-    "setupFilesAfterEnv": [
-      "./jest.setup.ts"
-    ]
   },
   "lint-staged": {
     "*.js": [
